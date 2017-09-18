@@ -9,7 +9,9 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>WeChart</title>
-
+    <!-- Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700">
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
@@ -44,10 +46,10 @@
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
                         @guest
-                            <li><a href="{{ route('login') }}">Login</a></li>
-                            <li><a href="{{ route('register') }}">Register</a></li>
+                            <li><a href="{{ route('login') }}"><i class="fa fa-sign-in" aria-hidden="true"></i>&nbsp;Login</a></li>
+                            <li><a href="{{ route('register') }}"><i class="fa fa-user-plus" aria-hidden="true"></i>&nbsp;Register</a></li>
                         @else
-                            <li> <a> Role: {{ Auth::user()->role}}</a></li>
+                            <li> <a id="role"> Role: {{ Auth::user()->role}}</a></li>
                             <li class="dropdown">
 
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -59,6 +61,7 @@
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
+                                            <i class="fa fa-sign-out" aria-hidden="true"></i>
                                             Logout
                                         </a>
 
@@ -68,6 +71,7 @@
                                     </li>
                                      <li>
                                         <a href="{{ url('/EditProfile') }}">
+                                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                             Edit Profile
                                         </a>
                                     </li>

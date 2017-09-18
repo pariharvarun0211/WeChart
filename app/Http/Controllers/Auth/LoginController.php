@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Auth;
+use Illuminate\Support\Facades\DB;
 
 class LoginController extends Controller
 {
@@ -25,7 +27,25 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    
+    //Overwriting post login method
+    protected function redirectTo()
+    {
+        if (Auth::check())
+        {
+            $email=Auth::user()->email;
+            $role = DB::table('users')->where('email',$email)->value('role');
+            
+            if($role == 'Student')
+                return '/StudentHome';
+            if($role == 'Admin')
+                return '/home';
+            if($role == 'Instructor')
+                return '/InstructorHome';
+        }
+
+        return '/login';
+    }
 
     /**
      * Create a new controller instance.
