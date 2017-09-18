@@ -13,7 +13,7 @@ class CreateSecurityTable extends Migration
      */
     public function up()
     {
-        Schema::create('security', function (Blueprint $table) {
+       Schema::create('security', function (Blueprint $table) {
             $table->increments('id');
             $table->string('security_question'); 
             $table->timestamps();

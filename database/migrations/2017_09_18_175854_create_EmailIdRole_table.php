@@ -13,7 +13,7 @@ class CreateEmailIdRoleTable extends Migration
      */
     public function up()
     {
-         Schema::create('EmailIdRole', function (Blueprint $table) {
+        Schema::create('EmailIdRole', function (Blueprint $table) {
             $table->increments('id');
             $table->string('email')->unique(); 
             $table->string('role');
