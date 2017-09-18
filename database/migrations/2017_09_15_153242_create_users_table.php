@@ -34,20 +34,20 @@ class CreateUsersTable extends Migration
 
         //Adding foreign key constraint with EmailidRole table
         Schema::table('users', function (Blueprint $table) {
-            $table->foreign('email')->references('email')->on('EmailIdRole')->onDelete('cascade');
+            $table->foreign('email')->references('email')->on('EmailIdRole');
         });
 
         //Adding foreign key constraints with Security table
         Schema::table('users', function (Blueprint $table) {
-            $table->foreign('security_question1_Id')->references('security')->on('id')->onDelete('cascade');
+            $table->foreign('security_question1_Id')->references('security')->on('id');
         });
 
         Schema::table('users', function (Blueprint $table) {
-            $table->foreign('security_question2_Id')->references('security')->on('id')->onDelete('cascade');
+            $table->foreign('security_question2_Id')->references('security')->on('id');
         });
 
         Schema::table('users', function (Blueprint $table) {
-            $table->foreign('security_question3_Id')->references('security')->on('id')->onDelete('cascade');
+            $table->foreign('security_question3_Id')->references('security')->on('id');
         });
 
         //Inserting record for admin
