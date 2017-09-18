@@ -31,6 +31,8 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
 
+            });
+
             //Adding foreign key constraint with EmailidRole table
         Schema::table('users', function (Blueprint $table) {
             $table->foreign('email')->references('email')->on('EmailIdRole');
