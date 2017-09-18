@@ -39,15 +39,15 @@ class CreateUsersTable extends Migration
 
         //Adding foreign key constraints with Security table
         Schema::table('users', function (Blueprint $table) {
-            $table->foreign('security_question1_Id')->references('security')->on('id');
+            $table->foreign('security_question1_Id')->references('id')->on('security');
         });
 
         Schema::table('users', function (Blueprint $table) {
-            $table->foreign('security_question2_Id')->references('security')->on('id');
+            $table->foreign('security_question2_Id')->references('id')->on('security');
         });
 
         Schema::table('users', function (Blueprint $table) {
-            $table->foreign('security_question3_Id')->references('security')->on('id');
+            $table->foreign('security_question3_Id')->references('id')->on('security');
         });
 
         //Inserting record for admin
