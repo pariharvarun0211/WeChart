@@ -5,7 +5,7 @@
     <div class="row">
         <h3 style="text-align: center"> Instructor Dashboard</h3>
     </div>
-    <div style="text-align: center" class="alert alert-info">Please visit after sometime.</div>
+    <div style="text-align: center" class="alert alert-info">Work in progress. Please visit after sometime.</div>
 </div>
   
 @endsection
