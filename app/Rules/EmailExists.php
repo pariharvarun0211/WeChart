@@ -31,7 +31,7 @@ class EmailExists implements Rule
         //Validate role- Student
         if($this->role == 'Student')
         {
-             $savedStudentEmails = DB::table('EmailidRole')->where('role','Student')->pluck('email');
+             $savedStudentEmails = DB::table('EmailIdRole')->where('role','Student')->pluck('email');
              foreach ($savedStudentEmails as $email) {
              if($email == $value)
              {
