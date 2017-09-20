@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <h3 style="text-align: center"> Admin Dashboard</h3>
+        <h3 style="text-align: center"><img src="logos\logoadmin.png" width="4%"> Admin Dashboard <img src="logos\logoadmin.png" width="4%"></h3>
     </div>
 
     <div class="row">
