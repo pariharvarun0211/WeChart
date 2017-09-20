@@ -92,8 +92,7 @@ class ResetPasswordController extends Controller
         try {
                 $email = $request->email;
                 if($_POST['password'] == $_POST['password_confirmation'])
-                {
-            
+                {            
                     $password = Hash::make($request->password);
                     DB::table('users')->where('email', $email)->update(['password' => $password]);
                     $user = DB::table('users')->where('email', $email)->first();

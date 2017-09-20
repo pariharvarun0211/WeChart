@@ -7,6 +7,9 @@
     </div>
 
     <div class="row">
+    <div class="col-md-10 col-md-offset-1">   
+            <a class="btn btn-success" style="float: left"> Emails Management</a>
+        </div>
         <div class="col-md-10 col-md-offset-1">   
             <a class="btn btn-success" style="float: right"> Configure Modules</a>
         </div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\User;
 use App\Security;
 use App\Rules\EmailExists;
+use Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -30,7 +31,24 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/login';
+    //Overwriting post login method
+    protected function redirectTo()
+    {
+        if (Auth::check())
+        {
+            $email=Auth::user()->email;
+            $role = DB::table('users')->where('email',$email)->value('role');
+            
+            if($role == 'Student')
+                return '/StudentHome';
+            if($role == 'Admin')
+                return '/home';
+            if($role == 'Instructor')
+                return '/InstructorHome';
+        }
+
+        // return '/login';
+    }
 
     /**
      * Create a new controller instance.

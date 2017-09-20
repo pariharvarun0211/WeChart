@@ -31,7 +31,7 @@
 
                     <!-- Branding Image -->
 
-                        <a class="navbar-brand" href="{{ url('/') }}" >
+                        <a class="navbar-brand" >
                             WeChart
                         </a>
                   </div>

@@ -24,10 +24,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        //Fetching all students and instructors
+        //Fetching all students and instructors for admin
          $students = DB::table('users')->where('role','Student')->get();
          $instructors = DB::table('users')->where('role','Instructor')->get();
-        // return view('home', ['students' => $students]);
          return view('Admin/home', compact('students','instructors'));
     }
     public function getStudentEmails()
@@ -38,48 +37,8 @@ class HomeController extends Controller
     }
     public function postStudentEmails(Request $request)
     {
-        // try {
-        //     //if only single email address entered
-        //      if( strpos( $request->email, ',' ) === false )
-        //      {
-        //      $messages = ['unique' => 'This email id is already present in the database.'];
-        //         $this->validate($request, [
-        //         'email' => 'required|unique:EmailIdRole',
-        //         ],$messages);
-
-        //         DB::table('EmailIdRole')->insert(
-        //             ['email' => $request->email, 'role' => 'Student']
-        //         );
-        //     }
-        //      //if multiple email addresses entered
-        //      else
-        //      {
-        //         $emailIds=$request->email;
-        //         $emaillist=explode(",",$emailIds);
-        //         array_pop($emaillist);
-        //         foreach($emaillist as $email_id)
-        //         {
-        //             $messages = ['unique' => 'This email id is already present in the database.'];
-        //             $this->validate($email_id, [
-        //             $email_id => 'required|unique:EmailIdRole',
-        //             ],$messages);
-
-        //             DB::table('EmailIdRole')->insert(
-        //                 ['email' => $email_id, 'role' => 'Student']
-        //             );
-        //         }
-        //     }
-        //         $EmailSubmitted =  'Yes';   
-        //         return view('Admin/AddStudentEmails',compact('EmailSubmitted'));
-        //     }
-        //  catch (\Illuminate\Database\QueryException $e)
-        // {
-        //     return view ('errors/503');
-        // }
-
-         try {
+        try {
                 $counter = session()->get('counter');
-                // $email = $request->input('email');
 
                 // for ($i = 0; $i < $counter; $i++)
                 // {
@@ -114,8 +73,7 @@ class HomeController extends Controller
     {
         $counter = session()->get('counter');
         $counter = $counter - 1;
-        session()->put('counter', $counter);
-        
+        session()->put('counter', $counter);        
         return view('Admin/AddStudentEmails',compact('counter'));
 
     }
@@ -158,15 +116,12 @@ class HomeController extends Controller
         $counter = $counter + 1;
         session()->put('counter', $counter);
         return view('Admin/AddInstructorEmails',compact('counter'));
-
     }
     public function removeInstructorEmails()
     {
         $counter = session()->get('counter');
         $counter = $counter - 1;
-        session()->put('counter', $counter);
-        
+        session()->put('counter', $counter);        
         return view('Admin/AddInstructorEmails',compact('counter'));
-
     }
 }
