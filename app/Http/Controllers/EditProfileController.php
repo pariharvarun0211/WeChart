@@ -1,9 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use Auth;
 use App\User;
@@ -15,7 +13,6 @@ class EditProfileController extends Controller
 	{
 		try {
 		    //$IsSecurityQuestionsEditable = false;
-
 			$email=Auth::user()->email;
 			$user = User::where('email', $email)->first();
 			$securityquestions = DB::table('security')->select('id','security_question')->get();
@@ -31,7 +28,6 @@ class EditProfileController extends Controller
 
 		}
 	}
-
 	protected function postEditProfile(Request $request)
 	{
 		try {
