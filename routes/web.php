@@ -19,6 +19,8 @@ Auth::routes();
 Route::post('/SecurityQuestions', 'Auth\ForgotPasswordController@getSecurityQuestions');
 Route::post('/ResetPassword', 'Auth\ResetPasswordController@resetUserPassword');
 Route::post('/ChangePassword', 'Auth\ResetPasswordController@changePassword');
+Route::get('/EditProfile', 'EditProfileController@getEditProfile');
+Route::post('/EditProfile', 'EditProfileController@postEditProfile');
 
 //Add Student emails
 Route::get('/AddStudentEmails', 'HomeController@getStudentEmails');
