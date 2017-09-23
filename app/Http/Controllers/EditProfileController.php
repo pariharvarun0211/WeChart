@@ -1,11 +1,9 @@
-<!--
+<?php
+/*
  Developer - Varun Parihar
  Date - 09/23/2017
  Description - Controller Code for Edit Profile functionality.
--->
-
-<?php
-
+*/
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
