@@ -33,7 +33,7 @@ class LoginController extends Controller
     {
         if (Auth::check())
         {
-            $email=Auth::user()->email;
+            $email=strtolower(Auth::user()->email);
             $role = DB::table('users')->where('email',$email)->value('role');
             
             if($role == 'Student')
