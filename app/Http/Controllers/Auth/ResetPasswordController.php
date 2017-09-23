@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use App\User;
 use Monolog\Logger;
 use Illuminate\Support\Facades\DB;
@@ -24,7 +25,7 @@ class ResetPasswordController extends Controller
     */
 
     use ResetsPasswords;
-    protected $PasswordNotMatched = '';
+    protected $erroredForm = '';
     protected $PasswordChanged = '';
 
     /**
@@ -50,6 +51,8 @@ class ResetPasswordController extends Controller
             $security_answer_fetched = '';
             
             $email = $request->email;
+
+            //Reading random security question generated on last page
             $randomQuestionNumber = $_POST['randomQuestionNumber'];
 
             $user = DB::table('users')->where('email', $email)->first();
@@ -73,8 +76,8 @@ class ResetPasswordController extends Controller
             if ($security_answer == $security_answer_fetched)
             {
                 $PasswordChanged='';
-                $PasswordNotMatched='';
-                return view('auth/passwords/reset', compact('user','randomQuestionNumber','PasswordChanged','PasswordNotMatched'));
+                $erroredForm='';
+                return view('auth/passwords/reset', compact('user','randomQuestionNumber','PasswordChanged','erroredForm'));
             }
             else
             {
@@ -87,26 +90,36 @@ class ResetPasswordController extends Controller
             return view ('errors/503');
         }
     }
+
     protected function changePassword(Request $request)
     {
         try {
                 $email = $request->email;
-                if($_POST['password'] == $_POST['password_confirmation'])
-                {            
-                    $password = Hash::make($request->password);
-                    DB::table('users')->where('email', $email)->update(['password' => $password]);
-                    $user = DB::table('users')->where('email', $email)->first();
-                    $PasswordChanged = 'Yes';
-                    $PasswordNotMatched= '';
-                    return view('auth/passwords/reset', compact('user','PasswordChanged','PasswordNotMatched'));   
+
+                if(strlen($_POST['password']) < 6)
+                {
+                    $erroredForm= 'Password short';
+                    $PasswordChanged='';
                 }
                 else
                 {
-                    $PasswordNotMatched= 'Yes';
-                    $PasswordChanged='';
-                    $user = DB::table('users')->where('email', $email)->first();
-                    return view('auth/passwords/reset', compact('user','PasswordChanged','PasswordNotMatched'));   
-                }         
+                    if($_POST['password'] == $_POST['password_confirmation'])
+                    {            
+                        $password = Hash::make($request->password);
+                        DB::table('users')->where('email', $email)->update(['password' => $password]);
+                        $PasswordChanged = 'Yes';
+                        $erroredForm= '';                      
+                    }
+                    else
+                    {
+                        $erroredForm= 'Passwords do not match';
+                        $PasswordChanged='';
+                           
+                    }   
+                }
+                
+                $user = DB::table('users')->where('email', $email)->first();
+                return view('auth/passwords/reset', compact('user','PasswordChanged','erroredForm'));      
         }
         catch (\Exception $e)
         {

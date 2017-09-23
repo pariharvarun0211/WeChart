@@ -13,4 +13,5 @@ class EmailidRole extends Model
     public function users() {
         return $this->hasOne('App\User');
     }
+    protected $table = 'EmailIdRole';
 }

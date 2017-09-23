@@ -2,21 +2,21 @@
 
 @section('content')
 <div class="container">
-    <div class="row">
-        <h3 style="text-align: center"><img src="logos\logoadmin.png" width="4%"> Admin Dashboard <img src="logos\logoadmin.png" width="4%"></h3>
+    <div class="row" style="padding-top: 0;margin: 0">
+        <h3 style="text-align: center;padding-top: 0;margin: 0"><img src="logos\LogoAdmin.png" width="4%"> Admin Dashboard <img src="logos\LogoAdmin.png" width="4%"></h3>
     </div>
 
     <div class="row">
-    <div class="col-md-10 col-md-offset-1">   
-            <a class="btn btn-success" style="float: left"> Emails Management</a>
-        </div>
-        <div class="col-md-10 col-md-offset-1">   
-            <a class="btn btn-success" style="float: right"> Configure Modules</a>
-        </div>
+            <div class="col-md-2 col-md-offset-1">   
+                <a href="{{url('/ManageEmails')}}" class="btn btn-success"> 
+                <i class="fa fa-envelope-o" aria-hidden="true"></i> Manage Emails</a>
+            </div>
+            <div class="col-md-8">   
+                <a class="btn btn-success" style="float: right"> 
+                <i class="fa fa-cog" aria-hidden="true"></i> Configure Modules</a>
+            </div>
     </div>
-
     <br>
-
     <!-- Students -->
     <div class="row">
         <div class="col-md-10 col-md-offset-1">        
@@ -25,14 +25,14 @@
                     <h4 style="margin-top: 0">Students</h4>                
                 </div>
 
-                <div class="panel-body">
+                <div class="panel-body" style="height: 220px; overflow-y: scroll">
                 <table class="table table-striped table-bordered table-hover">
                         <thead>
                         <tr class="bg-info">
                             <th>Name</th>
-                            <th>Email Id</th>
-                            <th>Contact Number</th>
-                            <th colspan="2"></th>
+                            <th><i class="fa fa-envelope-o" aria-hidden="true"></i> Email Address</th>
+                            <th><i class="fa fa-phone" aria-hidden="true"></i> Contact Number</th>
+                            <th colspan="2">Action</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -42,8 +42,8 @@
                                         <p><?php echo ($student->firstname); ?>  &nbsp;<?php echo ($student->lastname); ?></p></td>
                                     <td><p><?php echo ($student->email); ?></p></td>
                                     <td> <p><?php echo ($student->contactno); ?></p></td>
-                                    <td style="text-align: right">
-                                      <a>Delete</a>      
+                                    <td>
+                                      <a> <i class="fa fa-trash-o" aria-hidden="true"></i> Delete</a>      
                                     </td>
                                 </tr>
                             @endforeach
@@ -51,7 +51,7 @@
                     </table>  
                     <a href="{{url('/AddStudentEmails')}}" class="btn btn-primary" style="float: right">
                     <i class="fa fa-plus-circle" aria-hidden="true"></i>
-                     Add Student Email Id</a>        
+                     Add Student Email Address</a>        
                 </div>
             </div>
         </div>
@@ -65,15 +65,15 @@
                     <h4 style="margin-top: 0">Instructors</h4>                
                 </div>
 
-                <div class="panel-body">
+                <div class="panel-body" style="height: 220px; overflow-y: scroll">
                 <table class="table table-striped table-bordered table-hover">
                         <thead>
                         <tr class="bg-info">
                             <th>Name</th>
-                            <th>Email Id</th>
-                            <th>Contact Number</th>
-                            <th>Department Name</th>                            
-                            <th colspan="2"></th>
+                            <th><i class="fa fa-envelope-o" aria-hidden="true"></i> Email Address</th>
+                            <th><i class="fa fa-phone" aria-hidden="true"></i> Contact Number</th>
+                            <th><i class="fa fa-newspaper-o" aria-hidden="true"></i> Department Name</th>                            
+                            <th colspan="2">Action</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -84,8 +84,8 @@
                                     <td><p><?php echo ($instructor->email); ?></p></td>
                                     <td> <p><?php echo ($instructor->contactno); ?></p></td>
                                     <td> <p><?php echo ($instructor->departmentName ); ?></p></td>
-                                    <td style="text-align: right">
-                                      <a>Delete</a>      
+                                    <td>
+                                      <a><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</a>      
                                     </td>
                                 </tr>
                             @endforeach
@@ -93,7 +93,7 @@
                     </table>    
                     <a href="{{url('/AddInstructorEmails')}}" class="btn btn-primary" style="float: right"> 
                     <i class="fa fa-plus-circle" aria-hidden="true"></i>
-                    Add Instructor Email Id</a>             
+                    Add Instructor Email Address</a>             
                 </div>
             </div>
         </div>

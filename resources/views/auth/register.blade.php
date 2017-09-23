@@ -14,7 +14,7 @@
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+                            <label for="email" class="col-md-4 control-label">E-Mail Address*</label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
@@ -28,7 +28,7 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
+                            <label for="password" class="col-md-4 control-label">Password*</label>
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control" name="password" required>
@@ -42,7 +42,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
+                            <label for="password-confirm" class="col-md-4 control-label">Confirm Password*</label>
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
@@ -50,7 +50,7 @@
                         </div>
 
                           <div class="form-group{{ $errors->has('firstname') ? ' has-error' : '' }}">
-                            <label for="firstname" class="col-md-4 control-label">First Name</label>
+                            <label for="firstname" class="col-md-4 control-label">First Name*</label>
 
                             <div class="col-md-6">
                                 <input id="firstname" type="text" class="form-control" name="firstname" value="{{ old('firstname') }}" required autofocus>
@@ -64,7 +64,7 @@
                         </div>
 
                          <div class="form-group{{ $errors->has('lastname') ? ' has-error' : '' }}">
-                            <label for="lastname" class="col-md-4 control-label">Last Name</label>
+                            <label for="lastname" class="col-md-4 control-label">Last Name*</label>
 
                             <div class="col-md-6">
                                 <input id="lastname" type="text" class="form-control" name="lastname" value="{{ old('lastname') }}" required autofocus>
@@ -92,13 +92,12 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('role') ? ' has-error' : '' }}">
-                            <label for="role" class="col-md-4 control-label">Role</label>
+                            <label for="role" class="col-md-4 control-label">Role*</label>
 
                             <div class="col-md-6">
-                            <input type="radio" class="form-check-input inline" name="role" value="Student" id="roleStudent" checked="checked">Student
-                              
-                            <input type="radio" class="form-check-input inline" name="role" value="Instructor" id="roleInstructor">
-                              Instructor
+                            <input type="radio" class="form-check-input inline" name="role" value="Student" id="roleStudent" checked="checked">&nbsp;Student
+                              &nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="radio" class="form-check-input inline" name="role" value="Instructor" id="roleInstructor">&nbsp;Instructor
                             @if ($errors->has('role'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('role') }}</strong>
@@ -108,7 +107,7 @@
                         </div>
                       
                         <div class="form-group{{ $errors->has('departmentName') ? ' has-error' : '' }}">
-                            <label for="departmentName" class="col-md-4 control-label">Department Name</label>
+                            <label for="departmentName" class="col-md-4 control-label">Department Name*</label>
 
                             <div class="col-md-6">
                             <input id="departmentName" type="text" class="form-control" name="departmentName" value="{{ old('departmentName') }}" >
@@ -119,17 +118,22 @@
                                 @endif
                             </div>
                         </div>
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-4">
+                                <p> <strong>Note:</strong> Department name is must for Instructor role only. Students can keep it blank.</p>
+                            </div>
+                        </div>
 
                         <hr>
                         <h4> Security Questions </h4>
                         <hr>
 
                       <div class="form-group{{ $errors->has('security_question1_Id') ? ' has-error' : '' }}">
-                            <label for="security_question1_Id" class="col-md-4 control-label">Question 1</label>
+                            <label for="security_question1_Id" class="col-md-4 control-label">Question 1*</label>
 
                             <div class="col-md-6">
                                 <select class="form-control" name="security_question1_Id" value="{{ old('security_question1_Id') }}">
-                                    @foreach ($securityquestions as $question)
+                                     @foreach ($securityquestions as $question)
                                         <option value="{{ $question->id }}">
                                            {{ $question->security_question}}     
                                         </option>
@@ -145,7 +149,7 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('security_answer1') ? ' has-error' : '' }}">
-                            <label for="state" class="col-md-4 control-label">Answer</label>
+                            <label for="state" class="col-md-4 control-label">Answer*</label>
 
                             <div class="col-md-6">
                                 <input id="security_answer1" type="text" class="form-control" name="security_answer1" value="{{ old('security_answer1') }}">
@@ -159,7 +163,7 @@
                         </div>
 
                          <div class="form-group{{ $errors->has('security_question2_Id') ? ' has-error' : '' }}">
-                            <label for="security_question1_Id" class="col-md-4 control-label">Question 2</label>
+                            <label for="security_question1_Id" class="col-md-4 control-label">Question 2*</label>
 
                             <div class="col-md-6">
                                 <select class="form-control" name="security_question2_Id" value="{{ old('security_question2_Id') }}">
@@ -179,7 +183,7 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('security_answer2') ? ' has-error' : '' }}">
-                            <label for="state" class="col-md-4 control-label">Answer</label>
+                            <label for="state" class="col-md-4 control-label">Answer*</label>
 
                             <div class="col-md-6">
                                 <input id="security_answer2" type="text" class="form-control" name="security_answer2" value="{{ old('security_answer2') }}">
@@ -193,7 +197,7 @@
                         </div>
 
                          <div class="form-group{{ $errors->has('security_question3_Id') ? ' has-error' : '' }}">
-                            <label for="security_question3_Id" class="col-md-4 control-label">Question 3</label>
+                            <label for="security_question3_Id" class="col-md-4 control-label">Question 3*</label>
 
                             <div class="col-md-6">
                                 <select class="form-control" name="security_question3_Id" value="{{ old('security_question3_Id') }}">
@@ -214,7 +218,7 @@
 
                   
                     <div class="form-group{{ $errors->has('security_answer3') ? ' has-error' : '' }}">
-                        <label for="state" class="col-md-4 control-label">Answer</label>
+                        <label for="state" class="col-md-4 control-label">Answer*</label>
 
                         <div class="col-md-6">
                             <input id="security_answer3" type="text" class="form-control" name="security_answer3" value="{{ old('security_answer3') }}">

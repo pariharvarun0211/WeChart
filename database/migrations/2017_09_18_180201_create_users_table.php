@@ -53,7 +53,7 @@ class CreateUsersTable extends Migration
         //Inserting record for admin
         DB::table('users')->insert(
             array(
-                'email' => 'Admin@Wechart.com',
+                'email' => 'admin@wechart.com',
                 'password' => Hash::make('wechartadmin'),
                 'firstname' => 'Thanh',
                 'lastname' => 'Nguyen',

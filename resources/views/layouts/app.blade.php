@@ -30,7 +30,7 @@
                     </button>
 
                     <!-- Branding Image -->
-                        <a class="navbar-brand" href="{{ url('/') }}" >
+                        <a class="navbar-brand" >
                             <img src="logos\wechart.png" height="150%">
                         </a>
                   </div>

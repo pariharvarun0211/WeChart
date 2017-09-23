@@ -9,17 +9,17 @@
                 <div class="panel-heading" style="background-color: lightBlue">Reset Password</div>
 
                 <div class="panel-body">
-                   <!--  @if (session('status'))
+                    @if (session('status'))
                         <div class="alert alert-success">
                             {{ session('status') }}
                         </div>
                     @endif
- -->
+
                     <form class="form-horizontal" method="POST" action="{{ url('/SecurityQuestions') }}">
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+                            <label for="email" class="col-md-4 control-label">E-Mail Address*</label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
@@ -51,7 +51,9 @@
 <div class="row">
         <div class="col-md-8 col-md-offset-2">           
                 @if(empty($user))
-                <div class="alert alert-danger">Sorry! This email id is not registered in our database. Try again. </div>
+                <div class="alert alert-danger alert-dismissable">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Sorry! This email id is not registered in our database. Please try again. 
+                </div>
                 @else
                  <div class="panel panel-default">
                     <div class="panel-heading" style="background-color: lightBlue"> Reset Password- Please answer the below security questions.
@@ -126,6 +128,12 @@
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
+                                <p> <strong>Note:</strong> Security answers are case sensitive.</p>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary" >
                                      Submit Answers
                                 </button>
@@ -144,7 +152,9 @@
 @if(!empty($wrongSecurityAnswers))
 <div class="row">
         <div class="col-md-8 col-md-offset-2">
-         <div class="alert alert-danger">Sorry! Your submitted answer do not match with our record. Try again. </div>
+             <div class="alert alert-danger alert-dismissable">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Sorry! Your submitted answer do not match with our record. Try again. 
+            </div>
         </div>
 </div>
 @endIf

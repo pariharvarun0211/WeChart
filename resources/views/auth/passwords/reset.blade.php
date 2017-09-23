@@ -59,11 +59,24 @@
                             </div>
                         </div>
                     </form>
-                    @if($PasswordNotMatched == 'Yes')
+
+                    @if($erroredForm == 'Passwords do not match')
                         <div class="row">
                             <div class="col-md-6 col-md-offset-4">
                                 <div class="alert alert-danger">
-                                    <strong>Passwords do not match. Please try</strong>
+                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>  
+                                    <strong>Passwords do not match. Please try again.</strong>
+                                </div>
+                            </div>
+                        </div>
+                    @endIf
+
+                     @if($erroredForm == 'Password short')
+                        <div class="row">
+                            <div class="col-md-6 col-md-offset-4">
+                                <div class="alert alert-danger">
+                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>  
+                                    <strong>Password must contain minimum 6 letters. Please try again.</strong>
                                 </div>
                             </div>
                         </div>
@@ -72,10 +85,12 @@
             </div>
         </div>
     </div>
+
      @if($PasswordChanged == 'Yes')
             <div class="row">
                 <div class="col-md-8 col-md-offset-2">
-                    <div class="alert alert-success">
+                    <div class="alert alert-success alert-dismissable">
+                        <a href="{{url('/login')}}" class="close" data-dismiss="alert" aria-label="close">&times;</a>                  
                         <strong>
                         Your password is changed. Please login with your new password.
                         </strong>
@@ -83,5 +98,6 @@
                 </div>
             </div>
      @endIf
+     
  </div>
 @endsection

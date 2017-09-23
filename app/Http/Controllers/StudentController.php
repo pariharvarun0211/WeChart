@@ -11,7 +11,6 @@ class StudentController extends Controller
     {
          $patients = DB::table('users')->where('role','Student')->get();
          //$instructors = DB::table('users')->where('role','Instructor')->get();
-        return view('Student/Student_Home',compact('patients'));
-         //return view('Admin/home', compact('students','instructors'));
+        return view('student/studentHome',compact('patients'));
     }
 }

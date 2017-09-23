@@ -33,4 +33,5 @@ class User extends Authenticatable
     public function Security() {
         return $this->belongsTo('App\Security');
     }
+    protected $table = 'users';
 }

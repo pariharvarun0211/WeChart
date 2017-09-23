@@ -78,7 +78,7 @@ class RegisterController extends Controller
             'password' => 'required|string|min:6|confirmed',
             'contactno' => 'nullable|max:255',
             // 'role' => 'required',
-            // 'departmentName' => 'max:255|nullable',
+            'departmentName' => 'max:255|required_if:role,Instructor',
             'security_question1_Id' => 'required|different:security_question2_Id',
             'security_answer1' => 'required|max:255',
             'security_question2_Id' => 'required|different:security_question3_Id',
@@ -99,7 +99,7 @@ class RegisterController extends Controller
             return User::create([
                 'firstname' => $data['firstname'],
                 'lastname' => $data['lastname'],
-                'email' => $data['email'],
+                'email' => strtolower($data['email']),
                 'password' => bcrypt($data['password']),
                 'contactno' => $data['contactno'],
                 'role' => $data['role'],
@@ -120,10 +120,4 @@ class RegisterController extends Controller
         $securityquestions = DB::table('security')->select('id','security_question')->get();
         return view('auth.register', ['securityquestions' => $securityquestions]);
     }
-
-    // //Overriding register form method
-    // public function register()
-    // {
-      
-    // }
 }

@@ -10,7 +10,7 @@ class InstructorController extends Controller
     {
         // $students = DB::table('users')->where('role','Student')->get();
          //$instructors = DB::table('users')->where('role','Instructor')->get();
-        return view('Instructor/Instructor_Home');
+        return view('instructor/instructorHome');
          //return view('Admin/home', compact('students','instructors'));
     }
 }
