@@ -25,7 +25,6 @@ class EditProfileController extends Controller
 		catch (Exception $e)
 		{
 			return view ('errors/503');
-
 		}
 	}
 	protected function postEditProfile(Request $request)
