@@ -29,14 +29,14 @@ class AdminController extends Controller
 
          $students = User::where('role','Student')->get();
          $instructors = User::where('role','Instructor')->get();
-         return view('Admin/home', compact('students','instructors'));
+         return view('admin/home', compact('students','instructors'));
     }
     public function getStudentEmails()
     {
         $counter = 1;
         session()->put('counter', 1);
         $Error = '';
-        return view('Admin/addStudentEmails', compact('Error','counter'));
+        return view('admin/addStudentEmails', compact('Error','counter'));
     }
     public function postStudentEmails(Request $request)
     {
@@ -54,14 +54,14 @@ class AdminController extends Controller
                     $EmailIdRole->save();
                  }
                 $Error = 'No';
-                return view('Admin/addStudentEmails',compact('Error','counter'));
+                return view('admin/addStudentEmails',compact('Error','counter'));
             }
         catch (\Exception $e)
         {
             //Checking if its UNIQUE constraint violation
             if(in_array('23000',$e->errorInfo)) {
                 $Error = 'Email Present';
-                return view('Admin/addStudentEmails',compact('Error','counter'));
+                return view('admin/addStudentEmails',compact('Error','counter'));
             }
             return view ('errors/503');
         }
@@ -72,7 +72,7 @@ class AdminController extends Controller
         $counter = $counter + 1;
         session()->put('counter', $counter);
         $Error = '';
-        return view('Admin/addStudentEmails',compact('Error','counter'));
+        return view('admin/addStudentEmails',compact('Error','counter'));
 
     }
     public function removeStudentEmails()
@@ -81,7 +81,7 @@ class AdminController extends Controller
         $counter = $counter - 1;
         session()->put('counter', $counter);
         $Error = '';
-        return view('Admin/addStudentEmails',compact('Error','counter'));
+        return view('admin/addStudentEmails',compact('Error','counter'));
 
     }
      public function getInstructorEmails()
@@ -89,7 +89,7 @@ class AdminController extends Controller
         $counter = 1;
         session()->put('counter', 1);
         $Error = '';
-        return view('Admin/addInstructorEmails', compact('Error','counter'));
+        return view('admin/addInstructorEmails', compact('Error','counter'));
     }
     public function postInstructorEmails(Request $request)
     {
@@ -108,14 +108,14 @@ class AdminController extends Controller
                  }
                 $counter = session()->get('counter');
                 $Error = 'No';
-                return view('Admin/addInstructorEmails',compact('Error','counter'));
+                return view('admin/addInstructorEmails',compact('Error','counter'));
             }
         catch (\Exception $e)
         {
             //Checking if its UNIQUE constraint violation
             if(in_array('23000',$e->errorInfo)) {
                 $Error = 'Email Present';
-                return view('Admin/addInstructorEmails',compact('Error','counter'));
+                return view('admin/addInstructorEmails',compact('Error','counter'));
             }
             return view ('errors/503');
         }
@@ -126,7 +126,7 @@ class AdminController extends Controller
         $counter = $counter + 1;
         session()->put('counter', $counter);
         $Error = '';
-        return view('Admin/addInstructorEmails',compact('Error','counter'));
+        return view('admin/addInstructorEmails',compact('Error','counter'));
     }
     public function removeInstructorEmails()
     {
@@ -134,7 +134,7 @@ class AdminController extends Controller
         $counter = $counter - 1;
         session()->put('counter', $counter);
         $Error = '';
-        return view('Admin/addInstructorEmails',compact('Error','counter'));
+        return view('admin/addInstructorEmails',compact('Error','counter'));
     }
      public function getManageEmails()
         {
@@ -143,6 +143,6 @@ class AdminController extends Controller
          $studentEmails = EmailidRole::where('role','Student')->get();
          $instructorEmails = EmailidRole::where('role','Instructor')->get();
 
-         return view('Admin/manageEmails', compact('studentEmails','instructorEmails'));
+         return view('admin/manageEmails', compact('studentEmails','instructorEmails'));
         }
 }
