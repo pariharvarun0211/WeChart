@@ -8,8 +8,20 @@
         <div class="panel-heading" style="padding-bottom: 0;padding-top: 0">
           <h3 >Edit Profile</h3>
         </div>
+
+        @if (count($errors) > 0)
+          <div class="alert alert-danger">
+            <ul>
+              @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+              @endforeach
+            </ul>
+          </div>
+        @endif
         <div class="panel-body">
-          <form class="form-horizontal" method="POST" action="{{ url('/EditProfile') }}">
+
+          <form class="form-horizontal" method="POST" action="{{ url('EditProfile') }}">
+            {{ csrf_field() }}
             <div class="form-group">
               <label for="email" class="col-md-4 control-label">E-Mail Address</label>
               <div class="col-md-6">
@@ -107,6 +119,11 @@
             </div>
           </form>
         </div>
+
+        <!-- After user submits request -->
+        @if(!empty($Profilesubmitted))
+          <div class="alert alert-success">Profile updated successfully.</div
+        @endif
       </div>
     </div>
   </div>
