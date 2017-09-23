@@ -3,6 +3,10 @@
 
 <div class="container">
   <div class="row">
+    <a href="{{url('/home')}}" class="btn btn-success" style="float: left">
+      <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
+      Back to Dashboard</a>
+  </div>
     <div class="col-md-8 col-md-offset-2">
       <div class="panel panel-default">
         <div class="panel-heading" style="padding-bottom: 0;padding-top: 0">
@@ -29,18 +33,12 @@
                 <input id="email" type="email" class="form-control" name="email" value="<?php echo ($user['email']); ?>" readonly="true">
               </div>
             </div>
-            <div class="form-group">
-              <label for="role" class="col-md-4 control-label">Role</label>
-              <div class="col-md-6">
 
-                <input id="role" type="role" class="form-control" name="role" value="<?php echo ($user['role']); ?>" readonly="true">
-              </div>
-            </div>
             <div class="form-group">
               <label for="departmentName" class="col-md-4 control-label">Department</label>
               <div class="col-md-6">
 
-                <input id="role" type="departmentName" class="form-control" name="role" value="<?php echo ($user['departmentName']); ?>" readonly="true">
+                <input id="departmentName" type="departmentName" class="form-control" name="departmentName" value="<?php echo ($user['departmentName']); ?>" >
               </div>
             </div>
             <div class="form-group">
@@ -65,49 +63,9 @@
                 <input id="contactno" type="contactno" class="form-control" name="contactno" value="<?php echo ($user['contactno']); ?>">
               </div>
             </div>
-            <hr>
-            <h4> Security Questions </h4>
-            <hr>
             <div class="form-group">
-              <label for="security_question1_Id" class="col-md-4 control-label">Security Question 1</label>
-              <div class="col-md-6">
-
-                <input id="security_question1_Id" type="security_question1_Id" class="form-control" name="security_question1_Id" value="<?php echo ($security_question1); ?>" readonly="true">
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="security_answer1" class="col-md-4 control-label">Security Answer 1</label>
-              <div class="col-md-6">
-
-                <input id="security_answer1" type="security_answer1" class="form-control" name="security_answer1" value="<?php echo ($user['security_answer1']); ?>" readonly="true">
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="security_question2_Id" class="col-md-4 control-label">Security Question 2</label>
-              <div class="col-md-6">
-
-                <input id="security_question2_Id" type="security_question2_Id" class="form-control" name="security_question2_Id" value="<?php echo ($security_question2); ?>" readonly="true">
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="security_answer2" class="col-md-4 control-label">Security Answer 2</label>
-              <div class="col-md-6">
-
-                <input id="security_answer2" type="security_answer2" class="form-control" name="security_answer2" value="<?php echo ($user['security_answer2']); ?>" readonly="true">
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="security_question3_Id" class="col-md-4 control-label">Security Question 3</label>
-              <div class="col-md-6">
-
-                <input id="security_question3_Id" type="security_question3_Id" class="form-control" name="security_question3_Id" value="<?php echo ($security_question3); ?>" readonly="true">
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="security_answer3" class="col-md-4 control-label">Security Answer 3</label>
-              <div class="col-md-6">
-
-                <input id="security_answer3" type="security_answer3" class="form-control" name="security_answer3" value="<?php echo ($user['security_answer3']); ?>" readonly="true">
+              <div class="col-md-6 col-md-offset-4">
+                <p> <strong>Note:</strong> 10-digit US number</p>
               </div>
             </div>
             <div class="form-group">
@@ -121,8 +79,8 @@
         </div>
 
         <!-- After user submits request -->
-        @if(!empty($Profilesubmitted))
-          <div class="alert alert-success">Profile updated successfully.</div
+        @if($Profilesubmitted == 'Yes')
+          <div class="alert alert-success">Profile updated successfully.</div>
         @endif
       </div>
     </div>
