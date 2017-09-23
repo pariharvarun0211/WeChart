@@ -65,6 +65,6 @@ class EmailExists implements Rule
      */
     public function message()
     {
-        return 'This email id is not in our system. Please contact the Administrator for further steps.';
+        return 'You cannot register with this email address. Please contact the Administrator for further steps.';
     }
 }
