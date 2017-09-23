@@ -36,7 +36,7 @@ class ForgotPasswordController extends Controller
     {
         try {
             $IsEmailSubmitted = 'Yes';
-            $email = $request->email;
+            $email = strtolower($request->email);
             $user = User::where('email', $email)->first();   
 
             //Generarting random number between 1 and 3 for random security questions.
