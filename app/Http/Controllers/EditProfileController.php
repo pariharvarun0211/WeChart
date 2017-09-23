@@ -1,3 +1,9 @@
+<!--
+ Developer - Varun Parihar
+ Date - 09/23/2017
+ Description - Controller Code for Edit Profile functionality.
+-->
+
 <?php
 
 namespace App\Http\Controllers;
@@ -34,12 +40,6 @@ class EditProfileController extends Controller
     protected function postEditProfile(Request $request)
 	{
 			try {
-                $this->validate($request, [
-                    'firstname' => 'required',
-                    'lastname' => 'required',
-                    'contactno' => 'numeric',
-                ]);
-
                 $email = Auth::user()->email;
                 $user = User::where('email', $email)->first();
                 $securityquestions = DB::table('security')->select('id', 'security_question')->get();

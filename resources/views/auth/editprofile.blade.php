@@ -1,14 +1,22 @@
+<!--
+ Developer - Varun Parihar
+ Date - 09/23/2017
+ Description - View for Edit Profile functionality.
+-->
 @extends('layouts.app')
 @section('content')
 
 <div class="container">
-  <div class="row">
-    <a href="{{url('/home')}}" class="btn btn-success" style="float: left">
-      <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
-      Back to Dashboard</a>
-  </div>
-    <div class="col-md-8 col-md-offset-2">
+  <div class="col-md-8 col-md-offset-2">
+
+    <div class="row">
+      <a href="{{url('/home')}}" class="btn btn-success" style="float: left">
+        <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
+        Back to Dashboard</a>
+    </div>
+    <br>
       <div class="panel panel-default">
+
         <div class="panel-heading" style="padding-bottom: 0;padding-top: 0">
           <h3 >Edit Profile</h3>
         </div>
@@ -77,10 +85,12 @@
             </div>
           </form>
         </div>
-
         <!-- After user submits request -->
         @if($Profilesubmitted == 'Yes')
-          <div class="alert alert-success">Profile updated successfully.</div>
+          <div class="alert alert-success alert-dismissable">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+              Profile updated successfully.
+          </div>
         @endif
       </div>
     </div>
