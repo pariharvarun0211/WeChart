@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -10,7 +9,6 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/', function () {
     return view('auth/login');
 });
@@ -20,6 +18,8 @@ Auth::routes();
 Route::post('/SecurityQuestions', 'Auth\ForgotPasswordController@getSecurityQuestions');
 Route::post('/ResetPassword', 'Auth\ResetPasswordController@resetUserPassword');
 Route::post('/ChangePassword', 'Auth\ResetPasswordController@changePassword');
+Route::get('/EditProfile', 'EditProfileController@getEditProfile');
+Route::post('/EditProfile', 'EditProfileController@postEditProfile');
 
 //Admin Routes
 
