@@ -45,4 +45,26 @@ class EmailExists implements Rule
         //Validate email for role- Instructor
         if($this->role == 'Instructor')
         {
-            $savedInstrumentEmails = DB::table('EmailIA
+            $savedInstrumentEmails = DB::table('EmailIdRole')->where('role','Instructor')->pluck('email');
+             foreach ($savedInstrumentEmails as $email) {
+             if($email == strtolower($value))
+             {
+                return 1;
+             }
+         }
+         return 0;
+            
+        }    
+        
+    }
+
+    /**
+     * Get the validation error message.
+     *
+     * @return string
+     */
+    public function message()
+    {
+        return 'You cannot register with this email address. Please contact the Administrator for further steps.';
+    }
+}
