@@ -14,8 +14,7 @@
 
     <br>
 
-    <!-- Patients -->
-    <div class="row">
+     <div class="row">
         <div class="col-md-10 col-md-offset-1">        
             <div class="panel panel-default">
                 <div class="panel-heading" style="background-color: grey; padding-bottom: 0">
