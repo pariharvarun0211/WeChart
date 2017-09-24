@@ -8,12 +8,25 @@
 
 <div class="container">
   <div class="col-md-8 col-md-offset-2">
-
+    @if($user['role'] == 'Admin')
     <div class="row">
       <a href="{{url('/home')}}" class="btn btn-success" style="float: left">
         <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
         Back to Dashboard</a>
     </div>
+      @elseif($role == 'Instructor')
+        <div class="row">
+          <a href="{{url('/InstructorHome')}}" class="btn btn-success" style="float: left">
+            <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
+            Back to Dashboard</a>
+        </div>
+        @else($role == 'Student')
+          <div class="row">
+            <a href="{{url('/StudentHome')}}" class="btn btn-success" style="float: left">
+              <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
+              Back to Dashboard</a>
+          </div>
+    @endif
     <br>
       <div class="panel panel-default">
 
@@ -85,14 +98,17 @@
             </div>
           </form>
         </div>
-        <!-- After user submits request -->
-        @if($Profilesubmitted == 'Yes')
-          <div class="alert alert-success alert-dismissable">
-            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-              Profile updated successfully.
-          </div>
-        @endif
+
       </div>
+    <!-- After user submits request -->
+    @if($Profilesubmitted == 'Yes')
+      <div class="row">
+        <div class="alert alert-success alert-dismissable">
+          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+          Profile updated successfully.
+        </div>
+      </div>
+    @endif
     </div>
   </div>
   @endsection
