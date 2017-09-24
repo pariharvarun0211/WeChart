@@ -18,13 +18,14 @@ class EditProfileController extends Controller
 		try {
 			$email=Auth::user()->email;
 			$user = User::where('email', $email)->first();
+			$role = $user->role;
 			$securityquestions = DB::table('security')->select('id','security_question')->get();
 			$security_question1 = DB::table('security') -> where('id', $user->security_question1_Id) -> value('security_question');
 			$security_question2 = DB::table('security') -> where('id', $user->security_question2_Id) -> value('security_question');
 			$security_question3 = DB::table('security') -> where('id', $user->security_question3_Id) -> value('security_question');
 
             $Profilesubmitted='';
-			return view('auth/editprofile',compact('Profilesubmitted','user', 'securityquestions', 'security_question1', 'security_question2', 'security_question3'));
+			return view('auth/editprofile',compact('Profilesubmitted','user', 'securityquestions', 'security_question1', 'security_question2', 'security_question3', 'role'));
 		}
 		catch (Exception $e)
 		{
