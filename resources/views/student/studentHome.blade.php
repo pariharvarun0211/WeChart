@@ -5,12 +5,12 @@
     <div class="row">
         <h3 style="text-align: center"> Student Dashboard</h3>
     </div>
-    <!-- <div style="text-align: center" class="alert alert-info">Work in progress. Please visit after sometime.</div> -->
+         <div style="text-align: center" class="alert alert-info">Work in progress. Please visit after sometime.</div>
      <!-- <div class="row">
         <div class="col-md-10 col-md-offset-1">   
             <a class="btn btn-success" style="float: right"> Configure Modules</a>
         </div>
-    </div> -->
+    </div> 
 
     <br>
 
@@ -52,7 +52,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>-->
 </div>
   
 @endsection
