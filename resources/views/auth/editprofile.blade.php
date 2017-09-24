@@ -14,13 +14,13 @@
         <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
         Back to Dashboard</a>
     </div>
-      @elseif($role == 'Instructor')
+      @elseif($user['role'] == 'Instructor')
         <div class="row">
           <a href="{{url('/InstructorHome')}}" class="btn btn-success" style="float: left">
             <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
             Back to Dashboard</a>
         </div>
-        @else($role == 'Student')
+        @else($user['role'] == 'Student')
           <div class="row">
             <a href="{{url('/StudentHome')}}" class="btn btn-success" style="float: left">
               <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
