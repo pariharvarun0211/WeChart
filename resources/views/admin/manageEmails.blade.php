@@ -3,6 +3,9 @@
 @section('content')
 <div class="container">
     <div class="row">
+        <h3 align="center">Manage Emails</h4>
+    </div>
+    <div class="row">
         <div class="col-md-2 col-md-offset-1">
                 <a href="{{url('/home')}}" class="btn btn-success" style="float: left">
                 <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>

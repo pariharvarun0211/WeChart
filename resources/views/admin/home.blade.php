@@ -48,15 +48,16 @@
                                 </tr>
                             @endforeach
                         </tbody>
-                    </table>  
-                    <a id="addStudentEmails" href="{{url('/AddStudentEmails')}}" class="btn btn-primary" style="float: right">
-                    <i class="fa fa-plus-circle" aria-hidden="true"></i>
-                     Add Student Email Address</a>        
+                    </table>
                 </div>
+                <br>
+                <a id="addStudentEmails" href="{{url('/AddStudentEmails')}}" class="btn btn-primary" style="float: right">
+                    <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                    Add Student Email Address</a>
             </div>
         </div>
     </div>
-
+<br>
       <!-- Instructors -->
     <div class="row">
         <div class="col-md-10 col-md-offset-1">        
@@ -91,10 +92,12 @@
                             @endforeach
                         </tbody>
                     </table>    
-                    <a id="addInstructorEmails" href="{{url('/AddInstructorEmails')}}" class="btn btn-primary" style="float: right"> 
-                    <i class="fa fa-plus-circle" aria-hidden="true"></i>
-                    Add Instructor Email Address</a>             
                 </div>
+                <br>
+                <a id="addInstructorEmails" href="{{url('/AddInstructorEmails')}}" class="btn btn-primary" style="float: right">
+                    <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                    Add Instructor Email Address</a>
+
             </div>
         </div>
     </div>
