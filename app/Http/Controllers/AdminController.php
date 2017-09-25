@@ -59,7 +59,7 @@ class AdminController extends Controller
         catch (\Exception $e)
         {
             //Checking if its UNIQUE constraint violation
-            if(in_array('23000',$e->errorInfo)) {
+            if(in_array('23505',$e->errorInfo)) {
                 $Error = 'Email Present';
                 return view('admin/addStudentEmails',compact('Error','counter'));
             }
@@ -113,7 +113,7 @@ class AdminController extends Controller
         catch (\Exception $e)
         {
             //Checking if its UNIQUE constraint violation
-            if(in_array('23000',$e->errorInfo)) {
+            if(in_array('23505',$e->errorInfo)) {
                 $Error = 'Email Present';
                 return view('admin/addInstructorEmails',compact('Error','counter'));
             }
