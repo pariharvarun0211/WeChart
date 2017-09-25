@@ -49,7 +49,7 @@ class AdminController extends Controller
             for ($i = 0; $i < count($request['email']) ; ++$i)
                  {
                     $EmailIdRole = new EmailidRole;
-                    $EmailIdRole['email'] = $request['email'][$i];
+                    $EmailIdRole['email'] = strtolower($request['email'][$i]);
                     $EmailIdRole['role'] = 'Student';
                     $EmailIdRole->save();
                  }
@@ -102,7 +102,7 @@ class AdminController extends Controller
                  for ($i = 0; $i < $counter; $i++)
                  {
                      $EmailIdRole = new EmailidRole;
-                     $EmailIdRole['email'] = $request['email'][$i];
+                     $EmailIdRole['email'] = strtolower($request['email'][$i]);
                      $EmailIdRole['role'] = 'Instructor';
                      $EmailIdRole->save();
                  }
