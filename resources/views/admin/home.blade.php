@@ -42,8 +42,9 @@
                                         <p><?php echo ($student->firstname); ?>  &nbsp;<?php echo ($student->lastname); ?></p></td>
                                     <td><p><?php echo ($student->email); ?></p></td>
                                     <td> <p><?php echo ($student->contactno); ?></p></td>
-                                    <td>
-                                      <a> <i class="fa fa-trash-o" aria-hidden="true"></i> Delete</a>      
+                                    <td style="text-align: right">
+                                        <a href="" style="margin:auto; text-align:center; display:block;" class="btn btn-danger btn-sm" style="float: right">
+                                            <i class="fa fa-minus-circle" aria-hidden="true"> Delete</a></i>
                                     </td>
                                 </tr>
                             @endforeach
@@ -85,8 +86,9 @@
                                     <td><p><?php echo ($instructor->email); ?></p></td>
                                     <td> <p><?php echo ($instructor->contactno); ?></p></td>
                                     <td> <p><?php echo ($instructor->departmentName ); ?></p></td>
-                                    <td>
-                                      <a><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</a>      
+                                    <td style="text-align: right">
+                                        <p style="text-align:center"><a href="" style="margin:auto; text-align:center; display:block;" class="btn btn-danger btn-sm" style="float: right">
+                                                <i class="fa fa-minus-circle" aria-hidden="true"> Delete</a></i>
                                     </td>
                                 </tr>
                             @endforeach
