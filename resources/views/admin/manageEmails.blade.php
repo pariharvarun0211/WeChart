@@ -38,9 +38,10 @@
                                                 <td><p><?php echo ($email->email); ?></p></td>
                                                 <td><p><?php echo ($email->role); ?></p></td>
                                                 <td><p><?php echo (date('m-d-Y',strtotime($email->created_at))); ?></p></td>
-                                                <td>
-                                                  <a><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</a>      
-                                                </td>
+                                                <td style="text-align: right">
+                                        <p style="text-align:center"><a href="" style="margin:auto; text-align:center; display:block;" class="btn btn-danger btn-sm" style="float: right">
+                                                <i class="fa fa-minus-circle" aria-hidden="true"> Delete</a></i>
+                                    </td>
                                             </tr>
                                             @endforeach
                                     </tbody>
