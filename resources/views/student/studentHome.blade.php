@@ -3,18 +3,19 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <h3 style="text-align: center"> Student Dashboard</h3>
+        <h3 style="text-align: center"><img src="logos\logostudent.png" width="4%"> Student Dashboard <img src="logos\logostudent.png" width="4%"></h3>
     </div>
-         <div style="text-align: center" class="alert alert-info">Work in progress. Please visit after sometime.</div>
+    <!-- <div style="text-align: center" class="alert alert-info">Work in progress. Please visit after sometime.</div> -->
      <!-- <div class="row">
         <div class="col-md-10 col-md-offset-1">   
             <a class="btn btn-success" style="float: right"> Configure Modules</a>
         </div>
-    </div> 
+    </div> -->
 
     <br>
 
-     <div class="row">
+    <!-- Patients -->
+    <div class="row">
         <div class="col-md-10 col-md-offset-1">        
             <div class="panel panel-default">
                 <div class="panel-heading" style="background-color: grey; padding-bottom: 0">
@@ -51,7 +52,7 @@
                 </div>
             </div>
         </div>
-    </div>-->
+    </div>
 </div>
   
 @endsection
