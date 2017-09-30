@@ -11,11 +11,10 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-
 import Repos.LoginPage;
 import net.bytebuddy.implementation.bind.annotation.Super;
+
+import org.testng.annotations.Test;
 
 public class LoginTests extends BaseTest {
 
@@ -29,8 +28,8 @@ public class LoginTests extends BaseTest {
 	static String[] password=new String[10];
 	static String[] result= new String[10];
 	static String[] comment= new String[10];
-	//Git Add, Git Commit, Git Push
-	//@test
+	
+	@Test
 	public void DataDrivenTests() throws IOException {
 		
 
@@ -39,7 +38,7 @@ public class LoginTests extends BaseTest {
 		int count=getInputCount();
 		for(int j=0;j<count;j++)
 		{		
-			LoginPage.GoToPageUrl(driver);
+			LoginPage.GoToPage(driver);
 			
 			//wait for element
 			//example: https://stackoverflow.com/questions/11736027/webdriver-wait-for-element-using-java
@@ -77,10 +76,6 @@ public class LoginTests extends BaseTest {
 		}
 	}
 	
-	//@Test
-	public void ScenarioName() {
-		
-	}
 	
 	public static void ReadExcelFile()
 	{
