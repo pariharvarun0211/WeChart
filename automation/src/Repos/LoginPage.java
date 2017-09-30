@@ -7,10 +7,12 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class LoginPage extends BasePage {
 
-	public LoginPage() {
-		super("insert url here");
+	private static String Url = "/";
+	
+	public static void GoToPage(WebDriver driver) {
+		BasePage.GoToPageUrl(driver, Url);
 	}
-		
+	
 	public static WebElement UserName(WebDriver driver) {
 		return driver.findElement(By.id("email"));
 	}

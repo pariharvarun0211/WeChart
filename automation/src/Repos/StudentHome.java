@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 public class StudentHome extends BasePage {
 
 	public StudentHome() {
-		super("http://wechart2.herokuapp.com/StudentHome");
+		super();
 	}
 	
 	public static WebElement StudentDashboardName(WebDriver driver) {

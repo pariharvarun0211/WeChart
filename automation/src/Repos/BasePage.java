@@ -3,13 +3,9 @@ package Repos;
 import org.openqa.selenium.WebDriver;
 
 public class BasePage {
-	protected static String Url;
+	private static String BaseUrl = "http://wechart2.herokuapp.com";
 	
-	public BasePage(String pageUrl) {
-		BasePage.Url = pageUrl;
-	}
-	
-	public static void GoToPageUrl(WebDriver driver) {
-		driver.get(Url);
+	protected static void GoToPageUrl(WebDriver driver, String PagePath) {
+		driver.get(BaseUrl + PagePath);
 	}
 }
