@@ -46,6 +46,12 @@ Route::get('/ManageEmails', 'AdminController@getManageEmails');
 //Landing page for Student
 Route::get('/StudentHome', 'StudentController@index');
 
+//Patient routes
+//Add new patient
+Route::get('/add_patient', 'StudentController@getAddPatient');
+Route::post('add_patient', 'StudentController@postAddPatient');
+
+
 //Landing page for Instructor
 Route::get('/InstructorHome', 'InstructorController@index');
 
