@@ -5,15 +5,20 @@
     <div class="row">
         <h3 style="text-align: center"><img src="logos\LogoStudent.png" width="4%"> Student Dashboard <img src="logos\LogoStudent.png" width="4%"></h3>
     </div>
-<<<<<<< HEAD
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
     <a id="addPatient" href="{{url('/add_patient')}}" class="btn btn-primary" style="float: right">
         <i class="fa fa-plus-circle" aria-hidden="true"></i>
         Add new Patient</a>
-=======
+        </div>
+    </div>
+    <br>
     <br>
     <!-- Students -->
     <div class="row">
+
         <div class="col-md-10 col-md-offset-1">
+
             <div class="panel panel-default">
                 <div class="panel-heading" style="background-color: grey; padding-bottom: 0">
                     <h4 style="margin-top: 0">Saved</h4>
@@ -106,6 +111,6 @@
             </div>
         </div>
     </div>
->>>>>>> 347fea3be96a083ab2b56fea802ed91f793cd4e9
+
 </div>
 @endsection
