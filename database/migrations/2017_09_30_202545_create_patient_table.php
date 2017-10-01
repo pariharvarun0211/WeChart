@@ -22,7 +22,7 @@ class CreatePatientTable extends Migration
             $table->integer('height');
             $table->string('visit_date');
             $table->integer('module_id')->unsigned();
-            $table->string('is_archived');
+            $table->boolean('is_archived')->default(0);
             $table->integer('patient_record_status_id')->unsigned();
             $table->rememberToken();
             $table->timestamps();

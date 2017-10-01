@@ -48,8 +48,8 @@ Route::get('/StudentHome', 'StudentController@index');
 
 //Patient routes
 //Add new patient
-Route::get('/add_patient', 'StudentController@getAddPatient');
-Route::post('add_patient', 'StudentController@postAddPatient');
+Route::get('/add_patient', 'StudentController@get_add_patient');
+Route::post('add_patient', 'StudentController@post_add_patient');
 
 
 //Landing page for Instructor

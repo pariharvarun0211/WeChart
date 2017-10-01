@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Patient extends Authenticatable
+class module extends Authenticatable
 {
     use Notifiable;
 
@@ -15,15 +15,13 @@ class Patient extends Authenticatable
      * @var array
      */
     protected $fillable = [
-
+        'module_name','is_archived'
     ];
 
 
-    public function EmailidRole() {
-        return $this->belongsTo('App\EmailidRole');
+    public function patients() {
+        return $this->belongsTo('App\patient');
     }
-    public function Security() {
-        return $this->belongsTo('App\Security');
-    }
-    protected $table = 'patients';
+
+    protected $table = 'module';
 }
