@@ -32,8 +32,7 @@
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <td>
-                                        <p>Name</p></td>
+                                    <td><p>Name</p></td>
                                     <td><p>27</p></td>
                                     <td> <p>Male</p></td>
                                     <td> <p>6'10</p></td>
@@ -81,8 +80,7 @@
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <td>
-                                        <p>Name</p></td>
+                                    <td><p>Name</p></td>
                                     <td><p>27</p></td>
                                     <td> <p>Male</p></td>
                                     <td> <p>6'10</p></td>
@@ -104,14 +102,4 @@
         </div>
     </div>
 </div>
-  
 @endsection
-
-
-
-
-
-
-
-
-
