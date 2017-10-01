@@ -13,3 +13,4 @@ yarn-error.log
 resources/views/Admin/home.blade.php
 resources/views/Admin/home.blade.php
 resources/views/layouts/app.blade.php
+resources/views/student/studentHome.blade.php
