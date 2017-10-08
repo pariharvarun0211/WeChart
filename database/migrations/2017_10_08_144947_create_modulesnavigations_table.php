@@ -17,6 +17,7 @@ class CreateModulesnavigationsTable extends Migration
             $table->integer('navigation_id');
             $table->integer('module_id');
             $table->boolean('visible');
+            $table->primary(['module_id', 'navigation_id']);
             $table->timestamps();
         });
         //Adding foreign key constraint with module table
