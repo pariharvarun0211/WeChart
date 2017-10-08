@@ -15,7 +15,7 @@ class module extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'module_name','is_archived'
+        'module_name','archived'
     ];
 
 
