@@ -81,7 +81,7 @@ class StudentController extends Controller
     }
     public function post_add_patient(Request $request)
     {
-        try {
+//         try {
 //          Validating input data
             $this->validate($request, [
                 'age' => 'required|numeric',
@@ -136,11 +136,11 @@ class StudentController extends Controller
             }
             $modules = array_unique($modules);
             return view('student/studentHome', compact('patients', 'modules', 'message'));
-            }
-        catch (\Exception $e)
-        {
-           return view ('errors/503');
-        }
+         //   }
+        //catch (\Exception $e)
+        //{
+          // return view ('errors/503');
+        //}
 
     }
 }
