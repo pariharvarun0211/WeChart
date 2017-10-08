@@ -22,7 +22,7 @@ class CreateNavigationsTable extends Migration
         });
 
         Schema::table('navigations', function (Blueprint $table) {
-            $table->foreign('parent_id')->references('navigation_id')->on('navigations')->onDelete('cascade');
+            $table->foreign('parent_id')->references('navigation_id')->on('navigations');
         });
 
         DB::table('navigations')->insert([
