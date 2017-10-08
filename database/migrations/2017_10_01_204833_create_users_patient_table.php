@@ -17,8 +17,6 @@ class CreateUsersPatientTable extends Migration
             $table->integer('patient_record_status_id')->unsigned();
             $table->integer('patient_id')->unsigned();
             $table->integer('user_id')->unsigned();
-            $table->integer('created_by')->unsigned();
-            $table->integer('updated_by')->unsigned()->nullable();
 
             //$table->primary(['patient_id', 'user_id']);
             $table->rememberToken();
@@ -40,8 +38,8 @@ class CreateUsersPatientTable extends Migration
         Schema::table('users_patient', function (Blueprint $table) {
             $table->foreign('user_id')->references('id')->on('users');
         });
-
     }
+
 
     /**
      * Reverse the migrations.
