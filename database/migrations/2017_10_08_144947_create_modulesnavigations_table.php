@@ -21,7 +21,7 @@ class CreateModulesnavigationsTable extends Migration
         });
         //Adding foreign key constraint with module table
         Schema::table('modules_navigations', function (Blueprint $table) {
-            $table->foreign('module_id')->references('module_id')->on('modules');
+            $table->foreign('module_id')->references('module_id')->on('module');
         });
         //Adding foreign key constraint with navigations table
         Schema::table('modules_navigations', function (Blueprint $table) {
