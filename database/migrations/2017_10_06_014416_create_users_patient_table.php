@@ -20,7 +20,7 @@ class CreateUsersPatientTable extends Migration
             $table->integer('created_by')->unsigned();
             $table->integer('updated_by')->unsigned()->nullable();
 
-            //$table->primary(['patient_id', 'user_id']);
+            $table->primary(['patient_id', 'user_id']);
             $table->rememberToken();
             $table->timestamps();
         });
