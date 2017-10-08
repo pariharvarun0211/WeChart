@@ -20,8 +20,9 @@ class module extends Authenticatable
 
 
     public function patients() {
-        return $this->belongsTo('App\patient');
+        return $this->hasMany('App\patient');
     }
 
     protected $table = 'module';
+    protected $primaryKey ='module_id';
 }

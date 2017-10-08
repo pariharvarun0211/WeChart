@@ -9,6 +9,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Route::get('/', function () {
     return view('auth/login');
 });
@@ -41,10 +42,22 @@ Route::get('RemoveInstructorEmails', 'AdminController@removeInstructorEmails');
 //Admin can manage emails
 Route::get('/ManageEmails', 'AdminController@getManageEmails');
 
-//Student routes
+//Admin can delete a email from remove email page.
+Route::any('deleteuser/{id}', 'AdminController@delete_email')->name('deleteuser');
+Route::any('archive/{id}', 'AdminController@archive_user')->name('archiveuser');
 
+//Admin module management
+Route::get('/ConfigureModules','AdminController@getConfigureModules');
+Route::post('submitmodule', 'AdminController@submitmodule')->name('submitmodule');
+Route::post('deletemodule/{modid}', 'AdminController@deletemodule')->name('deletemodule');
+
+//Student routes
 //Landing page for Student
-Route::get('/StudentHome', 'StudentController@index');
+Route::get('/StudentHome', 'StudentController@index')->name('student.home');
+Route::get('/PatientView/{patient_id}', 'StudentController@view')->name('patient.view');
+Route::get('/PatientEdit/{id}', 'StudentController@edit')->name('patient.edit');
+Route::get('/PatientDelete/{id}', 'StudentController@destroy')->name('patient.destroy');
+Route::post('/patient/{patient_id}', 'StudentController@store')->name('patient.store');
 
 //Patient routes
 //Add new patient

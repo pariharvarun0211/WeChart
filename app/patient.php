@@ -15,15 +15,21 @@ class patient extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'first_name','last_name', 'gender', 'age','height','visit_date','is_archived', 'module_id','patient_record_status_id'
+        'first_name','last_name', 'gender', 'age','weight','height','visit_date','completed_flag','archived', 'module_id','created_by','updated_by'
     ];
 
-
     public function module() {
-        return $this->belongsTo('App\module');
+        return $this->belongsTo('App\module','module_id','module_id');
     }
-    public function patient_record_status() {
-        return $this->belongsTo('App\patient_record_status');
+    public function users_patients() {
+        return $this->hasMany('App\users_patient');
     }
+
+    public function getStatusAttribute(){
+        $status_id = users_patient::where('patient_id',$this->patient_id)->get();
+        return  $status_id[0]->patient_record_status_id;
+    }
+
     protected $table = 'patient';
+    protected $primaryKey ='patient_id';
 }

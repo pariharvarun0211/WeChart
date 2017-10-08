@@ -1,9 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
+<script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+
 <div class="container">
     <div class="row">
-        <h3 align="center">Manage Emails</h4>
+        <h3 align="center">Remove Emails</h3>
     </div>
     <div class="row">
         <div class="col-md-2 col-md-offset-1">
@@ -38,10 +42,17 @@
                                                 <td><p><?php echo ($email->email); ?></p></td>
                                                 <td><p><?php echo ($email->role); ?></p></td>
                                                 <td><p><?php echo (date('m-d-Y',strtotime($email->created_at))); ?></p></td>
+
                                                 <td style="text-align: right">
-                                        <p style="text-align:center"><a href="" style="margin:auto; text-align:center; display:block;" class="btn btn-danger btn-sm" style="float: right">
-                                                <i class="fa fa-minus-circle" aria-hidden="true"> Delete</a></i>
-                                    </td>
+                                                    {!! Form::open(['method' => 'DELETE', 'route' => ['deleteuser', $email->id],'id' => 'FormDeleteTime','class' =>'form-inline form-delete', 'onsubmit' => 'return ConfirmDelete()'])!!}
+
+                                                    {!! Form::hidden('case_id', $email->id, ['class' => 'form-control']) !!}
+
+                                                    <button id="student_minus_delete" data-id='<?php echo $email->id ;?>' style="margin:auto;  text-align:center; display:block; width:100%;" class="btn btn-danger btn-sm">
+                                                        Delete </button>
+
+                                                    {!! Form::close() !!}
+                                                </td>
                                             </tr>
                                             @endforeach
                                     </tbody>
@@ -76,9 +87,15 @@
                                                 <td><p><?php echo ($email->role); ?></p></td>
                                                 <td><p><?php echo (date('m-d-Y',strtotime($email->created_at))); ?></p></td>
                                                 <td style="text-align: right">
-                                        <p style="text-align:center"><a href="" style="margin:auto; text-align:center; display:block;" class="btn btn-danger btn-sm" style="float: right">
-                                                <i class="fa fa-minus-circle" aria-hidden="true"> Delete</a></i>
-                                    </td>
+                                                    {!! Form::open(['method' => 'DELETE', 'route' => ['deleteuser', $email->id],'id' => 'FormDeleteTime','class' =>'form-inline form-delete', 'onsubmit' => 'return ConfirmDelete()'])!!}
+
+                                                    {!! Form::hidden('case_id', $email->id, ['class' => 'form-control']) !!}
+
+                                                    <button id="student_minus_delete" data-id='<?php echo $email->id ;?>' style="margin:auto;  text-align:center; display:block; width:100%;" class="btn btn-danger btn-sm">
+                                                        Delete </button>
+
+                                                    {!! Form::close() !!}
+                                                </td>
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -88,5 +105,14 @@
              </div>
          </div>
 </div>
-
+<script>
+    function ConfirmDelete()
+    {
+        var x = confirm("Are you sure you want to delete? This action is irreversible.");
+        if (x)
+            return true;
+        else
+            return false;
+    }
+</script>
 @endsection

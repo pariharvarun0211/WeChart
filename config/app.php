@@ -132,7 +132,7 @@ return [
     |
     | The service providers listed here will be automatically loaded on the
     | request to your application. Feel free to add your own services to
-    | this array to grant expanded functionality to your applications.
+    | this array to grant expanded func tionality to your applications.
     |
     */
 
@@ -164,7 +164,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Zizaco\Entrust\EntrustServiceProvider::class,
-
+        Collective\Html\HtmlServiceProvider::class,
         /*
          * Package Service Providers...
          */
@@ -228,6 +228,8 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         //Aditya Chouhan-09/10/2017- Added while adding Entrust
         'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
+        'Form' => Collective\Html\FormFacade::class,
+        'Html' => Collective\Html\HtmlFacade::class,
 
     ],
 

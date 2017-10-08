@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('contactno')->nullable();
             $table->string('role');
             $table->string('departmentName')->nullable();
+            $table->boolean('archived')->default(0);
             $table->integer('security_question1_Id')->unsigned();
             $table->string('security_answer1');
             $table->integer('security_question2_Id')->unsigned();

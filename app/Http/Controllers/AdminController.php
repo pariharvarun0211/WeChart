@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use App\EmailidRole;
+use App\navigation;
+use App\module;
+use App\module_navigation;
 
 class AdminController extends Controller
 {
@@ -27,8 +30,14 @@ class AdminController extends Controller
     {
         //Fetching all students and instructors for display on admin landing page
 
-         $students = User::where('role','Student')->get();
-         $instructors = User::where('role','Instructor')->get();
+         $students = User::where('role','Student')
+             ->where('archived','=','0')
+             ->get();
+
+         $instructors = User::where('role','Instructor')
+             ->where('archived','=','0')
+             ->get();
+
          return view('admin/home', compact('students','instructors'));
     }
     public function getStudentEmails()
@@ -139,10 +148,67 @@ class AdminController extends Controller
      public function getManageEmails()
         {
         //Fetching all students and instructors emails for admin
-
          $studentEmails = EmailidRole::where('role','Student')->get();
          $instructorEmails = EmailidRole::where('role','Instructor')->get();
 
          return view('admin/manageEmails', compact('studentEmails','instructorEmails'));
         }
+
+    public function getConfigureModules()
+    {
+
+        $navs = navigation::where('parent_id', NULL)->get();
+        $mods = module::where('archived', false)->get();
+        $navs_mods = module_navigation::where('visible', true)->get();
+        return view('admin/configureModules', compact ('navs', 'mods', 'navs_mods'));
+    }
+
+    public function submitmodule(Request $request)
+    {
+        //$name = request()->get("modulename");
+        $module = new module;
+        $module->module_name = $request->input('modulename');
+        $module->archived = false;
+        $module->save();
+        $var = $module->module_id;
+
+        $navs = $request->input('navs');
+        foreach($navs as $navid)
+        {
+            $modnav = new module_navigation;
+            $modnav->module_id = $var;
+            $modnav->navigation_id = $navid;
+            $modnav->visible = true;
+            $modnav->save();
+        }
+
+        $navs = navigation::where('parent_id', NULL)->get();
+        $mods = module::where('archived', false)->get();
+        $navs_mods = module_navigation::where('visible', true)->get();
+        return view('admin/configureModules', compact ('navs', 'mods', 'navs_mods'));
+    }
+    public function deletemodule($modid)
+    {
+        module::where('module_id',$modid)->update(['archived' => true]);
+        $navs = navigation::where('parent_id', NULL)->get();
+        $mods = module::where('archived', false)->get();
+        $navs_mods = module_navigation::where('visible', true)->get();
+        return view('admin/configureModules', compact ('navs', 'mods', 'navs_mods'));
+    }
+
+    public function delete_email($id)
+    {
+        $email = EmailidRole::find($id);
+        $email->delete();
+        return redirect('/ManageEmails')->with('success','Email has been  deleted');
+    }
+
+    public function archive_user($id)
+    {
+        User::where('id',$id)
+            ->update(['archived'=> 1]);
+        return redirect('/home')->with('success','Email has been  deleted');
+
+    }
+
 }

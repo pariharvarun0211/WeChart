@@ -135,7 +135,7 @@
                                 <select class="form-control" name="security_question1_Id" value="{{ old('security_question1_Id') }}">
                                      @foreach ($securityquestions as $question)
                                         <option value="{{ $question->id }}">
-                                           {{ $question->security_question}}     
+                                           {{ $question->security_question }}
                                         </option>
                                     @endforeach                                
                                 </select>

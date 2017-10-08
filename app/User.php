@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'firstname','lastname', 'email', 'password','contactno','role','departmentName','security_question1_Id','security_answer1','security_question2_Id','security_answer2','security_question3_Id','security_answer3'
+        'firstname','lastname', 'email', 'password','contactno','role','departmentName','archived','security_question1_Id','security_answer1','security_question2_Id','security_answer2','security_question3_Id','security_answer3'
     ];
 
     /**
@@ -33,5 +33,12 @@ class User extends Authenticatable
     public function Security() {
         return $this->belongsTo('App\Security');
     }
+    public function users_patient() {
+        return $this->belongsTo('App\users_patient');
+    }
+//    public function patient() {
+//        return $this->belongsToMany('App\patient');
+//    }
+
     protected $table = 'users';
 }

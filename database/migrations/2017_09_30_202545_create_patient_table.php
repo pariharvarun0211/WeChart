@@ -19,11 +19,14 @@ class CreatePatientTable extends Migration
             $table->string('last_name');
             $table->string('gender');
             $table->integer('age');
-            $table->integer('height');
+            $table->string('height');
+            $table->string('weight');
             $table->string('visit_date');
+            $table->boolean('completed_flag')->default(0);
             $table->integer('module_id')->unsigned();
-            $table->boolean('is_archived')->default(0);
-            $table->integer('patient_record_status_id')->unsigned();
+            $table->boolean('archived')->default(0);
+            $table->integer('created_by')->unsigned();
+            $table->integer('updated_by')->unsigned()->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
@@ -31,11 +34,6 @@ class CreatePatientTable extends Migration
         //Adding foreign key constraint with module table
         Schema::table('patient', function (Blueprint $table) {
             $table->foreign('module_id')->references('module_id')->on('module');
-        });
-
-        //Adding foreign key constraints with patient_record_status table
-        Schema::table('patient', function (Blueprint $table) {
-            $table->foreign('patient_record_status_id')->references('patient_record_status_id')->on('patient_record_status');
         });
 
     }
