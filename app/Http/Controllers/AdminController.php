@@ -8,6 +8,7 @@ use App\EmailidRole;
 use App\navigation;
 use App\module;
 use App\module_navigation;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
@@ -175,11 +176,13 @@ class AdminController extends Controller
         $navs = $request->input('navs');
         foreach($navs as $navid)
         {
-            $modnav = new module_navigation;
-            $modnav->module_id = $var;
-            $modnav->navigation_id = $navid;
-            $modnav->visible = true;
-            $modnav->save();
+            //$modnav = new module_navigation;
+            //$modnav->module_id = $var;
+            //$modnav->navigation_id = $navid;
+            //$modnav->visible = true;
+            //$modnav->save();
+            DB::table('modules_navigations')->insert(
+                ['module_id' => $var, 'navigation_id' => $navid, 'visible' => true]);
         }
 
         $navs = navigation::where('parent_id', NULL)->get();
