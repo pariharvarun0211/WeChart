@@ -25,7 +25,7 @@ class StudentController extends Controller
             }
         }
         $modules = array_unique($modules);
-        var_dump($patients[0]->age);
+       // var_dump($patients[0]->age);
         return view('student/studentHome', compact('patients', 'modules', 'message'));
     }
 
