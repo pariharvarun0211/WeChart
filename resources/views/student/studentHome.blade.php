@@ -1,8 +1,3 @@
-<!--
- Developer - Varun Parihar, Siddharth Karlekar & Harsha Verma
- Date - 10/06/2017
- Description - View for Student Dashboard.
--->
 @extends('layouts.app')
 
 @section('content')
@@ -52,7 +47,7 @@
                                         @foreach($patients as $patient)
                                             <!-- To check the patient records with "Saved" status -->
                                                 @if($patient->module)
-                                                    @if($patient->status === 1 && $patient->module->module_name === $module && $patient->archived === 0)
+                                                    @if($patient->module->module_name === $module && $patient->archived === 0)
 
 
 
