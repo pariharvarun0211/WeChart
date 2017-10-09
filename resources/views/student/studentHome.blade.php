@@ -47,7 +47,7 @@
                                         @foreach($patients as $patient)
                                             <!-- To check the patient records with "Saved" status -->
                                                 @if($patient->module)
-                                                    @if($patient->module->module_name === $module && $patient->archived === 0)
+                                                    @if($patient->status === 1 && $patient->module->module_name === $module && $patient->archived === 0)
 
 
 
