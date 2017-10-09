@@ -57,7 +57,7 @@
                                                                 <td><p id="visitDate">{{$patient->visit_date}}</p></td>
                                                                 <td style="text-align: left">
                                                                     {{--<a id="edit" href="{{  route('patient.edit', ['id' => $patient->patient_id]) }}"> Edit</a>--}}
-                                                                    <a id="delete" href="{{ route('patient.destroy', ['patient_id' => $patient->patient_id ]) }}"> Delete</a>
+                                                                    <a id="delete"> Delete</a>
                                                                 </td>
                                                             </tr>
                                                     @endif
