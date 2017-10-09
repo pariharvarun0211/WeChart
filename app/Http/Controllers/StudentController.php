@@ -118,12 +118,23 @@ class StudentController extends Controller
 
             $patient->save();
 
-            $user_patient = new users_patient();
-            $user_patient->patient_record_status_id = 1;
-            $user_patient->patient_id = $patient->patient_id;
-            $user_patient->user_id = $request['user_id'];
-            $user_patient->created_by = $request['user_id'];
-            $user_patient->save();
+         //   $user_patient = new users_patient();
+           // $user_patient->patient_record_status_id = 1;
+           // $user_patient->patient_id = $patient->patient_id;
+            //$user_patient->user_id = $request['user_id'];
+            //$user_patient->created_by = $request['user_id'];
+            //$user_patient->save();
+            
+            //Inserting record for admin
+            DB::table('users_patient')->insert(
+                array(
+                    'patient_record_status_id' => 1,
+                    'patient_id' => $patient->patient_id,
+                    'user_id' => $request['user_id'],
+                    'created_by' =>  $request['user_id'],
+                    'updated_by' =>  $request['user_id']
+                    )
+            );
 
             //Now redirecting student to dashboard
             $patients = patient::where('created_by', Auth::user()->id)->get();
