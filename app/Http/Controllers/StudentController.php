@@ -77,12 +77,20 @@ class StudentController extends Controller
 
         public function get_add_patient()
     {
-        $modules = module::where('archived',0)->get();
-        return view('patient/add_patient',compact('modules'));
+           try {
+            if (Auth::check()) {
+                $modules = module::where('archived', 0)->get();
+                return view('patient/add_patient', compact('modules'));
+            }
+        }
+        catch (\Exception $e)
+        {
+            return view ('errors/503');
+        }
     }
     public function post_add_patient(Request $request)
     {
-//         try {
+        try {
 //          Validating input data
             $this->validate($request, [
                 'age' => 'required|numeric',
@@ -148,11 +156,11 @@ class StudentController extends Controller
             }
             $modules = array_unique($modules);
             return view('student/studentHome', compact('patients', 'modules', 'message'));
-         //   }
-        //catch (\Exception $e)
-        //{
-          // return view ('errors/503');
-        //}
+           }
+        catch (\Exception $e)
+        {
+          return view ('errors/503');
+        }
 
     }
 }
