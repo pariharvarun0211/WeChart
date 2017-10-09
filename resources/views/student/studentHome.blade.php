@@ -56,8 +56,8 @@
                                                                 <td><p id="patientWeight">{{$patient->weight}}</p></td>
                                                                 <td><p id="visitDate">{{$patient->visit_date}}</p></td>
                                                                 <td style="text-align: left">
-                                                                    <a id="edit"> Edit</a>
-                                                                    <a id="delete"> Delete</a>
+                                                                    <a class="btn btn-primary" id="edit"> Edit</a>
+                                                                    <a class="btn btn-danger" id="delete"> Delete</a>
                                                                 </td>
                                                             </tr>
                                                     @endif
