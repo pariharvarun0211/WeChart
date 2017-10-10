@@ -145,17 +145,9 @@ class StudentController extends Controller
                     )
             );
 
-            //Now redirecting student to dashboard
-            $patients = patient::where('created_by', Auth::user()->id)->get();
-            foreach($patients as $patient) {
-                if($patient->module) {
-                    array_push($modules, $patient->module);
-                }else {
-                    $message = 'There is no patient record associated with this student.';
-                }
-            }
-            $modules = array_unique($modules);
-            return view('student/studentHome', compact('patients', 'modules', 'message'));
+             //Now redirecting student to the same page.
+            $modules = module::where('archived', 0)->get();
+            return view('patient/add_patient', compact('modules'));
            }
         catch (\Exception $e)
         {
