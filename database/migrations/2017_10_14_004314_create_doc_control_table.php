@@ -37,7 +37,7 @@ class CreateDocControlTable extends Migration
 
         //Adding foreign key constraint with navigation table
         Schema::table('doc_control', function (Blueprint $table) {
-            $table->foreign('navigation_id')->references('navigation_id')->on('navigation');
+            $table->foreign('navigation_id')->references('navigation_id')->on('navigations');
         });
 
         //Adding foreign key constraint with doc_control_type table
