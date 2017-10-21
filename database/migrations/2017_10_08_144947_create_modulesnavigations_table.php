@@ -37,6 +37,6 @@ class CreateModulesnavigationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('modulesnavigations');
+        Schema::dropIfExists('modules_navigations');
     }
 }

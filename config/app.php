@@ -165,6 +165,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Zizaco\Entrust\EntrustServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
+        Sofa\Eloquence\BaseServiceProvider::class,
         /*
          * Package Service Providers...
          */

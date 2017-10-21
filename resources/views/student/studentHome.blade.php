@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
     <div class="container">
         <div class="row">
             <h3 style="text-align: center"><img src="logos\LogoStudent.png" width="4%"> Student Dashboard <img src="logos\LogoStudent.png" width="4%"></h3>
@@ -49,14 +50,18 @@
                                                 @if($patient->module)
                                                    @if($patient->status === 1 && $patient->module->module_name === $module)
                                                            <tr>
-                                                                <td><a id="patientName"><?php echo $patient->first_name.' '.$patient->last_name; ?></a></td>
+                                                                <td>
+                                                                    <a href="{{ route( 'patient.view', ['patient_id' => $patient->patient_id ] ) }}" id="patientName">
+                                                                        <?php echo $patient->first_name.' '.$patient->last_name; ?>
+                                                                    </a>
+                                                                </td>
                                                                 <td><p id="patientAge">{{$patient->age}}</p></td>
                                                                 <td><p id="patientSex">{{$patient->gender}}</p></td>
                                                                 <td><p id="patientHeight">{{$patient->height}}</p></td>
                                                                 <td><p id="patientWeight">{{$patient->weight}}</p></td>
                                                                 <td><p id="visitDate">{{$patient->visit_date}}</p></td>
                                                                 <td style="text-align: left">
-                                                                    <a class="btn btn-primary" id="edit">View & Edit</a>
+                                                                    <a href="{{ route( 'patient.view', ['patient_id' => $patient->patient_id ] ) }}" class="btn btn-primary" id="edit">View & Edit</a>
                                                                     <a class="btn btn-danger" id="delete"> Delete</a>
                                                                 </td>
                                                             </tr>
@@ -94,4 +99,4 @@
     </div>
 
     </div>
-@endsection
+   @endsection

@@ -150,15 +150,33 @@ class AdminController extends Controller
         {
         //Fetching all students and instructors emails for admin
          $studentEmails = EmailidRole::where('role','Student')->get();
-         $instructorEmails = EmailidRole::where('role','Instructor')->get();
 
+        // $studentEmails = explode(",", $studentEmails);
+
+//         $studentEmails = str_replace(['['], '', $studentEmails);
+//         $studentEmails = str_replace(['"'], '', $studentEmails);
+//         $studentEmails = str_replace(['"'], '', $studentEmails);
+//         $studentEmails = str_replace([']'], '', $studentEmails);
+
+           $registered_student_emails = User::where('archived',FALSE)->pluck('email');
+
+//         $registered_student_emails = str_replace(['['], '', $registered_student_emails);
+//         $registered_student_emails = str_replace(['"'], '', $registered_student_emails);
+//         $registered_student_emails = str_replace(['"'], '', $registered_student_emails);
+//         $registered_student_emails = str_replace([']'], '', $registered_student_emails);
+
+       //  $registered_student_emails = explode(",", $registered_student_emails);
+         //array_pop($registered_student_emails);
+
+         $instructorEmails = EmailidRole::where('role','Instructor')->get();
+         //$studentEmails=array_diff($studentEmails,$registered_student_emails);
          return view('admin/manageEmails', compact('studentEmails','instructorEmails'));
         }
 
     public function getConfigureModules()
     {
-
         $navs = navigation::where('parent_id', NULL)->get();
+        //$navs = navigation::all();
         $mods = module::where('archived', false)->get();
         $navs_mods = module_navigation::where('visible', true)->get();
         return view('admin/configureModules', compact ('navs', 'mods', 'navs_mods'));
@@ -186,6 +204,7 @@ class AdminController extends Controller
         }
 
         $navs = navigation::where('parent_id', NULL)->get();
+       // $navs = navigation::all();
         $mods = module::where('archived', false)->get();
         $navs_mods = module_navigation::where('visible', true)->get();
         return view('admin/configureModules', compact ('navs', 'mods', 'navs_mods'));
