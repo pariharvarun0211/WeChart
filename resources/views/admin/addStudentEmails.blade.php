@@ -1,11 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-<div class="row">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+    <div class="container">
+    <div class="row">
          <div class="col-md-8 col-md-offset-2">
             <div class="row col-md-8">
-                <a href="{{url('/home')}}" class="btn btn-success" style="float: left"> 
+                <a href="{{url('/home')}}" class="btn btn-success" style="float: left">
                 <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
                 Back to Dashboard</a>
             </div>
@@ -89,6 +92,6 @@
                      @endif
                  </div>
                  @endif
- <div>                
-<div>
+ </div>
+</div>
 @endsection

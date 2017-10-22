@@ -6,7 +6,12 @@
 @extends('layouts.app')
 @section('content')
 
-<div class="container">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+
+
+  <div class="container">
   <div class="col-md-8 col-md-offset-2">
     @if($user['role'] == 'Admin')
     <div class="row">

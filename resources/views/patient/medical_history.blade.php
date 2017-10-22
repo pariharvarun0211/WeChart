@@ -206,6 +206,7 @@
             </div>
             <div class="panel-body">
                 <form class="form-horizontal" method="POST" action="{{ url('social_history') }}">
+                    {{ csrf_field() }}
                 {{--Smoke Tobaco--}}
                 <div class="row">
                     <div class="col-md-3 col-md-offset-1">
@@ -302,8 +303,7 @@
         </div>
     </div>
 
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+     {{--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>--}}
      <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
      <script>
          $('#search_diagnosis_personal_history').select2({

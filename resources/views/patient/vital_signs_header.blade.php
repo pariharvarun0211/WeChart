@@ -1,17 +1,17 @@
 @section('content')
     {{--@parent--}}
 <!--This is a container for vital signs header -->
-<div class="container-fluid" style="padding-top: 0;padding-bottom: 0;margin-bottom: 0;">
-    <div class="row">
-        <div class="panel-heading" style="background-color: #5DADE2;padding-left: 0">
+<div class="container-fluid" style="padding-top: 0;margin-top:0; padding-bottom: 0;margin-bottom: 0;">
+    <div class="row" >
+        <div class="panel-heading" style="padding-left: 0">
             <a href="{{url('/StudentHome')}}" class="btn btn-success" style="float: left">
                 <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
                 Back to Dashboard
             </a>
             <h3 align="center" style="margin-top: 0;"><b>Patient Active Record</b></h3>
         </div>
-        <div class="panel-body" style="margin-bottom: 0;padding-bottom: 0;background-color: lightcyan;margin-top: 0;padding-top: 0">
-            <table class="table" style=" margin-top: 0;padding-top: 0;">
+        <div class="panel-body" style="margin-bottom: 0;padding-bottom: 0;background-color: #FFFAF0;margin-top: 0;padding-top: 0">
+            <table class="table" style=" margin-top: 0;padding-top: 0;margin-bottom: 0;padding-bottom: 0">
                 <!--This is the first row in the vital signs panel -->
                 <tr style=" margin-top: 0;padding-top: 0;">
                     <td style="padding-left: 10%">

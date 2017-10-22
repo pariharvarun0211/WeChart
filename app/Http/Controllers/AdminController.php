@@ -175,7 +175,7 @@ class AdminController extends Controller
 
     public function getConfigureModules()
     {
-        $navs = navigation::where('parent_id', NULL)->get();
+         $navs = navigation::where('parent_id', NULL)->get();
         //$navs = navigation::all();
         $mods = module::where('archived', false)->get();
         $navs_mods = module_navigation::where('visible', true)->get();

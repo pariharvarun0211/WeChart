@@ -31,7 +31,7 @@
         <div class="row" style="overflow-x: scroll;width: 1200px">
             <table class="table-responsive table-striped" border="2">
                 <thead >
-                <tr >
+                <tr>
                     <td style="background-color:#5DADE2;">
                         <h5 style="width: 150px;margin-left: 1%;margin-right: 1%">
                         <b>Module/Navigations</b>

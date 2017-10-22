@@ -14,10 +14,11 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700">
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-default navbar-static-top">
+        <nav class="navbar navbar-default navbar-static-top" style="background-color: #5DADE2;">
             <div class="container">
                 <div class="navbar-header">
 
@@ -45,14 +46,14 @@
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
                         @guest
-                            <li><a href="{{ route('login') }}"><i class="fa fa-sign-in" aria-hidden="true"></i>&nbsp;Login</a></li>
-                            <li><a href="{{ route('register') }}"><i class="fa fa-user-plus" aria-hidden="true"></i>&nbsp;Register</a></li>
+                            <li><a style="color: darkblue" href="{{ route('login') }}"><i class="fa fa-sign-in" aria-hidden="true"></i>&nbsp;<b>Login</b></a></li>
+                            <li><a style="color: darkblue" href="{{ route('register') }}"><i class="fa fa-user-plus" aria-hidden="true"></i>&nbsp;<b>Register</b></a></li>
                         @else
-                            <li> <a id="role"> Role: {{ Auth::user()->role}}</a></li>
+                            <li> <a id="role" style="color: darkblue"> <b>Role: {{ Auth::user()->role}}</b></a></li>
                             <li class="dropdown">
 
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ Auth::user()->firstname }} &nbsp;{{ Auth::user()->lastname}} <span class="caret"></span>
+                                <a href="#" style="color: darkblue" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                   <b> {{ Auth::user()->firstname }} &nbsp;{{ Auth::user()->lastname}} <span class="caret"></span></b>
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
@@ -87,6 +88,8 @@
     </div>
 
     <!-- Scripts -->
-
+    {{--<script src="{{ asset('js/app.js') }}"></script>--}}
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 </body>
 </html>

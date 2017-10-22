@@ -5,6 +5,13 @@ namespace App\Http\Controllers;
 use App\lookup_value;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
+use Auth;
+use App\module;
+use App\User;
+use App\users_patient;
+use App\module_navigation;
+use App\navigation;
+use App\patient;
 
 
 class DocumentationController extends Controller
@@ -80,28 +87,31 @@ class DocumentationController extends Controller
 
         if($role == 'Student') {
             try {
-                //if sex is male then first name is John else Jane
-                if ($request['gender'] == 'Male') {
-                    $patient['first_name'] = 'John';
-                } else {
-                    $patient['first_name'] = 'Jane';
-                }
+                    //Validating input data
+                    $this->validate($request, [
+                        'age' => 'required|numeric',
+                        'height' => 'required',
+                        'weight' => 'required',
+                    ]);
+                    $patient = patient::where('patient_id', $request['patient_id'])->first();
+                    //if sex is male then first name is John else Jane
+                    if ($request->gender == 'Male')
+                    {
+                        $patient['first_name'] = 'John';
+                    }
+                    else
+                    {
+                        $patient['first_name'] = 'Jane';
+                    }
 
-                $patient = new patient($request->all());
-
-//                $patient['last_name'] = 'Doe' . $append_number;
-//
-//                $patient['archived'] = 0;
-//                $patient['completed_flag'] = 0;
-//                $patient['height'] = $request['height'] ." ". $request['height_unit'];
-//                $patient['weight'] = $request['weight'] ." ". $request['weight_unit'];
-//                $patient['created_by'] = $request['user_id'];
-//                $patient['updated_by'] = $request['user_id'];
-//
-//                $patient->save();
+                    $patient->gender = $request->gender;
+                    $patient->age = $request->age;
+                    $patient->height = $request->height;
+                    $patient->weight = $request->weight;
+                    $patient->save();
 
                 //Fetching all navs associated with this patient's module
-                $navIds = module_navigation::where('module_id', $request->module_id)->pluck('navigation_id');
+                $navIds = module_navigation::where('module_id', $patient->module_id)->pluck('navigation_id');
                 $navs = array();
 
                 //Now get nav names
@@ -109,8 +119,7 @@ class DocumentationController extends Controller
                     $nav_name = navigation::where('navigation_id', $nav_id)->pluck('navigation_name');
                     array_push($navs, $nav_name);
                 }
-                return view('patient/HPI', compact ('patient','navs'));
-
+                return view('patient/demographics_patient', compact ('patient','navs'));
             } catch (\Exception $e) {
                 return view('errors/503');
             }
@@ -119,7 +128,6 @@ class DocumentationController extends Controller
         {
             return view('auth/login');
         }
-
     }
     public function post_social_history(Request $request)
     {

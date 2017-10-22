@@ -4,9 +4,13 @@
 
 @section('documentation_panel')
 {{--@parent--}}
-    <div class="row">
+<br>
+<br>
+<br>
+<br>
+    <div class="row" style="padding-left: 5%">
         <div class="col-md-12">
-            <div class="alert alert-info alert-dismissable" align="middle">
+            <div class="alert alert-info" align="middle">
                 <p align="middle">
                     <strong>  This module development is in progress. Please visit after some time.
                         Thank you for your patience!
@@ -15,4 +19,16 @@
             </div>
         </div>
     </div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 @endsection

@@ -3,29 +3,36 @@
 @section('Maincontent')
     {{--@parent--}}
 
-
-
-    {{--<!--down one is required-->--}}
-    {{--<!--script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script-->--}}
-    {{--<link href="http://demo.expertphp.in/css/jquery.ui.autocomplete.css" rel="stylesheet">--}}
-    {{--<script src="http://demo.expertphp.in/js/jquery.js"></script>--}}
-    {{--<script src="http://demo.expertphp.in/js/jquery-ui.min.js"></script>--}}
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 
     {{--Three Panels--}}
-    <div class="container-fluid" style="margin-top: 0;padding-top: 0;padding-left: 1%">
+    <div class="container-fluid" style="margin-top: 0;padding-top: 0;padding-left: 1%;">
         <div class="row" style="border: solid;padding-top: 0;border-top:0;">
             {{--Navigation Panel--}}
             <div class="col-md-2" style="float: left;padding-left: 0;padding-right: 0">
                 <ul class="list-group" style="cursor: pointer">
-                    {{--Adding Demographics to existing nav modules--}}
-                    <a class="list-group-item active"  id="Demographics_tab" href="{{ URL::route('Demographics', $patient->patient_id)}}">
-                        <b>Demographics</b>
-                    </a>
+                    <li class="list-group-item">
+                        {{--Adding Demographics to existing nav modules--}}
+                        <a
+                                id="Demographics_tab"
+                                href="{{ URL::route('Demographics', $patient->patient_id)}}"
+                                onclick="return confirm('You are about to leave this page and would loose all the unsaved changes. Are you sure you want to proceed?')"
+                        >
+                            <b>Demographics</b>
+                        </a>
+                    </li>
 
                     @foreach ($navs as $key=>$nav)
-                        <a class="list-group-item" id="{{$nav[0]}}_tab" href="{{ URL::route($nav[0], $patient->patient_id)}}" onclick="selectTab({{$key}})" >
-                           <b>{{ $nav[0] }}</b>
-                        </a>
+                        <li class="list-group-item" >
+                            <a
+                                    id="{{$nav[0]}}_tab"
+                                    href="{{ URL::route($nav[0], $patient->patient_id)}}"
+                                    onclick="return confirm('You are about to leave this page and would loose all the unsaved changes. Are you sure you want to proceed?')"
+                            >
+                               <b>{{ $nav[0] }}</b>
+                            </a>
+                        </li>
                     @endforeach
                 </ul>
             </div>
@@ -43,11 +50,14 @@
         </div>
     </div>
 
-    {{--<script>--}}
-        {{--function selectTab(index){--}}
-            {{--@foreach ($navs as $key1=>$nav)--}}
-                {{--$('#{{$nav[0]}}_tab').css({"background-color":"red"});--}}
-            {{--@endforeach--}}
-        {{--};--}}
-    {{--</script>--}}
+    <script>
+//        $(".list-group-item").on("click", function() {
+//            $('ul li').css('background-color','none');
+//            $(this).css("background-color", "blue");
+//        })
+    $('ul.list-group li.list-group-item a').click(function() {
+        $('ul.list-group li.list-group-item').css('background','none');
+        $(this).parent().css('background','red');
+    });
+    </script>
 @endsection

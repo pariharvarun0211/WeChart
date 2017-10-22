@@ -45,11 +45,6 @@ class StudentController extends Controller
         }
     }
 
-//    public function edit(Request $request){
-//        $patient = patient::where('patient_id', $request['id'])->first();
-//        return view('/patient/edit_patient', compact('patient'));
-//    }
-
     public function view_patient(Request $request){
         $role='';
         if(Auth::check()) {
