@@ -67,10 +67,14 @@ Route::post('add_patient', 'StudentController@post_add_patient');
 //Active record routes
 Route::get('/Demographics/{id}', 'NavigationController@get_demographics_panel')->name('Demographics');
 Route::post('Demographics', 'DocumentationController@post_Demographics');
+
 Route::get('/HPI/{id}', 'NavigationController@get_HPI')->name('History of Present Illness (HPI)');
 Route::post('HPI', 'DocumentationController@post_HPI');
+
 Route::get('/Medical_History/{id}', 'NavigationController@get_medical_history')->name('Medical History');
-Route::post('social_history}', 'DocumentationController@post_social_history');
+Route::post('social_history}', 'DocumentationController@post_social_history')->name('social_history');
+Route::post('personal_history}', 'DocumentationController@post_personal_history')->name('personal_history');
+Route::post('surgical_history}', 'DocumentationController@post_surgical_history')->name('surgical_history');
 
 Route::get('/Medications/{id}', 'NavigationController@get_medications')->name('Medications');
 Route::get('/Vital_Signs/{id}', 'NavigationController@get_vital_signs')->name('Vital Signs');
