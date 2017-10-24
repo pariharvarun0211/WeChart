@@ -175,8 +175,8 @@ class AdminController extends Controller
 
     public function getConfigureModules()
     {
-         $navs = navigation::where('parent_id', NULL)->get();
-        //$navs = navigation::all();
+        // $navs = navigation::where('parent_id', NULL)->get();
+        $navs = navigation::all();
         $mods = module::where('archived', false)->get();
         $navs_mods = module_navigation::where('visible', true)->get();
         return view('admin/configureModules', compact ('navs', 'mods', 'navs_mods'));
@@ -203,8 +203,8 @@ class AdminController extends Controller
                 ['module_id' => $var, 'navigation_id' => $navid, 'visible' => true]);
         }
 
-        $navs = navigation::where('parent_id', NULL)->get();
-       // $navs = navigation::all();
+//         $navs = navigation::where('parent_id', NULL)->get();
+       $navs = navigation::all();
         $mods = module::where('archived', false)->get();
         $navs_mods = module_navigation::where('visible', true)->get();
         return view('admin/configureModules', compact ('navs', 'mods', 'navs_mods'));
