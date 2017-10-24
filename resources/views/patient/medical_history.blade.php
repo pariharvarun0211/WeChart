@@ -13,7 +13,7 @@
                 <h4 style="margin-top: 0">Personal History</h4>
             </div>
             <div class="panel-body">
-                <form class="form-horizontal" method="POST" action="{{ url('personal_history') }}">
+                <form class="form-horizontal" method="POST" action="{{ route('personal_history') }}">
                     <div class="container-fluid">
                         <!-- Search For Diagnosis -->
                         <div class="row">
@@ -138,7 +138,7 @@
                 <h4 style="margin-top: 0">Surgical History</h4>
             </div>
           <div class="panel-body">
-                <form class="form-horizontal" method="POST" action="{{ url('surgical_history') }}">
+                <form class="form-horizontal" method="POST" action="{{ route('surgical_history') }}">
                     <div class="container-fluid">
                         <!-- Search For Diagnosis -->
                         <div class="row">
@@ -183,7 +183,7 @@
                 <h4 style="margin-top: 0">Social History</h4>
             </div>
             <div class="panel-body">
-                <form class="form-horizontal" method="POST" action="{{ url('social_history') }}">
+                <form class="form-horizontal" method="POST" action="{{ route('social_history') }}">
                     {{ csrf_field() }}
                 {{--Smoke Tobaco--}}
                 <div class="row">
