@@ -4,6 +4,7 @@
 
 @section('documentation_panel')
 
+    <input id="module_id" name="module_id" type="hidden" value="{{ $patient->module_id }}">
     
     {{--Personal History--}}
     <div class="container-fluid">
@@ -12,9 +13,9 @@
                 <h4 style="margin-top: 0">Personal History</h4>
             </div>
             <div class="panel-body">
-                <form class="form-horizontal" method="POST" action="{{ route('personal_history') }}">
-                     {{ csrf_field() }}
-                    <input id="module_id" name="module_id" type="hidden" value="{{ $patient->module_id }}">
+               {{-- <form class="form-horizontal" method="POST" action="{{ route('personal_history') }}">--}}
+                   {{--  {{ csrf_field() }}--}}
+                   {{-- <input id="module_id" name="module_id" type="hidden" value="{{ $patient->module_id }}">--}}
                     <div class="container-fluid">
                         <!-- Search For Diagnosis -->
                         <div class="row">
@@ -139,9 +140,9 @@
                 <h4 style="margin-top: 0">Surgical History</h4>
             </div>
           <div class="panel-body">
-                <form class="form-horizontal" method="POST" action="{{ route('surgical_history') }}">
-                     {{ csrf_field() }}
-                    <input id="module_id" name="module_id" type="hidden" value="{{ $patient->module_id }}">
+               {{-- <form class="form-horizontal" method="POST" action="{{ route('surgical_history') }}">--}}
+                     {{--{{ csrf_field() }}--}}
+                   {{-- <input id="module_id" name="module_id" type="hidden" value="{{ $patient->module_id }}">--}}
                     <div class="container-fluid">
                         <!-- Search For Diagnosis -->
                         <div class="row">
@@ -186,9 +187,9 @@
                 <h4 style="margin-top: 0">Social History</h4>
             </div>
             <div class="panel-body">
-                <form class="form-horizontal" method="POST" action="{{ route('social_history') }}">
-                 {{ csrf_field() }}
-                 <input id="module_id" name="module_id" type="hidden" value="{{ $patient->module_id }}">                   
+               {{-- <form class="form-horizontal" method="POST" action="{{ route('social_history') }}">--}}
+                 {{--{{ csrf_field() }}--}}
+                {{-- <input id="module_id" name="module_id" type="hidden" value="{{ $patient->module_id }}">--}}                   
                 {{--Smoke Tobaco--}}
                 <div class="row">
                     <div class="col-md-3 col-md-offset-1">
@@ -286,10 +287,9 @@
     </div>
 
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
-    
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
-     <script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+    <script>
          $('#search_diagnosis_personal_history').select2({
              placeholder: "Choose Diagnosis...",
              minimumInputLength: 2,
