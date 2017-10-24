@@ -4,8 +4,7 @@
 
 @section('documentation_panel')
 
-    <input id="module_id" name="module_id" type="hidden" value="{{ $patient->module_id }}">
-
+    
     {{--Personal History--}}
     <div class="container-fluid">
         <div class="panel panel-default">
@@ -14,6 +13,8 @@
             </div>
             <div class="panel-body">
                 <form class="form-horizontal" method="POST" action="{{ route('personal_history') }}">
+                     {{ csrf_field() }}
+                    <input id="module_id" name="module_id" type="hidden" value="{{ $patient->module_id }}">
                     <div class="container-fluid">
                         <!-- Search For Diagnosis -->
                         <div class="row">
@@ -139,6 +140,8 @@
             </div>
           <div class="panel-body">
                 <form class="form-horizontal" method="POST" action="{{ route('surgical_history') }}">
+                     {{ csrf_field() }}
+                    <input id="module_id" name="module_id" type="hidden" value="{{ $patient->module_id }}">
                     <div class="container-fluid">
                         <!-- Search For Diagnosis -->
                         <div class="row">
@@ -184,7 +187,8 @@
             </div>
             <div class="panel-body">
                 <form class="form-horizontal" method="POST" action="{{ route('social_history') }}">
-                    {{ csrf_field() }}
+                 {{ csrf_field() }}
+                 <input id="module_id" name="module_id" type="hidden" value="{{ $patient->module_id }}">                   
                 {{--Smoke Tobaco--}}
                 <div class="row">
                     <div class="col-md-3 col-md-offset-1">
