@@ -44,7 +44,7 @@
                             </td>
                         </tr>
                     <tr>
-                        <td><p><label class="heading">Sex* :</label></p></td>
+                        <td><p>Sex* :</p></td>
                         <td>
                             @if($patient->gender == "Male")
                                   <input name="gender" type="radio" value="Male" checked>&nbsp;Male
