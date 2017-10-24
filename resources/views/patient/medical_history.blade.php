@@ -17,11 +17,13 @@
                     <div class="container-fluid">
                         <!-- Search For Diagnosis -->
                         <div class="row">
-                            <div class="col-md-4 col-md-offset-1">
+                            <div class="col-md-3 col-md-offset-1">
+                                <label for="Diagnosis"> Diagnosis:</label>
+                            </div>
+                            <div class="col-md-6 ">
                                 <select id="search_diagnosis_personal_history" class="js-example-basic-multiple js-states form-control" name="search_diagnosis_personal_history[]" multiple></select>
                             </div>
-                        </div>
-                        <br>
+                        </div>                      
                         <br>
                         <br>
                         <!-- Comment box -->
