@@ -32,7 +32,7 @@
                                 <label for="Comment"> Comments:</label>
                             </div>
                             <div class="col-md-6">
-                            <textarea rows="4" id="personal_history_comment" style="width: 400px" placeholder="Enter your comments here.">
+                            <textarea rows="4" id="personal_history_comment" style="width: 480px" placeholder="Enter your comments here.">
                             </textarea>
                             </div>
                         </div>
@@ -71,7 +71,6 @@
                     <br>
                     {{--Family Member Panel--}}
                     <div class="row">
-
                         <div class="col-md-offset-1 col-md-11" style="border: solid" id="family_member_id">
                             <div class="row" style="padding-top: 2%;padding-left: 1%;padding-right: 1%">
                                     <div class="col-md-6">
@@ -138,63 +137,40 @@
             <div class="panel-heading" style="background-color: lightblue;padding-bottom: 0">
                 <h4 style="margin-top: 0">Surgical History</h4>
             </div>
-            <div class="panel-body">
-                <div class="container-fluid">
-                    <!-- Search For Diagnosis -->
-                    <div class="row">
-                        <div class="col-md-3 col-md-offset-1">
-                            <label for="SearchForDiagnosis" > Search For Diagnosis:</label>
-                        </div>
-                        <div class="col-md-6">
-                            <input id="search_for_diagnosis_surgical_history" type="text" class="form-control" name="SearchForDiagnosis">
-                        </div>
-                    </div>
-                    <br>
-                    <!-- List of Surgeries -->
-                    <div class="row">
-                        <div class="col-md-9 col-md-offset-1">
-                            <table class="table table-striped table-bordered table-hover">
-                                <thead>
-                                <tr style="background-color: lightgrey">
-                                    <th>List of surgeries</th>
-                                    <th></th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                    @if(!empty($diagnosis_list_surgical_history))
-                                        @foreach($diagnosis_list_surgical_history as $key=>$diagnosis)
-                                            <tr>
-                                                <td><p>$diagnosis->name</p></td>
-                                                <td style="text-align: right">
-                                                    <a class="btn btn-danger" id="delete_surgical_history_{{$key}}"> Delete</a>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    @endif
-                                </tbody>
-                            </table>
+          <div class="panel-body">
+                <form class="form-horizontal" method="POST" action="{{ url('surgical_history') }}">
+                    <div class="container-fluid">
+                        <!-- Search For Diagnosis -->
+                        <div class="row">
+                            <div class="col-md-3 col-md-offset-1">
+                                <label for="Diagnosis"> Diagnosis:</label>
+                            </div>
+                            <div class="col-md-6 ">
+                                <select id="search_diagnosis_surgical_history" class="js-example-basic-multiple js-states form-control" name="search_diagnosis_surgical_history[]" multiple></select>
+                            </div>
+                        </div>                      
+                        <br>
+                        <br>
+                        <!-- Comment box -->
+                        <div class="row">
+                            <div class="col-md-3 col-md-offset-1">
+                                <label for="Comment"> Comments:</label>
+                            </div>
+                            <div class="col-md-6">
+                            <textarea rows="4" id="personal_history_comment" style="width: 480px" placeholder="Enter your comments here.">
+                            </textarea>
+                            </div>
                         </div>
                     </div>
                     <br>
-                    <!-- Comment box -->
                     <div class="row">
-                        <div class="col-md-3 col-md-offset-1">
-                            <label for="Comment"> Comments:</label>
-                        </div>
-                        <div class="col-md-6">
-                        <textarea rows="4" id="surgical_history_comment" style="width: 400px" placeholder="Enter your comments here.">
-                        </textarea>
-                        </div>
-                    </div>
-                </div>
-                <br>
-                <div class="row">
                     <div class="col-md-8" style="float: right">
                         <button type="submit" id="btn_save_surgical_history" class="btn btn-primary">
                             Save Surgical History
                         </button>
                     </div>
                 </div>
+                </form>
             </div>
         </div>
     </div>
@@ -305,14 +281,32 @@
         </div>
     </div>
 
-     {{--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>--}}
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    
      <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
      <script>
          $('#search_diagnosis_personal_history').select2({
+             placeholder: "Choose Diagnosis...",
+             minimumInputLength: 2,
+             ajax: {
+                 url: '{{route('diagnosis_find')}}',
+                 dataType: 'json',
+                 data: function (params) {
+                     return {
+                         q: $.trim(params.term)
+                     };
+                 },
+                 processResults: function (data) {
+                     return {
+                         results: data
+                     };
+                 },
+                 cache: true
+             }
+         });
+         
+          $('#search_diagnosis_surgical_history').select2({
              placeholder: "Choose Diagnosis...",
              minimumInputLength: 2,
              ajax: {
