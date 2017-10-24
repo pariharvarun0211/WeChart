@@ -161,4 +161,69 @@ class DocumentationController extends Controller
         }
 
     }
+     public function post_personal_history(Request $request)
+    {
+        Log::info('Aditya reached here');
+        $role='';
+        if(Auth::check()) {
+            $role = Auth::user()->role;
+        }
+
+        if($role == 'Student') {
+            try {
+
+                //Fetching all navs associated with this patient's module
+                $navIds = module_navigation::where('module_id', $request->module_id)->pluck('navigation_id');
+                $navs = array();
+
+                //Now get nav names
+                foreach ($navIds as $nav_id) {
+                    $nav_name = navigation::where('navigation_id', $nav_id)->pluck('navigation_name');
+                    array_push($navs, $nav_name);
+                }
+                return view('patient/medical_history', compact ('patient','navs'));
+
+            } catch (\Exception $e) {
+                return view('errors/503');
+            }
+        }
+        else
+        {
+            return view('auth/login');
+        }
+
+    }
+    
+     public function post_surgical_history(Request $request)
+    {
+        Log::info('Aditya reached here');
+        $role='';
+        if(Auth::check()) {
+            $role = Auth::user()->role;
+        }
+
+        if($role == 'Student') {
+            try {
+
+                //Fetching all navs associated with this patient's module
+                $navIds = module_navigation::where('module_id', $request->module_id)->pluck('navigation_id');
+                $navs = array();
+
+                //Now get nav names
+                foreach ($navIds as $nav_id) {
+                    $nav_name = navigation::where('navigation_id', $nav_id)->pluck('navigation_name');
+                    array_push($navs, $nav_name);
+                }
+                return view('patient/medical_history', compact ('patient','navs'));
+
+            } catch (\Exception $e) {
+                return view('errors/503');
+            }
+        }
+        else
+        {
+            return view('auth/login');
+        }
+
+    }
 }
