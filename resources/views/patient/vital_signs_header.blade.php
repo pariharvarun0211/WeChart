@@ -2,21 +2,23 @@
     {{--@parent--}}
  
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   
 <!--This is a container for vital signs header -->
 <div class="container-fluid" style="padding-top: 0;margin-top:0; padding-bottom: 0;margin-bottom: 0;">
-    <div class="row" >
-     <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">
-        <i class="fa fa-window-minimize" aria-hidden="true"></i>
-     </button>
+    <div class="row" >    
         <div class="panel-heading" style="padding-left: 0">
             <a href="{{url('/StudentHome')}}" class="btn btn-success" style="float: left">
                 <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
                 Back to Dashboard
             </a>
             <h3 align="center" style="margin-top: 0;"><b>Patient Active Record</b></h3>
+             <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo" style="float: right">
+                <i class="fa fa-window-minimize" aria-hidden="true"></i>
+            </button>
         </div>
         <div id="demo" class="panel-body collapse" style="margin-bottom: 0;padding-bottom: 0;background-color: #FFFAF0;margin-top: 0;padding-top: 0">
             <table class="table" style=" margin-top: 0;padding-top: 0;margin-bottom: 0;padding-bottom: 0">
