@@ -1,5 +1,10 @@
 @section('content')
     {{--@parent--}}
+ 
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  
 <!--This is a container for vital signs header -->
 <div class="container-fluid" style="padding-top: 0;margin-top:0; padding-bottom: 0;margin-bottom: 0;">
     <div class="row" >
