@@ -20,8 +20,8 @@
                                 <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
 
                                 @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
+                                    <span class="help-block" >
+                                        <strong id="emailidalert">{{ $errors->first('email') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -34,8 +34,8 @@
                                 <input id="password" type="password" class="form-control" name="password" required>
 
                                 @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
+                                    <span class="help-block" >
+                                        <strong id="passwordalert">{{ $errors->first('password') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -56,8 +56,8 @@
                                 <input id="firstname" type="text" class="form-control" name="firstname" value="{{ old('firstname') }}" required autofocus>
 
                                 @if ($errors->has('firstname'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('firstname') }}</strong>
+                                    <span class="help-block" >
+                                        <strong id="firstnamealert">{{ $errors->first('firstname') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -70,8 +70,8 @@
                                 <input id="lastname" type="text" class="form-control" name="lastname" value="{{ old('lastname') }}" required autofocus>
 
                                 @if ($errors->has('lastname'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('lastname') }}</strong>
+                                    <span class="help-block" >
+                                        <strong id="lastnamealert">{{ $errors->first('lastname') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -84,8 +84,8 @@
                                 <input id="contactno" type="text" class="form-control" name="contactno" value="{{ old('contactno') }}">
 
                                 @if ($errors->has('contactno'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('contactno') }}</strong>
+                                    <span class="help-block" >
+                                        <strong id="contactnoalert">{{ $errors->first('contactno') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -99,7 +99,7 @@
                               &nbsp;&nbsp;&nbsp;&nbsp;
                             <input type="radio" class="form-check-input inline" name="role" value="Instructor" id="roleInstructor">&nbsp;Instructor
                             @if ($errors->has('role'))
-                                    <span class="help-block">
+                                    <span class="help-block" id="rolealert">
                                         <strong>{{ $errors->first('role') }}</strong>
                                     </span>
                                 @endif
@@ -112,8 +112,8 @@
                             <div class="col-md-6">
                             <input id="departmentName" type="text" class="form-control" name="departmentName" value="{{ old('departmentName') }}" >
                             @if ($errors->has('departmentName'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('departmentName') }}</strong>
+                                    <span class="help-block" >
+                                        <strong id="departmentNamealert">{{ $errors->first('departmentName') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -141,8 +141,8 @@
                                 </select>
 
                                 @if ($errors->has('security_question1_Id'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('security_question1_Id') }}</strong>
+                                    <span class="help-block" >
+                                        <strong id="securityQuestion1Alert">{{ $errors->first('security_question1_Id') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -155,8 +155,8 @@
                                 <input id="security_answer1" type="text" class="form-control" name="security_answer1" value="{{ old('security_answer1') }}">
 
                                 @if ($errors->has('security_answer1'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('security_answer1') }}</strong>
+                                    <span class="help-block" >
+                                        <strong id="securityAnswer1Alert">{{ $errors->first('security_answer1') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -175,8 +175,8 @@
                                 </select>
 
                                 @if ($errors->has('security_question2_Id'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('security_question2_Id') }}</strong>
+                                    <span class="help-block" >
+                                        <strong id="securityQuestion2Alert">{{ $errors->first('security_question2_Id') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -189,8 +189,8 @@
                                 <input id="security_answer2" type="text" class="form-control" name="security_answer2" value="{{ old('security_answer2') }}">
 
                                 @if ($errors->has('security_answer2'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('security_answer2') }}</strong>
+                                    <span class="help-block" >
+                                        <strong id="securityAnswer2Alert">{{ $errors->first('security_answer2') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -209,8 +209,8 @@
                                 </select>
 
                                 @if ($errors->has('security_question3_Id'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('security_question3_Id') }}</strong>
+                                    <span class="help-block" >
+                                        <strong id="securityQuestion3Alert">{{ $errors->first('security_question3_Id') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -224,8 +224,8 @@
                             <input id="security_answer3" type="text" class="form-control" name="security_answer3" value="{{ old('security_answer3') }}">
 
                             @if ($errors->has('security_answer3'))
-                                <span class="help-block">
-                                    <strong>{{ $errors->first('security_answer3') }}</strong>
+                                <span class="help-block" >
+                                    <strong id="securityAnswer3Alert">{{ $errors->first('security_answer3') }}</strong>
                                 </span>
                             @endif
                         </div>
