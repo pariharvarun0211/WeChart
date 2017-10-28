@@ -18,7 +18,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-default navbar-static-top" style="background-color: #5DADE2;">
+        <nav class="navbar navbar-default navbar-static-top"  style="background-color: #6DCDFF;">
             <div class="container">
                 <div class="navbar-header">
 
@@ -46,13 +46,13 @@
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
                         @guest
-                            <li><a style="color: darkblue" href="{{ route('login') }}"><i class="fa fa-sign-in" aria-hidden="true"></i>&nbsp;<b>Login</b></a></li>
-                            <li><a style="color: darkblue" href="{{ route('register') }}"><i class="fa fa-user-plus" aria-hidden="true"></i>&nbsp;<b>Register</b></a></li>
+                            <li><a style="color: #000000" href="{{ route('login') }}"><i class="fa fa-sign-in" aria-hidden="true"></i>&nbsp;<b>Login</b></a></li>
+                            <li><a style="color: #000000" href="{{ route('register') }}"><i class="fa fa-user-plus" aria-hidden="true"></i>&nbsp;<b>Register</b></a></li>
                         @else
-                            <li> <a id="role" style="color: darkblue"> <b>Role: {{ Auth::user()->role}}</b></a></li>
+                            <li> <a id="role" style="color: #000000"> <b>Role: {{ Auth::user()->role}}</b></a></li>
                             <li class="dropdown">
 
-                                <a href="#" style="color: darkblue" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                <a href="#" style="color: #000000" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                    <b> {{ Auth::user()->firstname }} &nbsp;{{ Auth::user()->lastname}} <span class="caret"></span></b>
                                 </a>
 
