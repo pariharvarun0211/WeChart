@@ -81,6 +81,9 @@ Route::get('/Medications/{id}', 'NavigationController@get_medications')->name('M
 Route::post('post_medications}', 'DocumentationController@post_medications')->name('post_medications');
 
 Route::get('/Vital_Signs/{id}', 'NavigationController@get_vital_signs')->name('Vital Signs');
+Route::post('post_vital_signs', 'DocumentationController@post_vital_signs');
+Route::post('delete_vital_signs/{ts}', 'DocumentationController@delete_vital_signs')->name('delete_vital_signs');
+
 Route::get('/Review_of_System (ROS)/{id}', 'NavigationController@get_ROS')->name('Review of System (ROS)');
 Route::get('/Physical_Exam/{id}', 'NavigationController@get_physical_exams')->name('Physical Exam');
 

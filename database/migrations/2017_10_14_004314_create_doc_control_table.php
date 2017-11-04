@@ -878,6 +878,27 @@ class CreateDocControlTable extends Migration
             )
         );
 
+        DB::table('doc_control')->insert (
+            array (
+                'navigation_id' => 8,   		//Vital Signs
+                'label' => 'Weight (Wt) (Kg)',
+                'doc_control_type_id' => 3,  	//Search bar
+//			'doc_control_type_id' => 4,  	//Dropdown
+                'freetext_value_type_id' => 3,  //character
+                'created_by' => 1				//admin
+            )
+        );
+        DB::table('doc_control')->insert (
+            array (
+                'navigation_id' => 8,   		//Vital Signs
+                'label' => 'Height (Ht) (Cm)',
+                'doc_control_type_id' => 3,  	//Search bar
+//			'doc_control_type_id' => 4,  	//Dropdown
+                'freetext_value_type_id' => 3,  //character
+                'created_by' => 1				//admin
+            )
+        );
+
     }
 
     /**

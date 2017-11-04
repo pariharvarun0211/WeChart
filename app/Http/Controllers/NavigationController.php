@@ -22,6 +22,22 @@ class family_member
     public $status;
     public $diagnosis=[];
 }
+
+class vital_signs
+{
+    public $timestamp;
+    public $BP_Systolic;
+    public $BP_Diastolic;
+    public $Heart_Rate;
+    public $Respiratory_Rate;
+    public $Temperature;
+    public $Weight;
+    public $Height;
+    public $Pain;
+    public $Oxygen_Saturation;
+    public $Comment;
+}
+
 class NavigationController extends Controller
 {
     public function get_demographics_panel($id)
@@ -236,25 +252,68 @@ class NavigationController extends Controller
     public function get_vital_signs($id)
     {
         if(Auth::check()) {
-
-            //Your code here.. Do not alter below code.
-
             $patient = patient::where('patient_id', $id)->first();
-            //Fetching all navs associated with this patient's module
             $navIds = module_navigation::where('module_id', $patient->module_id)->pluck('navigation_id');
-
             $navs = array();
-            //Now get nav names
             foreach ($navIds as $nav_id) {
                 $nav_name = navigation::where('navigation_id', $nav_id)->pluck('navigation_name');
                 array_push($navs, $nav_name);
             }
-
-            return view('patient/general_patient', compact ('patient','navs'));
+            $timestamps = active_record::where('patient_id', $id)
+                ->where('navigation_id', '8')->distinct()->pluck('created_at');
+            $vital_sign_details = Array();
+            foreach($timestamps as $ts)
+            {
+                $vital_sign_detail = new vital_signs();
+                $vital_sign_detail->timestamp = $ts;
+                $vital_sign_detail->BP_Diastolic = active_record::where('patient_id', $id)
+                    ->where('navigation_id','8')
+                    ->where('doc_control_id','19')
+                    ->where('created_at',$ts)->pluck('value');
+                $vital_sign_detail->BP_Systolic = active_record::where('patient_id', $id)
+                    ->where('navigation_id','8')
+                    ->where('doc_control_id','18')
+                    ->where('created_at',$ts)->pluck('value');
+                $vital_sign_detail->Heart_Rate =
+                    active_record::where('patient_id', $id)
+                        ->where('navigation_id','8')
+                        ->where('doc_control_id','20')
+                        ->where('created_at',$ts)->pluck('value');
+                $vital_sign_detail->Respiratory_Rate = active_record::where('patient_id', $id)
+                    ->where('navigation_id','8')
+                    ->where('doc_control_id','21')
+                    ->where('created_at',$ts)->pluck('value');
+                $vital_sign_detail->Temperature = active_record::where('patient_id', $id)
+                    ->where('navigation_id','8')
+                    ->where('doc_control_id','22')
+                    ->where('created_at',$ts)->pluck('value');
+                $vital_sign_detail->Weight = active_record::where('patient_id', $id)
+                    ->where('navigation_id','8')
+                    ->where('doc_control_id','72')
+                    ->where('created_at',$ts)->pluck('value');
+                $vital_sign_detail->Height = active_record::where('patient_id', $id)
+                    ->where('navigation_id','8')
+                    ->where('doc_control_id','73')
+                    ->where('created_at',$ts)->pluck('value');
+                $vital_sign_detail->Pain = active_record::where('patient_id', $id)
+                    ->where('navigation_id','8')
+                    ->where('doc_control_id','23')
+                    ->where('created_at',$ts)->pluck('value');
+                $vital_sign_detail->Oxygen_Saturation = active_record::where('patient_id', $id)
+                    ->where('navigation_id','8')
+                    ->where('doc_control_id','65')
+                    ->where('created_at',$ts)->pluck('value');
+                $vital_sign_detail->Comment = active_record::where('patient_id', $id)
+                    ->where('navigation_id','8')
+                    ->where('doc_control_id','24')
+                    ->where('created_at',$ts)->pluck('value');
+                array_push($vital_sign_details, $vital_sign_detail);
+            }
+            return view('patient/vital_signs', compact('patient','navs','vital_sign_details'));
         }
         else
         {
-            return view('auth/not_authorized');
+            return view('auth/login');
         }
     }
     public function get_ROS($id)
