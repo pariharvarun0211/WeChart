@@ -17,19 +17,14 @@
                         <a
                                 id="Demographics_tab"
                                 href="{{ URL::route('Demographics', $patient->patient_id)}}"
-                                onclick="return confirm('You are about to leave this page and would loose all the unsaved changes. Are you sure you want to proceed?')"
                         >
                             <b>Demographics</b>
                         </a>
                     </li>
 
                     @foreach ($navs as $key=>$nav)
-                        <li class="list-group-item" >
-                            <a
-                                    id="{{$nav[0]}}_tab"
-                                    href="{{ URL::route($nav[0], $patient->patient_id)}}"
-                                    onclick="return confirm('You are about to leave this page and would loose all the unsaved changes. Are you sure you want to proceed?')"
-                            >
+                        <li class="list-group-item">
+                            <a id="{{$nav[0]}}_tab" href="{{ URL::route($nav[0], $patient->patient_id)}}">
                                <b>{{ $nav[0] }}</b>
                             </a>
                         </li>
@@ -55,9 +50,9 @@
 //            $('ul li').css('background-color','none');
 //            $(this).css("background-color", "blue");
 //        })
-    $('ul.list-group li.list-group-item a').click(function() {
-        $('ul.list-group li.list-group-item').css('background','none');
-        $(this).parent().css('background','red');
-    });
+//    $('ul.list-group li.list-group-item a').click(function() {
+//        $('ul.list-group li.list-group-item').css('background','none');
+//        $(this).parent().css('background','red');
+//    });
     </script>
 @endsection

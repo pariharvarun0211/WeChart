@@ -15,7 +15,7 @@ class patient extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'first_name','last_name', 'gender', 'age','weight','height','visit_date','completed_flag','archived', 'module_id','created_by','updated_by'
+        'first_name','last_name', 'gender', 'age','weight','height','room_number','visit_date','submitted_date','completed_flag','archived', 'module_id','created_by','updated_by'
     ];
 
     public function module() {

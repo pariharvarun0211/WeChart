@@ -29,6 +29,13 @@ class AdminController extends Controller
      */
     public function index()
     {
+        //Only Admin can access Admin Dashboard
+        $role='';
+        if(Auth::check()) {
+            $role = Auth::user()->role;
+        }
+
+        if($role == 'Admin') {
         //Fetching all students and instructors for display on admin landing page
 
          $students = User::where('role','Student')
@@ -40,6 +47,11 @@ class AdminController extends Controller
              ->get();
 
          return view('admin/home', compact('students','instructors'));
+        }
+        else
+        {
+            return view('auth/not_authorized');
+        }
     }
     public function getStudentEmails()
     {
@@ -94,7 +106,7 @@ class AdminController extends Controller
         return view('admin/addStudentEmails',compact('Error','counter'));
 
     }
-     public function getInstructorEmails()
+    public function getInstructorEmails()
     {
         $counter = 1;
         session()->put('counter', 1);
@@ -146,7 +158,7 @@ class AdminController extends Controller
         $Error = '';
         return view('admin/addInstructorEmails',compact('Error','counter'));
     }
-     public function getManageEmails()
+    public function getManageEmails()
         {
         //Fetching all students and instructors emails for admin
          $studentEmails = EmailidRole::where('role','Student')->get();
@@ -177,6 +189,15 @@ class AdminController extends Controller
     {
         // $navs = navigation::where('parent_id', NULL)->get();
         $navs = navigation::all();
+        $nav_array = array();
+
+        foreach($navs as $key=>$nav)
+        {
+            if($nav->parent_id != NULL)
+            {
+                //$nav_array[$key] =
+            }
+        }
         $mods = module::where('archived', false)->get();
         $navs_mods = module_navigation::where('visible', true)->get();
         return view('admin/configureModules', compact ('navs', 'mods', 'navs_mods'));
@@ -209,6 +230,7 @@ class AdminController extends Controller
         $navs_mods = module_navigation::where('visible', true)->get();
         return view('admin/configureModules', compact ('navs', 'mods', 'navs_mods'));
     }
+
     public function deletemodule($modid)
     {
         module::where('module_id',$modid)->update(['archived' => true]);

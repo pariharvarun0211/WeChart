@@ -65,6 +65,18 @@
                                             </div>
                                         </div>
 
+                                        <div class="form-group{{ $errors->has('room_number') ? ' has-error' : '' }}">
+                                            <label for="room_number" class="col-md-4 control-label">Room Number*</label>
+                                            <div class="col-md-6">
+                                                <input id="room_number" type="text" class="form-control" name="room_number" value="{{ old('room_number') }}" required>
+                                                @if ($errors->has('room_number'))
+                                                    <span class="help-block">
+                                                            <strong>{{ $errors->first('room_number') }}</strong>
+                                                        </span>
+                                                @endif
+                                            </div>
+                                        </div>
+
                                         <div class="form-group{{ $errors->has('age') ? ' has-error' : '' }}">
                                             <label for="age" class="col-md-4 control-label">Age*</label>
                                             <div class="col-md-6">

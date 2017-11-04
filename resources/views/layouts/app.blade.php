@@ -70,7 +70,7 @@
                                         </form>
                                     </li>
                                      <li>
-                                        <a href="{{ url('/EditProfile') }}">
+                                         <a href="{{ URL::route('EditProfile', Auth::user()->id) }}">
                                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                             Edit Profile
                                         </a>
@@ -83,7 +83,6 @@
                 </div>
             </div>
         </nav>
-
         @yield('content')
     </div>
 

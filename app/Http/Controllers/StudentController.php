@@ -7,6 +7,7 @@ use App\users_patient;
 use App\module_navigation;
 use App\navigation;
 use Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
@@ -25,26 +26,45 @@ class StudentController extends Controller
         if($role == 'Student') {
 
             $modules = array();
-            $message = '';
-            $patients = patient::where('created_by', Auth::user()->id)->get();
-            foreach ($patients as $patient) {
-                ;
-                if ($patient->module) {
-                    array_push($modules, $patient->module->module_name);
-                } else {
-                    $message = 'There is no patient record associated with this student.';
+            $saved_message = '';
+            $submitted_message = '';
+            $saved_patients = patient::where('created_by', Auth::user()->id)->get();
+            $submitted_patients = patient::where('created_by', Auth::user()->id)->get();
+
+            if(!empty($saved_patients)) {
+                foreach ($saved_patients as $patient) {
+                    if ($patient->module) {
+                        array_push($modules, $patient->module->module_name);
+                    } else {
+                        $saved_message = 'There are no saved patients associated with this student.';
+                    }
                 }
             }
+            else {
+                $saved_message = 'There are no saved patients associated with this student.';
+            }
+
+            if($submitted_patients == null) {
+                foreach ($submitted_patients as $patient) {
+                    if ($patient->module) {
+                        array_push($modules, $patient->module->module_name);
+                    } else {
+                        $submitted_message = 'There are no saved patients associated with this student.';
+                    }
+                }
+            }
+            else {
+                $submitted_message = 'There are no saved patients associated with this student.';
+            }
+
             $modules = array_unique($modules);
-            // var_dump($patients[0]->age);
-            return view('student/studentHome', compact('patients', 'modules', 'message'));
+            return view('student/studentHome', compact('saved_patients', 'modules', 'saved_message','submitted_patients','submitted_message'));
         }
         else
         {
-            return view('auth/login');
+            return view('auth/not_authorized');
         }
     }
-
     public function view_patient(Request $request){
         $role='';
         if(Auth::check()) {
@@ -64,12 +84,22 @@ class StudentController extends Controller
                 $nav_name = navigation::where('navigation_id', $nav_id)->pluck('navigation_name');
                 array_push($navs, $nav_name);
             }
-//            return view('/patient/active_record', compact('patient', 'navs'));
-            return view('patient/demographics_patient', compact ('patient','navs'));
+
+            //Extracting height and weight
+            $height = $patient->height;
+            $array1 = explode(' ', $height, 2);
+            $height = $array1[0];
+            $height_unit = $array1[1];
+
+            $weight = $patient->weight;
+            $array2 = explode(' ', $weight, 2);
+            $weight = $array2[0];
+            $weight_unit = $array2[1];
+            return view('patient/demographics_patient', compact ('patient','navs','height','weight','weight_unit','height_unit'));
         }
         else
         {
-            return view('auth/login');
+            return view('auth/not_authorized');
         }
     }
     public function destroy(Request $request){
@@ -99,7 +129,6 @@ class StudentController extends Controller
             return view('auth/login');
         }
     }
-
     public function store(Request $request){
         $modules = array();
         $message = '';
@@ -121,7 +150,6 @@ class StudentController extends Controller
         $modules = array_unique($modules);
         return view('student/studentHome', compact('patients', 'modules', 'message'));
     }
-
     public function get_add_patient()
     {
         $role='';
@@ -139,7 +167,7 @@ class StudentController extends Controller
         }
         else
         {
-            return view('auth/login');
+            return view('auth/not_authorized');
         }
     }
     public function post_add_patient(Request $request)
@@ -156,6 +184,7 @@ class StudentController extends Controller
                     'age' => 'required|numeric',
                     'height' => 'required|numeric',
                     'weight' => 'required|numeric',
+                    'room_number' => 'required',
                     'visit_date' => 'required|date|date_format:Y-m-d|before:today',
                 ]);
 
@@ -180,17 +209,18 @@ class StudentController extends Controller
                 $patient['completed_flag'] = 0;
                 $patient['height'] = $request['height'] ." ". $request['height_unit'];
                 $patient['weight'] = $request['weight'] ." ". $request['weight_unit'];
+                $patient['room_number'] = $request['room_number'];
                 $patient['created_by'] = $request['user_id'];
                 $patient['updated_by'] = $request['user_id'];
 
                 $patient->save();
 
-                //   $user_patient = new users_patient();
+                // $user_patient = new users_patient();
                 // $user_patient->patient_record_status_id = 1;
                 // $user_patient->patient_id = $patient->patient_id;
-                //$user_patient->user_id = $request['user_id'];
-                //$user_patient->created_by = $request['user_id'];
-                //$user_patient->save();
+                // $user_patient->user_id = $request['user_id'];
+                // $user_patient->created_by = $request['user_id'];
+                // $user_patient->save();
 
                 //Inserting record for admin
                 DB::table('users_patient')->insert(
@@ -214,7 +244,18 @@ class StudentController extends Controller
                     $nav_name = navigation::where('navigation_id', $nav_id)->pluck('navigation_name');
                     array_push($navs, $nav_name);
                 }
-                return view('patient/demographics_patient', compact ('patient','navs'));
+
+                //Extracting height and weight
+                $height = $patient->height;
+                $array1 = explode(' ', $height, 2);
+                $height = $array1[0];
+                $height_unit = $array1[1];
+
+                $weight = $patient->weight;
+                $array2 = explode(' ', $weight, 2);
+                $weight = $array2[0];
+                $weight_unit = $array2[1];
+                return view('patient/demographics_patient', compact ('patient','navs','height','weight','weight_unit','height_unit'));
 
             } catch (\Exception $e) {
                 return view('errors/503');
@@ -222,7 +263,7 @@ class StudentController extends Controller
         }
         else
         {
-            return view('auth/login');
+            return view('auth/not_authorized');
         }
 
     }

@@ -1,12 +1,8 @@
 @extends('layouts.app')
 @section('content')
-    {{--<meta charset="utf-8">--}}
-    {{--<meta http-equiv="X-UA-Compatible" content="IE=edge">--}}
-    {{--<meta name="viewport" content="width=device-width, initial-scale=1">--}}
-    {{--<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">--}}
-    <script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    {{--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />--}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 
     <meta name="csrf-token" content="{{ csrf_token() }}" />
 
@@ -34,11 +30,30 @@
                 <tr>
                     <td style="background-color:#5DADE2;">
                         <h5 style="width: 150px;margin-left: 1%;margin-right: 1%">
-                        <b>Module/Navigations</b>
+                            <b>Module/Navigations</b>
                         </h5>
                     </td>
                     <td style="background-color:#5DADE2;" align="middle">
                         <h5 style="width: 150px"><b>Demographics</b></h5>
+                    </td>
+                        @foreach ($navs as $nav)
+                            @if($nav->parent_id != NULL)
+                            <td  style="background-color:#5DADE2;"  align="middle">
+                                <h5 style="padding-left: 1%;padding-right: 1%;width: 100px">
+                                    <b>{{ $nav->navigation_name }}</b>
+                                </h5>
+                            </td>
+                            @endif
+                        @endforeach
+                    <td>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#5DADE2;">
+
+                    </td>
+                    <td style="background-color:#5DADE2;" align="middle">
+
                     </td>
                     @foreach ($navs as $nav)
                         <td  style="background-color:#5DADE2;"  align="middle">
@@ -56,7 +71,6 @@
                             There are no active modules.<br> Please click the "Add Module" button to add module.
                         </td>
                     </tr>
-
                 @else
                 @foreach ($mods as $mod)
                     <tr style="overflow-x: scroll">
@@ -106,7 +120,9 @@
         <div class="row" id="childTable" style="overflow-x: scroll;width: 1200px">
         <table border="2" >
             <tr>
-                <td style="background-color:#5DADE2;width:200px "><b>Module/Navigations</b></td>
+                <td style="background-color:#5DADE2;width:200px ">
+                    <b> Module/Navigations </b>
+                </td>
                 @foreach ($navs as $nav)
                     <td style="background-color:#5DADE2" align="center">
                         <h5 style="padding-left: 1%;padding-right: 1%;width: 100px"> <b>{{ $nav->navigation_name }}</b>   </h5>

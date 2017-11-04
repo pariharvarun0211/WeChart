@@ -19,8 +19,8 @@ Auth::routes();
 Route::post('/SecurityQuestions', 'Auth\ForgotPasswordController@getSecurityQuestions');
 Route::post('/ResetPassword', 'Auth\ResetPasswordController@resetUserPassword');
 Route::post('/ChangePassword', 'Auth\ResetPasswordController@changePassword');
-Route::get('/EditProfile', 'EditProfileController@getEditProfile');
-Route::post('EditProfile', 'EditProfileController@postEditProfile');
+Route::get('/User/EditProfile/{id}', 'UserController@getEditProfile')->name('EditProfile');
+Route::post('EditProfile', 'UserController@postEditProfile');
 
 //Admin Routes
 
@@ -69,26 +69,40 @@ Route::get('/Demographics/{id}', 'NavigationController@get_demographics_panel')-
 Route::post('Demographics', 'DocumentationController@post_Demographics');
 
 Route::get('/HPI/{id}', 'NavigationController@get_HPI')->name('History of Present Illness (HPI)');
-Route::post('HPI', 'DocumentationController@post_HPI');
+Route::post('HPI', 'DocumentationController@post_HPI')->name('post_HPI');
 
 Route::get('/Medical_History/{id}', 'NavigationController@get_medical_history')->name('Medical History');
 Route::post('social_history}', 'DocumentationController@post_social_history')->name('social_history');
+Route::post('family_history}', 'DocumentationController@post_family_history')->name('family_history');
 Route::post('personal_history}', 'DocumentationController@post_personal_history')->name('personal_history');
 Route::post('surgical_history}', 'DocumentationController@post_surgical_history')->name('surgical_history');
 
 Route::get('/Medications/{id}', 'NavigationController@get_medications')->name('Medications');
+Route::post('post_medications}', 'DocumentationController@post_medications')->name('post_medications');
+
 Route::get('/Vital_Signs/{id}', 'NavigationController@get_vital_signs')->name('Vital Signs');
 Route::get('/Review_of_System (ROS)/{id}', 'NavigationController@get_ROS')->name('Review of System (ROS)');
 Route::get('/Physical_Exam/{id}', 'NavigationController@get_physical_exams')->name('Physical Exam');
+
 Route::get('/Orders/{id}', 'NavigationController@get_orders')->name('Orders');
+Route::post('post_orders}', 'DocumentationController@post_orders')->name('post_orders');
+Route::any('orders_delete/{id}', 'DocumentationController@delete_image_order')->name('delete_image_order');
+Route::any('orders_lab_delete/{id}', 'DocumentationController@delete_lab_order')->name('delete_lab_order');
+
 Route::get('/Results/{id}', 'NavigationController@get_results')->name('Results');
+Route::post('post_results}', 'DocumentationController@post_results')->name('post_results');
 Route::get('/MDM/{id}', 'NavigationController@get_MDM')->name('MDM/Plan');
 Route::get('/Disposition/{id}', 'NavigationController@get_disposition')->name('Disposition');
 
 //Landing page for Instructor
 Route::get('/InstructorHome', 'InstructorController@index');
+Route::get('/family_history', 'DocumentationController@post_new_family_member')->name('post_new_family_member');
 
+//Routes for autocomplete
 Route::get('/diagnosis/find', 'DocumentationController@find_diagnosis')->name('diagnosis_find');
+Route::get('/medications/find', 'DocumentationController@find_medications')->name('medications_find');
+Route::get('/orders_labs/find', 'DocumentationController@find_lab_orders')->name('orders_labs_find');
+Route::get('/orders_imaging/find', 'DocumentationController@find_imaging_orders')->name('orders_imaging_find');
 
 
 
