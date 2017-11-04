@@ -724,7 +724,6 @@ class DocumentationController extends Controller
         if($role == 'Student') {
             try {
                 $medications = $request['search_medications'];
-                Log::info("Aditya1".$medications[0]);
                 //Saving medications
                 foreach ((array)$medications as $key=>$medicine) {
                     $lab_value = med_lookup_value::where('med_lookup_value_id',$medicine)->pluck('med_lookup_value');
@@ -737,13 +736,11 @@ class DocumentationController extends Controller
                     $active_record['updated_by'] = $request['user_id'];
                     $active_record->save();
                 }
-                Log::info("Aditya2".$medications[0]);
                 //Saving comment
                 $comment_medicine_record = active_record::where('patient_id', $request['patient_id'])
                     ->where('navigation_id','7')
                     ->where('doc_control_id','17')->get();
 
-                Log::info("Aditya3".$comment_medicine_record);
                 if(!count($comment_medicine_record)>0)
                 {
                     $active_record = new active_record();
@@ -761,7 +758,6 @@ class DocumentationController extends Controller
                     $active_record->save();
                 }
 
-                Log::info("Aditya4");
                 //Now redirecting to orders page
                 return redirect()->route('Medications',[$request['patient_id']]);
 

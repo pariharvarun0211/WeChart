@@ -195,7 +195,6 @@ class NavigationController extends Controller
                 $nav_name = navigation::where('navigation_id', $nav_id)->pluck('navigation_name');
                 array_push($navs, $nav_name);
             }
-            Log::info('Aditya1'.$is_new_entry_social_history);
             return view('patient/medical_history', compact ('patient','diagnosis_list_surgical_history','surgical_history_comment','diagnosis_list_personal_history','personal_history_comment','family_members_details','comment_family_history','is_new_entry_social_history','diagnosis_list_personal_history','navs','social_history_smoke_tobacco','social_history_non_smoke_tobacco','social_history_alcohol','social_history_sexual_activity','social_history_comment','social_history_smoke_tobacco_id','social_history_non_smoke_tobacco_id','social_history_alcohol_id','social_history_sexual_activity_id','social_history_comment_id'));
         }
         else
