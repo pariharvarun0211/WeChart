@@ -486,6 +486,11 @@
                  });
              });
 
+             $("#btn_cancel_new_family_member").click(function(){
+                 $("#new_family_member_panel").hide();
+                 $("#add_family_member").show();
+             });
+
              var inputsChanged_personal_history_form = false;
              var inputsChanged_surgical_history_form = false;
              var inputsChanged_social_history_form = false;
