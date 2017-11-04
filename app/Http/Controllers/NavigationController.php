@@ -38,12 +38,29 @@ class vital_signs
     public $Comment;
 }
 
+class vital_signs_header
+{
+    public $age;
+    public $BP_systolic;
+    public $BP_diastolic;
+    public $heart_rate;
+    public $respiratory_rate;
+    public $temperature;
+    public $gender;
+    public $room_number;
+    public $pain;
+    public $visit_date;
+    public $oxygen_saturation;
+    public $name;
+}
+
 class NavigationController extends Controller
 {
     public function get_demographics_panel($id)
     {
         if(Auth::check()) {
             $patient = patient::where('patient_id', $id)->first();
+
             //Fetching all navs associated with this patient's module
             $navIds = module_navigation::where('module_id', $patient->module_id)->pluck('navigation_id');
 
@@ -53,6 +70,8 @@ class NavigationController extends Controller
                 $nav_name = navigation::where('navigation_id', $nav_id)->pluck('navigation_name');
                 array_push($navs, $nav_name);
             }
+            //Extracting vital signs for header
+            $vital_signs_header = $this->get_vital_signs_header($id);
 
             //Extracting height and weight
             $height = $patient->height;
@@ -64,7 +83,7 @@ class NavigationController extends Controller
             $array2 = explode(' ', $weight, 2);
             $weight = $array2[0];
             $weight_unit = $array2[1];
-            return view('patient/demographics_patient', compact ('patient','navs','height','weight','weight_unit','height_unit'));
+            return view('patient/demographics_patient', compact ('patient','navs','vital_signs_header','height','weight','weight_unit','height_unit'));
         }
         else
         {
@@ -90,7 +109,10 @@ class NavigationController extends Controller
                 array_push($navs, $nav_name);
             }
 
-            return view('patient/HPI', compact ('HPI','patient','navs'));
+            //Extracting vital signs for header
+            $vital_signs_header = $this->get_vital_signs_header($id);
+
+            return view('patient/HPI', compact ('HPI','patient','navs','vital_signs_header'));
         }
         else
         {
@@ -211,7 +233,10 @@ class NavigationController extends Controller
                 $nav_name = navigation::where('navigation_id', $nav_id)->pluck('navigation_name');
                 array_push($navs, $nav_name);
             }
-            return view('patient/medical_history', compact ('patient','diagnosis_list_surgical_history','surgical_history_comment','diagnosis_list_personal_history','personal_history_comment','family_members_details','comment_family_history','is_new_entry_social_history','diagnosis_list_personal_history','navs','social_history_smoke_tobacco','social_history_non_smoke_tobacco','social_history_alcohol','social_history_sexual_activity','social_history_comment','social_history_smoke_tobacco_id','social_history_non_smoke_tobacco_id','social_history_alcohol_id','social_history_sexual_activity_id','social_history_comment_id'));
+            //Extracting vital signs for header
+            $vital_signs_header = $this->get_vital_signs_header($id);
+
+            return view('patient/medical_history', compact ('vital_signs_header','patient','diagnosis_list_surgical_history','surgical_history_comment','diagnosis_list_personal_history','personal_history_comment','family_members_details','comment_family_history','is_new_entry_social_history','diagnosis_list_personal_history','navs','social_history_smoke_tobacco','social_history_non_smoke_tobacco','social_history_alcohol','social_history_sexual_activity','social_history_comment','social_history_smoke_tobacco_id','social_history_non_smoke_tobacco_id','social_history_alcohol_id','social_history_sexual_activity_id','social_history_comment_id'));
         }
         else
         {
@@ -242,7 +267,10 @@ class NavigationController extends Controller
                 array_push($navs, $nav_name);
             }
 
-            return view('patient/medications', compact ('medications','medication_comment','patient','navs'));
+            //Extracting vital signs for header
+            $vital_signs_header = $this->get_vital_signs_header($id);
+
+            return view('patient/medications', compact ('vital_signs_header','medications','medication_comment','patient','navs'));
         }
         else
         {
@@ -309,7 +337,10 @@ class NavigationController extends Controller
                     ->where('created_at',$ts)->pluck('value');
                 array_push($vital_sign_details, $vital_sign_detail);
             }
-            return view('patient/vital_signs', compact('patient','navs','vital_sign_details'));
+            //Extracting vital signs for header
+            $vital_signs_header = $this->get_vital_signs_header($id);
+
+            return view('patient/vital_signs', compact('vital_signs_header','patient','navs','vital_sign_details'));
         }
         else
         {
@@ -329,8 +360,10 @@ class NavigationController extends Controller
                 $nav_name = navigation::where('navigation_id', $nav_id)->pluck('navigation_name');
                 array_push($navs, $nav_name);
             }
+            //Extracting vital signs for header
+            $vital_signs_header = $this->get_vital_signs_header($id);
 
-            return view('patient/general_patient', compact ('patient','navs'));
+            return view('patient/general_patient', compact ('vital_signs_header','patient','navs'));
         }
         else
         {
@@ -351,7 +384,10 @@ class NavigationController extends Controller
                 array_push($navs, $nav_name);
             }
 
-            return view('patient/general_patient', compact ('patient','navs'));
+            //Extracting vital signs for header
+            $vital_signs_header = $this->get_vital_signs_header($id);
+
+            return view('patient/general_patient', compact ('vital_signs_header','patient','navs'));
         }
         else
         {
@@ -384,7 +420,10 @@ class NavigationController extends Controller
                 $nav_name = navigation::where('navigation_id', $nav_id)->pluck('navigation_name');
                 array_push($navs, $nav_name);
             }
-            return view('patient/orders', compact ('patient','navs','labs','images','comment_order'));
+            //Extracting vital signs for header
+            $vital_signs_header = $this->get_vital_signs_header($id);
+
+            return view('patient/orders', compact ('vital_signs_header','patient','navs','labs','images','comment_order'));
         }
         else
         {
@@ -414,8 +453,10 @@ class NavigationController extends Controller
                 $nav_name = navigation::where('navigation_id', $nav_id)->pluck('navigation_name');
                 array_push($navs, $nav_name);
             }
+            //Extracting vital signs for header
+            $vital_signs_header = $this->get_vital_signs_header($id);
 
-            return view('patient/results', compact ('labs','images','results','patient','navs'));        }
+            return view('patient/results', compact ('vital_signs_header','labs','images','results','patient','navs'));        }
         else
         {
             return view('auth/not_authorized');
@@ -434,8 +475,10 @@ class NavigationController extends Controller
                 $nav_name = navigation::where('navigation_id', $nav_id)->pluck('navigation_name');
                 array_push($navs, $nav_name);
             }
+            //Extracting vital signs for header
+            $vital_signs_header = $this->get_vital_signs_header($id);
 
-            return view('patient/general_patient', compact ('patient','navs'));
+            return view('patient/general_patient', compact ('vital_signs_header','patient','navs'));
         }
         else
         {
@@ -455,12 +498,71 @@ class NavigationController extends Controller
                 $nav_name = navigation::where('navigation_id', $nav_id)->pluck('navigation_name');
                 array_push($navs, $nav_name);
             }
+            //Extracting vital signs for header
+            $vital_signs_header = $this->get_vital_signs_header($id);
 
-            return view('patient/general_patient', compact ('patient','navs'));
+            return view('patient/general_patient', compact ('vital_signs_header','patient','navs'));
         }
         else
         {
             return view('auth/not_authorized');
         }
+    }
+    public function get_vital_signs_header($id)
+    {
+        $vital_signs_header = new vital_signs_header();
+        $patient = patient::where('patient_id', $id)->first();
+
+        $vital_signs_header->age = $patient->age;
+        $vital_signs_header->name = $patient->first_name. ' '.$patient->last_name ;
+        $vital_signs_header->gender = $patient->gender;
+        $vital_signs_header->room_number = $patient->room_number;
+        $vital_signs_header->visit_date = $patient->visit_date;
+
+
+        $vital_signs_header->BP_systolic = active_record::where('patient_id', $id)
+            ->where('navigation_id','8')
+            ->where('doc_control_id','18')
+            ->orderBy('created_at','desc')
+            ->pluck('value');
+
+        $vital_signs_header->BP_diastolic = active_record::where('patient_id', $id)
+            ->where('navigation_id','8')
+            ->where('doc_control_id','19')
+            ->orderBy('created_at','desc')
+            ->pluck('value');
+
+        $vital_signs_header->heart_rate = active_record::where('patient_id', $id)
+            ->where('navigation_id','8')
+            ->where('doc_control_id','20')
+            ->orderBy('created_at','desc')
+            ->pluck('value');
+
+        $vital_signs_header->respiratory_rate = active_record::where('patient_id', $id)
+            ->where('navigation_id','8')
+            ->where('doc_control_id','21')
+            ->orderBy('created_at','desc')
+            ->pluck('value');
+
+        $vital_signs_header->temperature = active_record::where('patient_id', $id)
+            ->where('navigation_id','8')
+            ->where('doc_control_id','22')
+            ->orderBy('created_at','desc')
+            ->pluck('value');
+
+        $vital_signs_header->oxygen_saturation = active_record::where('patient_id', $id)
+            ->where('navigation_id','8')
+            ->where('doc_control_id','65')
+            ->orderBy('created_at','desc')
+            ->pluck('value');
+
+        $vital_signs_header->pain = active_record::where('patient_id', $id)
+            ->where('navigation_id','8')
+            ->where('doc_control_id','23')
+            ->orderBy('created_at','desc')
+            ->pluck('value');
+
+        return $vital_signs_header;
+
     }
 }

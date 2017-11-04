@@ -92,6 +92,7 @@ Route::any('orders_lab_delete/{id}', 'DocumentationController@delete_lab_order')
 
 Route::get('/Results/{id}', 'NavigationController@get_results')->name('Results');
 Route::post('post_results}', 'DocumentationController@post_results')->name('post_results');
+
 Route::get('/MDM/{id}', 'NavigationController@get_MDM')->name('MDM/Plan');
 Route::get('/Disposition/{id}', 'NavigationController@get_disposition')->name('Disposition');
 

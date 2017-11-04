@@ -32,7 +32,7 @@
                                     <th>Pain</th>
                                     <th>Oxygen Saturation</th>
                                     <th>Comment</th>
-                                    <th>Action</th>
+                                    <th></th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -93,7 +93,7 @@
                                         <th>Pain</th>
                                         <th>Oxygen Saturation</th>
                                         <th>Comment</th>
-                                        <th>Action</th>
+                                        <th></th>
                                     </tr>
 
                                     <tr>
