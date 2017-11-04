@@ -64,6 +64,10 @@
                             <label id="pain_label">Pain: </label>
                             {{--<label id="pain">{{$patient->pain}}</label>--}}
                         </td>
+                        <td style="padding-top: 0%;padding-bottom: 0%">
+                            <label id="visit_date_label">Visit Date:</label>
+                            <label id="visit_date">{{$patient->visit_date}}</label>
+                        </td>
 
                     </tr>
                 </table>
