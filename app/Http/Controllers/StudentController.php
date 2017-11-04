@@ -28,8 +28,12 @@ class StudentController extends Controller
             $modules = array();
             $saved_message = '';
             $submitted_message = '';
-            $saved_patients = patient::where('created_by', Auth::user()->id)->get();
-            $submitted_patients = patient::where('created_by', Auth::user()->id)->get();
+            $saved_patients = patient::where('created_by', Auth::user()->id)
+                ->where('completed_flag',false)
+                ->get();
+            $submitted_patients = patient::where('created_by', Auth::user()->id)
+                ->where('completed_flag',true)
+                ->get();
 
             if(!empty($saved_patients)) {
                 foreach ($saved_patients as $patient) {
@@ -72,30 +76,7 @@ class StudentController extends Controller
         }
 
         if($role == 'Student') {
-            //First getting patient information
-            $patient = patient::where('patient_id', $request['patient_id'])->first();
-
-            //Fetching all navs associated with this patient's module
-            $navIds = module_navigation::where('module_id', $patient->module_id)->pluck('navigation_id');
-
-            $navs = array();
-            //Now get nav names
-            foreach ($navIds as $nav_id) {
-                $nav_name = navigation::where('navigation_id', $nav_id)->pluck('navigation_name');
-                array_push($navs, $nav_name);
-            }
-
-            //Extracting height and weight
-            $height = $patient->height;
-            $array1 = explode(' ', $height, 2);
-            $height = $array1[0];
-            $height_unit = $array1[1];
-
-            $weight = $patient->weight;
-            $array2 = explode(' ', $weight, 2);
-            $weight = $array2[0];
-            $weight_unit = $array2[1];
-            return view('patient/demographics_patient', compact ('patient','navs','height','weight','weight_unit','height_unit'));
+            return redirect()->route('Demographics',[$request['patient_id']]);
         }
         else
         {
@@ -128,27 +109,6 @@ class StudentController extends Controller
         {
             return view('auth/login');
         }
-    }
-    public function store(Request $request){
-        $modules = array();
-        $message = '';
-        $patient = patient::where('patient_id', $request['patient_id'])->update([
-            'first_name' => $request['gender'] === 'Male' ? 'John' : 'Jane',
-            'age' => $request['age'],
-            'gender' => $request['gender'],
-            'height' => $request['height'],
-            'weight' => $request['weight']
-        ]);
-        $patients = patient::where('created_by', Auth::user()->id)->get();
-        foreach($patients as $patient){
-            if($patient->module) {
-                array_push($modules, $patient->module->module_name);
-            }else{
-                $message = 'There is no patient record associated with this student.';
-            }
-        }
-        $modules = array_unique($modules);
-        return view('student/studentHome', compact('patients', 'modules', 'message'));
     }
     public function get_add_patient()
     {
@@ -198,15 +158,10 @@ class StudentController extends Controller
                     $append_number = $last_patient + 1;
 
                 //if sex is male then first name is John else Jane
-                if ($request['gender'] == 'Male') {
-                    $patient['first_name'] = 'John';
-                } else {
-                    $patient['first_name'] = 'Jane';
-                }
+                $patient['first_name'] = $request['gender'] === 'Male' ? 'John' : 'Jane';
                 $patient['last_name'] = 'Doe' . $append_number;
-
-                $patient['archived'] = 0;
-                $patient['completed_flag'] = 0;
+                $patient['archived'] = false;
+                $patient['completed_flag'] = false;
                 $patient['height'] = $request['height'] ." ". $request['height_unit'];
                 $patient['weight'] = $request['weight'] ." ". $request['weight_unit'];
                 $patient['room_number'] = $request['room_number'];
@@ -214,13 +169,6 @@ class StudentController extends Controller
                 $patient['updated_by'] = $request['user_id'];
 
                 $patient->save();
-
-                // $user_patient = new users_patient();
-                // $user_patient->patient_record_status_id = 1;
-                // $user_patient->patient_id = $patient->patient_id;
-                // $user_patient->user_id = $request['user_id'];
-                // $user_patient->created_by = $request['user_id'];
-                // $user_patient->save();
 
                 //Inserting record for admin
                 DB::table('users_patient')->insert(
@@ -234,29 +182,7 @@ class StudentController extends Controller
                 );
 
                 //Now redirecting student to active record page.
-
-                //Fetching all navs associated with this patient's module
-                $navIds = module_navigation::where('module_id', $request->module_id)->pluck('navigation_id');
-                $navs = array();
-
-                //Now get nav names
-                foreach ($navIds as $nav_id) {
-                    $nav_name = navigation::where('navigation_id', $nav_id)->pluck('navigation_name');
-                    array_push($navs, $nav_name);
-                }
-
-                //Extracting height and weight
-                $height = $patient->height;
-                $array1 = explode(' ', $height, 2);
-                $height = $array1[0];
-                $height_unit = $array1[1];
-
-                $weight = $patient->weight;
-                $array2 = explode(' ', $weight, 2);
-                $weight = $array2[0];
-                $weight_unit = $array2[1];
-                return view('patient/demographics_patient', compact ('patient','navs','height','weight','weight_unit','height_unit'));
-
+                return redirect()->route('Demographics',[$patient->patient_id]);
             } catch (\Exception $e) {
                 return view('errors/503');
             }

@@ -24,31 +24,7 @@ use App\doc_control;
 
 class DocumentationController extends Controller
 {
-//    public function find_diagnosis(Request $request)
-//    {
-//        $term = trim($request->q);
-//
-//        if (empty($term)) {
-//            return \Response::json([]);
-//        }
-//
-//        //Need to load the specifc document control we care about, provide the id
-//        $docControl = doc_control::find($request['id']);
-//        $formatted_lookups = [];
-//
-//        Log::info("Chouhan Test".$request['id']);
-//        Log::info("Chouhan Test".$term);
-//        //Use the DocControl model to join to the lookup value as shown below.
-//
-////        foreach ($docControl->LookupValues->where('lookup_value','LIKE','!'.$term.'!') as $lookupValue) {
-////        foreach ($docControl->LookupValues->search($term) as $lookupValue) {
-//        foreach ($docControl->LookupValues->where('lookup_value','like',"%$term%") as $lookupValue) {
-//            $formatted_lookups[] = ['id' => $lookupValue->lookup_value_id, 'text' => $lookupValue->lookup_value];
-//        }
-//
-//      //$lookups = doc_lookup_value::with('lookup_value')->where('lookup_value_id')->search($term)->limit(5)->get();
-//        return \Response::json($formatted_lookups);
-//    }
+    //Below four are autocomplete search methods
     public function find_diagnosis(Request $request)
     {
         $term = trim($request->q);
@@ -120,6 +96,7 @@ class DocumentationController extends Controller
 
         return \Response::json($formatted_lookups);
     }
+
     public function post_HPI(Request $request)
     {
         $role='';
@@ -332,27 +309,7 @@ class DocumentationController extends Controller
                 $patient['weight'] = $request['weight'] ." ". $request['weight_unit'];
                 $patient->save();
 
-                //Fetching all navs associated with this patient's module
-                $navIds = module_navigation::where('module_id', $patient->module_id)->pluck('navigation_id');
-                $navs = array();
-
-                //Now get nav names
-                foreach ($navIds as $nav_id) {
-                    $nav_name = navigation::where('navigation_id', $nav_id)->pluck('navigation_name');
-                    array_push($navs, $nav_name);
-                }
-
-                //Extracting height and weight
-                $height = $patient->height;
-                $array1 = explode(' ', $height, 2);
-                $height = $array1[0];
-                $height_unit = $array1[1];
-
-                $weight = $patient->weight;
-                $array2 = explode(' ', $weight, 2);
-                $weight = $array2[0];
-                $weight_unit = $array2[1];
-                return view('patient/demographics_patient', compact ('patient','navs','height','weight','weight_unit','height_unit'));
+                return redirect()->route('Demographics',[$patient->patient_id]);
 
             } catch (\Exception $e) {
                 return view('errors/503');

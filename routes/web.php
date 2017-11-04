@@ -55,9 +55,7 @@ Route::post('deletemodule/{modid}', 'AdminController@deletemodule')->name('delet
 //Landing page for Student
 Route::get('/StudentHome', 'StudentController@index')->name('student.home');
 Route::get('/PatientView/{patient_id}', 'StudentController@view_patient')->name('patient.view');
-Route::get('/PatientEdit/{id}', 'StudentController@edit')->name('patient.edit');
 Route::get('/PatientDelete/{id}', 'StudentController@destroy')->name('patient.destroy');
-Route::post('/patient/{patient_id}', 'StudentController@store')->name('patient.store');
 
 //Patient routes
 //Add new patient

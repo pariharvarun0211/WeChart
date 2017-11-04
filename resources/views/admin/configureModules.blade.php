@@ -30,7 +30,7 @@
                     <tr>
                         <td style="background-color:#5DADE2;">
                             <h5 style="width: 150px;margin-left: 1%;margin-right: 1%">
-                                <b>Module/Navigations</b>
+                                <h4>Module <i class="fa fa-arrows-v" aria-hidden="true"></i>/Navigations <i class="fa fa-arrows-h" aria-hidden="true"></i></h4>
                             </h5>
                         </td>
                         <td style="background-color:#5DADE2;" align="middle">
