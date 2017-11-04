@@ -30,8 +30,10 @@
                                 <tr>
                                     <td><p>{{$lab->value}}</p></td>
                                     <td style="text-align: right">
-                                        <a id="_delete"  class="btn btn-danger btn-sm">
-                                            Delete </a>
+                                        {{ Form::open(array('method' => 'post', 'route' => array('delete_lab_order', $lab->active_record_id))) }}
+                                        <input id="patient_id" name="patient_id" type="hidden" value="{{ $patient->patient_id }}">
+                                        <button name="delbutton" class="btn btn-danger btn-delete btn-sm">Delete</button>
+                                        {{ Form::close() }}
                                       </td>
                                 </tr>
                             @endforeach
@@ -51,9 +53,10 @@
                                 <tr>
                                     <td><p>{{$image->value}}</p></td>
                                     <td style="text-align: right">
-
-                                        <a id="_delete" class="btn btn-danger btn-sm">
-                                            Delete </a>
+                                        {{ Form::open(array('method' => 'post', 'route' => array('delete_image_order', $image->active_record_id))) }}
+                                            <input id="patient_id" name="patient_id" type="hidden" value="{{ $patient->patient_id }}">
+                                            <button name="delbutton" class="btn btn-danger btn-delete btn-sm">Delete</button>
+                                        {{ Form::close() }}
                                      </td>
                                 </tr>
                             @endforeach
@@ -179,7 +182,7 @@
             }
         }
 
-        $("#save_button").click(function(){
+        $("#btn_save_orders").click(function(){
             inputsChanged = false;
         });
 

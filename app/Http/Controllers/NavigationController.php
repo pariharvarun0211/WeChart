@@ -10,7 +10,6 @@ use App\navigation;
 use Illuminate\Support\Facades\Log;
 use Auth;
 use Illuminate\Support\Facades\DB;
-
 use Illuminate\Http\Request;
 use App\patient;
 use PhpParser\Node\Expr\Array_;
@@ -563,6 +562,5 @@ class NavigationController extends Controller
             ->pluck('value');
 
         return $vital_signs_header;
-
     }
 }

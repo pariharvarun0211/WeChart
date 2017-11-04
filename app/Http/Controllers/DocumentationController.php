@@ -97,6 +97,53 @@ class DocumentationController extends Controller
         return \Response::json($formatted_lookups);
     }
 
+
+    public function post_Demographics(Request $request)
+    {
+        $role='';
+        if(Auth::check()) {
+            $role = Auth::user()->role;
+        }
+
+        if($role == 'Student') {
+            try {
+                //Validating input data
+                $this->validate($request, [
+                    'age' => 'required|numeric',
+                    'room_number' => 'required',
+                    'height' => 'required|numeric',
+                    'weight' => 'required|numeric',
+                ]);
+                $patient = patient::where('patient_id', $request['patient_id'])->first();
+                //if sex is male then first name is John else Jane
+                if ($request->gender == 'Male')
+                {
+                    $patient['first_name'] = 'John';
+                }
+                else
+                {
+                    $patient['first_name'] = 'Jane';
+                }
+
+                $patient->gender = $request->gender;
+                $patient->room_number = $request->room_number;
+                $patient->age = $request->age;
+                $patient['height'] = $request['height'] ." ". $request['height_unit'];
+                $patient['weight'] = $request['weight'] ." ". $request['weight_unit'];
+                $patient->save();
+
+                return redirect()->route('Demographics',[$patient->patient_id]);
+
+            } catch (\Exception $e) {
+                return view('errors/503');
+            }
+        }
+        else
+        {
+            return view('auth/not_authorized');
+        }
+    }
+
     public function post_HPI(Request $request)
     {
         $role='';
@@ -141,6 +188,7 @@ class DocumentationController extends Controller
         }
 
     }
+
     public function post_results(Request $request)
     {
         $role='';
@@ -185,6 +233,7 @@ class DocumentationController extends Controller
         }
 
     }
+
     public function post_orders(Request $request)
     {
         $role='';
@@ -260,11 +309,11 @@ class DocumentationController extends Controller
     }
     public function delete_image_order($id)
     {
-        Log::info('jhj');
         $image = active_record::find($id);
         $patient_id = $image->patient_id;
         $image->delete();
-        //Now redirecting to orders page
+
+        //Now redirecting back to the orders page
         return redirect()->route('Orders',$patient_id);
     }
     public function delete_lab_order($id)
@@ -272,54 +321,11 @@ class DocumentationController extends Controller
         $lab = active_record::find($id);
         $patient_id = $lab->patient_id;
         $lab->delete();
-        //Now redirecting to orders page
+
+        //Now redirecting back to the orders page
         return redirect()->route('Orders',$patient_id);
     }
-    public function post_Demographics(Request $request)
-    {
-        $role='';
-        if(Auth::check()) {
-            $role = Auth::user()->role;
-        }
 
-        if($role == 'Student') {
-            try {
-                    //Validating input data
-                    $this->validate($request, [
-                        'age' => 'required|numeric',
-                        'room_number' => 'required',
-                        'height' => 'required|numeric',
-                        'weight' => 'required|numeric',
-                    ]);
-                    $patient = patient::where('patient_id', $request['patient_id'])->first();
-                    //if sex is male then first name is John else Jane
-                    if ($request->gender == 'Male')
-                    {
-                        $patient['first_name'] = 'John';
-                    }
-                    else
-                    {
-                        $patient['first_name'] = 'Jane';
-                    }
-
-                $patient->gender = $request->gender;
-                $patient->room_number = $request->room_number;
-                $patient->age = $request->age;
-                $patient['height'] = $request['height'] ." ". $request['height_unit'];
-                $patient['weight'] = $request['weight'] ." ". $request['weight_unit'];
-                $patient->save();
-
-                return redirect()->route('Demographics',[$patient->patient_id]);
-
-            } catch (\Exception $e) {
-                return view('errors/503');
-            }
-        }
-        else
-        {
-            return view('auth/not_authorized');
-        }
-    }
     public function post_social_history(Request $request)
     {
         $role='';
@@ -671,6 +677,7 @@ class DocumentationController extends Controller
         }
 
     }
+
     public function post_medications(Request $request)
     {
         $role='';
@@ -728,6 +735,7 @@ class DocumentationController extends Controller
         }
 
     }
+
     public function post_vital_signs(Request $request)
     {
         $role='';
@@ -833,7 +841,7 @@ class DocumentationController extends Controller
         }
     }
     else {
-        return view('auth/login');
+        return view('auth/not_authorized');
     }
     }
     public function delete_vital_signs($ts, Request $request)
@@ -853,6 +861,7 @@ class DocumentationController extends Controller
             active_record::where('created_at',$ts)->where('navigation_id', '8')->where('doc_control_id','65')->delete();
             active_record::where('created_at',$ts)->where('navigation_id', '8')->where('doc_control_id','72')->delete();
             active_record::where('created_at',$ts)->where('navigation_id', '8')->where('doc_control_id','73')->delete();
+
             return redirect()->route('Vital Signs',[$request['patient_id']]);
         }
         catch (\Exception $e)
@@ -861,7 +870,7 @@ class DocumentationController extends Controller
         }
     }
     else {
-        return view('auth/login');
+        return view('auth/not_authorized');
     }
     }
 }

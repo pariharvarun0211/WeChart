@@ -87,7 +87,7 @@ Route::get('/Physical_Exam/{id}', 'NavigationController@get_physical_exams')->na
 
 Route::get('/Orders/{id}', 'NavigationController@get_orders')->name('Orders');
 Route::post('post_orders}', 'DocumentationController@post_orders')->name('post_orders');
-Route::any('orders_delete/{id}', 'DocumentationController@delete_image_order')->name('delete_image_order');
+Route::post('orders_delete/{id}', 'DocumentationController@delete_image_order')->name('delete_image_order');
 Route::any('orders_lab_delete/{id}', 'DocumentationController@delete_lab_order')->name('delete_lab_order');
 
 Route::get('/Results/{id}', 'NavigationController@get_results')->name('Results');
