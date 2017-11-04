@@ -10,7 +10,7 @@
                 </a>
                 <h3 id="patient_active_record" align="center" style="margin-top: 0;"><b>Patient Active Record</b></h3>
             </div>
-            <div class="panel-body" style="margin-bottom: 0;padding-bottom: 0;background-color: lightgray;margin-top: 0;padding-top: 0">
+            <div class="panel-body" style="margin-bottom: 0;padding-bottom: 0;background-color: #FFFAF0;margin-top: 0;padding-top: 0">
                 <table class="table" style=" margin-top: 0;padding-top: 0;margin-bottom: 0;padding-bottom: 0">
                     <!--This is the first row in the vital signs panel -->
                     <tr style="padding-top: 0;padding-bottom: 0%; border-style: hidden">
