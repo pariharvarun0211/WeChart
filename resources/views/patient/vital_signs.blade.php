@@ -112,6 +112,7 @@
                                         <td>
                                             <input type="text" name="Temperature" id="Temperature" style="width: 100px;">
                                             <select name="temperature_unit" id = "temperature_unit">
+                                                <option value=""></option>
                                                 <option value="F">F</option>
                                                 <option value="C">C</option>
                                             </select>
@@ -119,6 +120,7 @@
                                         <td>
                                             <input type="text" name="Weight" id="Weight" style="width: 100px;">
                                             <select name="weight_unit" id = "weight_unit">
+                                                <option value=""></option>
                                                 <option value="kgs">kgs</option>
                                                 <option value="lbs">lbs</option>
                                             </select>
@@ -126,6 +128,7 @@
                                         <td>
                                             <input type="text" name="Height" id="Height" style="width: 100px;">
                                             <select name="height_unit" id="height_unit">
+                                                <option value=""></option>
                                                 <option value="cms">cms</option>
                                                 <option value="inches">inches</option>
                                             </select>
