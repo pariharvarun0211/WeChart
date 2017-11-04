@@ -8,6 +8,7 @@ use App\EmailidRole;
 use App\navigation;
 use App\module;
 use App\module_navigation;
+use Auth;
 use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
