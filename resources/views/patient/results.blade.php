@@ -65,7 +65,12 @@
                         </div>
                             <br>
                             <div class="row">
-                                <div class="col-md-12">
+                                <div class="col-md-6">
+                                    <button type="reset" id="btn_clear_results_comment" class="btn btn-success" style="float: left">
+                                    Clear Comment
+                                    </button>
+                                </div>
+                                <div class="col-md-6">
                                     <button id="btn_save_results" type="save" class="btn btn-primary" style="float: right">
                                         <i class="fa fa-floppy-o" aria-hidden="true"></i> &nbsp;Save Results
                                     </button>
@@ -96,6 +101,11 @@
             });
 
             window.onbeforeunload = unloadPage;
+
+            $('#btn_clear_results_comment').click( function()
+            {
+                $('#results_comment').val('');
+            } );
         });
     </script>
 @endsection

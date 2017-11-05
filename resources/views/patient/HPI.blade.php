@@ -20,25 +20,31 @@
                         <input type=hidden id="user_id" name="user_id" value="{{ Auth::user()->id }}">
                         <div class="container-fluid">
                             <div class="row">
-                            <div class="col-md-12">
-                                <h4>History of Present Illness:</h4>
-                                @if(!count($HPI)>0)
-                                    <textarea id="HPI" name="HPI" rows="6" cols="50" style="width: 640px">
-                                    </textarea>
-                                @else
-                                    <textarea id="HPI" name="HPI" rows="6" style="width: 640px;text-align: left">
-                                        {{$HPI[0]->value}}
-                                    </textarea>
-                                @endif
+                                <div class="col-md-12">
+                                    <h4>History of Present Illness:</h4>
+                                    @if(!count($HPI)>0)
+                                        <textarea id="HPI" name="HPI" rows="6" cols="50" style="width: 700px">
+                                        </textarea>
+                                    @else
+                                        <textarea id="HPI" name="HPI" rows="6" style="width: 700px;text-align: left">
+                                            {{$HPI[0]->value}}
+                                        </textarea>
+                                    @endif
+                                </div>
                             </div>
-                        </div>
+                            <br>
                             <div class="row">
-                            <div class="col-md-11">
-                                <button id="save_button" type="save" class="btn btn-primary" style="float: right">
-                                    <i class="fa fa-floppy-o" aria-hidden="true"></i> &nbsp;Save HPI
-                                </button>
+                                <div class="col-md-6">
+                                    <button type="reset" id="btn_clear_HPI_comment" class="btn btn-success" style="float: left">
+                                    Clear Comment
+                                    </button>
+                                </div>
+                                <div class="col-md-6">
+                                    <button id="save_button" type="save" class="btn btn-primary" style="float: right">
+                                        <i class="fa fa-floppy-o" aria-hidden="true"></i> &nbsp;Save HPI
+                                    </button>
+                                </div>
                             </div>
-                        </div>
                         </div>
                     </form>
                 </div>
@@ -64,6 +70,11 @@
             });
 
             window.onbeforeunload = unloadPage;
+
+            $('#btn_clear_HPI_comment').click( function()
+            {
+                $('#clear_HPI_comment').val('');
+            } );
         });
     </script>
 @endsection

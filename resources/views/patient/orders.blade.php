@@ -110,13 +110,13 @@
                 <br>
                 {{--Buttons--}}
                 <div class="row">
+                    <div class="col-md-4 col-md-offset-2">
+                        {{--<button type="reset" id="btn_clear_orders_comment" class="btn btn-success" style="float: left">--}}
+                            {{--Clear Comment--}}
+                        {{--</button>--}}
+                    </div>
                         <div class="col-md-6">
-                            {{--<button type="reset" id="btn_reset_orders" class="btn btn-primary" style="float: left">--}}
-                                {{--Reset Orders--}}
-                            {{--</button>--}}
-                        </div>
-                        <div class="col-md-6">
-                            <button type="submit" id="btn_save_orders" class="btn btn-success" style="float: right">
+                            <button type="submit" id="btn_save_orders" class="btn btn-primary" style="float: right">
                                 Save Orders
                             </button>
                         </div>
@@ -187,8 +187,12 @@
         });
 
         window.onbeforeunload = unloadPage;
+
+        $('#btn_clear_orders_comment').click( function()
+        {
+            alert('h');
+            $('#orders_comment').val('');
+        } );
     });
-
-
 </script>
 @endsection

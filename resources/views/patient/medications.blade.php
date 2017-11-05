@@ -66,9 +66,14 @@
                              </div>
                         </div>
                          <br>
-                         <!-- Save button -->
+                         <!-- Buttons -->
                          <div class="row">
-                             <div class="col-sm-12">
+                             <div class="col-md-4 col-md-offset-2">
+                                 <button type="reset" id="btn_clear_medication_comment" class="btn btn-success" style="float: left">
+                                     Clear Comment
+                                 </button>
+                             </div>
+                             <div class="col-sm-6">
                                  <button type="submit" id="btn_save_medication" class="btn btn-primary" style="float: right">
                                      Save Medications
                                  </button>
@@ -124,6 +129,11 @@
 
             window.onbeforeunload = unloadPage;
         });
+
+        $('#btn_clear_medication_comment').click( function()
+        {
+            $('#medication_comment').val('');
+        } );
 
     </script>
 
