@@ -36,7 +36,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <button type="reset" id="btn_clear_HPI_comment" class="btn btn-success" style="float: left">
-                                    Clear Comment
+                                    Reset Comment
                                     </button>
                                 </div>
                                 <div class="col-md-6">
@@ -73,7 +73,7 @@
 
             $('#btn_clear_HPI_comment').click( function()
             {
-                $('#clear_HPI_comment').val('');
+                $('#HPI').val('');
             } );
         });
     </script>

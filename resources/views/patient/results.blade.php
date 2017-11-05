@@ -55,10 +55,10 @@
                             <div class="col-md-12">
                                 <h4>Results:</h4>
                                 @if(!count($results)>0)
-                                    <textarea id="HPI" name="results" rows="6" style="width: 700px">
+                                    <textarea id="results" name="results" rows="6" style="width: 700px">
                                     </textarea>
                                 @else
-                                    <textarea id="HPI" name="results" rows="6" style="width: 700px">
+                                    <textarea id="results" name="results" rows="6" style="width: 700px">
                                     {{$results[0]->value}}</textarea>
                                 @endif
                             </div>
@@ -67,7 +67,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <button type="reset" id="btn_clear_results_comment" class="btn btn-success" style="float: left">
-                                    Clear Comment
+                                    Reset Comment
                                     </button>
                                 </div>
                                 <div class="col-md-6">
@@ -104,7 +104,7 @@
 
             $('#btn_clear_results_comment').click( function()
             {
-                $('#results_comment').val('');
+                $('#results').val('');
             } );
         });
     </script>
