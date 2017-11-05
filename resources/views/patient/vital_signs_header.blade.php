@@ -1,7 +1,7 @@
 @section('content')
     {{--@parent--}}
     <!--This is a container for vital signs header -->
-    <div class="container-fluid" style="padding-top: 0;margin-top:0; padding-bottom: 0;margin-bottom: 0;">
+    <div class="container-fluid">
         <div class="row" >
             <div class="panel-heading" style="padding-left: 0">
                 <a href="{{url('/StudentHome')}}" class="btn btn-success" style="float: left">

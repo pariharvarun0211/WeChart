@@ -138,7 +138,7 @@ class StudentController extends Controller
         }
 
         if($role == 'Student') {
-            try {
+
                //Validating input data
                 $this->validate($request, [
                     'age' => 'required|numeric',
@@ -162,6 +162,7 @@ class StudentController extends Controller
                 $patient['last_name'] = 'Doe' . $append_number;
                 $patient['archived'] = false;
                 $patient['completed_flag'] = false;
+                $patient['module_id'] = $request['module_id'];
                 $patient['height'] = $request['height'] ." ". $request['height_unit'];
                 $patient['weight'] = $request['weight'] ." ". $request['weight_unit'];
                 $patient['room_number'] = $request['room_number'];
@@ -183,9 +184,6 @@ class StudentController extends Controller
 
                 //Now redirecting student to active record page.
                 return redirect()->route('Demographics',[$patient->patient_id]);
-            } catch (\Exception $e) {
-                return view('errors/503');
-            }
         }
         else
         {

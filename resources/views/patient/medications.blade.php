@@ -57,10 +57,10 @@
                              </div>
                              <div class="col-md-10">
                                  @if(!count($medication_comment)>0)
-                                     <textarea rows="4" id="medication_comment" name="medication_comment" style="width: 580px">
+                                     <textarea rows="4" id="medication_comment" name="medication_comment" style="width: 590px">
                                      </textarea>
                                  @else
-                                     <textarea rows="4" id="medication_comment" name="medication_comment" style="width: 580px">
+                                     <textarea rows="4" id="medication_comment" name="medication_comment" style="width: 590px">
                                 {{$medication_comment[0]->value}}</textarea>
                                  @endif
                              </div>

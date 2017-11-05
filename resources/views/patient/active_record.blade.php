@@ -23,17 +23,23 @@
                     </li>
 
                     @foreach ($navs as $key=>$nav)
-                        <li class="list-group-item">
-                            <a id="{{$nav[0]}}_tab" href="{{ URL::route($nav[0], $patient->patient_id)}}">
-                               <b>{{ $nav[0] }}</b>
-                            </a>
-                        </li>
+                        @if($nav[0]->parent_id === NULL)
+                            <li class="list-group-item">
+                                <a id="{{$nav[0]->navigation_name}}_tab" href="{{ URL::route($nav[0]->navigation_name, $patient->patient_id)}}">
+                                   <b>{{ $nav[0]->navigation_name }}</b>
+                                </a>
+                            </li>
+                        @else
+                            <li class="list-group-item" style="padding-left: 20%">
+                                    {{$nav[0]->navigation_name}}
+                            </li>
+                        @endif
                     @endforeach
                 </ul>
             </div>
 
             {{--Documentation Panel--}}
-            <div class="col-md-7" style="border-right: solid;border-left:solid;padding-left: 0">
+            <div class="col-md-7" style="border-right: solid;border-left:solid;padding-left: 0;margin-left: 0;padding-right: 0;margin-right: 0">
                 @yield('documentation_panel')
             </div>
 

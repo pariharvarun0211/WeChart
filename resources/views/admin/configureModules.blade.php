@@ -18,7 +18,7 @@
                     Back to Dashboard</a>
             </div>
             <div class="col-md-2 col-md-offset-8">
-                    <a href="#" title="" class="btn btn-success" id="add-record" style="float: right">
+                    <a href="#" title="" class="btn btn-primary" id="add-record" style="float: right">
                         <i class="fa fa-plus" aria-hidden="true"></i> Add new Module</a>
             </div>
         </div>
@@ -39,7 +39,7 @@
                         @foreach ($navs as $nav)
                             @if($nav->navigation_id == '2' || $nav->navigation_id == '9' || $nav->navigation_id == '19')
                                 <td  style="background-color:#5DADE2;"  align="middle">
-                                    <h5 style="padding-left: 1%;padding-right: 1%;width: 100px"><b>{{ $nav->navigation_name }}- All</b></h5>
+                                    <h5 style="padding-left: 1%;padding-right: 1%;width: 100px"><b>{{ $nav->navigation_name }}</b></h5>
                                 </td>
                             @else
                                 @if($nav->parent_id != NULL)
@@ -73,7 +73,6 @@
                             @else
                                 <td  style="background-color:#5DADE2;"  align="middle">
                                     <h5 style="padding-left: 1%;padding-right: 1%;width: 100px">
-                                        {{--<b>{{ $nav->navigation_name }}</b>--}}
                                     </h5>
                                 </td>
                             @endif
@@ -111,9 +110,9 @@
                                 @endforeach
 
                                 @if ($check == 1)
-                                    <input id="chk_nav_"{{$nav->navigation_id}} type="checkbox" class="form-check-input inline" checked="checked">
+                                    <input type="checkbox" class="form-check-input inline" checked="checked" onclick="return false" >
                                 @else
-                                    <input id="chk_nav_"{{$nav->navigation_id}} type="checkbox" class="form-check-input inline">
+                                    <input type="checkbox" class="form-check-input inline" onclick="return false">
                                 @endif
                             </td>
                         @endforeach
@@ -137,25 +136,12 @@
         {{ Form::open(array('method' => 'post', 'route' => array('submitmodule'))) }}
         <div class="row" id="childTable" style="overflow-x: scroll;width: 1200px">
         <table border="2" >
-            {{--<tr>--}}
-                {{--<td style="background-color:#5DADE2;width:200px ">--}}
-                    {{--<b> Module/Navigations </b>--}}
-                {{--</td>--}}
-                {{--@foreach ($navs as $nav)--}}
-                    {{--<td style="background-color:#5DADE2" align="center">--}}
-                        {{--<h5 style="padding-left: 1%;padding-right: 1%;width: 100px"> <b>{{ $nav->navigation_name }}</b>   </h5>--}}
-                    {{--</td>--}}
-                {{--@endforeach--}}
-            {{--</tr>--}}
             <tr>
                 <td style="background-color:#5DADE2;">
                     <h5 style="width: 150px;margin-left: 1%;margin-right: 1%">
                         <b>Module/Navigations</b>
                     </h5>
                 </td>
-                {{--<td style="background-color:#5DADE2;" align="middle">--}}
-                    {{--<h5 style="width: 150px"><b>Demographics</b></h5>--}}
-                {{--</td>--}}
                 @foreach ($navs as $nav)
                     @if($nav->navigation_id == '2' || $nav->navigation_id == '9' || $nav->navigation_id == '19')
                         <td  style="background-color:#5DADE2;"  align="middle">
@@ -179,10 +165,6 @@
             <tr>
                 <td style="background-color:#5DADE2;">
                 </td>
-
-                {{--<td style="background-color:#5DADE2;" align="middle">--}}
-                {{--</td>--}}
-
                 @foreach ($navs as $nav)
                     @if($nav->parent_id != NULL)
                         <td  style="background-color:#5DADE2;"  align="middle">
@@ -193,7 +175,6 @@
                     @else
                         <td  style="background-color:#5DADE2;"  align="middle">
                             <h5 style="padding-left: 1%;padding-right: 1%;width: 100px">
-                                {{--<b>{{ $nav->navigation_name }}</b>--}}
                             </h5>
                         </td>
                     @endif
@@ -203,11 +184,13 @@
             </tr>
             <tr>
                <td align="middle">
-                   {{ Form::text('modulename', "") }}
+                   {{--{{ Form::text('modulename', "") }}--}}
+                   <input type="text" name="modulename" id="new_module_name">
                </td>
                @foreach ($navs as $nav)
                    <td align="middle">
-                       {{ Form::checkbox('navs[]', $nav->navigation_id) }}
+                       {{--{{ Form::checkbox('navs[]', $nav->navigation_id) }}--}}
+                       <input type="checkbox" id={{$nav->navigation_id}} name="navs[]" value={{$nav->navigation_id}}>
                    </td>
                @endforeach
                <td>
@@ -215,22 +198,130 @@
                </td>
             </tr>
         </table>
+
+            <br>
+            <a href="#" title="" class="btn btn-primary" id="cancel_add_module" style="float: left">
+                Cancel</a>
+            <br>
+
         </div>
         {{ Form::close() }}
-
     </div>
-
+<br>
     <script>
         $(document).ready(function(){
+
             $('#childTable').hide();
+
             $("#add-record").click(function(){
                 $('#onetimedisplay').hide();
                 $('#childTable').show();
                 $("#add-record").hide();
             });
+
+            $("#cancel_add_module").click(function(){
+                $('#childTable').hide();
+                $("#add-record").show();
+
+                for (var i = 1; i < 33; i++) {
+                    $('#'+i).prop('checked', false);
+                }
+                $('#new_module_name').val('');
+
+            });
+
+            // Selecting medical history selects all children
+            $('#2').click(function () {
+                for (var i = 3; i < 7; i++) {
+                    $('#'+i).prop('checked', true);
+                }
+            });
+
+            $('#3').click(function () {
+                $('#2').prop('checked',false);
+            });
+            $('#4').click(function () {
+                $('#2').prop('checked',false);
+            });
+            $('#5').click(function () {
+                $('#2').prop('checked',false);
+            });
+            $('#6').click(function () {
+                $('#2').prop('checked',false);
+            });
+
+
+            // Selecting ROS selects all children
+            $('#9').click(function () {
+                for (var i = 10; i < 19; i++) {
+                    $('#'+i).prop('checked', true);
+                }
+            });
+
+            $('#10').click(function () {
+                $('#9').prop('checked',false);
+            });
+            $('#11').click(function () {
+                $('#9').prop('checked',false);
+            });
+            $('#12').click(function () {
+                $('#9').prop('checked',false);
+            });
+            $('#13').click(function () {
+                $('#9').prop('checked',false);
+            });
+            $('#14').click(function () {
+                $('#9').prop('checked',false);
+            });
+            $('#15').click(function () {
+                $('#9').prop('checked',false);
+            });
+            $('#16').click(function () {
+                $('#9').prop('checked',false);
+            });
+            $('#17').click(function () {
+                $('#9').prop('checked',false);
+            });
+            $('#18').click(function () {
+                $('#9').prop('checked',false);
+            });
+
+            // Selecting PE selects all children
+            $('#19').click(function () {
+                for (var i = 20; i < 29; i++) {
+                    $('#'+i).prop('checked', true);
+                }
+            });
+
+            $('#20').click(function () {
+                $('#19').prop('checked',false);
+            });
+            $('#21').click(function () {
+                $('#19').prop('checked',false);
+            });
+            $('#22').click(function () {
+                $('#19').prop('checked',false);
+            });
+            $('#23').click(function () {
+                $('#19').prop('checked',false);
+            });
+            $('#24').click(function () {
+                $('#19').prop('checked',false);
+            });
+            $('#25').click(function () {
+                $('#19').prop('checked',false);
+            });
+            $('#26').click(function () {
+                $('#19').prop('checked',false);
+            });
+            $('#27').click(function () {
+                $('#19').prop('checked',false);
+            });
+            $('#28').click(function () {
+                $('#19').prop('checked',false);
+            });
+
         });
-
-
     </script>
 
 @endsection

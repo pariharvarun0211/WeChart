@@ -185,7 +185,6 @@ class AdminController extends Controller
          //$studentEmails=array_diff($studentEmails,$registered_student_emails);
          return view('admin/manageEmails', compact('studentEmails','instructorEmails'));
         }
-
     public function getConfigureModules()
     {
         // $navs = navigation::where('parent_id', NULL)->get();
@@ -203,10 +202,8 @@ class AdminController extends Controller
         $navs_mods = module_navigation::where('visible', true)->get();
         return view('admin/configureModules', compact ('navs', 'mods', 'navs_mods'));
     }
-
     public function submitmodule(Request $request)
     {
-        //$name = request()->get("modulename");
         $module = new module;
         $module->module_name = $request->input('modulename');
         $module->archived = false;
@@ -214,19 +211,40 @@ class AdminController extends Controller
         $var = $module->module_id;
 
         $navs = $request->input('navs');
+
+        //if any child selected, parent shoul get auto selected.
+
+        for ($i = 3; $i < 7; $i++)
+        {
+            if (in_array("$i", $navs)) {
+                array_push($navs,'2');
+                break;
+            }
+        }
+        for ($i = 10; $i < 19; $i++)
+        {
+            if (in_array("$i", $navs)) {
+                array_push($navs,'9');
+                break;
+            }
+        }
+        for ($i = 20; $i < 29; $i++)
+        {
+            if (in_array("$i", $navs)) {
+                array_push($navs,'19');
+                break;
+            }
+        }
+
+        $navs = array_unique($navs);
+
         foreach($navs as $navid)
         {
-            //$modnav = new module_navigation;
-            //$modnav->module_id = $var;
-            //$modnav->navigation_id = $navid;
-            //$modnav->visible = true;
-            //$modnav->save();
-            DB::table('modules_navigations')->insert(
+             DB::table('modules_navigations')->insert(
                 ['module_id' => $var, 'navigation_id' => $navid, 'visible' => true]);
         }
 
-//         $navs = navigation::where('parent_id', NULL)->get();
-       $navs = navigation::all();
+        $navs = navigation::all();
         $mods = module::where('archived', false)->get();
         $navs_mods = module_navigation::where('visible', true)->get();
         return view('admin/configureModules', compact ('navs', 'mods', 'navs_mods'));
@@ -240,14 +258,12 @@ class AdminController extends Controller
         $navs_mods = module_navigation::where('visible', true)->get();
         return view('admin/configureModules', compact ('navs', 'mods', 'navs_mods'));
     }
-
     public function delete_email($id)
     {
         $email = EmailidRole::find($id);
         $email->delete();
         return redirect('/ManageEmails')->with('success','Email has been  deleted');
     }
-
     public function archive_user($id)
     {
         User::where('id',$id)

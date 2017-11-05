@@ -61,14 +61,15 @@ class NavigationController extends Controller
             $patient = patient::where('patient_id', $id)->first();
 
             //Fetching all navs associated with this patient's module
-            $navIds = module_navigation::where('module_id', $patient->module_id)->pluck('navigation_id');
+            $navIds = module_navigation::where('module_id', $patient->module_id)->orderBy('navigation_id')->pluck('navigation_id');
 
             $navs = array();
             //Now get nav names
             foreach ($navIds as $nav_id) {
-                $nav_name = navigation::where('navigation_id', $nav_id)->pluck('navigation_name');
-                array_push($navs, $nav_name);
+                $nav = navigation::where('navigation_id', $nav_id)->get();
+                array_push($navs, $nav);
             }
+
             //Extracting vital signs for header
             $vital_signs_header = $this->get_vital_signs_header($id);
 
@@ -99,18 +100,18 @@ class NavigationController extends Controller
 
             $patient = patient::where('patient_id', $id)->first();
             //Fetching all navs associated with this patient's module
-            $navIds = module_navigation::where('module_id', $patient->module_id)->pluck('navigation_id');
+            $navIds = module_navigation::where('module_id', $patient->module_id)->orderBy('navigation_id')->pluck('navigation_id');
 
             $navs = array();
+
             //Now get nav names
-            foreach ($navIds as $nav_id) {
-                $nav_name = navigation::where('navigation_id', $nav_id)->pluck('navigation_name');
-                array_push($navs, $nav_name);
+            foreach ($navIds as $key=>$nav_id) {
+                $nav = navigation::where('navigation_id', $nav_id)->get();
+                array_push($navs, $nav);
             }
 
             //Extracting vital signs for header
             $vital_signs_header = $this->get_vital_signs_header($id);
-
             return view('patient/HPI', compact ('HPI','patient','navs','vital_signs_header'));
         }
         else
@@ -224,13 +225,13 @@ class NavigationController extends Controller
             }
             $patient = patient::where('patient_id', $id)->first();
             //Fetching all navs associated with this patient's module
-            $navIds = module_navigation::where('module_id', $patient->module_id)->pluck('navigation_id');
+            $navIds = module_navigation::where('module_id', $patient->module_id)->orderBy('navigation_id')->pluck('navigation_id');
 
             $navs = array();
             //Now get nav names
             foreach ($navIds as $nav_id) {
-                $nav_name = navigation::where('navigation_id', $nav_id)->pluck('navigation_name');
-                array_push($navs, $nav_name);
+                $nav = navigation::where('navigation_id', $nav_id)->get();
+                array_push($navs, $nav);
             }
             //Extracting vital signs for header
             $vital_signs_header = $this->get_vital_signs_header($id);
@@ -257,13 +258,13 @@ class NavigationController extends Controller
 
             $patient = patient::where('patient_id', $id)->first();
             //Fetching all navs associated with this patient's module
-            $navIds = module_navigation::where('module_id', $patient->module_id)->pluck('navigation_id');
+            $navIds = module_navigation::where('module_id', $patient->module_id)->orderBy('navigation_id')->pluck('navigation_id');
 
             $navs = array();
             //Now get nav names
             foreach ($navIds as $nav_id) {
-                $nav_name = navigation::where('navigation_id', $nav_id)->pluck('navigation_name');
-                array_push($navs, $nav_name);
+                $nav = navigation::where('navigation_id', $nav_id)->get();
+                array_push($navs, $nav);
             }
 
             //Extracting vital signs for header
@@ -280,11 +281,11 @@ class NavigationController extends Controller
     {
         if(Auth::check()) {
             $patient = patient::where('patient_id', $id)->first();
-            $navIds = module_navigation::where('module_id', $patient->module_id)->pluck('navigation_id');
+            $navIds = module_navigation::where('module_id', $patient->module_id)->orderBy('navigation_id')->pluck('navigation_id');
             $navs = array();
             foreach ($navIds as $nav_id) {
-                $nav_name = navigation::where('navigation_id', $nav_id)->pluck('navigation_name');
-                array_push($navs, $nav_name);
+                $nav = navigation::where('navigation_id', $nav_id)->get();
+                array_push($navs, $nav);
             }
             $timestamps = active_record::where('patient_id', $id)
                 ->where('navigation_id', '8')->distinct()->pluck('created_at');
@@ -343,7 +344,7 @@ class NavigationController extends Controller
         }
         else
         {
-            return view('auth/login');
+            return view('auth/not_authorized');
         }
     }
     public function get_ROS($id)
@@ -351,13 +352,13 @@ class NavigationController extends Controller
         if(Auth::check()) {
             $patient = patient::where('patient_id', $id)->first();
             //Fetching all navs associated with this patient's module
-            $navIds = module_navigation::where('module_id', $patient->module_id)->pluck('navigation_id');
+            $navIds = module_navigation::where('module_id', $patient->module_id)->orderBy('navigation_id')->pluck('navigation_id');
 
             $navs = array();
             //Now get nav names
             foreach ($navIds as $nav_id) {
-                $nav_name = navigation::where('navigation_id', $nav_id)->pluck('navigation_name');
-                array_push($navs, $nav_name);
+                $nav = navigation::where('navigation_id', $nav_id)->get();
+                array_push($navs, $nav);
             }
             //Extracting vital signs for header
             $vital_signs_header = $this->get_vital_signs_header($id);
@@ -374,13 +375,13 @@ class NavigationController extends Controller
         if(Auth::check()) {
             $patient = patient::where('patient_id', $id)->first();
             //Fetching all navs associated with this patient's module
-            $navIds = module_navigation::where('module_id', $patient->module_id)->pluck('navigation_id');
+            $navIds = module_navigation::where('module_id', $patient->module_id)->orderBy('navigation_id')->pluck('navigation_id');
 
             $navs = array();
             //Now get nav names
             foreach ($navIds as $nav_id) {
-                $nav_name = navigation::where('navigation_id', $nav_id)->pluck('navigation_name');
-                array_push($navs, $nav_name);
+                $nav = navigation::where('navigation_id', $nav_id)->get();
+                array_push($navs, $nav);
             }
 
             //Extracting vital signs for header
@@ -411,13 +412,13 @@ class NavigationController extends Controller
 
             $patient = patient::where('patient_id', $id)->first();
             //Fetching all navs associated with this patient's module
-            $navIds = module_navigation::where('module_id', $patient->module_id)->pluck('navigation_id');
+            $navIds = module_navigation::where('module_id', $patient->module_id)->orderBy('navigation_id')->pluck('navigation_id');
 
             $navs = array();
             //Now get nav names
             foreach ($navIds as $nav_id) {
-                $nav_name = navigation::where('navigation_id', $nav_id)->pluck('navigation_name');
-                array_push($navs, $nav_name);
+                $nav = navigation::where('navigation_id', $nav_id)->get();
+                array_push($navs, $nav);
             }
             //Extracting vital signs for header
             $vital_signs_header = $this->get_vital_signs_header($id);
@@ -444,13 +445,13 @@ class NavigationController extends Controller
 
             $patient = patient::where('patient_id', $id)->first();
             //Fetching all navs associated with this patient's module
-            $navIds = module_navigation::where('module_id', $patient->module_id)->pluck('navigation_id');
+            $navIds = module_navigation::where('module_id', $patient->module_id)->orderBy('navigation_id')->pluck('navigation_id');
 
             $navs = array();
             //Now get nav names
             foreach ($navIds as $nav_id) {
-                $nav_name = navigation::where('navigation_id', $nav_id)->pluck('navigation_name');
-                array_push($navs, $nav_name);
+                $nav = navigation::where('navigation_id', $nav_id)->get();
+                array_push($navs, $nav);
             }
             //Extracting vital signs for header
             $vital_signs_header = $this->get_vital_signs_header($id);
@@ -466,13 +467,13 @@ class NavigationController extends Controller
         if(Auth::check()) {
             $patient = patient::where('patient_id', $id)->first();
             //Fetching all navs associated with this patient's module
-            $navIds = module_navigation::where('module_id', $patient->module_id)->pluck('navigation_id');
+            $navIds = module_navigation::where('module_id', $patient->module_id)->orderBy('navigation_id')->pluck('navigation_id');
 
             $navs = array();
             //Now get nav names
             foreach ($navIds as $nav_id) {
-                $nav_name = navigation::where('navigation_id', $nav_id)->pluck('navigation_name');
-                array_push($navs, $nav_name);
+                $nav = navigation::where('navigation_id', $nav_id)->get();
+                array_push($navs, $nav);
             }
             //Extracting vital signs for header
             $vital_signs_header = $this->get_vital_signs_header($id);
@@ -489,13 +490,13 @@ class NavigationController extends Controller
         if(Auth::check()) {
             $patient = patient::where('patient_id', $id)->first();
             //Fetching all navs associated with this patient's module
-            $navIds = module_navigation::where('module_id', $patient->module_id)->pluck('navigation_id');
+            $navIds = module_navigation::where('module_id', $patient->module_id)->orderBy('navigation_id')->pluck('navigation_id');
 
             $navs = array();
             //Now get nav names
             foreach ($navIds as $nav_id) {
-                $nav_name = navigation::where('navigation_id', $nav_id)->pluck('navigation_name');
-                array_push($navs, $nav_name);
+                $nav = navigation::where('navigation_id', $nav_id)->get();
+                array_push($navs, $nav);
             }
             //Extracting vital signs for header
             $vital_signs_header = $this->get_vital_signs_header($id);
