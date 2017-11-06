@@ -76,7 +76,7 @@
                         <br><br>
 
                         <div class="row" style="overflow-x: auto;width: 775px" class="col-md-12">
-                            <form class="form-horizontal" method="POST" action="{{ url('post_vital_signs') }}">
+                            <form class="form-horizontal" method="POST" action="{{ url('post_vital_signs') }}" id="vitals_form">
                                 {{ csrf_field() }}
                                 <input id="patient_id" name="patient_id" type="hidden" value="{{ $patient->patient_id }}">
                                 <input type=hidden id="user_id" name="user_id" value="{{ Auth::user()->id }}">
@@ -167,7 +167,7 @@
             });
             
             var inputsChanged = false;
-            $('#results_form').change(function() {
+            $('#vitals_form').change(function() {
                 inputsChanged = true;
             });
             function unloadPage(){
