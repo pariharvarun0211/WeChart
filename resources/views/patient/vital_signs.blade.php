@@ -143,7 +143,7 @@
                                             <input type="text" name="Comments" id="Comments" style="width: 100px;">
                                         </td>
                                         <td>
-                                            <button name="submitbutton" class="btn btn-success btn-submit btn-sm">Add</button>
+                                            <button name="submitbutton" id="btn_save_vitals" class="btn btn-success btn-submit btn-sm">Add</button>
                                         </td>
                                     </tr>
 
@@ -158,12 +158,27 @@
 
     <script>
         $(document).ready(function(){
+        
             $('#table_child_vital_signs').hide();
             $("#btn_add_vital_signs").click(function(){
                 //$('#onetimedisplay').hide();
                 $('#table_child_vital_signs').show();
                 $("#btn_add_vital_signs").hide();
             });
+            
+            var inputsChanged = false;
+            $('#results_form').change(function() {
+                inputsChanged = true;
+            });
+            function unloadPage(){
+                if(inputsChanged){
+                    return "Do you want to leave this page?. Changes you made may not be saved.";
+                }
+            }
+            $("#btn_save_vitals").click(function(){
+                inputsChanged = false;
+            });
+            window.onbeforeunload = unloadPage;           
         });
 
     </script>
