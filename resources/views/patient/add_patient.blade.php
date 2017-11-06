@@ -5,14 +5,14 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 
 <div class="container">
+<br>
     <div class="row">
          <div class="col-md-2">
                 <a href="{{url('/StudentHome')}}" class="btn btn-success" style="float: left">
                 <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
                 Back to Dashboard</a>
          </div>
-    </div>
-    <br>
+    </div>    
     <br>
     <div class="row">
          <div class="col-md-10">
