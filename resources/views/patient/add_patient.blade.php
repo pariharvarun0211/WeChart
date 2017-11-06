@@ -12,6 +12,8 @@
                 Back to Dashboard</a>
          </div>
     </div>
+    <br>
+    <br>
     <div class="row">
          <div class="col-md-10">
                      <div class="panel panel-default">
