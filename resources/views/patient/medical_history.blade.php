@@ -1,5 +1,3 @@
-{{--@extends('layouts.app')--}}
-{{--@extends('patient.vital_signs_header')--}}
 @extends('patient.active_record')
 
 @section('documentation_panel')
@@ -85,7 +83,7 @@
     <hr style="border:solid">
 
     {{--Family History--}}
-    <div class="container-fluid">
+    <div class="container-fluid" id="family_history">
         <div class="panel panel-default">
             <div class="panel-heading" style="background-color: lightblue;padding-bottom: 0">
                 <h4 style="margin-top: 0">Family History</h4>
@@ -207,7 +205,7 @@
     <hr style="border: solid">
 
     {{--Surgical History--}}
-    <div class="container-fluid">
+    <div class="container-fluid" id="surgical_history">
         <div class="panel panel-default">
             <div class="panel-heading" style="background-color: lightblue;padding-bottom: 0">
                 <h4 style="margin-top: 0">Surgical History</h4>
@@ -471,6 +469,7 @@
                  $("#add_family_member").hide();
              });
              $("#btn_save_new_family_member").click(function(){
+                 inputsChanged_family_history_form = false;
                  $("#new_family_member_panel").hide();
                  $("#add_family_member").show();
                  $.ajax({
