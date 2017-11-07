@@ -76,7 +76,7 @@
                         <br><br>
 
                         <div class="row" style="overflow-x: auto;width: 775px" class="col-md-12">
-                            <form class="form-horizontal" method="POST" action="{{ url('post_vital_signs') }}">
+                            <form class="form-horizontal" method="POST" action="{{ url('post_vital_signs') }}" id="vitals_form">
                                 {{ csrf_field() }}
                                 <input id="patient_id" name="patient_id" type="hidden" value="{{ $patient->patient_id }}">
                                 <input type=hidden id="user_id" name="user_id" value="{{ Auth::user()->id }}">
@@ -143,7 +143,7 @@
                                             <input type="text" name="Comments" id="Comments" style="width: 100px;">
                                         </td>
                                         <td>
-                                            <button name="submitbutton" class="btn btn-success btn-submit btn-sm">Add</button>
+                                            <button name="submitbutton" id="btn_save_vitals" class="btn btn-success btn-submit btn-sm">Add</button>
                                         </td>
                                     </tr>
 
@@ -158,12 +158,27 @@
 
     <script>
         $(document).ready(function(){
+        
             $('#table_child_vital_signs').hide();
             $("#btn_add_vital_signs").click(function(){
                 //$('#onetimedisplay').hide();
                 $('#table_child_vital_signs').show();
                 $("#btn_add_vital_signs").hide();
             });
+            
+            var inputsChanged = false;
+            $('#vitals_form').change(function() {
+                inputsChanged = true;
+            });
+            function unloadPage(){
+                if(inputsChanged){
+                    return "Do you want to leave this page?. Changes you made may not be saved.";
+                }
+            }
+            $("#btn_save_vitals").click(function(){
+                inputsChanged = false;
+            });
+            window.onbeforeunload = unloadPage;           
         });
 
     </script>
