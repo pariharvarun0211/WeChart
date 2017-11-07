@@ -15,92 +15,101 @@
                     <!--This is the first row in the vital signs panel -->
                     <tr style="padding-top: 0;padding-bottom: 0%; border-style: hidden">
                         <td style="padding-top: 0;padding-bottom: 0%">
-                            <label id="name_label" style="align-self: center">Name:</label>
-                            <label id="name" >{{$vital_signs_header->name}}</label>
+                            <p id="name_label" style="align-self: center"><strong>Name:</strong>
+                            {{$vital_signs_header->name}}
+                            </p>
                         </td>
                         <td style="padding-top: 0;padding-bottom: 0%">
-                            <label id="age_label">Age: </label>
-                            <label id="age">{{$vital_signs_header->age}} </label>
+                            <p id="age_label"><strong>Age: </strong>
+                            {{$vital_signs_header->age}}
+                            </p>
                         </td>
                         <td style="padding-top: 0;padding-bottom: 0%">
-                            <label id="sex_label">Sex:</label>
-                            <label id="sex">{{$vital_signs_header->gender}}</label>
+                            <p id="sex_label"><strong>Sex: </strong>
+                            {{$vital_signs_header->gender}}
+                            </p>
                         </td>
                         <td style="padding-top: 0;padding-bottom: 0%">
-                            <label id="room_number_label">Room No:</label>
-                            <label id="room_number">{{$vital_signs_header->room_number}}</label>
+                            <p id="room_number_label"> <strong>Room No: </strong>
+                                {{$vital_signs_header->room_number}}</p>
                         </td>
                         <td style="padding-top: 0%;padding-bottom: 0%">
-                            <label id="visit_date_label">Visit Date:</label>
-                            <label id="visit_date">{{$vital_signs_header->visit_date}}</label>
+                            <p id="visit_date_label"><strong>Visit Date: </strong>
+                            {{$vital_signs_header->visit_date}}</p>
                         </td>
                         <td style="padding-top: 0;padding-bottom: 0%">
-                            <label id="RR_label" style="align-self: center">Respiratory Rate (RR):</label>
+                            <p id="RR_label" style="align-self: center"><strong>Respiratory Rate (RR):</strong>
                             @foreach($vital_signs_header->respiratory_rate as $key=>$respiratory_rate)
                                 @if($respiratory_rate != null)
-                                    <label id="respiratory_rate">{{$vital_signs_header->respiratory_rate[$key]}}</label>
+                                    {{$vital_signs_header->respiratory_rate[$key]}}
                                     @break
                                 @endif
                             @endforeach
+                            </p>
                         </td>
 
                     </tr>
                     <!--This is the second row in the vital signs panel -->
                     <tr style="padding-top: 0;padding-bottom: 0%; border-style: hidden">
                         <td style="padding-top: 0%;padding-bottom: 0%">
-                            <label id="temperature_label">Temperature:</label>
+                            <p id="temperature_label"><strong>Temperature: </strong>
                             @foreach($vital_signs_header->temperature as $key=>$temperature)
                                 @if($temperature != ' ')
-                                    <label id="temperature">{{$vital_signs_header->temperature[$key]}}</label>
+                                    {{$vital_signs_header->temperature[$key]}}
                                     @break
                                 @endif
                             @endforeach
+                            </p>
                         </td>
                         <td style="padding-top: 0%;padding-bottom: 0%">
-                            <label id="oxygen_saturation_label">Oxygen Saturation:</label>
+                            <p id="oxygen_saturation_label"><strong>Oxygen Saturation: </strong>
                             @foreach($vital_signs_header->oxygen_saturation as $key=>$oxygen_saturation)
                                 @if($oxygen_saturation != null)
-                                    <label id="oxygen_saturation">{{$vital_signs_header->oxygen_saturation[$key]}}</label>
+                                    {{$vital_signs_header->oxygen_saturation[$key]}}
                                     @break
                                 @endif
                             @endforeach
+                            </p>
                         </td>
                         <td style="padding-top: 0;padding-bottom: 0%">
-                            <label id="bp_systolic_label" style="align-self: center">Blood Pressure (BP) Systolic: </label>
+                            <p id="bp_systolic_label" style="align-self: center"><strong>Blood Pressure (BP) Systolic: </strong>
                             @foreach($vital_signs_header->BP_systolic as $key=>$BP_systolic)
                                 @if($BP_systolic != null)
-                                    <label id="bp_systolic">{{$vital_signs_header->BP_systolic[$key]}}</label>
+                                    {{$vital_signs_header->BP_systolic[$key]}}
                                     @break
                                 @endif
                             @endforeach
+                            </p>
                         </td>
                         <td style="padding-top: 0%;padding-bottom: 0%">
-                            <label id="bp_diastolic_label">Blood Pressure (BP) Diastolic: </label>
+                            <p id="bp_diastolic_label"><strong>Blood Pressure (BP) Diastolic: </strong>
                             @foreach($vital_signs_header->BP_diastolic as $key=>$BP_diastolic)
                                 @if($BP_diastolic != null)
-                                    <label id="bp_diastolic">{{$vital_signs_header->BP_diastolic[$key]}}</label>
+                                    {{$vital_signs_header->BP_diastolic[$key]}}
                                     @break
                                 @endif
                             @endforeach
+                            </p>
                         </td>
                         <td style="padding-top: 0%;padding-bottom: 0%">
-                            <label id="hr_label">Heart Rate (HR): </label>
+                            <p id="hr_label"><strong>Heart Rate (HR): </strong>
                             @foreach($vital_signs_header->heart_rate as $key=>$heart_rate)
                                 @if($heart_rate != null)
-                                    <label id="heart_rate">{{$vital_signs_header->heart_rate[$key]}}</label>
+                                    {{$vital_signs_header->heart_rate[$key]}}
                                     @break
                                 @endif
                             @endforeach
-
+                            </p>
                         </td>
                         <td style="padding-top: 0%;padding-bottom: 0%">
-                            <label id="pain_label">Pain: </label>
+                            <p id="pain_label"><strong>Pain:  </strong>
                             @foreach($vital_signs_header->pain as $key=>$pain)
                                 @if($pain != null)
-                                    <label id="pain">{{$vital_signs_header->pain[$key]}}</label>
+                                    {{$vital_signs_header->pain[$key]}}
                                     @break
                                 @endif
                             @endforeach
+                            </p>
                         </td>
                     </tr>
                 </table>
