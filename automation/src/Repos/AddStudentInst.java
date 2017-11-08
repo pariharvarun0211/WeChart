@@ -6,9 +6,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class AddStudentInst extends BasePage{
-
-	public AddStudentInst() {
-		super("insert url here");
+	private static String Url = "AddStudentEmails";
+	
+	public static void GoToPage(WebDriver driver) {
+		BasePage.GoToPageUrl(driver, Url);
 	}
 	
 	public static WebElement AddStudentButton (WebDriver driver) {
@@ -26,6 +27,11 @@ public class AddStudentInst extends BasePage{
 	public static WebElement Submit(WebDriver driver) {
 		return driver.findElement(By.cssSelector("button[type='submit']"));
 	}
+	
+	public static WebElement AddNew(WebDriver driver)
+	{
+		return driver.findElement(By.partialLinkText("Add row"));		
+	}
 
 	public void AddingStudent (WebDriver driver) {
 		AddStudentInst.EnterEmailAddress(driver).sendKeys("");
@@ -36,7 +42,11 @@ public class AddStudentInst extends BasePage{
 		AddStudentInst.EnterEmailAddress(driver).sendKeys("");
 		AddStudentInst.Submit(driver).click();
 	}	
-		
-	}
+}
+	
+//	public void addmultiple(WebDriver driver)
+//	{
+//		
+//	}
 
 

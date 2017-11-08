@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 public class InstructorHome extends BasePage{
 
 	public InstructorHome() {
-		super("put url here");
+		super();
 	}
 	
 	public static WebElement InstructorDashboardName(WebDriver driver) {

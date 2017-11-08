@@ -10,12 +10,14 @@ public class BaseTest {
 	protected WebDriver driver;
 	
 	public BaseTest() {
-		System.setProperty("webdriver.gecko.driver","C:\\geckodriver-v0.19.0-win64\\geckodriver.exe");
+		System.setProperty("webdriver.gecko.driver","C:\\Users\\astri\\Desktop\\geckodriver.exe");
 		driver = new FirefoxDriver();
 		
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		//driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		
 		//Maximize the window
+		System.out.println("got here");
+		//driver.get("http://localhost/wechart/public/");
 		driver.manage().window().maximize();
 	}	
 
