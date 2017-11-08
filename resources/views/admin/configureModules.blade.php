@@ -84,7 +84,7 @@
                 <tbody style="overflow-x: scroll">
                 @if($mods->isEmpty())
                     <tr id="onetimedisplay">
-                        <td colspan="5" height="100" style="border: none">
+                        <td colspan="5" height="100" style="border: none; background-color:#F5F8FA">
                             <b>There are no active modules.<br> Please click the "Add Module" button to add module.</b>
                         </td>
                     </tr>
