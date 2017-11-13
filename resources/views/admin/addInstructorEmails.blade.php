@@ -80,7 +80,7 @@
 
              {{--if successfully submitted--}}
              @if($Error == 'No')
-                 <div class="alert alert-success alert-dismissable" id="positive_alert">
+                 <div class="alert alert-success alert-dismissable">
                      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                      @if ($counter == '1')
                          Success! Email address is saved in the database.
@@ -97,7 +97,7 @@
 <div>
  <script>       
         $(document).ready(function(){           
-            $("#positive_alert").fadeIn(5000);        
+            $(".alert").fadeOut(5000);        
 			});
         
   </script>
