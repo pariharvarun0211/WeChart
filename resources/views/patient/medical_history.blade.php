@@ -2,88 +2,91 @@
 
 @section('documentation_panel')
 
-    {{--Personal History--}}
-    <div class="container-fluid">
-        <div class="panel panel-default">
-            <div class="panel-heading" style="background-color: lightblue;padding-bottom: 0">
-                <h4 style="margin-top: 0">Personal History</h4>
-            </div>
-                <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="{{ route('personal_history') }}" id="personal_history_form">
-                        {{ csrf_field() }}
-                        <input id="module_id" name="module_id" type="hidden" value="{{ $patient->module_id }}">
-                        <input id="patient_id" name="patient_id" type="hidden" value="{{ $patient->patient_id }}">
-                        <input type=hidden id="user_id" name="user_id" value="{{ Auth::user()->id }}">
-                        <div class="container-fluid">
-                        {{--Panel--}}
-                        <div class="row">
-                            <div class="col-md-12 ">
-                                <table class="table table-striped table-bordered table-hover">
-                                    <thead>
-                                    <tr class="bg-info">
-                                        <th>List of Diagnosis</th>
-                                        <th colspan="2"></th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    @foreach ($diagnosis_list_personal_history as $diagnosis)
-                                        <tr>
-                                            <td><p><?php echo ($diagnosis->value); ?></p></td>
-                                            <td style="text-align: right">
-                                                <button id="_delete" class="btn btn-danger btn-sm">
-                                                    Delete </button>
-                                            </td>
+    @if(in_array("3", $navIds))
+        {{--Personal History--}}
+        <div class="container-fluid">
+            <div class="panel panel-default">
+                <div class="panel-heading" style="background-color: lightblue;padding-bottom: 0">
+                    <h4 style="margin-top: 0">Personal History</h4>
+                </div>
+                    <div class="panel-body">
+                        <form class="form-horizontal" method="POST" action="{{ route('personal_history') }}" id="personal_history_form">
+                            {{ csrf_field() }}
+                            <input id="module_id" name="module_id" type="hidden" value="{{ $patient->module_id }}">
+                            <input id="patient_id" name="patient_id" type="hidden" value="{{ $patient->patient_id }}">
+                            <input type=hidden id="user_id" name="user_id" value="{{ Auth::user()->id }}">
+                            <div class="container-fluid">
+                            {{--Panel--}}
+                            <div class="row">
+                                <div class="col-md-12 ">
+                                    <table class="table table-striped table-bordered table-hover">
+                                        <thead>
+                                        <tr class="bg-info">
+                                            <th>List of Diagnosis</th>
+                                            <th colspan="2"></th>
                                         </tr>
-                                    @endforeach
-                                    </tbody>
-                                </table>
+                                        </thead>
+                                        <tbody>
+                                        @foreach ($diagnosis_list_personal_history as $diagnosis)
+                                            <tr>
+                                                <td><p><?php echo ($diagnosis->value); ?></p></td>
+                                                <td style="text-align: right">
+                                                    <button id="_delete" class="btn btn-danger btn-sm">
+                                                        Delete </button>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
-                        </div>
-                        <br>
-                        <!-- Search For Diagnosis -->
-                        <div class="row">
-                            <div class="col-md-2">
-                                <label for="Diagnosis"> Diagnosis:</label>
-                            </div>
-                            <div class="col-md-6 ">
-                                <select id="search_diagnosis_personal_history" class="js-example-basic-multiple js-states form-control " name="search_diagnosis_personal_history[]" multiple></select>
-                            </div>
-                        </div>
-                        <br>
-                        <!-- Comment box -->
-                        <div class="row">
+                            <br>
+                            <!-- Search For Diagnosis -->
+                            <div class="row">
                                 <div class="col-md-2">
-                                    <label for="Comment"> Comments:</label>
+                                    <label for="Diagnosis"> Diagnosis:</label>
                                 </div>
-                                <div class="col-md-10">
-                                    @if(!count($personal_history_comment)>0)
-                                        <textarea rows="4" id="personal_history_comment" name="personal_history_comment" style="width: 575px">
-                                             </textarea>
-                                    @else
-                                        <textarea rows="4" id="personal_history_comment" name="personal_history_comment" style="width: 575px">
-                                        {{$personal_history_comment[0]->value}}</textarea>
-                                    @endif
+                                <div class="col-md-6 ">
+                                    <select id="search_diagnosis_personal_history" class="js-example-basic-multiple js-states form-control " name="search_diagnosis_personal_history[]" multiple></select>
                                 </div>
                             </div>
-                        <br>
-                        {{--Buttons--}}
-                        <div class="row">
-                    <div class="col-md-12" >
-                        <button type="submit" id="btn_save_personal_history" class="btn btn-primary" style="float: right">
-                            Save Personal History
-                        </button>
-                    </div>
-                </div>
+                            <br>
+                            <!-- Comment box -->
+                            <div class="row">
+                                    <div class="col-md-2">
+                                        <label for="Comment"> Comments:</label>
+                                    </div>
+                                    <div class="col-md-10">
+                                        @if(!count($personal_history_comment)>0)
+                                            <textarea rows="4" id="personal_history_comment" name="personal_history_comment" style="width: 575px">
+                                                 </textarea>
+                                        @else
+                                            <textarea rows="4" id="personal_history_comment" name="personal_history_comment" style="width: 575px">
+                                            {{$personal_history_comment[0]->value}}</textarea>
+                                        @endif
+                                    </div>
+                                </div>
+                            <br>
+                            {{--Buttons--}}
+                            <div class="row">
+                        <div class="col-md-12" >
+                            <button type="submit" id="btn_save_personal_history" class="btn btn-primary" style="float: right">
+                                Save Personal History
+                            </button>
                         </div>
-                    </form>
-                </div>
+                    </div>
+                            </div>
+                        </form>
+                    </div>
 
+            </div>
         </div>
-    </div>
-    <hr style="border:solid">
+        <hr style="border:solid">
+    @endif
 
-    {{--Family History--}}
-    <div class="container-fluid" id="family_history">
+    @if(in_array("4", $navIds))
+        {{--Family History--}}
+        <div class="container-fluid" id="family_history">
         <div class="panel panel-default">
             <div class="panel-heading" style="background-color: lightblue;padding-bottom: 0">
                 <h4 style="margin-top: 0">Family History</h4>
@@ -202,90 +205,94 @@
             </div>
         </div>
     </div>
-    <hr style="border: solid">
+        <hr style="border: solid">
+    @endif
 
-    {{--Surgical History--}}
-    <div class="container-fluid" id="surgical_history">
-        <div class="panel panel-default">
-            <div class="panel-heading" style="background-color: lightblue;padding-bottom: 0">
-                <h4 style="margin-top: 0">Surgical History</h4>
-            </div>
-            <div class="panel-body">
-                <form class="form-horizontal" method="POST" action="{{ route('surgical_history') }}" id="surgical_history_form">
-                    {{ csrf_field() }}
-                    <input id="module_id" name="module_id" type="hidden" value="{{ $patient->module_id }}">
-                    <input id="patient_id" name="patient_id" type="hidden" value="{{ $patient->patient_id }}">
-                    <input type=hidden id="user_id" name="user_id" value="{{ Auth::user()->id }}">
-                    <div class="container-fluid">
-                        {{--Panel--}}
-                        <div class="row">
-                            <div class="col-md-12 ">
-                                <table class="table table-striped table-bordered table-hover">
-                                    <thead>
-                                    <tr class="bg-info">
-                                        <th>List of Diagnosis</th>
-                                        <th colspan="2"></th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    @foreach ($diagnosis_list_surgical_history as $diagnosis)
-                                        <tr>
-                                            <td><p><?php echo ($diagnosis->value); ?></p></td>
-                                            <td style="text-align: right">
-                                                <button id="_delete" class="btn btn-danger btn-sm">
-                                                    Delete </button>
-                                            </td>
+    @if(in_array("5", $navIds))
+        {{--Surgical History--}}
+        <div class="container-fluid" id="surgical_history">
+            <div class="panel panel-default">
+                <div class="panel-heading" style="background-color: lightblue;padding-bottom: 0">
+                    <h4 style="margin-top: 0">Surgical History</h4>
+                </div>
+                <div class="panel-body">
+                    <form class="form-horizontal" method="POST" action="{{ route('surgical_history') }}" id="surgical_history_form">
+                        {{ csrf_field() }}
+                        <input id="module_id" name="module_id" type="hidden" value="{{ $patient->module_id }}">
+                        <input id="patient_id" name="patient_id" type="hidden" value="{{ $patient->patient_id }}">
+                        <input type=hidden id="user_id" name="user_id" value="{{ Auth::user()->id }}">
+                        <div class="container-fluid">
+                            {{--Panel--}}
+                            <div class="row">
+                                <div class="col-md-12 ">
+                                    <table class="table table-striped table-bordered table-hover">
+                                        <thead>
+                                        <tr class="bg-info">
+                                            <th>List of Diagnosis</th>
+                                            <th colspan="2"></th>
                                         </tr>
-                                    @endforeach
-                                    </tbody>
-                                </table>
+                                        </thead>
+                                        <tbody>
+                                        @foreach ($diagnosis_list_surgical_history as $diagnosis)
+                                            <tr>
+                                                <td><p><?php echo ($diagnosis->value); ?></p></td>
+                                                <td style="text-align: right">
+                                                    <button id="_delete" class="btn btn-danger btn-sm">
+                                                        Delete </button>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <br>
+                            <!-- Search For Diagnosis -->
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <label for="Diagnosis"> Diagnosis:</label>
+                                </div>
+                                <div class="col-md-6 ">
+                                    <select id="search_diagnosis_surgical_history" class="js-example-basic-multiple js-states form-control " name="search_diagnosis_surgical_history[]" multiple></select>
+                                </div>
+                            </div>
+                            <br>
+                            <!-- Comment box -->
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <label for="Comment"> Comments:</label>
+                                </div>
+                                <div class="col-md-10">
+                                    @if(!count($surgical_history_comment)>0)
+                                        <textarea rows="4" id="surgical_history_comment" name="surgical_history_comment" style="width: 575px">
+                                                 </textarea>
+                                    @else
+                                        <textarea rows="4" id="surgical_history_comment" name="surgical_history_comment" style="width: 575px">
+                                            {{$surgical_history_comment[0]->value}}</textarea>
+                                    @endif
+                                </div>
+                            </div>
+                            <br>
+                            {{--Buttons--}}
+                            <div class="row">
+                                <div class="col-md-12" >
+                                    <button type="submit" id="btn_save_surgical_history" class="btn btn-primary" style="float: right">
+                                        Save Surgical History
+                                    </button>
+                                </div>
                             </div>
                         </div>
-                        <br>
-                        <!-- Search For Diagnosis -->
-                        <div class="row">
-                            <div class="col-md-2">
-                                <label for="Diagnosis"> Diagnosis:</label>
-                            </div>
-                            <div class="col-md-6 ">
-                                <select id="search_diagnosis_surgical_history" class="js-example-basic-multiple js-states form-control " name="search_diagnosis_surgical_history[]" multiple></select>
-                            </div>
-                        </div>
-                        <br>
-                        <!-- Comment box -->
-                        <div class="row">
-                            <div class="col-md-2">
-                                <label for="Comment"> Comments:</label>
-                            </div>
-                            <div class="col-md-10">
-                                @if(!count($surgical_history_comment)>0)
-                                    <textarea rows="4" id="surgical_history_comment" name="surgical_history_comment" style="width: 575px">
-                                             </textarea>
-                                @else
-                                    <textarea rows="4" id="surgical_history_comment" name="surgical_history_comment" style="width: 575px">
-                                        {{$surgical_history_comment[0]->value}}</textarea>
-                                @endif
-                            </div>
-                        </div>
-                        <br>
-                        {{--Buttons--}}
-                        <div class="row">
-                            <div class="col-md-12" >
-                                <button type="submit" id="btn_save_surgical_history" class="btn btn-primary" style="float: right">
-                                    Save Surgical History
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
+
             </div>
-
         </div>
-    </div>
-    <hr style="border:solid">
+        <hr style="border:solid">
+    @endif
 
-    {{--Social History--}}
-    <div class="container-fluid">
+    @if(in_array("6", $navIds))
+        {{--Social History--}}
+        <div class="container-fluid" id="social_history">
         <div class="panel panel-default">
             <div class="panel-heading" style="background-color: lightblue;padding-bottom: 0">
                 <h4 style="margin-top: 0">Social History</h4>
@@ -397,6 +404,7 @@
             </div>
         </div>
     </div>
+    @endif
 
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />    

@@ -1,9 +1,7 @@
 <?php
-
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-
 class CreateDocLookupValueTable extends Migration
 {
     /**
@@ -21,15 +19,12 @@ class CreateDocLookupValueTable extends Migration
             $table->integer('updated_by')->unsigned()->nullable();
             $table->timestamps();
         });
-
         Schema::table('doc_lookup_value', function (Blueprint $table) {
             $table->foreign('doc_control_id')->references('doc_control_id')->on('doc_control');
         });
-
         Schema::table('doc_lookup_value', function (Blueprint $table) {
             $table->foreign('lookup_value_id')->references('lookup_value_id')->on('lookup_value');
         });
-
         /*  We are no longer including demographics in active record
                 //Inserting record for documentation-male relation
                 DB::table('doc_lookup_value')->insert(
@@ -40,7 +35,6 @@ class CreateDocLookupValueTable extends Migration
                         'created_by' => 1
                         )
                     );
-
                 //Inserting record for female
                 DB::table('doc_lookup_value')->insert(
                     array(
@@ -51,7 +45,6 @@ class CreateDocLookupValueTable extends Migration
                         )
                     );
         */
-
         //Inserting record for Smoke Tobacco - YES
         DB::table('doc_lookup_value')->insert(
             array(
@@ -61,7 +54,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         //Inserting record for Smoke Tobacco - NO
         DB::table('doc_lookup_value')->insert(
             array(
@@ -71,7 +63,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         //Inserting record for Non-Smoke Tobacco - YES
         DB::table('doc_lookup_value')->insert(
             array(
@@ -81,7 +72,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         //Inserting record for Non-Smoke Tobacco - NO
         DB::table('doc_lookup_value')->insert(
             array(
@@ -91,7 +81,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         //Inserting record for Alcohol - YES
         DB::table('doc_lookup_value')->insert(
             array(
@@ -101,7 +90,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         //Inserting record for Alcohol - NO
         DB::table('doc_lookup_value')->insert(
             array(
@@ -111,7 +99,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         //Inserting record for Sexual Activity - Active
         DB::table('doc_lookup_value')->insert(
             array(
@@ -121,7 +108,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         //Inserting record for Sexual Activity - Not active
         DB::table('doc_lookup_value')->insert(
             array(
@@ -131,7 +117,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         //Inserting record for Family Member - Status - Alive
         DB::table('doc_lookup_value')->insert(
             array(
@@ -141,7 +126,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         //Inserting record for Family Member - Status - Deceased
         DB::table('doc_lookup_value')->insert(
             array(
@@ -151,7 +135,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         //Inserting record for ROS - Constitution
         DB::table('doc_lookup_value')->insert(
             array(
@@ -161,7 +144,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         DB::table('doc_lookup_value')->insert(
             array(
                 'doc_control_id' => 25,		//ROS - Constitution
@@ -170,7 +152,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         DB::table('doc_lookup_value')->insert(
             array(
                 'doc_control_id' => 25,		//ROS - Constitution
@@ -179,7 +160,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         DB::table('doc_lookup_value')->insert(
             array(
                 'doc_control_id' => 25,		//ROS - Constitution
@@ -188,7 +168,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         DB::table('doc_lookup_value')->insert(
             array(
                 'doc_control_id' => 25,		//ROS - Constitution
@@ -197,7 +176,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         DB::table('doc_lookup_value')->insert(
             array(
                 'doc_control_id' => 25,		//ROS - Constitution
@@ -206,7 +184,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         //Inserting record for ROS - HENT
         DB::table('doc_lookup_value')->insert(
             array(
@@ -216,7 +193,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         DB::table('doc_lookup_value')->insert(
             array(
                 'doc_control_id' => 27,			//ROS - HENT
@@ -225,7 +201,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         DB::table('doc_lookup_value')->insert(
             array(
                 'doc_control_id' => 27,			//ROS - HENT
@@ -234,7 +209,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         DB::table('doc_lookup_value')->insert(
             array(
                 'doc_control_id' => 27,			//ROS - HENT
@@ -243,7 +217,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         DB::table('doc_lookup_value')->insert(
             array(
                 'doc_control_id' => 27,			//ROS - HENT
@@ -252,7 +225,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         DB::table('doc_lookup_value')->insert(
             array(
                 'doc_control_id' => 27,			//ROS - HENT
@@ -261,7 +233,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         DB::table('doc_lookup_value')->insert(
             array(
                 'doc_control_id' => 27,			//ROS - HENT
@@ -270,7 +241,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         //Inserting record for ROS - Eyes
         DB::table('doc_lookup_value')->insert(
             array(
@@ -280,7 +250,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         DB::table('doc_lookup_value')->insert(
             array(
                 'doc_control_id' => 29,			//ROS - Eyes
@@ -289,7 +258,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         DB::table('doc_lookup_value')->insert(
             array(
                 'doc_control_id' => 29,			//ROS - Eyes
@@ -298,7 +266,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         DB::table('doc_lookup_value')->insert(
             array(
                 'doc_control_id' => 29,			//ROS - Eyes
@@ -307,7 +274,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         //Inserting record for ROS - Respiratory
         DB::table('doc_lookup_value')->insert(
             array(
@@ -317,7 +283,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         DB::table('doc_lookup_value')->insert(
             array(
                 'doc_control_id' => 31,			//ROS - Respiratory
@@ -326,7 +291,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         DB::table('doc_lookup_value')->insert(
             array(
                 'doc_control_id' => 31,			//ROS - Respiratory
@@ -335,7 +299,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         DB::table('doc_lookup_value')->insert(
             array(
                 'doc_control_id' => 31,			//ROS - Respiratory
@@ -344,7 +307,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         //Inserting record for ROS - Cardiovascular
         DB::table('doc_lookup_value')->insert(
             array(
@@ -354,7 +316,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         DB::table('doc_lookup_value')->insert(
             array(
                 'doc_control_id' => 33,			//ROS - Cardiovascular
@@ -363,7 +324,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         //Inserting record for ROS - Musculoskeletal
         DB::table('doc_lookup_value')->insert(
             array(
@@ -373,7 +333,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         DB::table('doc_lookup_value')->insert(
             array(
                 'doc_control_id' => 35,			//ROS - Musculoskeletal
@@ -382,7 +341,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         DB::table('doc_lookup_value')->insert(
             array(
                 'doc_control_id' => 35,			//ROS - Musculoskeletal
@@ -391,7 +349,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         DB::table('doc_lookup_value')->insert(
             array(
                 'doc_control_id' => 35,			//ROS - Musculoskeletal
@@ -400,7 +357,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         //Inserting record for ROS - Integumentary
         DB::table('doc_lookup_value')->insert(
             array(
@@ -410,7 +366,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         DB::table('doc_lookup_value')->insert(
             array(
                 'doc_control_id' => 37,			//ROS - Integumentary
@@ -419,7 +374,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         DB::table('doc_lookup_value')->insert(
             array(
                 'doc_control_id' => 37,			//ROS - Integumentary
@@ -428,7 +382,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         //Inserting record for ROS - Neurological
         DB::table('doc_lookup_value')->insert(
             array(
@@ -438,7 +391,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         DB::table('doc_lookup_value')->insert(
             array(
                 'doc_control_id' => 39,			//ROS - Neurological
@@ -447,7 +399,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         DB::table('doc_lookup_value')->insert(
             array(
                 'doc_control_id' => 39,			//ROS - Neurological
@@ -456,7 +407,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         DB::table('doc_lookup_value')->insert(
             array(
                 'doc_control_id' => 39,			//ROS - Neurological
@@ -465,7 +415,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         DB::table('doc_lookup_value')->insert(
             array(
                 'doc_control_id' => 39,			//ROS - Neurological
@@ -474,7 +423,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         DB::table('doc_lookup_value')->insert(
             array(
                 'doc_control_id' => 39,			//ROS - Neurological
@@ -483,7 +431,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         //Inserting record for ROS - Psycological
         DB::table('doc_lookup_value')->insert(
             array(
@@ -493,7 +440,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         DB::table('doc_lookup_value')->insert(
             array(
                 'doc_control_id' => 41,			//ROS - Psycological
@@ -502,7 +448,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         DB::table('doc_lookup_value')->insert(
             array(
                 'doc_control_id' => 41,			//ROS - Psycological
@@ -511,7 +456,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         DB::table('doc_lookup_value')->insert(
             array(
                 'doc_control_id' => 41,			//ROS - Psycological
@@ -520,7 +464,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         DB::table('doc_lookup_value')->insert(
             array(
                 'doc_control_id' => 41,			//ROS - Psycological
@@ -529,7 +472,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         DB::table('doc_lookup_value')->insert(
             array(
                 'doc_control_id' => 41,			//ROS - Psycological
@@ -538,7 +480,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         //Inserting record for PE - Constitution
         DB::table('doc_lookup_value')->insert(
             array(
@@ -548,7 +489,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         DB::table('doc_lookup_value')->insert(
             array(
                 'doc_control_id' => 43,			//PE - Constitution
@@ -557,7 +497,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         //Inserting record for PE - HENT
         DB::table('doc_lookup_value')->insert(
             array(
@@ -567,7 +506,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         DB::table('doc_lookup_value')->insert(
             array(
                 'doc_control_id' => 45,			//PE - HENT
@@ -576,7 +514,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         DB::table('doc_lookup_value')->insert(
             array(
                 'doc_control_id' => 45,			//PE - HENT
@@ -585,7 +522,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         DB::table('doc_lookup_value')->insert(
             array(
                 'doc_control_id' => 45,			//PE - HENT
@@ -594,7 +530,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         DB::table('doc_lookup_value')->insert(
             array(
                 'doc_control_id' => 45,			//PE - HENT
@@ -603,7 +538,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         DB::table('doc_lookup_value')->insert(
             array(
                 'doc_control_id' => 45,			//PE - HENT
@@ -612,7 +546,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         //Inserting record for PE - Eyes
         DB::table('doc_lookup_value')->insert(
             array(
@@ -622,7 +555,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         DB::table('doc_lookup_value')->insert(
             array(
                 'doc_control_id' => 47,			//PE - Eyes
@@ -631,7 +563,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         DB::table('doc_lookup_value')->insert(
             array(
                 'doc_control_id' => 47,			//PE - Eyes
@@ -640,7 +571,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         DB::table('doc_lookup_value')->insert(
             array(
                 'doc_control_id' => 47,			//PE - Eyes
@@ -649,7 +579,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         //Inserting record for PE - Respiratory
         DB::table('doc_lookup_value')->insert(
             array(
@@ -659,7 +588,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         DB::table('doc_lookup_value')->insert(
             array(
                 'doc_control_id' => 49,			//PE - Respiratory
@@ -668,7 +596,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         DB::table('doc_lookup_value')->insert(
             array(
                 'doc_control_id' => 49,			//PE - Respiratory
@@ -677,7 +604,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         DB::table('doc_lookup_value')->insert(
             array(
                 'doc_control_id' => 49,			//PE - Respiratory
@@ -686,7 +612,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         DB::table('doc_lookup_value')->insert(
             array(
                 'doc_control_id' => 49,			//PE - Respiratory
@@ -695,7 +620,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         //Inserting record for PE - Cardiovascular
         DB::table('doc_lookup_value')->insert(
             array(
@@ -705,7 +629,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         DB::table('doc_lookup_value')->insert(
             array(
                 'doc_control_id' => 51,			//PE - Cardiovascular
@@ -714,7 +637,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         DB::table('doc_lookup_value')->insert(
             array(
                 'doc_control_id' => 51,			//PE - Cardiovascular
@@ -723,7 +645,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         DB::table('doc_lookup_value')->insert(
             array(
                 'doc_control_id' => 51,			//PE - Cardiovascular
@@ -732,7 +653,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         //Inserting record for PE - Musculoskeletal
         DB::table('doc_lookup_value')->insert(
             array(
@@ -742,7 +662,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         DB::table('doc_lookup_value')->insert(
             array(
                 'doc_control_id' => 53,			//PE - Musculoskeletal
@@ -751,7 +670,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         DB::table('doc_lookup_value')->insert(
             array(
                 'doc_control_id' => 53,			//PE - Musculoskeletal
@@ -760,7 +678,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         DB::table('doc_lookup_value')->insert(
             array(
                 'doc_control_id' => 53,			//PE - Musculoskeletal
@@ -769,7 +686,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         DB::table('doc_lookup_value')->insert(
             array(
                 'doc_control_id' => 53,			//PE - Musculoskeletal
@@ -778,7 +694,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         //Inserting record for PE - Integumentary
         DB::table('doc_lookup_value')->insert(
             array(
@@ -788,7 +703,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         DB::table('doc_lookup_value')->insert(
             array(
                 'doc_control_id' => 55,			//PE - Integumentary
@@ -797,7 +711,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         DB::table('doc_lookup_value')->insert(
             array(
                 'doc_control_id' => 55,			//PE - Integumentary
@@ -806,7 +719,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         DB::table('doc_lookup_value')->insert(
             array(
                 'doc_control_id' => 55,			//PE - Integumentary
@@ -815,7 +727,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         //Inserting record for PE - Neurological
         DB::table('doc_lookup_value')->insert(
             array(
@@ -825,7 +736,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         DB::table('doc_lookup_value')->insert(
             array(
                 'doc_control_id' => 57,			//PE - Neurological
@@ -834,7 +744,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         DB::table('doc_lookup_value')->insert(
             array(
                 'doc_control_id' => 57,			//PE - Neurological
@@ -843,7 +752,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         DB::table('doc_lookup_value')->insert(
             array(
                 'doc_control_id' => 57,			//PE - Neurological
@@ -852,7 +760,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         DB::table('doc_lookup_value')->insert(
             array(
                 'doc_control_id' => 57,			//PE - Neurological
@@ -861,7 +768,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         //Inserting record for PE - Psycological
         DB::table('doc_lookup_value')->insert(
             array(
@@ -871,7 +777,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         DB::table('doc_lookup_value')->insert(
             array(
                 'doc_control_id' => 59,			//PE - Psycological
@@ -880,7 +785,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         DB::table('doc_lookup_value')->insert(
             array(
                 'doc_control_id' => 59,			//PE - Psycological
@@ -889,7 +793,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         DB::table('doc_lookup_value')->insert(
             array(
                 'doc_control_id' => 59,			//PE - Psycological
@@ -898,7 +801,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         //Inserting record for Disposition
         DB::table('doc_lookup_value')->insert(
             array(
@@ -908,7 +810,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         DB::table('doc_lookup_value')->insert(
             array(
                 'doc_control_id' => 63,			//Disposition
@@ -917,7 +818,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         DB::table('doc_lookup_value')->insert(
             array(
                 'doc_control_id' => 63,			//Disposition
@@ -926,7 +826,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         DB::table('doc_lookup_value')->insert(
             array(
                 'doc_control_id' => 63,			//Disposition
@@ -935,7 +834,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         DB::table('doc_lookup_value')->insert(
             array(
                 'doc_control_id' => 63,			//Disposition
@@ -944,7 +842,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         DB::table('doc_lookup_value')->insert(
             array(
                 'doc_control_id' => 63,			//Disposition
@@ -953,7 +850,6 @@ class CreateDocLookupValueTable extends Migration
                 'created_by' => 1
             )
         );
-
         DB::table('doc_lookup_value')->insert(
             array(
                 'doc_control_id' => 63,			//Disposition
@@ -963,8 +859,26 @@ class CreateDocLookupValueTable extends Migration
             )
         );
 
-    }
+        //Inserting record for ROS - Cardiovascular
+        DB::table('doc_lookup_value')->insert(
+            array(
+                'doc_control_id' => 33,			//ROS - Cardiovascular
+                'lookup_value_id' => 93,		//Leg Swelling
+                'sort_order_number' => 1,
+                'created_by' => 1
+            )
+        );
 
+        //Inserting record for ROS - Integumentary
+        DB::table('doc_lookup_value')->insert(
+            array(
+                'doc_control_id' => 37,			//ROS - Integumentary
+                'lookup_value_id' => 94,		//Color Changes
+                'sort_order_number' => 1,
+                'created_by' => 1
+            )
+        );
+    }
     /**
      * Reverse the migrations.
      *

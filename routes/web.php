@@ -55,6 +55,8 @@ Route::post('deletemodule/{modid}', 'AdminController@deletemodule')->name('delet
 //Landing page for Student
 Route::get('/StudentHome', 'StudentController@index')->name('student.home');
 Route::get('/PatientView/{patient_id}', 'StudentController@view_patient')->name('patient.view');
+Route::get('/PatientPreview/{patient_id}', 'NavigationController@get_preview')->name('patient_preview');
+Route::get('/Patient_pdf/{patient_id}', 'NavigationController@generate_pdf')->name('pdf_generate');
 Route::get('/PatientDelete/{id}', 'StudentController@destroy')->name('patient.destroy');
 
 //Patient routes
@@ -70,6 +72,10 @@ Route::get('/HPI/{id}', 'NavigationController@get_HPI')->name('History of Presen
 Route::post('HPI', 'DocumentationController@post_HPI')->name('post_HPI');
 
 Route::get('/Medical_History/{id}', 'NavigationController@get_medical_history')->name('Medical History');
+Route::get('/Medical_History/{id}/#personal_history')->name('Personal History (PMHx)2');
+Route::get('/Medical_History/{id}/#family_history')->name('Family History (FMHx)2');
+Route::get('/Medical_History/{id}/#social_history')->name('Social History (SHx)2');
+Route::get('/Medical_History/{id}/#surgical_history')->name('Surgical History2');
 Route::post('social_history}', 'DocumentationController@post_social_history')->name('social_history');
 Route::post('family_history}', 'DocumentationController@post_family_history')->name('family_history');
 Route::post('personal_history}', 'DocumentationController@post_personal_history')->name('personal_history');
@@ -83,7 +89,29 @@ Route::post('post_vital_signs', 'DocumentationController@post_vital_signs');
 Route::post('delete_vital_signs/{ts}', 'DocumentationController@delete_vital_signs')->name('delete_vital_signs');
 
 Route::get('/Review_of_System (ROS)/{id}', 'NavigationController@get_ROS')->name('Review of System (ROS)');
+Route::get('/Review_of_System (ROS)/{id}/#constitutional')->name('Constitutional9');
+Route::get('/Review_of_System (ROS)/{id}/#hent')->name('HENT9');
+Route::get('/Review_of_System (ROS)/{id}/#eyes')->name('Eyes9');
+Route::get('/Review_of_System (ROS)/{id}/#respiratory')->name('Respiratory9');
+Route::get('/Review_of_System (ROS)/{id}/#cardiovascular')->name('Cardiovascular9');
+Route::get('/Review_of_System (ROS)/{id}/#musculoskeletal')->name('Musculoskeletal9');
+Route::get('/Review_of_System (ROS)/{id}/#integumentary')->name('Integumentary9');
+Route::get('/Review_of_System (ROS)/{id}/#neurological')->name('Neurological9');
+Route::get('/Review_of_System (ROS)/{id}/#psychological')->name('Psychological9');
+
+
 Route::get('/Physical_Exam/{id}', 'NavigationController@get_physical_exams')->name('Physical Exam');
+Route::get('/Physical_Exam/{id}/#constitutional')->name('Constitutional19');
+Route::get('/Physical_Exam/{id}/#hent')->name('HENT19');
+Route::get('/Physical_Exam/{id}/#eyes')->name('Eyes19');
+Route::get('/Physical_Exam/{id}/#respiratory')->name('Respiratory19');
+Route::get('/Physical_Exam/{id}/#cardiovascular')->name('Cardiovascular19');
+Route::get('/Physical_Exam/{id}/#musculoskeletal')->name('Musculoskeletal19');
+Route::get('/Physical_Exam/{id}/#integumentary')->name('Integumentary19');
+Route::get('/Physical_Exam/{id}/#neurological')->name('Neurological19');
+Route::get('/Physical_Exam/{id}/#psychological')->name('Psychological19');
+
+Route::post('Psychological', 'DocumentationController@post_psychological')->name('Psychological');
 
 Route::get('/Orders/{id}', 'NavigationController@get_orders')->name('Orders');
 Route::post('post_orders}', 'DocumentationController@post_orders')->name('post_orders');

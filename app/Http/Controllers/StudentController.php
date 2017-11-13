@@ -32,7 +32,7 @@ class StudentController extends Controller
                 ->where('completed_flag',false)
                 ->get();
             $submitted_patients = patient::where('created_by', Auth::user()->id)
-                ->where('completed_flag',true)
+                ->where('completed_flag',false)
                 ->get();
 
             if(!empty($saved_patients)) {
@@ -142,8 +142,8 @@ class StudentController extends Controller
                //Validating input data
                 $this->validate($request, [
                     'age' => 'required|numeric',
-                    'height' => 'required|numeric',
-                    'weight' => 'required|numeric',
+//                    'height' => 'required|numeric',
+//                    'weight' => 'required|numeric',
                     'room_number' => 'required',
                     'visit_date' => 'required|date|date_format:Y-m-d|before:today',
                 ]);
@@ -163,8 +163,8 @@ class StudentController extends Controller
                 $patient['archived'] = false;
                 $patient['completed_flag'] = false;
                 $patient['module_id'] = $request['module_id'];
-                $patient['height'] = $request['height'] ." ". $request['height_unit'];
-                $patient['weight'] = $request['weight'] ." ". $request['weight_unit'];
+//                $patient['height'] = $request['height'] ." ". $request['height_unit'];
+//                $patient['weight'] = $request['weight'] ." ". $request['weight_unit'];
                 $patient['room_number'] = $request['room_number'];
                 $patient['created_by'] = $request['user_id'];
                 $patient['updated_by'] = $request['user_id'];
@@ -191,4 +191,5 @@ class StudentController extends Controller
         }
 
     }
+
 }

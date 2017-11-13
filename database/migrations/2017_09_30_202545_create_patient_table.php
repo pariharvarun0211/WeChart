@@ -17,8 +17,8 @@ class CreatePatientTable extends Migration
             $table->string('last_name');
             $table->string('gender');
             $table->integer('age');
-            $table->string('height');
-            $table->string('weight');
+            $table->string('height')->nullable();
+            $table->string('weight')->nullable();
             $table->string('room_number')->default(0);
             $table->string('visit_date');
             $table->string('submitted_date')->nullable();

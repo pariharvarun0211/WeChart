@@ -20,8 +20,6 @@ use App\active_record;
 use App\doc_lookup_value;
 use App\doc_control;
 
-
-
 class DocumentationController extends Controller
 {
     //Below four are autocomplete search methods
@@ -97,7 +95,6 @@ class DocumentationController extends Controller
         return \Response::json($formatted_lookups);
     }
 
-
     public function post_Demographics(Request $request)
     {
         $role='';
@@ -111,8 +108,8 @@ class DocumentationController extends Controller
                 $this->validate($request, [
                     'age' => 'required|numeric',
                     'room_number' => 'required',
-                    'height' => 'required|numeric',
-                    'weight' => 'required|numeric',
+//                    'height' => 'required|numeric',
+//                    'weight' => 'required|numeric',
                 ]);
                 $patient = patient::where('patient_id', $request['patient_id'])->first();
                 //if sex is male then first name is John else Jane
@@ -128,8 +125,8 @@ class DocumentationController extends Controller
                 $patient->gender = $request->gender;
                 $patient->room_number = $request->room_number;
                 $patient->age = $request->age;
-                $patient['height'] = $request['height'] ." ". $request['height_unit'];
-                $patient['weight'] = $request['weight'] ." ". $request['weight_unit'];
+//                $patient['height'] = $request['height'] ." ". $request['height_unit'];
+//                $patient['weight'] = $request['weight'] ." ". $request['weight_unit'];
                 $patient->save();
 
                 return redirect()->route('Demographics',[$patient->patient_id]);
@@ -143,7 +140,6 @@ class DocumentationController extends Controller
             return view('auth/not_authorized');
         }
     }
-
     public function post_HPI(Request $request)
     {
         $role='';
@@ -188,7 +184,6 @@ class DocumentationController extends Controller
         }
 
     }
-
     public function post_results(Request $request)
     {
         $role='';
@@ -233,7 +228,6 @@ class DocumentationController extends Controller
         }
 
     }
-
     public function post_orders(Request $request)
     {
         $role='';
@@ -312,20 +306,20 @@ class DocumentationController extends Controller
         $image = active_record::find($id);
         $patient_id = $image->patient_id;
         $image->delete();
-
         //Now redirecting back to the orders page
         return redirect()->route('Orders',$patient_id);
     }
     public function delete_lab_order($id)
     {
+        Log::info('Aditya1'.$id);
         $lab = active_record::find($id);
+        Log::info('Aditya2'.$lab);
         $patient_id = $lab->patient_id;
         $lab->delete();
-
+        Log::info('Aditya3');
         //Now redirecting back to the orders page
         return redirect()->route('Orders',$patient_id);
     }
-
     public function post_social_history(Request $request)
     {
         $role='';
@@ -677,7 +671,6 @@ class DocumentationController extends Controller
         }
 
     }
-
     public function post_medications(Request $request)
     {
         $role='';
@@ -735,7 +728,6 @@ class DocumentationController extends Controller
         }
 
     }
-
     public function post_vital_signs(Request $request)
     {
         $role='';
@@ -872,5 +864,66 @@ class DocumentationController extends Controller
     else {
         return view('auth/not_authorized');
     }
+    }
+    public function post_psychological(Request $request)
+    {
+        $role='';
+        if(Auth::check()) {
+            $role = Auth::user()->role;
+        }
+
+        if($role == 'Student') {
+            try {
+                //First deleting all saved symptoms
+                active_record::where('patient_id', $request['patient_id'])
+                    ->where('navigation_id','28')->where('doc_control_id','59')->delete();
+
+                $psychological_symptoms = $request['$psychological_symptoms'];
+
+                //Now saving
+                foreach ((array)$psychological_symptoms as $key=>$psychological_symptom) {
+                    $active_record = new active_record();
+                    $active_record['patient_id'] = $request['patient_id'];
+                    $active_record['navigation_id'] = '28';
+                    $active_record['doc_control_id'] = '59';
+                    $active_record['value'] = $psychological_symptom;
+                    $active_record['created_by'] = $request['user_id'];
+                    $active_record['updated_by'] = $request['user_id'];
+                    $active_record->save();
+                }
+                //Saving comment
+                $comment_psychological_record = active_record::where('patient_id', $request['patient_id'])
+                    ->where('navigation_id','28')
+                    ->where('doc_control_id','60')->get();
+
+                if(!count($comment_psychological_record)>0)
+                {
+                    $active_record = new active_record();
+                    $active_record['patient_id'] = $request['patient_id'];
+                    $active_record['navigation_id'] = '28';
+                    $active_record['doc_control_id'] = '60';
+                    $active_record['value'] = $request['psychological_comment'];
+                    $active_record['created_by'] = $request['user_id'];
+                    $active_record['updated_by'] = $request['user_id'];
+                    $active_record->save();
+                }
+                else {
+                    $active_record = active_record::where('active_record_id', $comment_psychological_record[0]->active_record_id)->first();
+                    $active_record['value'] = $request['psychological_comment'];
+                    $active_record->save();
+                }
+
+                //Now redirecting to orders page
+                return redirect()->route('Physical Exam',[$request['patient_id']]);
+
+            } catch (\Exception $e) {
+                return view('errors/503');
+            }
+        }
+        else
+        {
+            return view('auth/not_authorized');
+        }
+
     }
 }

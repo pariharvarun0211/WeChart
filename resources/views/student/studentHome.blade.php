@@ -43,10 +43,10 @@
                                                     <th>Patient Name</th>
                                                     <th>Age</th>
                                                     <th>Sex</th>
-                                                    <th>Height</th>
-                                                    <th>Weight</th>
+                                                    {{--<th>Height</th>--}}
+                                                    {{--<th>Weight</th>--}}
                                                     <th>Visit Date</th>
-                                                    <th colspan="2">Action</th>
+                                                    <th colspan="2"></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -62,8 +62,8 @@
                                                                 </td>
                                                                 <td><p id="patientAge">{{$patient->age}}</p></td>
                                                                 <td><p id="patientSex">{{$patient->gender}}</p></td>
-                                                                <td><p id="patientHeight">{{$patient->height}}</p></td>
-                                                                <td><p id="patientWeight">{{$patient->weight}}</p></td>
+                                                                {{--<td><p id="patientHeight">{{$patient->height}}</p></td>--}}
+                                                                {{--<td><p id="patientWeight">{{$patient->weight}}</p></td>--}}
                                                                 <td><p id="visitDate">{{$patient->visit_date}}</p></td>
                                                                 <td style="text-align: left">
                                                                     <a href="{{ route( 'patient.view', ['patient_id' => $patient->patient_id ] ) }}" class="btn btn-primary" id="edit">View & Edit</a>
@@ -113,10 +113,10 @@
                                                         <th>Patient Name</th>
                                                         <th>Age</th>
                                                         <th>Sex</th>
-                                                        <th>Height</th>
-                                                        <th>Weight</th>
+                                                        {{--<th>Height</th>--}}
+                                                        {{--<th>Weight</th>--}}
                                                         <th>Visit Date</th>
-                                                        <th colspan="2">Action</th>
+                                                        <th colspan="3"></th>
                                                     </tr>
                                                     </thead>
                                                     <tbody>
@@ -132,12 +132,14 @@
                                                                     </td>
                                                                     <td><p id="patientAge">{{$patient->age}}</p></td>
                                                                     <td><p id="patientSex">{{$patient->gender}}</p></td>
-                                                                    <td><p id="patientHeight">{{$patient->height}}</p></td>
-                                                                    <td><p id="patientWeight">{{$patient->weight}}</p></td>
+                                                                    {{--<td><p id="patientHeight">{{$patient->height}}</p></td>--}}
+                                                                    {{--<td><p id="patientWeight">{{$patient->weight}}</p></td>--}}
                                                                     <td><p id="visitDate">{{$patient->visit_date}}</p></td>
                                                                     <td style="text-align: left">
-                                                                        <a href="{{ route( 'patient.view', ['patient_id' => $patient->patient_id ] ) }}" class="btn btn-primary" id="edit">View & Edit</a>
+                                                                        <a href="{{ route( 'patient.view', ['patient_id' => $patient->patient_id ] ) }}" class="btn btn-primary" id="view">View</a>
                                                                         <a class="btn btn-danger" id="delete"> Delete</a>
+                                                                        <a href="{{ route( 'pdf_generate', ['patient_id' => $patient->patient_id ] ) }}" class="btn btn-success" id="generate_report"> Generate PDF</a>
+                                                                        <a href="{{ route( 'patient_preview', ['patient_id' => $patient->patient_id ] ) }}" class="btn btn-primary" id="preview"> Preview </a>
                                                                     </td>
                                                                 </tr>
                                                             @endif

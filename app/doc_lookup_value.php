@@ -14,7 +14,7 @@ class doc_lookup_value extends Model
         return $this->hasMany('App\doc_control');
     }
 
-    public function lookup_value() {
+    public function lookup_values() {
         return $this->hasMany('App\lookup_value');
     }
 

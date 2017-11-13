@@ -20,7 +20,7 @@ class CreateActiveRecordTable extends Migration
             $table->integer('doc_control_id')->unsigned();
             $table->integer('doc_control_group')->nullable();
             $table->integer('doc_control_group_order')->nullable();
-            $table->string('value',5000)->nullable();
+            $table->string('value',16000)->nullable();
             $table->integer('created_by')->unsigned();
             $table->integer('updated_by')->unsigned()->nullable();
             $table->timestamps();

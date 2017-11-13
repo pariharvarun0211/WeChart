@@ -31,10 +31,20 @@
                             </li>
                         @else
                             <li class="list-group-item" style="padding-left: 20%">
-                                    {{$nav[0]->navigation_name}}
+                                <a id="{{$nav[0]->navigation_name}}_tab" href="{{ URL::route($nav[0]->navigation_name.$nav[0]->parent_id, $patient->patient_id)}}">
+                                    <b>{{ $nav[0]->navigation_name }}</b>
+                                </a>
                             </li>
                         @endif
                     @endforeach
+
+                    <li class="list-group-item">
+                        @if(!count($disposition)> 0)
+                            <a href="" class="btn btn-primary" id="submit-button" style="margin:auto; text-align:center; display:block; width:100%;" disabled>Submit</a>
+                        @else
+                            <a href="" class="btn btn-primary" id="submit-button" style="margin:auto; text-align:center; display:block; width:100%;">Submit</a>
+                        @endif
+                    </li>
                 </ul>
             </div>
 
