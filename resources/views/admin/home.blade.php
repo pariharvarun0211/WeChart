@@ -53,7 +53,7 @@
 
                                         {!! Form::hidden('case_id', $student->id, ['class' => 'form-control']) !!}
 
-                                        <button id="student_minus_delete" data-id='<?php echo $student->id ;?>' class="btn btn-danger btn-sm">
+                                        <button id="student_minus_delete" data-id='<?php echo $student->id ;?>' style="margin:auto;  text-align:center; display:block; width:100%;" class="btn btn-danger btn-sm">
                                             Delete </button>
 
                                         {!! Form::close() !!}
@@ -102,7 +102,7 @@
 
                                         {!! Form::hidden('case_id', $instructor->id, ['class' => 'form-control']) !!}
 
-                                        <button id="student_minus_delete" data-id='<?php echo $instructor->id ;?>' class="btn btn-danger btn-sm">
+                                        <button id="student_minus_delete" data-id='<?php echo $instructor->id ;?>' style="margin:auto;  text-align:center; display:block; width:100%;" class="btn btn-danger btn-sm">
                                             Delete </button>
 
                                         {!! Form::close() !!}

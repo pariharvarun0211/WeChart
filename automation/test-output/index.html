@@ -49,7 +49,7 @@
               <ul>
                 <li>
                   <a href="#" class="navigator-link " panel-name="test-xml-Default_suite">
-                    <span>C:\Users\Aditya\AppData\Local\Temp\testng-eclipse-981260408\testng-customsuite.xml</span>
+                    <span>C:\Users\astri\AppData\Local\Temp\testng-eclipse-1824843962\testng-customsuite.xml</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
@@ -102,7 +102,7 @@
                     <div class="method-list-content failed suite-Default_suite">
                       <span>
                         <img width="3%" src="failed.png"/>
-                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="Tests.LoginTests" hash-for-method="DataDrivenTests">DataDrivenTests</a> <!-- method navigator-link -->
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="Tests.VitalSignsTest" hash-for-method="testVitals(astril@gmail.com, testing, Jane Doe2, 123, 125, 65, 87, 102, F, 54, kgs, 99, inches, , , this is a ,...)">testVitals(astril@gmail.com, testing, Jane Doe2, 123, 125, 65, 87, 102, F, 54, kgs, 99, inches, , , this is a ,...)</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content failed suite-Default_suite -->
@@ -120,22 +120,39 @@
           <div class="suite-Default_suite-class-failed">
             <div class="main-panel-header rounded-window-top">
               <img src="failed.png"/>
-              <span class="class-name">Tests.LoginTests</span>
+              <span class="class-name">Tests.VitalSignsTest</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="DataDrivenTests">
-                  </a> <!-- DataDrivenTests -->
-                  <span class="method-name">DataDrivenTests</span>
-                  <div class="stack-trace">java.lang.NullPointerException: null value in entry: url=null
-	at com.google.common.collect.CollectPreconditions.checkEntryNotNull(CollectPreconditions.java:34)
-	at com.google.common.collect.SingletonImmutableBiMap.&lt;init&gt;(SingletonImmutableBiMap.java:42)
-	at com.google.common.collect.ImmutableBiMap.of(ImmutableBiMap.java:73)
-	at com.google.common.collect.ImmutableMap.of(ImmutableMap.java:123)
-	at org.openqa.selenium.remote.RemoteWebDriver.get(RemoteWebDriver.java:370)
-	at Repos.BasePage.GoToPageUrl(BasePage.java:13)
-	at Tests.LoginTests.DataDrivenTests(LoginTests.java:41)
+                  <a name="testVitals(astril@gmail.com, testing, Jane Doe2, 123, 125, 65, 87, 102, F, 54, kgs, 99, inches, , , this is a ,...)">
+                  </a> <!-- testVitals(astril@gmail.com, testing, Jane Doe2, 123, 125, 65, 87, 102, F, 54, kgs, 99, inches, , , this is a ,...) -->
+                  <span class="method-name">testVitals</span>
+                  <span class="parameters">(astril@gmail.com, testing, Jane Doe2, 123, 125, 65, 87, 102, F, 54, kgs, 99, inches, , , this is a , null)</span>
+                  <div class="stack-trace">org.openqa.selenium.NoSuchElementException: Unable to locate element: #btn_add_vital_signs
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;unknown&apos;, revision: &apos;unknown&apos;, time: &apos;unknown&apos;
+System info: host: &apos;DESKTOP-5U2AP0G&apos;, ip: &apos;10.12.0.65&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;1.8.0_144&apos;
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{moz:profile=C:\Users\astri\AppData\Local\Temp\rust_mozprofile.7lk0SzVzcsGv, rotatable=false, timeouts={implicit=0, pageLoad=300000, script=30000}, pageLoadStrategy=normal, moz:headless=false, platform=XP, specificationLevel=0, moz:accessibilityChecks=false, acceptInsecureCerts=false, browserVersion=56.0.1, platformVersion=10.0, moz:processID=13776, browserName=firefox, javascriptEnabled=true, platformName=XP}]
+Session ID: 738758ef-8f44-4346-a744-f2d91992f2f4
+*** Element info: {Using=id, value=btn_add_vital_signs}
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+	at java.lang.reflect.Constructor.newInstance(Unknown Source)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:185)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:120)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:164)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:82)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:646)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:416)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementById(RemoteWebDriver.java:462)
+	at org.openqa.selenium.By$ById.findElement(By.java:218)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:408)
+	at Repos.vitalSignsPage.addVital(vitalSignsPage.java:86)
+	at Tests.VitalSignsTest.testVitals(VitalSignsTest.java:99)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
@@ -170,7 +187,7 @@
         </div> <!-- panel Default_suite -->
         <div panel-name="test-xml-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">C:\Users\Aditya\AppData\Local\Temp\testng-eclipse-981260408\testng-customsuite.xml</span>
+            <span class="header-content">C:\Users\astri\AppData\Local\Temp\testng-eclipse-1824843962\testng-customsuite.xml</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <pre>
@@ -179,7 +196,7 @@
 &lt;suite guice-stage=&quot;DEVELOPMENT&quot; name=&quot;Default suite&quot;&gt;
   &lt;test verbose=&quot;2&quot; name=&quot;Default test&quot;&gt;
     &lt;classes&gt;
-      &lt;class name=&quot;Tests.LoginTests&quot;/&gt;
+      &lt;class name=&quot;Tests.VitalSignsTest&quot;/&gt;
     &lt;/classes&gt;
   &lt;/test&gt; &lt;!-- Default test --&gt;
 &lt;/suite&gt; &lt;!-- Default suite --&gt;
@@ -221,14 +238,14 @@ data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
 data.addRows(1);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'DataDrivenTests')
-data.setCell(0, 2, 'Tests.LoginTests')
-data.setCell(0, 3, 760);
+data.setCell(0, 1, 'testVitals')
+data.setCell(0, 2, 'Tests.VitalSignsTest')
+data.setCell(0, 3, 24048);
 window.suiteTableData['Default_suite']= { tableData: data, tableDiv: 'times-div-Default_suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 760 ms</span>
+              <span class="suite-total-time">Total running time: 24 seconds</span>
               <div id="times-div-Default_suite">
               </div> <!-- times-div-Default_suite -->
             </div> <!-- times-div -->
@@ -254,11 +271,11 @@ return data;
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="chronological-class">
-              <div class="chronological-class-name">Tests.LoginTests</div> <!-- chronological-class-name -->
+              <div class="chronological-class-name">Tests.VitalSignsTest</div> <!-- chronological-class-name -->
               <div class="test-method">
                 <img src="failed.png">
                 </img>
-                <span class="method-name">DataDrivenTests</span>
+                <span class="method-name">testVitals(astril@gmail.com, testing, Jane Doe2, 123, 125, 65, 87, 102, F, 54, kgs, 99, inches, , , this is a ,...)</span>
                 <span class="method-start">0 ms</span>
               </div> <!-- test-method -->
           </div> <!-- main-panel-content rounded-window-bottom -->

@@ -9,18 +9,34 @@
 <table>
 <tr><th>Test</th><th># Passed</th><th># Skipped</th><th># Failed</th><th>Time (ms)</th><th>Included Groups</th><th>Excluded Groups</th></tr>
 <tr><th colspan="7">Default suite</th></tr>
-<tr><td><a href="#t0">Default test</a></td><td class="num">0</td><td class="num">0</td><td class="num attn">1</td><td class="num">776</td><td></td><td></td></tr>
+<tr><td><a href="#t0">Default test</a></td><td class="num">0</td><td class="num">0</td><td class="num attn">1</td><td class="num">25,031</td><td></td><td></td></tr>
 </table>
-<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">Default suite</th></tr></tbody><tbody id="t0"><tr><th colspan="4">Default test &#8212; failed</th></tr><tr class="failedeven"><td rowspan="1">Tests.LoginTests</td><td><a href="#m0">DataDrivenTests</a></td><td rowspan="1">1506807192343</td><td rowspan="1">760</td></tr></tbody>
+<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">Default suite</th></tr></tbody><tbody id="t0"><tr><th colspan="4">Default test &#8212; failed</th></tr><tr class="failedeven"><td rowspan="1">Tests.VitalSignsTest</td><td><a href="#m0">testVitals</a></td><td rowspan="1">1510109027143</td><td rowspan="1">24048</td></tr></tbody>
 </table>
-<h2>Default test</h2><h3 id="m0">Tests.LoginTests#DataDrivenTests</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">java.lang.NullPointerException: null value in entry: url=null
-	at com.google.common.collect.CollectPreconditions.checkEntryNotNull(CollectPreconditions.java:34)
-	at com.google.common.collect.SingletonImmutableBiMap.&lt;init&gt;(SingletonImmutableBiMap.java:42)
-	at com.google.common.collect.ImmutableBiMap.of(ImmutableBiMap.java:73)
-	at com.google.common.collect.ImmutableMap.of(ImmutableMap.java:123)
-	at org.openqa.selenium.remote.RemoteWebDriver.get(RemoteWebDriver.java:370)
-	at Repos.BasePage.GoToPageUrl(BasePage.java:13)
-	at Tests.LoginTests.DataDrivenTests(LoginTests.java:41)
+<h2>Default test</h2><h3 id="m0">Tests.VitalSignsTest#testVitals</h3><table class="result"><tr class="param"><th>Parameter #1</th><th>Parameter #2</th><th>Parameter #3</th><th>Parameter #4</th><th>Parameter #5</th><th>Parameter #6</th><th>Parameter #7</th><th>Parameter #8</th><th>Parameter #9</th><th>Parameter #10</th><th>Parameter #11</th><th>Parameter #12</th><th>Parameter #13</th><th>Parameter #14</th><th>Parameter #15</th><th>Parameter #16</th><th>Parameter #17</th></tr><tr class="param stripe"><td>astril@gmail.com</td><td>testing</td><td>Jane Doe2</td><td>123</td><td>125</td><td>65</td><td>87</td><td>102</td><td>F</td><td>54</td><td>kgs</td><td>99</td><td>inches</td><td></td><td></td><td>this is a </td><td>null</td></tr><tr><th colspan="17">Exception</th></tr><tr><td colspan="17"><div class="stacktrace">org.openqa.selenium.NoSuchElementException: Unable to locate element: #btn_add_vital_signs
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;unknown&apos;, revision: &apos;unknown&apos;, time: &apos;unknown&apos;
+System info: host: &apos;DESKTOP-5U2AP0G&apos;, ip: &apos;10.12.0.65&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;1.8.0_144&apos;
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{moz:profile=C:\Users\astri\AppData\Local\Temp\rust_mozprofile.7lk0SzVzcsGv, rotatable=false, timeouts={implicit=0, pageLoad=300000, script=30000}, pageLoadStrategy=normal, moz:headless=false, platform=XP, specificationLevel=0, moz:accessibilityChecks=false, acceptInsecureCerts=false, browserVersion=56.0.1, platformVersion=10.0, moz:processID=13776, browserName=firefox, javascriptEnabled=true, platformName=XP}]
+Session ID: 738758ef-8f44-4346-a744-f2d91992f2f4
+*** Element info: {Using=id, value=btn_add_vital_signs}
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+	at java.lang.reflect.Constructor.newInstance(Unknown Source)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:185)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:120)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:164)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:82)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:646)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:416)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementById(RemoteWebDriver.java:462)
+	at org.openqa.selenium.By$ById.findElement(By.java:218)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:408)
+	at Repos.vitalSignsPage.addVital(vitalSignsPage.java:86)
+	at Tests.VitalSignsTest.testVitals(VitalSignsTest.java:99)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
