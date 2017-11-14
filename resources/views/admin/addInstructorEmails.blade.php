@@ -95,4 +95,10 @@
              @endif
  <div>                
 <div>
+ <script>       
+        $(document).ready(function(){           
+            $(".alert").fadeOut(5000);        
+			});
+        
+  </script>
 @endsection
