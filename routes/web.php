@@ -124,6 +124,7 @@ Route::post('post_results}', 'DocumentationController@post_results')->name('post
 
 Route::get('/MDM/{id}', 'NavigationController@get_MDM')->name('MDM/Plan');
 Route::post('MDM','DocumentationController@post_MDM')->name('post_MDM');
+
 Route::get('/Disposition/{id}', 'NavigationController@get_disposition')->name('Disposition');
 Route::post('disposition', 'DocumentationController@post_disposition')->name('post_disposition');
 

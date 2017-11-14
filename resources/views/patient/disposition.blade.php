@@ -20,7 +20,7 @@
                                     <tbody>
                                         <tr>
                                             <td>
-                                                @if($disposition_value[0]->value == 'Discharged')
+                                                @if($disposition_value[0] == 'Discharged')
                                                     <input type="radio" class="form-check-input inline" name="disposition" value="Discharged" checked="checked" id="disposition_discharged" >&nbsp;Discharged                                                &nbsp;&nbsp;&nbsp;&nbsp;
                                                 @else
                                                     <input type="radio" class="form-check-input inline" name="disposition" value="Discharged" id="disposition_discharged" >&nbsp;Discharged
@@ -29,7 +29,7 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                @if($disposition_value[0]->value == 'Admitted')
+                                                @if($disposition_value[0] == 'Admitted')
                                                     <input type="radio" class="form-check-input inline" checked="checked" name="Admitted" value="Admitted" id="disposition_admitted" >&nbsp;Admitted
                                                 @else
                                                     <input type="radio" class="form-check-input inline" name="Admitted" value="Admitted" id="disposition_admitted" >&nbsp;Admitted
@@ -38,7 +38,7 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                @if($disposition_value[0]->value == 'Transferred')
+                                                @if($disposition_value[0] == 'Transferred')
                                                     <input type="radio" class="form-check-input inline" name="disposition" checked="checked" value="Transferred" id="disposition_transferred" >&nbsp;Transferred
                                                 @else
                                                     <input type="radio" class="form-check-input inline" name="disposition" value="Transferred" id="disposition_transferred" >&nbsp;Transferred
@@ -47,7 +47,7 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                @if($disposition_value[0]->value == 'Expired')
+                                                @if($disposition_value[0] == 'Expired')
                                                     <input type="radio" class="form-check-input inline" name="disposition" checked="checked" value="Expired" id="disposition_expired" >&nbsp;Expired
                                                 @else
                                                     <input type="radio" class="form-check-input inline" name="disposition" value="Expired" id="disposition_expired" >&nbsp;Expired
@@ -56,7 +56,7 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                @if($disposition_value[0]->value == 'AMA')
+                                                @if($disposition_value[0] == 'AMA')
                                                     <input type="radio" class="form-check-input inline" name="disposition" checked="checked" value="AMA" id="disposition_ama" >&nbsp;AMA
                                                 @else
                                                     <input type="radio" class="form-check-input inline" name="disposition" value="AMA" id="disposition_ama" >&nbsp;AMA                                                &nbsp;&nbsp;&nbsp;&nbsp;
@@ -65,7 +65,7 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                @if($disposition_value[0]->value == 'Eloped')
+                                                @if($disposition_value[0] == 'Eloped')
                                                     <input type="radio" class="form-check-input inline" name="disposition" value="Eloped" checked="checked" id="disposition_eloped" >&nbsp;Eloped                                                &nbsp;&nbsp;&nbsp;&nbsp;
                                                 @else
                                                     <input type="radio" class="form-check-input inline" name="disposition" value="Eloped" id="disposition_eloped" >&nbsp;Eloped                                                &nbsp;&nbsp;&nbsp;&nbsp;
@@ -74,7 +74,7 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                @if($disposition_value[0]->value == 'LWBS')
+                                                @if($disposition_value[0] == 'LWBS')
                                                     <input type="radio" class="form-check-input inline" name="disposition" value="LWBS" checked="checked" id="disposition_lwbs" >&nbsp;LWBS                                                &nbsp;&nbsp;&nbsp;&nbsp;
                                                 @else
                                                     <input type="radio" class="form-check-input inline" name="disposition" value="LWBS" id="disposition_lwbs" >&nbsp;LWBS                                                &nbsp;&nbsp;&nbsp;&nbsp;
@@ -94,7 +94,7 @@
                                      </textarea>
                                  @else
                                      <textarea rows="4" id="disposition_comment" name="disposition_comment" style="width: 590px">
-                                {{$disposition_comment[0]->value}}</textarea>
+                                {{$disposition_comment[0]}}</textarea>
                                  @endif
                              </div>
                         </div>

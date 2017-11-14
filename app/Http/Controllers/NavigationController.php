@@ -633,11 +633,11 @@ class NavigationController extends Controller
         if(Auth::check()) {
             $disposition_value = active_record::where('patient_id', $id)
                 ->where('navigation_id','32')
-                ->where('doc_control_id','63')->get();
+                ->where('doc_control_id','63')->pluck('value');
 
             $disposition_comment = active_record::where('patient_id', $id)
                 ->where('navigation_id','32')
-                ->where('doc_control_id','64')->get();
+                ->where('doc_control_id','64')->pluck('value');
 
 
             $patient = patient::where('patient_id', $id)->first();
@@ -656,6 +656,7 @@ class NavigationController extends Controller
             //Extracting disposition to enable or disable the submit button
             $disposition = active_record::where('patient_id', $id)
                 ->where('navigation_id', '32')->get();
+
             $user_id = Auth::user()->id;
             $status = users_patient::where('patient_id',$id)->where('user_id',$user_id)->first();
             $status_id = $status->patient_record_status_id;
