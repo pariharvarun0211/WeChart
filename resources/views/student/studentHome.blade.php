@@ -56,7 +56,9 @@
                                                    @if($patient->status === 1 && $patient->module->module_name === $module)
                                                            <tr>
                                                                 <td>
-                                                                    <?php echo $patient->first_name.' '.$patient->last_name; ?>
+                                                                    <a href="{{ route( 'patient.view', ['patient_id' => $patient->patient_id ] ) }}" id="patientName">
+                                                                         <?php echo $patient->first_name.' '.$patient->last_name; ?>
+                                                                     </a>
                                                                 </td>
                                                                 <td><p id="patientAge">{{$patient->age}}</p></td>
                                                                 <td><p id="patientSex">{{$patient->gender}}</p></td>
@@ -124,9 +126,7 @@
                                                             @if($patient->completed_flag == 1 && $patient->module->module_name === $module)
                                                                 <tr>                                                               
                                                                     <td>
-                                                                        <a href="{{ route( 'patient.view', ['patient_id' => $patient->patient_id ] ) }}" id="patientName">
-                                                                            <?php echo $patient->first_name.' '.$patient->last_name; ?>
-                                                                        </a>
+                                                                        <?php echo $patient->first_name.' '.$patient->last_name; ?>                                                                    
                                                                     </td>
                                                                     <td><p id="patientAge">{{$patient->age}}</p></td>
                                                                     <td><p id="patientSex">{{$patient->gender}}</p></td>
