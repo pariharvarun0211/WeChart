@@ -19,10 +19,11 @@ use App\patient;
 use App\active_record;
 use App\doc_lookup_value;
 use App\doc_control;
+use Illuminate\Support\Facades\DB;
 
 class DocumentationController extends Controller
 {
-    //Below four are autocomplete search methods
+    //Below five are autocomplete search methods
     public function find_diagnosis(Request $request)
     {
         $term = trim($request->q);
@@ -94,6 +95,19 @@ class DocumentationController extends Controller
 
         return \Response::json($formatted_lookups);
     }
+    public function find_instructor(Request $request)
+    {
+        $term = trim($request->q);
+        if (empty($term)) {
+            return \Response::json([]);
+        }
+        $lookups = User::where('role', 'Instructor')->where('firstname', 'LIKE', "%$term%")->orWhere('lastname', 'LIKE', "%$term%")->get();
+        $formatted_lookups = [];
+        foreach ($lookups as $lookup) {
+            $formatted_lookups[] = ['id' => $lookup->firstname. ' ' . $lookup->lastname, 'text' => $lookup->firstname. ' ' . $lookup->lastname ];
+        }
+        return \Response::json($formatted_lookups);
+    }
 
     public function post_Demographics(Request $request)
     {
@@ -103,13 +117,10 @@ class DocumentationController extends Controller
         }
 
         if($role == 'Student') {
-            try {
                 //Validating input data
                 $this->validate($request, [
                     'age' => 'required|numeric',
                     'room_number' => 'required',
-//                    'height' => 'required|numeric',
-//                    'weight' => 'required|numeric',
                 ]);
                 $patient = patient::where('patient_id', $request['patient_id'])->first();
                 //if sex is male then first name is John else Jane
@@ -125,15 +136,10 @@ class DocumentationController extends Controller
                 $patient->gender = $request->gender;
                 $patient->room_number = $request->room_number;
                 $patient->age = $request->age;
-//                $patient['height'] = $request['height'] ." ". $request['height_unit'];
-//                $patient['weight'] = $request['weight'] ." ". $request['weight_unit'];
                 $patient->save();
 
                 return redirect()->route('Demographics',[$patient->patient_id]);
 
-            } catch (\Exception $e) {
-                return view('errors/503');
-            }
         }
         else
         {
@@ -915,6 +921,149 @@ class DocumentationController extends Controller
 
                 //Now redirecting to orders page
                 return redirect()->route('Physical Exam',[$request['patient_id']]);
+
+            } catch (\Exception $e) {
+                return view('errors/503');
+            }
+        }
+        else
+        {
+            return view('auth/not_authorized');
+        }
+
+    }
+    public function post_assignInstructor(Request $request)
+    {
+        $role='';
+        $firstname='';
+        $lastname='';
+        if(Auth::check()) {
+            $role = Auth::user()->role;
+        }
+        if ($role == 'Student')
+        {
+            $student_id = Auth::user()->id;
+            $users_patient = users_patient::where('patient_id', $request['patient_id'])->where('user_id', Auth::user()->id)->first();
+            DB::table('users_patient')->where('patient_id', $request['patient_id'])->where('user_id', Auth::user()->id)->update(['patient_record_status_id' => '2']);
+            $instructors = $request['search_instructors'];
+            foreach ((array)$instructors as $instructor)
+            {
+                $splitName = explode(' ', $instructor, 2);
+                $firstname = $splitName[0];
+                $lastname = $splitName[1];
+                $instructor_id = User::where('firstname', $firstname)->where('lastname', $lastname)->where('role', 'Instructor')->first();
+                $users_patient['patient_record_status_id'] = '2';
+                $users_patient['patient_id'] = $request['patient_id'];
+                $users_patient['user_id'] = $instructor_id['id'];
+                DB::table('users_patient')->insert([
+                    'patient_record_status_id' => '2',
+                    'patient_id' => $request['patient_id'],
+                    'user_id' => $instructor_id['id'],
+                    'created_by' => $student_id,
+                    'updated_by' => $student_id
+                ]);
+            }
+            patient::where('patient_id', $request['patient_id'])->update(array('completed_flag' => true));
+            return redirect()->route('student.home');
+        }
+        else
+        {
+            return view('auth/not_authorized');
+        }
+    }
+    public function post_MDM(Request$request){
+        $role='';
+        if(Auth::check()) {
+            $role = Auth::user()->role;
+        }
+        if($role == 'Student') {
+            try {
+                //Saving MDM
+                $MDM_record = active_record::where('patient_id', $request['patient_id'])
+                    ->where('navigation_id','31')
+                    ->where('doc_control_id','61')->get();
+                if(!count($MDM_record)>0)
+                {
+                    $active_record = new active_record();
+                    $active_record['patient_id'] = $request['patient_id'];
+                    $active_record['navigation_id'] = '31';
+                    $active_record['doc_control_id'] = '61';
+                    $active_record['value'] = $request['MDM'];
+                    $active_record['created_by'] = $request['user_id'];
+                    $active_record['updated_by'] = $request['user_id'];
+                    $active_record->save();
+                }
+                else {
+                    $active_record = active_record::where('active_record_id', $MDM_record[0]->active_record_id)->first();
+                    $active_record['value'] = $request['MDM'];
+                    $active_record->save();
+                }
+                //Now redirecting to page
+                return redirect()->route('MDM/Plan',[$request['patient_id']]);
+            } catch (\Exception $e) {
+                return view('errors/503');
+            }
+        }
+        else
+        {
+            return view('auth/not_authorized');
+        }
+    }
+    public function post_disposition(Request $request)
+    {
+        $role='';
+        if(Auth::check()) {
+            $role = Auth::user()->role;
+        }
+
+        if($role == 'Student') {
+            try {
+                //Saving Disposition
+                $disposition_record = active_record::where('patient_id', $request['patient_id'])
+                    ->where('navigation_id','32')
+                    ->where('doc_control_id','63')->get();
+
+                if(!count($disposition_record)>0)
+                {
+                    $active_record = new active_record();
+                    $active_record['patient_id'] = $request['patient_id'];
+                    $active_record['navigation_id'] = '32';
+                    $active_record['doc_control_id'] = '63';
+                    $active_record['value'] = $request['disposition'];
+                    $active_record['created_by'] = $request['user_id'];
+                    $active_record['updated_by'] = $request['user_id'];
+                    $active_record->save();
+                }
+                else {
+                    $active_record = active_record::where('active_record_id', $disposition_record[0]->active_record_id)->first();
+                    $active_record['value'] = $request['disposition'];
+                    $active_record->save();
+                }
+
+                //Saving comment
+                $comment_disposition_record = active_record::where('patient_id', $request['patient_id'])
+                    ->where('navigation_id','32')
+                    ->where('doc_control_id','64')->get();
+
+                if(!count($comment_disposition_record)>0)
+                {
+                    $active_record = new active_record();
+                    $active_record['patient_id'] = $request['patient_id'];
+                    $active_record['navigation_id'] = '32';
+                    $active_record['doc_control_id'] = '64';
+                    $active_record['value'] = $request['disposition_comment'];
+                    $active_record['created_by'] = $request['user_id'];
+                    $active_record['updated_by'] = $request['user_id'];
+                    $active_record->save();
+                }
+                else {
+                    $active_record = active_record::where('active_record_id', $comment_disposition_record[0]->active_record_id)->first();
+                    $active_record['value'] = $request['disposition_comment'];
+                    $active_record->save();
+                }
+
+                //Now redirecting to page
+                return redirect()->route('Disposition',[$request['patient_id']]);
 
             } catch (\Exception $e) {
                 return view('errors/503');

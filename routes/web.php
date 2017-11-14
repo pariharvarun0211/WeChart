@@ -19,8 +19,8 @@ Auth::routes();
 Route::post('/SecurityQuestions', 'Auth\ForgotPasswordController@getSecurityQuestions');
 Route::post('/ResetPassword', 'Auth\ResetPasswordController@resetUserPassword');
 Route::post('/ChangePassword', 'Auth\ResetPasswordController@changePassword');
-Route::get('/User/EditProfile/{id}', 'UserController@getEditProfile')->name('EditProfile');
-Route::post('EditProfile', 'UserController@postEditProfile');
+Route::get('/User/{id}/EditProfile', 'UsersController@getEditProfile')->name('EditProfile');
+Route::post('EditProfile', 'UsersController@postEditProfile');
 
 //Admin Routes
 
@@ -78,6 +78,7 @@ Route::get('/Medical_History/{id}/#social_history')->name('Social History (SHx)2
 Route::get('/Medical_History/{id}/#surgical_history')->name('Surgical History2');
 Route::post('social_history}', 'DocumentationController@post_social_history')->name('social_history');
 Route::post('family_history}', 'DocumentationController@post_family_history')->name('family_history');
+Route::get('/family_history', 'DocumentationController@post_new_family_member')->name('post_new_family_member');
 Route::post('personal_history}', 'DocumentationController@post_personal_history')->name('personal_history');
 Route::post('surgical_history}', 'DocumentationController@post_surgical_history')->name('surgical_history');
 
@@ -122,17 +123,22 @@ Route::get('/Results/{id}', 'NavigationController@get_results')->name('Results')
 Route::post('post_results}', 'DocumentationController@post_results')->name('post_results');
 
 Route::get('/MDM/{id}', 'NavigationController@get_MDM')->name('MDM/Plan');
+Route::post('MDM','DocumentationController@post_MDM')->name('post_MDM');
 Route::get('/Disposition/{id}', 'NavigationController@get_disposition')->name('Disposition');
+Route::post('disposition', 'DocumentationController@post_disposition')->name('post_disposition');
+
+Route::get('/{id}/AssignInstructor', 'NavigationController@get_assignInstructor')->name('AssignInstructor');
+Route::post('InstructorAssigned', 'DocumentationController@post_assignInstructor')->name('InstructorAssigned');
 
 //Landing page for Instructor
 Route::get('/InstructorHome', 'InstructorController@index');
-Route::get('/family_history', 'DocumentationController@post_new_family_member')->name('post_new_family_member');
 
 //Routes for autocomplete
 Route::get('/diagnosis/find', 'DocumentationController@find_diagnosis')->name('diagnosis_find');
 Route::get('/medications/find', 'DocumentationController@find_medications')->name('medications_find');
 Route::get('/orders_labs/find', 'DocumentationController@find_lab_orders')->name('orders_labs_find');
 Route::get('/orders_imaging/find', 'DocumentationController@find_imaging_orders')->name('orders_imaging_find');
+Route::get('/instructors/find', 'DocumentationController@find_instructor')->name('instructors_find');
 
 
 

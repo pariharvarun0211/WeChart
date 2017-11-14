@@ -123,7 +123,7 @@
                                                     @foreach($submitted_patients as $patient)
                                                         <!-- To check the patient records with "Saved" status -->
                                                         @if($patient->module)
-                                                            @if($patient->status === 1 && $patient->module->module_name === $module)
+                                                            @if($patient->completed_flag === 1 && $patient->module->module_name === $module)
                                                                 <tr>
                                                                     <td>
                                                                         <a href="{{ route( 'patient.view', ['patient_id' => $patient->patient_id ] ) }}" id="patientName">
@@ -132,14 +132,12 @@
                                                                     </td>
                                                                     <td><p id="patientAge">{{$patient->age}}</p></td>
                                                                     <td><p id="patientSex">{{$patient->gender}}</p></td>
-                                                                    {{--<td><p id="patientHeight">{{$patient->height}}</p></td>--}}
-                                                                    {{--<td><p id="patientWeight">{{$patient->weight}}</p></td>--}}
                                                                     <td><p id="visitDate">{{$patient->visit_date}}</p></td>
                                                                     <td style="text-align: left">
-                                                                        <a href="{{ route( 'patient.view', ['patient_id' => $patient->patient_id ] ) }}" class="btn btn-primary" id="view">View</a>
-                                                                        <a class="btn btn-danger" id="delete"> Delete</a>
+                                                                        {{--<a href="{{ route( 'patient.view', ['patient_id' => $patient->patient_id ] ) }}" class="btn btn-primary" id="view">View</a>--}}
+                                                                        <a href="{{ route( 'patient_preview', ['patient_id' => $patient->patient_id ] ) }}" class="btn btn-primary" id="preview"> Preview </a>
                                                                         <a href="{{ route( 'pdf_generate', ['patient_id' => $patient->patient_id ] ) }}" class="btn btn-success" id="generate_report"> Generate PDF</a>
-                                                                        {{--<a href="{{ route( 'patient_preview', ['patient_id' => $patient->patient_id ] ) }}" class="btn btn-primary" id="preview"> Preview </a>--}}
+                                                                        <a class="btn btn-danger" id="delete"> Delete</a>
                                                                     </td>
                                                                 </tr>
                                                             @endif

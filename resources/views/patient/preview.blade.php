@@ -150,16 +150,16 @@
     {{--HPI--}}
     <div class="panel panel-default">
         <div class="panel-heading" style="background-color: lightblue">
-           <a data-toggle="collapse" href="#collapse1">HPI</a>
+           <a data-toggle="collapse" href="#HPI">HPI</a>
         </div>
-        <div class="panel-body" id="collapse1" class="panel-collapse collapse">
+        <div class="panel-body" id="HPI" class="panel-collapse collapse">
             @if(!count($HPI)>0)
                 <textarea id="HPI" name="HPI" rows="6" cols="50" >
-                                        </textarea>
+                </textarea>
             @else
                 <textarea id="HPI" name="HPI" rows="6" >
                                             {{$HPI[0]->value}}
-                                        </textarea>
+                </textarea>
             @endif
         </div>
     </div>

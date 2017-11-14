@@ -92,41 +92,6 @@
                                                 @endif
                                             </div>
                                         </div>
-
-                                        {{--<div class="form-group{{ $errors->has('height') ? ' has-error' : '' }}">--}}
-                                            {{--<label for="height" class="col-md-4 control-label">Height*</label>--}}
-
-                                            {{--<div class="col-md-6">--}}
-                                                {{--<input id="height" type="text" class="form-control" name="height" value="{{ old('height') }}" required >--}}
-                                                {{--<select name="height_unit" value="{{ old('height_unit') }}">--}}
-                                                        {{--<option value="cms">cms</option>--}}
-                                                        {{--<option value="inches">inches</option>--}}
-                                                {{--</select>--}}
-                                                {{--@if ($errors->has('height'))--}}
-                                                    {{--<span class="help-block">--}}
-                                                            {{--<strong>{{ $errors->first('height') }}</strong>--}}
-                                                        {{--</span>--}}
-                                                {{--@endif--}}
-                                            {{--</div>--}}
-                                        {{--</div>--}}
-
-                                        {{--<div class="form-group{{ $errors->has('weight') ? ' has-error' : '' }}">--}}
-                                            {{--<label for="weight" class="col-md-4 control-label">Weight*</label>--}}
-
-                                            {{--<div class="col-md-6">--}}
-                                                {{--<input id="weight" type="text" class="form-control" name="weight" value="{{ old('weight') }}" required >--}}
-                                                {{--<select name="weight_unit" value="{{ old('weight_unit') }}">--}}
-                                                    {{--<option value="kgs">kgs</option>--}}
-                                                    {{--<option value="lbs">lbs</option>--}}
-                                                {{--</select>--}}
-                                                {{--@if ($errors->has('weight'))--}}
-                                                    {{--<span class="help-block">--}}
-                                                                    {{--<strong>{{ $errors->first('weight') }}</strong>--}}
-                                                                {{--</span>--}}
-                                                {{--@endif--}}
-                                            {{--</div>--}}
-                                        {{--</div>--}}
-
                                 <div class="form-group{{ $errors->has('visit_date') ? ' has-error' : '' }}">
                                             <label for="height" class="col-md-4 control-label">Visit Date*</label>
 

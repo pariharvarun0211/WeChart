@@ -11,10 +11,8 @@ use Auth;
 use App\User;
 use Illuminate\Support\Facades\Hash;
 use Log;
-
-class UserController extends Controller
+class UsersController extends Controller
 {
-
     public function getEditProfile()
     {
         try {
@@ -27,7 +25,6 @@ class UserController extends Controller
             return view ('errors/503');
         }
     }
-
     public function postEditProfile(Request $request)
     {
         $email = Auth::user()->email;

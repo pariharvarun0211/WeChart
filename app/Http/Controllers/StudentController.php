@@ -22,9 +22,7 @@ class StudentController extends Controller
         if(Auth::check()) {
             $role = Auth::user()->role;
         }
-
         if($role == 'Student') {
-
             $modules = array();
             $saved_message = '';
             $submitted_message = '';
@@ -32,9 +30,8 @@ class StudentController extends Controller
                 ->where('completed_flag',false)
                 ->get();
             $submitted_patients = patient::where('created_by', Auth::user()->id)
-                ->where('completed_flag',false)
+                ->where('completed_flag',true)
                 ->get();
-
             if(!empty($saved_patients)) {
                 foreach ($saved_patients as $patient) {
                     if ($patient->module) {
@@ -47,20 +44,18 @@ class StudentController extends Controller
             else {
                 $saved_message = 'There are no saved patients associated with this student.';
             }
-
-            if($submitted_patients == null) {
+            if(!empty($submitted_patients)) {
                 foreach ($submitted_patients as $patient) {
                     if ($patient->module) {
                         array_push($modules, $patient->module->module_name);
                     } else {
-                        $submitted_message = 'There are no saved patients associated with this student.';
+                        $submitted_message = 'There are no submitted patients associated with this student.';
                     }
                 }
             }
             else {
-                $submitted_message = 'There are no saved patients associated with this student.';
+                $submitted_message = 'There are no submitted patients associated with this student.';
             }
-
             $modules = array_unique($modules);
             return view('student/studentHome', compact('saved_patients', 'modules', 'saved_message','submitted_patients','submitted_message'));
         }
@@ -69,6 +64,7 @@ class StudentController extends Controller
             return view('auth/not_authorized');
         }
     }
+
     public function view_patient(Request $request){
         $role='';
         if(Auth::check()) {
