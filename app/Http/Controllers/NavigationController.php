@@ -723,6 +723,34 @@ class NavigationController extends Controller
 
         return $vital_signs_header;
     }
+    public function get_assignInstructor($id)
+    {
+        if(Auth::check()) {
+            $patient = patient::where('patient_id', $id)->first();
+            //Fetching all navs associated with this patient's module
+            $navIds = module_navigation::where('module_id', $patient->module_id)->orderBy('navigation_id')->pluck('navigation_id');
+            $navs = array();
+            //Now get nav names
+            foreach ($navIds as $nav_id) {
+                $nav = navigation::where('navigation_id', $nav_id)->get();
+                array_push($navs, $nav);
+            }
+            //Extracting vital signs for header
+            $vital_signs_header = $this->get_vital_signs_header($id);
+            //Extracting disposition to enable or disable the submit button
+            $disposition = active_record::where('patient_id', $id)
+                ->where('navigation_id', '32')->get();
+            $user_id = Auth::user()->id;
+            $status = users_patient::where('patient_id',$id)->where('user_id',$user_id)->first();
+            $status_id = $status->patient_record_status_id;
+
+            return view('patient/assign_instructor', compact ('disposition','status_id','vital_signs_header','medications','medication_comment','patient','navs'));
+        }
+        else
+        {
+            return view('auth/not_authorized');
+        }
+    }
     public function generate_pdf($id)
     {
         if(Auth::check()) {
