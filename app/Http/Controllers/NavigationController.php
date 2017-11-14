@@ -639,7 +639,15 @@ class NavigationController extends Controller
                 ->where('navigation_id','32')
                 ->where('doc_control_id','64')->pluck('value');
 
-
+            if(!count($disposition_value)>0)
+            {
+                $disposition_value[0] = '';
+            }
+            if(!count($disposition_comment)>0)
+            {
+                $disposition_comment[0] = '';
+            }
+Log::info($disposition_value);
             $patient = patient::where('patient_id', $id)->first();
             //Fetching all navs associated with this patient's module
             $navIds = module_navigation::where('module_id', $patient->module_id)->orderBy('navigation_id')->pluck('navigation_id');
