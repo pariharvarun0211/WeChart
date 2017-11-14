@@ -661,7 +661,7 @@ class NavigationController extends Controller
             $status = users_patient::where('patient_id',$id)->where('user_id',$user_id)->first();
             $status_id = $status->patient_record_status_id;
 
-            return view('patient/disposition', compact ('disposition_value','disposition_comment','status_id','vital_signs_header','patient','navs','disposition'));
+            return view('patient/general_patient', compact ('disposition_value','disposition_comment','status_id','vital_signs_header','patient','navs','disposition'));
         }
         else
         {
@@ -752,6 +752,7 @@ class NavigationController extends Controller
             return view('auth/not_authorized');
         }
     }
+
     public function generate_pdf($id)
     {
         if(Auth::check()) {

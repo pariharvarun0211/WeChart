@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\lookup_value;
 use App\diagnosis_lookup_value;
 use App\med_lookup_value;
 use App\imaging_orders_lookup_value;
@@ -10,15 +9,10 @@ use App\lab_orders_lookup_value;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 use Auth;
-use App\module;
 use App\User;
 use App\users_patient;
-use App\module_navigation;
-use App\navigation;
 use App\patient;
 use App\active_record;
-use App\doc_lookup_value;
-use App\doc_control;
 use Illuminate\Support\Facades\DB;
 
 class DocumentationController extends Controller
@@ -306,25 +300,6 @@ class DocumentationController extends Controller
             return view('auth/not_authorized');
         }
 
-    }
-    public function delete_image_order($id)
-    {
-        $image = active_record::find($id);
-        $patient_id = $image->patient_id;
-        $image->delete();
-        //Now redirecting back to the orders page
-        return redirect()->route('Orders',$patient_id);
-    }
-    public function delete_lab_order($id)
-    {
-        Log::info('Aditya1'.$id);
-        $lab = active_record::find($id);
-        Log::info('Aditya2'.$lab);
-        $patient_id = $lab->patient_id;
-        $lab->delete();
-        Log::info('Aditya3');
-        //Now redirecting back to the orders page
-        return redirect()->route('Orders',$patient_id);
     }
     public function post_social_history(Request $request)
     {
@@ -842,35 +817,6 @@ class DocumentationController extends Controller
         return view('auth/not_authorized');
     }
     }
-    public function delete_vital_signs($ts, Request $request)
-    {
-        $role='';
-        if(Auth::check()) {
-            $role = Auth::user()->role;
-        }         if($role == 'Student') {
-        try {
-            active_record::where('created_at',$ts)->where('navigation_id', '8')->where('doc_control_id','18')->delete();
-            active_record::where('created_at',$ts)->where('navigation_id', '8')->where('doc_control_id','19')->delete();
-            active_record::where('created_at',$ts)->where('navigation_id', '8')->where('doc_control_id','20')->delete();
-            active_record::where('created_at',$ts)->where('navigation_id', '8')->where('doc_control_id','21')->delete();
-            active_record::where('created_at',$ts)->where('navigation_id', '8')->where('doc_control_id','22')->delete();
-            active_record::where('created_at',$ts)->where('navigation_id', '8')->where('doc_control_id','23')->delete();
-            active_record::where('created_at',$ts)->where('navigation_id', '8')->where('doc_control_id','24')->delete();
-            active_record::where('created_at',$ts)->where('navigation_id', '8')->where('doc_control_id','65')->delete();
-            active_record::where('created_at',$ts)->where('navigation_id', '8')->where('doc_control_id','72')->delete();
-            active_record::where('created_at',$ts)->where('navigation_id', '8')->where('doc_control_id','73')->delete();
-
-            return redirect()->route('Vital Signs',[$request['patient_id']]);
-        }
-        catch (\Exception $e)
-        {
-            return view('errors/503');
-        }
-    }
-    else {
-        return view('auth/not_authorized');
-    }
-    }
     public function post_psychological(Request $request)
     {
         $role='';
@@ -1075,4 +1021,56 @@ class DocumentationController extends Controller
         }
 
     }
+
+    //All delete methods
+    public function delete_image_order($id)
+    {
+        $image = active_record::find($id);
+        $patient_id = $image->patient_id;
+        $image->delete();
+        //Now redirecting back to the orders page
+        return redirect()->route('Orders',$patient_id);
+    }
+    public function delete_lab_order($id)
+    {
+        Log::info('Aditya1'.$id);
+        $lab = active_record::find($id);
+        Log::info('Aditya2'.$lab);
+        $patient_id = $lab->patient_id;
+        $lab->delete();
+        Log::info('Aditya3');
+        //Now redirecting back to the orders page
+        return redirect()->route('Orders',$patient_id);
+    }
+    public function delete_vital_signs($ts, Request $request)
+    {
+        $role='';
+        if(Auth::check()) {
+            $role = Auth::user()->role;
+        }         if($role == 'Student') {
+        try {
+            active_record::where('created_at',$ts)->where('navigation_id', '8')->where('doc_control_id','18')->delete();
+            active_record::where('created_at',$ts)->where('navigation_id', '8')->where('doc_control_id','19')->delete();
+            active_record::where('created_at',$ts)->where('navigation_id', '8')->where('doc_control_id','20')->delete();
+            active_record::where('created_at',$ts)->where('navigation_id', '8')->where('doc_control_id','21')->delete();
+            active_record::where('created_at',$ts)->where('navigation_id', '8')->where('doc_control_id','22')->delete();
+            active_record::where('created_at',$ts)->where('navigation_id', '8')->where('doc_control_id','23')->delete();
+            active_record::where('created_at',$ts)->where('navigation_id', '8')->where('doc_control_id','24')->delete();
+            active_record::where('created_at',$ts)->where('navigation_id', '8')->where('doc_control_id','65')->delete();
+            active_record::where('created_at',$ts)->where('navigation_id', '8')->where('doc_control_id','72')->delete();
+            active_record::where('created_at',$ts)->where('navigation_id', '8')->where('doc_control_id','73')->delete();
+
+            return redirect()->route('Vital Signs',[$request['patient_id']]);
+        }
+        catch (\Exception $e)
+        {
+            return view('errors/503');
+        }
+    }
+    else {
+        return view('auth/not_authorized');
+    }
+    }
+
+
 }
