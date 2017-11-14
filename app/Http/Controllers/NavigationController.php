@@ -5,6 +5,7 @@ use App\active_record;
 use App\lookup_value;
 use App\module_navigation;
 use App\navigation;
+use Dompdf\Exception;
 use Illuminate\Support\Facades\Log;
 use Auth;
 use Illuminate\Support\Facades\DB;
@@ -860,8 +861,15 @@ class NavigationController extends Controller
 
             //Extracting vital signs for header
             $vital_signs_header = $this->get_vital_signs_header($id);
-            $pdf = PDF::loadView('patient.preview', compact ('patient','navs','vital_signs_header','HPI','diagnosis_list_surgical_history','surgical_history_comment','diagnosis_list_personal_history','personal_history_comment','family_members_details','comment_family_history','social_history_smoke_tobacco','social_history_non_smoke_tobacco','social_history_alcohol','social_history_sexual_activity','social_history_comment','medications','medication_comment','vital_sign_details','comment_order','labs','images','results'));
-            return $pdf->download('patient_report.pdf');
+
+            try{
+                $pdf = PDF::loadView('patient.preview', compact ('patient','navs','vital_signs_header','HPI','diagnosis_list_surgical_history','surgical_history_comment','diagnosis_list_personal_history','personal_history_comment','family_members_details','comment_family_history','social_history_smoke_tobacco','social_history_non_smoke_tobacco','social_history_alcohol','social_history_sexual_activity','social_history_comment','medications','medication_comment','vital_sign_details','comment_order','labs','images','results'));
+                return $pdf->download('patient_report.pdf');
+            }
+            catch (\Exception $e)
+            {
+                return view('errors/503');
+            }
          }
         else
         {

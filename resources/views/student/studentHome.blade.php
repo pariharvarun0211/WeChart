@@ -139,7 +139,7 @@
                                                                         <a href="{{ route( 'patient.view', ['patient_id' => $patient->patient_id ] ) }}" class="btn btn-primary" id="view">View</a>
                                                                         <a class="btn btn-danger" id="delete"> Delete</a>
                                                                         <a href="{{ route( 'pdf_generate', ['patient_id' => $patient->patient_id ] ) }}" class="btn btn-success" id="generate_report"> Generate PDF</a>
-                                                                        <a href="{{ route( 'patient_preview', ['patient_id' => $patient->patient_id ] ) }}" class="btn btn-primary" id="preview"> Preview </a>
+                                                                        {{--<a href="{{ route( 'patient_preview', ['patient_id' => $patient->patient_id ] ) }}" class="btn btn-primary" id="preview"> Preview </a>--}}
                                                                     </td>
                                                                 </tr>
                                                             @endif
