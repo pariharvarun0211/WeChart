@@ -123,7 +123,7 @@
                                                     @foreach($submitted_patients as $patient)
                                                         <!-- To check the patient records with "Saved" status -->
                                                         @if($patient->module)
-                                                            @if($patient->completed_flag === 1 && $patient->module->module_name === $module)
+                                                            @if($patient->completed_flag === 'true' && $patient->module->module_name === $module)
                                                                 <tr>
                                                                     <td>
                                                                         <a href="{{ route( 'patient.view', ['patient_id' => $patient->patient_id ] ) }}" id="patientName">
