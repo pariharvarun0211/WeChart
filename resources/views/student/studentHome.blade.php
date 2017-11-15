@@ -111,10 +111,7 @@
                                                     <thead>
                                                     <tr class="bg-info">
                                                         <th>Patient Name</th>
-                                                        <th>Age</th>
-                                                        <th>Sex</th>
-                                                        {{--<th>Height</th>--}}
-                                                        {{--<th>Weight</th>--}}
+                                                        <th>Submitted Date</th>
                                                         <th>Visit Date</th>
                                                         <th colspan="3"></th>
                                                     </tr>
@@ -128,11 +125,9 @@
                                                                     <td>
                                                                         <?php echo $patient->first_name.' '.$patient->last_name; ?>                                                                    
                                                                     </td>
-                                                                    <td><p id="patientAge">{{$patient->age}}</p></td>
-                                                                    <td><p id="patientSex">{{$patient->gender}}</p></td>
+                                                                    <td><p id="patient_submitted_date">{{$patient->submitted_date}}</p></td>
                                                                     <td><p id="visitDate">{{$patient->visit_date}}</p></td>
                                                                     <td style="text-align: left">
-                                                                        {{--<a href="{{ route( 'patient.view', ['patient_id' => $patient->patient_id ] ) }}" class="btn btn-primary" id="view">View</a>--}}
                                                                         <a href="{{ route( 'patient_preview', ['patient_id' => $patient->patient_id ] ) }}" class="btn btn-primary" id="preview"> Preview </a>
                                                                         <a href="{{ route( 'pdf_generate', ['patient_id' => $patient->patient_id ] ) }}" class="btn btn-success" id="generate_report"> Generate PDF</a>
                                                                         <a class="btn btn-danger" id="delete"> Delete</a>

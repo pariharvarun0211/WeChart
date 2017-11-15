@@ -434,7 +434,37 @@ class NavigationController extends Controller
             $psychological_comment = active_record::where('patient_id', $id)
                 ->where('navigation_id','28')->where('doc_control_id','60')->pluck('value');
 
-            // Other PE code comes here.. $XYZ_symptoms and $XYZ_comment for each XYZ
+            $neurological_symptoms= $this->get_physical_exams_neurological_symptoms($id);
+            $neurological_comment = active_record::where('patient_id', $id)
+                ->where('navigation_id','27')->where('doc_control_id','58')->pluck('value');
+
+            $integumentary_symptoms= $this->get_physical_exams_integumentary_symptoms($id);
+            $integumentary_comment = active_record::where('patient_id', $id)
+                ->where('navigation_id','26')->where('doc_control_id','56')->pluck('value');
+
+            $musculoskeletal_symptoms= $this->get_physical_exams_musculoskeletal_symptoms($id);
+            $musculoskeletal_comment = active_record::where('patient_id', $id)
+                ->where('navigation_id','25')->where('doc_control_id','54')->pluck('value');
+
+            $cardiovascular_symptoms= $this->get_physical_exams_cardiovascular_symptoms($id);
+            $cardiovascular_comment = active_record::where('patient_id', $id)
+                ->where('navigation_id','24')->where('doc_control_id','52')->pluck('value');
+
+            $respiratory_symptoms= $this->get_physical_exams_respiratory_symptoms($id);
+            $respiratory_comment = active_record::where('patient_id', $id)
+                ->where('navigation_id','23')->where('doc_control_id','50')->pluck('value');
+
+            $eyes_symptoms= $this->get_physical_exams_eyes_symptoms($id);
+            $eyes_comment = active_record::where('patient_id', $id)
+                ->where('navigation_id','22')->where('doc_control_id','48')->pluck('value');
+
+            $HENT_symptoms= $this->get_physical_exams_HENT_symptoms($id);
+            $HENT_comment = active_record::where('patient_id', $id)
+                ->where('navigation_id','21')->where('doc_control_id','46')->pluck('value');
+
+            $constitutional_symptoms= $this->get_physical_exams_constitutional_symptoms($id);
+            $constitutional_comment = active_record::where('patient_id', $id)
+                ->where('navigation_id','20')->where('doc_control_id','44')->pluck('value');
 
             $patient = patient::where('patient_id', $id)->first();
             //Fetching all navs associated with this patient's module
@@ -466,7 +496,7 @@ class NavigationController extends Controller
             $status_id = $status->patient_record_status_id;
 
 
-            return view('patient/physical_exams', compact ('status_id','navIds','vital_signs_header','patient','navs','disposition','psychological_symptoms','psychological_comment'));
+            return view('patient/physical_exams', compact ('status_id','navIds','vital_signs_header','patient','navs','disposition','neurological_symptoms','neurological_comment','psychological_symptoms','psychological_comment','integumentary_symptoms','integumentary_comment','musculoskeletal_symptoms','musculoskeletal_comment','cardiovascular_symptoms','cardiovascular_comment','respiratory_symptoms','respiratory_comment','eyes_symptoms','eyes_comment','HENT_symptoms','HENT_comment','constitutional_symptoms','constitutional_comment'));
         }
         else
         {
@@ -513,6 +543,327 @@ class NavigationController extends Controller
         return $psychological_symptoms;
 
     }
+    public function get_physical_exams_neurological_symptoms($id)
+    {
+        $neurological_all_symptoms = array();
+        $neurological_all_lookup_values = doc_lookup_value::where('doc_control_id',57)->pluck('lookup_value_id');
+
+        foreach ($neurological_all_lookup_values as $neurological_all_lookup_value)
+        {
+            $symptom = lookup_value::where('lookup_value_id',$neurological_all_lookup_value)->pluck('lookup_value');
+            array_push($neurological_all_symptoms,$symptom );
+        }
+
+        $neurological_saved_symptoms = active_record::where('patient_id', $id)
+            ->where('navigation_id','27')->where('doc_control_id','57')->pluck('value');
+
+        //Converting object to array
+        $neurological_saved_symptoms = str_replace(['['], '', $neurological_saved_symptoms);
+        $neurological_saved_symptoms = str_replace(['"'], '', $neurological_saved_symptoms);
+        $neurological_saved_symptoms = str_replace(['"'], '', $neurological_saved_symptoms);
+        $neurological_saved_symptoms = str_replace([']'], '', $neurological_saved_symptoms);
+        $neurological_saved_symptoms = explode(",", $neurological_saved_symptoms);
+
+        $neurological_symptoms = Array();
+
+        foreach($neurological_all_symptoms as $symptom)
+        {
+            $neurological_symptom = new symptom();
+            $neurological_symptom->value = $symptom[0];
+            if(in_array($symptom[0], $neurological_saved_symptoms))
+            {
+                $neurological_symptom->is_saved = true;
+            }
+            else
+            {
+                $neurological_symptom->is_saved = false;
+            }
+            array_push($neurological_symptoms, $neurological_symptom);
+        }
+        return $neurological_symptoms;
+
+    }
+    public function get_physical_exams_integumentary_symptoms($id)
+    {
+        $integumentary_all_symptoms = array();
+        $integumentary_all_lookup_values = doc_lookup_value::where('doc_control_id',55)->pluck('lookup_value_id');
+
+        foreach ($integumentary_all_lookup_values as $integumentary_all_lookup_value)
+        {
+            $symptom = lookup_value::where('lookup_value_id',$integumentary_all_lookup_value)->pluck('lookup_value');
+            array_push($integumentary_all_symptoms,$symptom );
+        }
+
+        $integumentary_saved_symptoms = active_record::where('patient_id', $id)
+            ->where('navigation_id','26')->where('doc_control_id','55')->pluck('value');
+
+        //Converting object to array
+        $integumentary_saved_symptoms = str_replace(['['], '', $integumentary_saved_symptoms);
+        $integumentary_saved_symptoms = str_replace(['"'], '', $integumentary_saved_symptoms);
+        $integumentary_saved_symptoms = str_replace(['"'], '', $integumentary_saved_symptoms);
+        $integumentary_saved_symptoms = str_replace([']'], '', $integumentary_saved_symptoms);
+        $integumentary_saved_symptoms = explode(",", $integumentary_saved_symptoms);
+
+        $integumentary_symptoms = Array();
+
+        foreach($integumentary_all_symptoms as $symptom)
+        {
+            $integumentary_symptom = new symptom();
+            $integumentary_symptom->value = $symptom[0];
+            if(in_array($symptom[0], $integumentary_saved_symptoms))
+            {
+                $integumentary_symptom->is_saved = true;
+            }
+            else
+            {
+                $integumentary_symptom->is_saved = false;
+            }
+            array_push($integumentary_symptoms, $integumentary_symptom);
+        }
+        return $integumentary_symptoms;
+
+    }
+    public function get_physical_exams_musculoskeletal_symptoms($id)
+    {
+        $musculoskeletal_all_symptoms = array();
+        $musculoskeletal_all_lookup_values = doc_lookup_value::where('doc_control_id',53)->pluck('lookup_value_id');
+
+        foreach ($musculoskeletal_all_lookup_values as $musculoskeletal_all_lookup_value)
+        {
+            $symptom = lookup_value::where('lookup_value_id',$musculoskeletal_all_lookup_value)->pluck('lookup_value');
+            array_push($musculoskeletal_all_symptoms,$symptom );
+        }
+
+        $musculoskeletal_saved_symptoms = active_record::where('patient_id', $id)
+            ->where('navigation_id','25')->where('doc_control_id','53')->pluck('value');
+
+        //Converting object to array
+        $musculoskeletal_saved_symptoms = str_replace(['['], '', $musculoskeletal_saved_symptoms);
+        $musculoskeletal_saved_symptoms = str_replace(['"'], '', $musculoskeletal_saved_symptoms);
+        $musculoskeletal_saved_symptoms = str_replace(['"'], '', $musculoskeletal_saved_symptoms);
+        $musculoskeletal_saved_symptoms = str_replace([']'], '', $musculoskeletal_saved_symptoms);
+        $musculoskeletal_saved_symptoms = explode(",", $musculoskeletal_saved_symptoms);
+
+        $musculoskeletal_symptoms = Array();
+
+        foreach($musculoskeletal_all_symptoms as $symptom)
+        {
+            $musculoskeletal_symptom = new symptom();
+            $musculoskeletal_symptom->value = $symptom[0];
+            if(in_array($symptom[0], $musculoskeletal_saved_symptoms))
+            {
+                $musculoskeletal_symptom->is_saved = true;
+            }
+            else
+            {
+                $musculoskeletal_symptom->is_saved = false;
+            }
+            array_push($musculoskeletal_symptoms, $musculoskeletal_symptom);
+        }
+        return $musculoskeletal_symptoms;
+
+    }
+    public function get_physical_exams_cardiovascular_symptoms($id)
+    {
+        $cardiovascular_all_symptoms = array();
+        $cardiovascular_all_lookup_values = doc_lookup_value::where('doc_control_id',51)->pluck('lookup_value_id');
+
+        foreach ($cardiovascular_all_lookup_values as $cardiovascular_all_lookup_value)
+        {
+            $symptom = lookup_value::where('lookup_value_id',$cardiovascular_all_lookup_value)->pluck('lookup_value');
+            array_push($cardiovascular_all_symptoms,$symptom );
+        }
+
+        $cardiovascular_saved_symptoms = active_record::where('patient_id', $id)
+            ->where('navigation_id','24')->where('doc_control_id','51')->pluck('value');
+
+        //Converting object to array
+        $cardiovascular_saved_symptoms = str_replace(['['], '', $cardiovascular_saved_symptoms);
+        $cardiovascular_saved_symptoms = str_replace(['"'], '', $cardiovascular_saved_symptoms);
+        $cardiovascular_saved_symptoms = str_replace(['"'], '', $cardiovascular_saved_symptoms);
+        $cardiovascular_saved_symptoms = str_replace([']'], '', $cardiovascular_saved_symptoms);
+        $cardiovascular_saved_symptoms = explode(",", $cardiovascular_saved_symptoms);
+
+        $cardiovascular_symptoms = Array();
+
+        foreach($cardiovascular_all_symptoms as $symptom)
+        {
+            $cardiovascular_symptom = new symptom();
+            $cardiovascular_symptom->value = $symptom[0];
+            if(in_array($symptom[0], $cardiovascular_saved_symptoms))
+            {
+                $cardiovascular_symptom->is_saved = true;
+            }
+            else
+            {
+                $cardiovascular_symptom->is_saved = false;
+            }
+            array_push($cardiovascular_symptoms, $cardiovascular_symptom);
+        }
+        return $cardiovascular_symptoms;
+
+    }
+    public function get_physical_exams_respiratory_symptoms($id)
+    {
+        $respiratory_all_symptoms = array();
+        $respiratory_all_lookup_values = doc_lookup_value::where('doc_control_id',49)->pluck('lookup_value_id');
+
+        foreach ($respiratory_all_lookup_values as $respiratory_all_lookup_value)
+        {
+            $symptom = lookup_value::where('lookup_value_id',$respiratory_all_lookup_value)->pluck('lookup_value');
+            array_push($respiratory_all_symptoms,$symptom );
+        }
+
+        $respiratory_saved_symptoms = active_record::where('patient_id', $id)
+            ->where('navigation_id','23')->where('doc_control_id','49')->pluck('value');
+
+        //Converting object to array
+        $respiratory_saved_symptoms = str_replace(['['], '', $respiratory_saved_symptoms);
+        $respiratory_saved_symptoms = str_replace(['"'], '', $respiratory_saved_symptoms);
+        $respiratory_saved_symptoms = str_replace(['"'], '', $respiratory_saved_symptoms);
+        $respiratory_saved_symptoms = str_replace([']'], '', $respiratory_saved_symptoms);
+        $respiratory_saved_symptoms = explode(",", $respiratory_saved_symptoms);
+
+        $respiratory_symptoms = Array();
+
+        foreach($respiratory_all_symptoms as $symptom)
+        {
+            $respiratory_symptom = new symptom();
+            $respiratory_symptom->value = $symptom[0];
+            if(in_array($symptom[0], $respiratory_saved_symptoms))
+            {
+                $respiratory_symptom->is_saved = true;
+            }
+            else
+            {
+                $respiratory_symptom->is_saved = false;
+            }
+            array_push($respiratory_symptoms, $respiratory_symptom);
+        }
+        return $respiratory_symptoms;
+
+    }
+    public function get_physical_exams_eyes_symptoms($id)
+    {
+        $eyes_all_symptoms = array();
+        $eyes_all_lookup_values = doc_lookup_value::where('doc_control_id',47)->pluck('lookup_value_id');
+
+        foreach ($eyes_all_lookup_values as $eyes_all_lookup_value)
+        {
+            $symptom = lookup_value::where('lookup_value_id',$eyes_all_lookup_value)->pluck('lookup_value');
+            array_push($eyes_all_symptoms,$symptom );
+        }
+
+        $eyes_saved_symptoms = active_record::where('patient_id', $id)
+            ->where('navigation_id','22')->where('doc_control_id','47')->pluck('value');
+
+        //Converting object to array
+        $eyes_saved_symptoms = str_replace(['['], '', $eyes_saved_symptoms);
+        $eyes_saved_symptoms = str_replace(['"'], '', $eyes_saved_symptoms);
+        $eyes_saved_symptoms = str_replace(['"'], '', $eyes_saved_symptoms);
+        $eyes_saved_symptoms = str_replace([']'], '', $eyes_saved_symptoms);
+        $eyes_saved_symptoms = explode(",", $eyes_saved_symptoms);
+
+        $eyes_symptoms = Array();
+
+        foreach($eyes_all_symptoms as $symptom)
+        {
+            $eyes_symptom = new symptom();
+            $eyes_symptom->value = $symptom[0];
+            if(in_array($symptom[0], $eyes_saved_symptoms))
+            {
+                $eyes_symptom->is_saved = true;
+            }
+            else
+            {
+                $eyes_symptom->is_saved = false;
+            }
+            array_push($eyes_symptoms, $eyes_symptom);
+        }
+        return $eyes_symptoms;
+
+    }
+    public function get_physical_exams_HENT_symptoms($id)
+    {
+        $HENT_all_symptoms = array();
+        $HENT_all_lookup_values = doc_lookup_value::where('doc_control_id',45)->pluck('lookup_value_id');
+
+        foreach ($HENT_all_lookup_values as $HENT_all_lookup_value)
+        {
+            $symptom = lookup_value::where('lookup_value_id',$HENT_all_lookup_value)->pluck('lookup_value');
+            array_push($HENT_all_symptoms,$symptom );
+        }
+
+        $HENT_saved_symptoms = active_record::where('patient_id', $id)
+            ->where('navigation_id','21')->where('doc_control_id','45')->pluck('value');
+
+        //Converting object to array
+        $HENT_saved_symptoms = str_replace(['['], '', $HENT_saved_symptoms);
+        $HENT_saved_symptoms = str_replace(['"'], '', $HENT_saved_symptoms);
+        $HENT_saved_symptoms = str_replace(['"'], '', $HENT_saved_symptoms);
+        $HENT_saved_symptoms = str_replace([']'], '', $HENT_saved_symptoms);
+        $HENT_saved_symptoms = explode(",", $HENT_saved_symptoms);
+
+        $HENT_symptoms = Array();
+
+        foreach($HENT_all_symptoms as $symptom)
+        {
+            $HENT_symptom = new symptom();
+            $HENT_symptom->value = $symptom[0];
+            if(in_array($symptom[0], $HENT_saved_symptoms))
+            {
+                $HENT_symptom->is_saved = true;
+            }
+            else
+            {
+                $HENT_symptom->is_saved = false;
+            }
+            array_push($HENT_symptoms, $HENT_symptom);
+        }
+        return $HENT_symptoms;
+
+    }
+    public function get_physical_exams_constitutional_symptoms($id)
+    {
+        $constitutional_all_symptoms = array();
+        $constitutional_all_lookup_values = doc_lookup_value::where('doc_control_id',43)->pluck('lookup_value_id');
+
+        foreach ($constitutional_all_lookup_values as $constitutional_all_lookup_value)
+        {
+            $symptom = lookup_value::where('lookup_value_id',$constitutional_all_lookup_value)->pluck('lookup_value');
+            array_push($constitutional_all_symptoms,$symptom );
+        }
+
+        $constitutional_saved_symptoms = active_record::where('patient_id', $id)
+            ->where('navigation_id','20')->where('doc_control_id','43')->pluck('value');
+
+        //Converting object to array
+        $constitutional_saved_symptoms = str_replace(['['], '', $constitutional_saved_symptoms);
+        $constitutional_saved_symptoms = str_replace(['"'], '', $constitutional_saved_symptoms);
+        $constitutional_saved_symptoms = str_replace(['"'], '', $constitutional_saved_symptoms);
+        $constitutional_saved_symptoms = str_replace([']'], '', $constitutional_saved_symptoms);
+        $constitutional_saved_symptoms = explode(",", $constitutional_saved_symptoms);
+
+        $constitutional_symptoms = Array();
+
+        foreach($constitutional_all_symptoms as $symptom)
+        {
+            $constitutional_symptom = new symptom();
+            $constitutional_symptom->value = $symptom[0];
+            if(in_array($symptom[0], $constitutional_saved_symptoms))
+            {
+                $constitutional_symptom->is_saved = true;
+            }
+            else
+            {
+                $constitutional_symptom->is_saved = false;
+            }
+            array_push($constitutional_symptoms, $constitutional_symptom);
+        }
+        return $constitutional_symptoms;
+
+    }
+
     public function get_orders($id)
     {
         if(Auth::check()) {

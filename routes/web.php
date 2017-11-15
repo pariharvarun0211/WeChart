@@ -113,6 +113,14 @@ Route::get('/Physical_Exam/{id}/#neurological')->name('Neurological19');
 Route::get('/Physical_Exam/{id}/#psychological')->name('Psychological19');
 
 Route::post('Psychological', 'DocumentationController@post_psychological')->name('Psychological');
+Route::post('Neurological', 'DocumentationController@post_neurological')->name('Neurological');
+Route::post('Integumentary', 'DocumentationController@post_integumentary')->name('Integumentary');
+Route::post('Musculoskeletal', 'DocumentationController@post_musculoskeletal')->name('Musculoskeletal');
+Route::post('Cardiovascular', 'DocumentationController@post_cardiovascular')->name('Cardiovascular');
+Route::post('Respiratory', 'DocumentationController@post_respiratory')->name('Respiratory');
+Route::post('Eyes', 'DocumentationController@post_eyes')->name('Eyes');
+Route::post('HENT', 'DocumentationController@post_HENT')->name('HENT');
+Route::post('Constitutional', 'DocumentationController@post_Constitutional')->name('Constitutional');
 
 Route::get('/Orders/{id}', 'NavigationController@get_orders')->name('Orders');
 Route::post('post_orders}', 'DocumentationController@post_orders')->name('post_orders');

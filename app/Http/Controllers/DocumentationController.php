@@ -14,6 +14,7 @@ use App\users_patient;
 use App\patient;
 use App\active_record;
 use Illuminate\Support\Facades\DB;
+use Carbon;
 
 class DocumentationController extends Controller
 {
@@ -817,6 +818,8 @@ class DocumentationController extends Controller
         return view('auth/not_authorized');
     }
     }
+
+    //All PE post routes
     public function post_psychological(Request $request)
     {
         $role='';
@@ -878,6 +881,495 @@ class DocumentationController extends Controller
         }
 
     }
+    public function post_neurological(Request $request)
+    {
+        $role='';
+        if(Auth::check()) {
+            $role = Auth::user()->role;
+        }
+
+        if($role == 'Student') {
+            try {
+                //First deleting all saved symptoms
+                active_record::where('patient_id', $request['patient_id'])
+                    ->where('navigation_id','27')->where('doc_control_id','57')->delete();
+
+                $neurological_symptoms = $request['$neurological_symptoms'];
+
+                //Now saving
+                foreach ((array)$neurological_symptoms as $key=>$neurological_symptom) {
+                    $active_record = new active_record();
+                    $active_record['patient_id'] = $request['patient_id'];
+                    $active_record['navigation_id'] = '27';
+                    $active_record['doc_control_id'] = '57';
+                    $active_record['value'] = $neurological_symptom;
+                    $active_record['created_by'] = $request['user_id'];
+                    $active_record['updated_by'] = $request['user_id'];
+                    $active_record->save();
+                }
+                //Saving comment
+                $comment_neurological_record = active_record::where('patient_id', $request['patient_id'])
+                    ->where('navigation_id','27')
+                    ->where('doc_control_id','58')->get();
+
+                if(!count($comment_neurological_record)>0)
+                {
+                    $active_record = new active_record();
+                    $active_record['patient_id'] = $request['patient_id'];
+                    $active_record['navigation_id'] = '27';
+                    $active_record['doc_control_id'] = '58';
+                    $active_record['value'] = $request['neurological_comment'];
+                    $active_record['created_by'] = $request['user_id'];
+                    $active_record['updated_by'] = $request['user_id'];
+                    $active_record->save();
+                }
+                else {
+                    $active_record = active_record::where('active_record_id', $comment_neurological_record[0]->active_record_id)->first();
+                    $active_record['value'] = $request['neurological_comment'];
+                    $active_record->save();
+                }
+
+                //Now redirecting to page
+                return redirect()->route('Physical Exam',[$request['patient_id']]);
+
+            } catch (\Exception $e) {
+                return view('errors/503');
+            }
+        }
+        else
+        {
+            return view('auth/not_authorized');
+        }
+
+    }
+    public function post_integumentary(Request $request)
+    {
+        $role='';
+        if(Auth::check()) {
+            $role = Auth::user()->role;
+        }
+
+        if($role == 'Student') {
+            try {
+                //First deleting all saved symptoms
+                active_record::where('patient_id', $request['patient_id'])
+                    ->where('navigation_id','26')->where('doc_control_id','55')->delete();
+
+                $integumentary_symptoms = $request['$integumentary_symptoms'];
+
+                //Now saving
+                foreach ((array)$integumentary_symptoms as $key=>$integumentary_symptom) {
+                    $active_record = new active_record();
+                    $active_record['patient_id'] = $request['patient_id'];
+                    $active_record['navigation_id'] = '26';
+                    $active_record['doc_control_id'] = '55';
+                    $active_record['value'] = $integumentary_symptom;
+                    $active_record['created_by'] = $request['user_id'];
+                    $active_record['updated_by'] = $request['user_id'];
+                    $active_record->save();
+                }
+                //Saving comment
+                $comment_integumentary_record = active_record::where('patient_id', $request['patient_id'])
+                    ->where('navigation_id','26')
+                    ->where('doc_control_id','56')->get();
+
+                if(!count($comment_integumentary_record)>0)
+                {
+                    $active_record = new active_record();
+                    $active_record['patient_id'] = $request['patient_id'];
+                    $active_record['navigation_id'] = '26';
+                    $active_record['doc_control_id'] = '56';
+                    $active_record['value'] = $request['integumentary_comment'];
+                    $active_record['created_by'] = $request['user_id'];
+                    $active_record['updated_by'] = $request['user_id'];
+                    $active_record->save();
+                }
+                else {
+                    $active_record = active_record::where('active_record_id', $comment_integumentary_record[0]->active_record_id)->first();
+                    $active_record['value'] = $request['integumentary_comment'];
+                    $active_record->save();
+                }
+
+                //Now redirecting to page
+                return redirect()->route('Physical Exam',[$request['patient_id']]);
+
+            } catch (\Exception $e) {
+                return view('errors/503');
+            }
+        }
+        else
+        {
+            return view('auth/not_authorized');
+        }
+
+    }
+    public function post_musculoskeletal(Request $request)
+    {
+        $role='';
+        if(Auth::check()) {
+            $role = Auth::user()->role;
+        }
+
+        if($role == 'Student') {
+            try {
+                //First deleting all saved symptoms
+                active_record::where('patient_id', $request['patient_id'])
+                    ->where('navigation_id','25')->where('doc_control_id','53')->delete();
+
+                $musculoskeletal_symptoms = $request['$musculoskeletal_symptoms'];
+
+                //Now saving
+                foreach ((array)$musculoskeletal_symptoms as $key=>$musculoskeletal_symptom) {
+                    $active_record = new active_record();
+                    $active_record['patient_id'] = $request['patient_id'];
+                    $active_record['navigation_id'] = '25';
+                    $active_record['doc_control_id'] = '53';
+                    $active_record['value'] = $musculoskeletal_symptom;
+                    $active_record['created_by'] = $request['user_id'];
+                    $active_record['updated_by'] = $request['user_id'];
+                    $active_record->save();
+                }
+                //Saving comment
+                $comment_musculoskeletal_record = active_record::where('patient_id', $request['patient_id'])
+                    ->where('navigation_id','25')
+                    ->where('doc_control_id','54')->get();
+
+                if(!count($comment_musculoskeletal_record)>0)
+                {
+                    $active_record = new active_record();
+                    $active_record['patient_id'] = $request['patient_id'];
+                    $active_record['navigation_id'] = '25';
+                    $active_record['doc_control_id'] = '54';
+                    $active_record['value'] = $request['musculoskeletal_comment'];
+                    $active_record['created_by'] = $request['user_id'];
+                    $active_record['updated_by'] = $request['user_id'];
+                    $active_record->save();
+                }
+                else {
+                    $active_record = active_record::where('active_record_id', $comment_musculoskeletal_record[0]->active_record_id)->first();
+                    $active_record['value'] = $request['musculoskeletal_comment'];
+                    $active_record->save();
+                }
+
+                //Now redirecting to page
+                return redirect()->route('Physical Exam',[$request['patient_id']]);
+
+            } catch (\Exception $e) {
+                return view('errors/503');
+            }
+        }
+        else
+        {
+            return view('auth/not_authorized');
+        }
+
+    }
+    public function post_cardiovascular(Request $request)
+    {
+        $role='';
+        if(Auth::check()) {
+            $role = Auth::user()->role;
+        }
+
+        if($role == 'Student') {
+            try {
+                //First deleting all saved symptoms
+                active_record::where('patient_id', $request['patient_id'])
+                    ->where('navigation_id','24')->where('doc_control_id','51')->delete();
+
+                $cardiovascular_symptoms = $request['$cardiovascular_symptoms'];
+
+                //Now saving
+                foreach ((array)$cardiovascular_symptoms as $key=>$cardiovascular_symptom) {
+                    $active_record = new active_record();
+                    $active_record['patient_id'] = $request['patient_id'];
+                    $active_record['navigation_id'] = '24';
+                    $active_record['doc_control_id'] = '51';
+                    $active_record['value'] = $cardiovascular_symptom;
+                    $active_record['created_by'] = $request['user_id'];
+                    $active_record['updated_by'] = $request['user_id'];
+                    $active_record->save();
+                }
+                //Saving comment
+                $comment_cardiovascular_record = active_record::where('patient_id', $request['patient_id'])
+                    ->where('navigation_id','24')
+                    ->where('doc_control_id','52')->get();
+
+                if(!count($comment_cardiovascular_record)>0)
+                {
+                    $active_record = new active_record();
+                    $active_record['patient_id'] = $request['patient_id'];
+                    $active_record['navigation_id'] = '24';
+                    $active_record['doc_control_id'] = '52';
+                    $active_record['value'] = $request['cardiovascular_comment'];
+                    $active_record['created_by'] = $request['user_id'];
+                    $active_record['updated_by'] = $request['user_id'];
+                    $active_record->save();
+                }
+                else {
+                    $active_record = active_record::where('active_record_id', $comment_cardiovascular_record[0]->active_record_id)->first();
+                    $active_record['value'] = $request['cardiovascular_comment'];
+                    $active_record->save();
+                }
+
+                //Now redirecting to page
+                return redirect()->route('Physical Exam',[$request['patient_id']]);
+
+            } catch (\Exception $e) {
+                return view('errors/503');
+            }
+        }
+        else
+        {
+            return view('auth/not_authorized');
+        }
+
+    }
+    public function post_respiratory(Request $request)
+    {
+        $role='';
+        if(Auth::check()) {
+            $role = Auth::user()->role;
+        }
+
+        if($role == 'Student') {
+            try {
+                //First deleting all saved symptoms
+                active_record::where('patient_id', $request['patient_id'])
+                    ->where('navigation_id','23')->where('doc_control_id','49')->delete();
+
+                $respiratory_symptoms = $request['$respiratory_symptoms'];
+
+                //Now saving
+                foreach ((array)$respiratory_symptoms as $key=>$respiratory_symptom) {
+                    $active_record = new active_record();
+                    $active_record['patient_id'] = $request['patient_id'];
+                    $active_record['navigation_id'] = '23';
+                    $active_record['doc_control_id'] = '49';
+                    $active_record['value'] = $respiratory_symptom;
+                    $active_record['created_by'] = $request['user_id'];
+                    $active_record['updated_by'] = $request['user_id'];
+                    $active_record->save();
+                }
+                //Saving comment
+                $comment_respiratory_record = active_record::where('patient_id', $request['patient_id'])
+                    ->where('navigation_id','23')
+                    ->where('doc_control_id','50')->get();
+
+                if(!count($comment_respiratory_record)>0)
+                {
+                    $active_record = new active_record();
+                    $active_record['patient_id'] = $request['patient_id'];
+                    $active_record['navigation_id'] = '23';
+                    $active_record['doc_control_id'] = '50';
+                    $active_record['value'] = $request['respiratory_comment'];
+                    $active_record['created_by'] = $request['user_id'];
+                    $active_record['updated_by'] = $request['user_id'];
+                    $active_record->save();
+                }
+                else {
+                    $active_record = active_record::where('active_record_id', $comment_respiratory_record[0]->active_record_id)->first();
+                    $active_record['value'] = $request['respiratory_comment'];
+                    $active_record->save();
+                }
+
+                //Now redirecting to page
+                return redirect()->route('Physical Exam',[$request['patient_id']]);
+
+            } catch (\Exception $e) {
+                return view('errors/503');
+            }
+        }
+        else
+        {
+            return view('auth/not_authorized');
+        }
+
+    }
+    public function post_eyes(Request $request)
+    {
+        $role='';
+        if(Auth::check()) {
+            $role = Auth::user()->role;
+        }
+
+        if($role == 'Student') {
+            try {
+                //First deleting all saved symptoms
+                active_record::where('patient_id', $request['patient_id'])
+                    ->where('navigation_id','22')->where('doc_control_id','47')->delete();
+
+                $eyes_symptoms = $request['$eyes_symptoms'];
+
+                //Now saving
+                foreach ((array)$eyes_symptoms as $key=>$eyes_symptom) {
+                    $active_record = new active_record();
+                    $active_record['patient_id'] = $request['patient_id'];
+                    $active_record['navigation_id'] = '22';
+                    $active_record['doc_control_id'] = '47';
+                    $active_record['value'] = $eyes_symptom;
+                    $active_record['created_by'] = $request['user_id'];
+                    $active_record['updated_by'] = $request['user_id'];
+                    $active_record->save();
+                }
+                //Saving comment
+                $comment_eyes_record = active_record::where('patient_id', $request['patient_id'])
+                    ->where('navigation_id','22')
+                    ->where('doc_control_id','48')->get();
+
+                if(!count($comment_eyes_record)>0)
+                {
+                    $active_record = new active_record();
+                    $active_record['patient_id'] = $request['patient_id'];
+                    $active_record['navigation_id'] = '22';
+                    $active_record['doc_control_id'] = '48';
+                    $active_record['value'] = $request['eyes_comment'];
+                    $active_record['created_by'] = $request['user_id'];
+                    $active_record['updated_by'] = $request['user_id'];
+                    $active_record->save();
+                }
+                else {
+                    $active_record = active_record::where('active_record_id', $comment_eyes_record[0]->active_record_id)->first();
+                    $active_record['value'] = $request['eyes_comment'];
+                    $active_record->save();
+                }
+
+                //Now redirecting to page
+                return redirect()->route('Physical Exam',[$request['patient_id']]);
+
+            } catch (\Exception $e) {
+                return view('errors/503');
+            }
+        }
+        else
+        {
+            return view('auth/not_authorized');
+        }
+
+    }
+    public function post_HENT(Request $request)
+    {
+        $role='';
+        if(Auth::check()) {
+            $role = Auth::user()->role;
+        }
+
+        if($role == 'Student') {
+            try {
+                //First deleting all saved symptoms
+                active_record::where('patient_id', $request['patient_id'])
+                    ->where('navigation_id','21')->where('doc_control_id','45')->delete();
+
+                $HENT_symptoms = $request['$HENT_symptoms'];
+
+                //Now saving
+                foreach ((array)$HENT_symptoms as $key=>$HENT_symptom) {
+                    $active_record = new active_record();
+                    $active_record['patient_id'] = $request['patient_id'];
+                    $active_record['navigation_id'] = '21';
+                    $active_record['doc_control_id'] = '45';
+                    $active_record['value'] = $HENT_symptom;
+                    $active_record['created_by'] = $request['user_id'];
+                    $active_record['updated_by'] = $request['user_id'];
+                    $active_record->save();
+                }
+                //Saving comment
+                $comment_HENT_record = active_record::where('patient_id', $request['patient_id'])
+                    ->where('navigation_id','21')
+                    ->where('doc_control_id','46')->get();
+
+                if(!count($comment_HENT_record)>0)
+                {
+                    $active_record = new active_record();
+                    $active_record['patient_id'] = $request['patient_id'];
+                    $active_record['navigation_id'] = '21';
+                    $active_record['doc_control_id'] = '46';
+                    $active_record['value'] = $request['HENT_comment'];
+                    $active_record['created_by'] = $request['user_id'];
+                    $active_record['updated_by'] = $request['user_id'];
+                    $active_record->save();
+                }
+                else {
+                    $active_record = active_record::where('active_record_id', $comment_HENT_record[0]->active_record_id)->first();
+                    $active_record['value'] = $request['HENT_comment'];
+                    $active_record->save();
+                }
+
+                //Now redirecting to page
+                return redirect()->route('Physical Exam',[$request['patient_id']]);
+
+            } catch (\Exception $e) {
+                return view('errors/503');
+            }
+        }
+        else
+        {
+            return view('auth/not_authorized');
+        }
+
+    }
+    public function post_constitutional(Request $request)
+    {
+        $role='';
+        if(Auth::check()) {
+            $role = Auth::user()->role;
+        }
+
+        if($role == 'Student') {
+            try {
+                //First deleting all saved symptoms
+                active_record::where('patient_id', $request['patient_id'])
+                    ->where('navigation_id','20')->where('doc_control_id','43')->delete();
+
+                $constitutional_symptoms = $request['$constitutional_symptoms'];
+
+                //Now saving
+                foreach ((array)$constitutional_symptoms as $key=>$constitutional_symptom) {
+                    $active_record = new active_record();
+                    $active_record['patient_id'] = $request['patient_id'];
+                    $active_record['navigation_id'] = '20';
+                    $active_record['doc_control_id'] = '43';
+                    $active_record['value'] = $constitutional_symptom;
+                    $active_record['created_by'] = $request['user_id'];
+                    $active_record['updated_by'] = $request['user_id'];
+                    $active_record->save();
+                }
+                //Saving comment
+                $comment_constitutional_record = active_record::where('patient_id', $request['patient_id'])
+                    ->where('navigation_id','20')
+                    ->where('doc_control_id','44')->get();
+
+                if(!count($comment_constitutional_record)>0)
+                {
+                    $active_record = new active_record();
+                    $active_record['patient_id'] = $request['patient_id'];
+                    $active_record['navigation_id'] = '20';
+                    $active_record['doc_control_id'] = '44';
+                    $active_record['value'] = $request['constitutional_comment'];
+                    $active_record['created_by'] = $request['user_id'];
+                    $active_record['updated_by'] = $request['user_id'];
+                    $active_record->save();
+                }
+                else {
+                    $active_record = active_record::where('active_record_id', $comment_constitutional_record[0]->active_record_id)->first();
+                    $active_record['value'] = $request['constitutional_comment'];
+                    $active_record->save();
+                }
+
+                //Now redirecting to page
+                return redirect()->route('Physical Exam',[$request['patient_id']]);
+
+            } catch (\Exception $e) {
+                return view('errors/503');
+            }
+        }
+        else
+        {
+            return view('auth/not_authorized');
+        }
+
+    }
+
     public function post_assignInstructor(Request $request)
     {
         $role='';
@@ -910,6 +1402,8 @@ class DocumentationController extends Controller
                 ]);
             }
             patient::where('patient_id', $request['patient_id'])->update(array('completed_flag' => true));
+            patient::where('patient_id', $request['patient_id'])->update(array('submitted_date' => Carbon\Carbon::now()->format('m-d-Y')));
+
             return redirect()->route('student.home');
         }
         else
