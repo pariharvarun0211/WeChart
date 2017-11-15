@@ -647,7 +647,6 @@ class NavigationController extends Controller
             {
                 $disposition_comment[0] = '';
             }
-Log::info($disposition_value);
             $patient = patient::where('patient_id', $id)->first();
             //Fetching all navs associated with this patient's module
             $navIds = module_navigation::where('module_id', $patient->module_id)->orderBy('navigation_id')->pluck('navigation_id');

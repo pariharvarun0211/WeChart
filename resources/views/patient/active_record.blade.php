@@ -55,7 +55,7 @@
 
             {{--Pink Panel--}}
             <div class="col-md-3" style="float: right;background-color: lightpink;" id="pink_panel">
-                Pink Panel
+                Guidance Panel
             </div>
 
         </div>

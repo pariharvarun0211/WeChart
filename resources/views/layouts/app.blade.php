@@ -57,9 +57,15 @@
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
+                                     <li>
+                                         <a href="{{ URL::route('EditProfile', Auth::user()->id) }}">
+                                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                            Edit Profile
+                                        </a>
+                                    </li>
                                     <li>
                                         <a href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
+                                           onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                             <i class="fa fa-sign-out" aria-hidden="true"></i>
                                             Logout
@@ -69,13 +75,6 @@
                                             {{ csrf_field() }}
                                         </form>
                                     </li>
-                                     <li>
-                                         <a href="{{ URL::route('EditProfile', Auth::user()->id) }}">
-                                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                            Edit Profile
-                                        </a>
-                                    </li>
-
                                 </ul>
                             </li>
                         @endguest
