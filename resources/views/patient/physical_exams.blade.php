@@ -20,7 +20,6 @@
                             <div class="row">
                                 <div class="col-md-12 ">
                                     <table>
-                                        <br>
                                         <tbody>
                                         @foreach ($constitutional_symptoms as $constitutional_symptom)
                                             <tr>
@@ -560,7 +559,6 @@
                             <div class="row">
                                 <div class="col-md-12 ">
                                     <table>
-                                        <br>
                                         <tbody>
                                         @foreach ($neurological_symptoms as $neurological_symptom)
                                             <tr>
@@ -638,7 +636,6 @@
                                 <div class="row">
                                     <div class="col-md-12 ">
                                     <table>
-                                        <br>
                                         <tbody>
                                         @foreach ($psychological_symptoms as $psychological_symptom)
                                             <tr>
@@ -701,21 +698,76 @@
 
     <script>
          $(document).ready(function(){
+             var inputsChanged_Constitutional_form = false;
+             var inputsChanged_HENT_form = false;
+             var inputsChanged_Eyes_form = false;
+             var inputsChanged_Respiratory_form = false;
+             var inputsChanged_Cardiovascular_form = false;
+             var inputsChanged_Musculoskeletal_form = false;
+             var inputsChanged_Integumentary_form = false;
+             var inputsChanged_Neurological_form = false;
              var inputsChanged_Psychological_form = false;
+
+             $('#Constitutional_form').change(function() {
+                 inputsChanged_Constitutional_form = true;
+             });
+             $('#HENT_form').change(function() {
+                 inputsChanged_HENT_form = true;
+             });
+             $('#Eyes_form').change(function() {
+                 inputsChanged_Eyes_form = true;
+             });
+             $('#Respiratory_form').change(function() {
+                 inputsChanged_Respiratory_form = true;
+             });
+             $('#Cardiovascular_form').change(function() {
+                 inputsChanged_Cardiovascular_form = true;
+             });
+             $('#Musculoskeletal_form').change(function() {
+                 inputsChanged_Musculoskeletal_form = true;
+             });
+             $('#Integumentary_form').change(function() {
+                 inputsChanged_Integumentary_form = true;
+             });
+             $('#Neurological_form').change(function() {
+                 inputsChanged_Neurological_form = true;
+             });
              $('#Psychological_form').change(function() {
                  inputsChanged_Psychological_form = true;
              });
 
              function unloadPage(){
-                 if(inputsChanged_Psychological_form ){
+                 if(inputsChanged_Psychological_form || inputsChanged_Constitutional_form || inputsChanged_HENT_form ||inputsChanged_Eyes_form || inputsChanged_Respiratory_form || inputsChanged_Cardiovascular_form || inputsChanged_Musculoskeletal_form || inputsChanged_Integumentary_form || inputsChanged_Neurological_form){
                      return "Do you want to leave this page?. Changes you made may not be saved.";
                  }
              }
-
+             $("#btn_save_constitutional").click(function(){
+                 inputsChanged_Constitutional_form = false;
+             });
+             $("#btn_save_HENT").click(function(){
+                 inputsChanged_HENT_form = false;
+             });
+             $("#btn_save_eyes").click(function(){
+                 inputsChanged_Eyes_form = false;
+             });
+             $("#btn_save_respiratory").click(function(){
+                 inputsChanged_Respiratory_form = false;
+             });
+             $("#btn_save_cardiovascular").click(function(){
+                 inputsChanged_Cardiovascular_form = false;
+             });
+             $("#btn_save_musculoskeletal").click(function(){
+                 inputsChanged_Musculoskeletal_form = false;
+             });
+             $("#btn_save_integumentary").click(function(){
+                 inputsChanged_Integumentary_form = false;
+             });
+             $("#btn_save_neurological").click(function(){
+                 inputsChanged_Neurological_form = false;
+             });
              $("#btn_save_psychological").click(function(){
                  inputsChanged_Psychological_form = false;
              });
-
              window.onbeforeunload = unloadPage;
          });
      </script>
