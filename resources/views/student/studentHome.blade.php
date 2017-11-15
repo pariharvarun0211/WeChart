@@ -57,8 +57,8 @@
                                                            <tr>
                                                                 <td>
                                                                     <a href="{{ route( 'patient.view', ['patient_id' => $patient->patient_id ] ) }}" id="patientName">
-                                                                        <?php echo $patient->first_name.' '.$patient->last_name; ?>
-                                                                    </a>
+                                                                         <?php echo $patient->first_name.' '.$patient->last_name; ?>
+                                                                     </a>
                                                                 </td>
                                                                 <td><p id="patientAge">{{$patient->age}}</p></td>
                                                                 <td><p id="patientSex">{{$patient->gender}}</p></td>
@@ -122,13 +122,11 @@
                                                     <tbody>
                                                     @foreach($submitted_patients as $patient)
                                                         <!-- To check the patient records with "Saved" status -->
-                                                        @if($patient->module)
-                                                            @if($patient->completed_flag === 1 && $patient->module->module_name === $module)
-                                                                <tr>
+                                                        @if($patient->module)                                                       
+                                                            @if($patient->completed_flag == 1 && $patient->module->module_name === $module)
+                                                                <tr>                                                               
                                                                     <td>
-                                                                        <a href="{{ route( 'patient.view', ['patient_id' => $patient->patient_id ] ) }}" id="patientName">
-                                                                            <?php echo $patient->first_name.' '.$patient->last_name; ?>
-                                                                        </a>
+                                                                        <?php echo $patient->first_name.' '.$patient->last_name; ?>                                                                    
                                                                     </td>
                                                                     <td><p id="patientAge">{{$patient->age}}</p></td>
                                                                     <td><p id="patientSex">{{$patient->gender}}</p></td>
