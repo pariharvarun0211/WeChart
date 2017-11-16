@@ -861,21 +861,21 @@ class NavigationController extends Controller
             $ros_cardiovascular_comment = active_record::where('patient_id', $id)
                 ->where('navigation_id','14')->where('doc_control_id','34')->pluck('value');
 
-//            $ros_musculoskeletal_symptoms= $this->get_ROS_musculoskeletal_symptoms($id);
-//            $ros_musculoskeletal_comment = active_record::where('patient_id', $id)
-//                ->where('navigation_id','15')->where('doc_control_id','36')->pluck('value');
-//
-//            $ros_integumentary_symptoms= $this->get_ROS_integumentary_symptoms($id);
-//            $ros_integumentary_comment = active_record::where('patient_id', $id)
-//                ->where('navigation_id','16')->where('doc_control_id','38')->pluck('value');
-//
-//            $ros_neurological_symptoms= $this->get_ROS_neurological_symptoms($id);
-//            $ros_neurological_comment = active_record::where('patient_id', $id)
-//                ->where('navigation_id','17')->where('doc_control_id','40')->pluck('value');
-//
-//            $ros_psychological_symptoms= $this->get_ROS_psychological_symptoms($id);
-//            $ros_psychological_comment = active_record::where('patient_id', $id)
-//                ->where('navigation_id','18')->where('doc_control_id','42')->pluck('value');
+           $ros_musculoskeletal_symptoms= $this->get_ROS_musculoskeletal_symptoms($id);
+           $ros_musculoskeletal_comment = active_record::where('patient_id', $id)
+               ->where('navigation_id','15')->where('doc_control_id','36')->pluck('value');
+
+           $ros_integumentary_symptoms= $this->get_ROS_integumentary_symptoms($id);
+           $ros_integumentary_comment = active_record::where('patient_id', $id)
+               ->where('navigation_id','16')->where('doc_control_id','38')->pluck('value');
+
+           $ros_neurological_symptoms= $this->get_ROS_neurological_symptoms($id);
+           $ros_neurological_comment = active_record::where('patient_id', $id)
+               ->where('navigation_id','17')->where('doc_control_id','40')->pluck('value');
+
+           $ros_psychological_symptoms= $this->get_ROS_psychological_symptoms($id);
+           $ros_psychological_comment = active_record::where('patient_id', $id)
+               ->where('navigation_id','18')->where('doc_control_id','42')->pluck('value');
 
             $patient = patient::where('patient_id', $id)->first();
             //Fetching all navs associated with this patient's module
@@ -1113,6 +1113,166 @@ class NavigationController extends Controller
             array_push($ros_cardiovascular_symptoms, $ros_cardiovascular_symptom);
         }
         return $ros_cardiovascular_all_symptoms;
+}
+
+    public function get_ROS_musculoskeletal_symptoms($id)
+{
+    $ros_musculoskeletal_all_symptoms = array();
+    $ros_musculoskeletal_all_lookup_values = doc_lookup_value::where('doc_control_id',35)->pluck('lookup_value_id');
+
+    foreach ($ros_musculoskeletal_all_lookup_values as $ros_musculoskeletal_all_lookup_value)
+    {
+        $symptom = lookup_value::where('lookup_value_id',$ros_musculoskeletal_all_lookup_value)->pluck('lookup_value');
+        array_push($ros_musculoskeletal_all_symptoms,$symptom );
+    }
+
+    $ros_musculoskeletal_saved_symptoms = active_record::where('patient_id', $id)
+        ->where('navigation_id','15')->where('doc_control_id','35')->pluck('value');
+
+    //Converting object to array
+    $ros_musculoskeletal_saved_symptoms = str_replace(['['], '', $ros_musculoskeletal_saved_symptoms);
+    $ros_musculoskeletal_saved_symptoms = str_replace(['"'], '', $ros_musculoskeletal_saved_symptoms);
+    $ros_musculoskeletal_saved_symptoms = str_replace(['"'], '', $ros_musculoskeletal_saved_symptoms);
+    $ros_musculoskeletal_saved_symptoms = str_replace([']'], '', $ros_musculoskeletal_saved_symptoms);
+    $ros_musculoskeletal_saved_symptoms = explode(",", $ros_musculoskeletal_saved_symptoms);
+
+    $ros_musculoskeletal_symptoms = Array();
+
+    foreach($ros_musculoskeletal_all_symptoms as $symptom)
+    {
+        $ros_musculoskeletal_symptom = new symptom();
+        $ros_musculoskeletal_symptom->value = $symptom[0];
+        if(in_array($symptom[0], $ros_musculoskeletal_saved_symptoms))
+        {
+            $ros_musculoskeletal_symptom->is_saved = true;
+        }
+        else
+        {
+            $ros_musculoskeletal_symptom->is_saved = false;
+        }
+        array_push($ros_musculoskeletal_symptoms, $ros_musculoskeletal_symptom);
+    }
+    return $ros_musculoskeletal_symptoms;
+}
+
+public function get_ROS_integumentary_symptoms($id)
+{
+    $ros_integumentary_all_symptoms = array();
+    $ros_integumentary_all_lookup_values = doc_lookup_value::where('doc_control_id',37)->pluck('lookup_value_id');
+
+    foreach ($ros_integumentary_all_lookup_values as $ros_integumentary_all_lookup_value)
+    {
+        $symptom = lookup_value::where('lookup_value_id',$ros_integumentary_all_lookup_value)->pluck('lookup_value');
+        array_push($ros_integumentary_all_symptoms,$symptom );
+    }
+
+    $ros_integumentary_saved_symptoms = active_record::where('patient_id', $id)
+        ->where('navigation_id','16')->where('doc_control_id','37')->pluck('value');
+
+    //Converting object to array
+    $ros_integumentary_saved_symptoms = str_replace(['['], '', $ros_integumentary_saved_symptoms);
+    $ros_integumentary_saved_symptoms = str_replace(['"'], '', $ros_integumentary_saved_symptoms);
+    $ros_integumentary_saved_symptoms = str_replace(['"'], '', $ros_integumentary_saved_symptoms);
+    $ros_integumentary_saved_symptoms = str_replace([']'], '', $ros_integumentary_saved_symptoms);
+    $ros_integumentary_saved_symptoms = explode(",", $ros_integumentary_saved_symptoms);
+
+    $ros_integumentary_symptoms = Array();
+
+    foreach($ros_integumentary_all_symptoms as $symptom)
+    {
+        $ros_integumentary_symptom = new symptom();
+        $ros_integumentary_symptom->value = $symptom[0];
+        if(in_array($symptom[0], $ros_integumentary_saved_symptoms))
+        {
+            $ros_integumentary_symptom->is_saved = true;
+        }
+        else
+        {
+            $ros_integumentary_symptom->is_saved = false;
+        }
+        array_push($ros_integumentary_symptoms, $ros_integumentary_symptom);
+    }
+    return $ros_integumentary_symptoms;
+}
+
+public function get_ROS_neurological_symptoms($id)
+{
+    $ros_neurological_all_symptoms = array();
+    $ros_neurological_all_lookup_values = doc_lookup_value::where('doc_control_id',39)->pluck('lookup_value_id');
+
+    foreach ($ros_neurological_all_lookup_values as $ros_neurological_all_lookup_value)
+    {
+        $symptom = lookup_value::where('lookup_value_id',$ros_neurological_all_lookup_value)->pluck('lookup_value');
+        array_push($ros_neurological_all_symptoms,$symptom );
+    }
+
+    $ros_neurological_saved_symptoms = active_record::where('patient_id', $id)
+        ->where('navigation_id','17')->where('doc_control_id','39')->pluck('value');
+
+    //Converting object to array
+    $ros_neurological_saved_symptoms = str_replace(['['], '', $ros_neurological_saved_symptoms);
+    $ros_neurological_saved_symptoms = str_replace(['"'], '', $ros_neurological_saved_symptoms);
+    $ros_neurological_saved_symptoms = str_replace(['"'], '', $ros_neurological_saved_symptoms);
+    $ros_neurological_saved_symptoms = str_replace([']'], '', $ros_neurological_saved_symptoms);
+    $ros_neurological_saved_symptoms = explode(",", $ros_neurological_saved_symptoms);
+
+    $ros_neurological_symptoms = Array();
+
+    foreach($ros_neurological_all_symptoms as $symptom)
+    {
+        $ros_neurological_symptom = new symptom();
+        $ros_neurological_symptom->value = $symptom[0];
+        if(in_array($symptom[0], $ros_neurological_saved_symptoms))
+        {
+            $ros_neurological_symptom->is_saved = true;
+        }
+        else
+        {
+            $ros_neurological_symptom->is_saved = false;
+        }
+        array_push($ros_neurological_symptoms, $ros_neurological_symptom);
+    }
+    return $ros_neurological_symptoms;
+}
+
+public function get_ROS_psychological_symptoms($id)
+{
+    $ros_psychological_all_symptoms = array();
+    $ros_psychological_all_lookup_values = doc_lookup_value::where('doc_control_id',41)->pluck('lookup_value_id');
+
+    foreach ($ros_psychological_all_lookup_values as $ros_psychological_all_lookup_value)
+    {
+        $symptom = lookup_value::where('lookup_value_id',$ros_psychological_all_lookup_value)->pluck('lookup_value');
+        array_push($ros_psychological_all_symptoms,$symptom );
+    }
+
+    $ros_psychological_saved_symptoms = active_record::where('patient_id', $id)
+        ->where('navigation_id','18')->where('doc_control_id','41')->pluck('value');
+
+    //Converting object to array
+    $ros_psychological_saved_symptoms = str_replace(['['], '', $ros_psychological_saved_symptoms);
+    $ros_psychological_saved_symptoms = str_replace(['"'], '', $ros_psychological_saved_symptoms);
+    $ros_psychological_saved_symptoms = str_replace(['"'], '', $ros_psychological_saved_symptoms);
+    $ros_psychological_saved_symptoms = str_replace([']'], '', $ros_psychological_saved_symptoms);
+    $ros_psychological_saved_symptoms = explode(",", $ros_psychological_saved_symptoms);
+
+    $ros_psychological_symptoms = Array();
+
+    foreach($ros_psychological_all_symptoms as $symptom)
+    {
+        $ros_psychological_symptom = new symptom();
+        $ros_psychological_symptom->value = $symptom[0];
+        if(in_array($symptom[0], $ros_psychological_saved_symptoms))
+        {
+            $ros_psychological_symptom->is_saved = true;
+        }
+        else
+        {
+            $ros_psychological_symptom->is_saved = false;
+        }
+        array_push($ros_psychological_symptoms, $ros_psychological_symptom);
+    }
+    return $ros_psychological_symptoms;
 }
 
     public function get_orders($id)
