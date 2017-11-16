@@ -27,6 +27,7 @@
                 <div class="row">
                     <div class="col-md-3">
                         <label style="float: left">Submitted to-</label>
+                        <br>
                             @foreach ($instructor_Details as $key=>$instructor_Detail)
                                 @if(count($instructor_Detail)>0)
                                     <p>{{ $instructor_Detail[0]->firstname}} {{ $instructor_Detail[0]->lastname}}</p>
@@ -472,7 +473,6 @@
                         @endif
                     </td>
                 </tr>
-
             @endforeach
         @endif
         </tbody>
