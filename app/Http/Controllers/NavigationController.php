@@ -1550,20 +1550,18 @@ class NavigationController extends Controller
 
             //Now get Instructor names
             foreach ($instructorIds as $key=>$instructorId) {
-                $instructorDetail = User::where('id', $instructorId)->get();
+                $instructorDetail = User::where('id', $instructorId)->where('role','Instructor')->get();
                 array_push($instructor_Details, $instructorDetail);
             }
-            Log::info('Adi');
-            Log::info($instructor_Details);
 
-//            try{
+            try{
                 $pdf = PDF::loadView('patient.preview', compact ('instructor_Details','patient','navs','vital_signs_header','HPI','diagnosis_list_surgical_history','surgical_history_comment','diagnosis_list_personal_history','personal_history_comment','family_members_details','comment_family_history','social_history_smoke_tobacco','social_history_non_smoke_tobacco','social_history_alcohol','social_history_sexual_activity','social_history_comment','medications','medication_comment','vital_sign_details','comment_order','labs','images','results'));
                 return $pdf->download('patient_report.pdf');
-//            }
-//            catch (\Exception $e)
-//            {
-//                return view('errors/503');
-//            }
+            }
+            catch (\Exception $e)
+            {
+                return view('errors/503');
+            }
          }
         else
         {

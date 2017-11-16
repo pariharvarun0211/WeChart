@@ -112,7 +112,11 @@
                             @foreach ($family_members_details as $family_member_details)
                                 <tr>
                                     <td><p><?php echo ($family_member_details->relation); ?></p></td>
-                                    <td><p><?php echo ($family_member_details->status[0]); ?></p></td>
+                                    <td>
+                                        @if(count($family_member_details->status)>0)
+                                            <p><?php echo ($family_member_details->status[0]); ?></p>
+                                        @endif
+                                    </td>
                                     <td colspan="10">
                                         @foreach ($family_member_details->diagnosis as $family_member_diagnosis)
                                             <table>

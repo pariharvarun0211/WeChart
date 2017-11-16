@@ -48,26 +48,60 @@
                                 @else
                                     @foreach ($vital_sign_details as $vs)
                                         <tr>
-                                            <td>{{ $vs->timestamp }}</td>
-                                            <td>{{ $vs->BP_Systolic[0] }}</td>
-                                            <td>{{$vs->BP_Diastolic[0]}}</td>
-                                            <td>{{$vs->Heart_Rate[0]}}</td>
-                                            <td>{{$vs->Respiratory_Rate[0]}}</td>
-                                            <td>{{$vs->Temperature[0]}}</td>
-                                            <td>{{$vs->Weight[0]}}</td>
-                                            <td>{{$vs->Height[0]}}</td>
-                                            <td>{{$vs->Pain[0]}}</td>
-                                            <td>{{$vs->Oxygen_Saturation[0]}}</td>
-                                            <td>{{$vs->Comment[0]}}</td>
                                             <td>
-                                                {{ Form::open(array('method' => 'post', 'route' => array('delete_vital_signs', $vs->timestamp))) }}
-                                                <input id="patient_id" name="patient_id" type="hidden" value="{{ $patient->patient_id }}">
-                                                <input type=hidden id="user_id" name="user_id" value="{{ Auth::user()->id }}">
-                                                <button name="delbutton" class="btn btn-danger btn-delete btn-sm" id="delete_vital_signs">Delete</button>
-                                                {{ Form::close() }}
+                                                {{ $vs->timestamp }}
+                                            </td>
+                                            <td>
+                                                @if(count($vs->BP_Systolic)>0)
+                                                    {{ $vs->BP_Systolic[0] }}
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if(count($vs->BP_Diastolic)>0)
+                                                    {{$vs->BP_Diastolic[0]}}
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if(count($vs->Heart_Rate)>0)
+                                                    {{$vs->Heart_Rate[0]}}
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if(count($vs->Respiratory_Rate)>0)
+                                                    {{$vs->Respiratory_Rate[0]}}
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if(count($vs->Temperature)>0)
+                                                    {{$vs->Temperature[0]}}
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if(count($vs->Weight)>0)
+                                                    {{$vs->Weight[0]}}
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if(count($vs->Height)>0)
+                                                    {{$vs->Height[0]}}
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if(count($vs->Pain)>0)
+                                                    {{$vs->Pain[0]}}
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if(count($vs->Oxygen_Saturation)>0)
+                                                    {{$vs->Oxygen_Saturation[0]}}
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if(count($vs->Comment)>0)
+                                                    {{$vs->Comment[0]}}
+                                                @endif
                                             </td>
                                         </tr>
-
                                     @endforeach
                                 @endif
                                 </tbody>

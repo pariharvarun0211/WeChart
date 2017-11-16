@@ -418,17 +418,59 @@
         @else
             @foreach ($vital_sign_details as $vs)
                 <tr>
-                    <td>{{ $vs->timestamp }}</td>
-                    {{--<td>{{ $vs->BP_Systolic[0] }}</td>--}}
-                    {{--<td>{{$vs->BP_Diastolic[0]}}</td>--}}
-                    {{--<td>{{$vs->Heart_Rate[0]}}</td>--}}
-                    {{--<td>{{$vs->Respiratory_Rate[0]}}</td>--}}
-                    {{--<td>{{$vs->Temperature[0]}}</td>--}}
-                    {{--<td>{{$vs->Weight[0]}}</td>--}}
-                    {{--<td>{{$vs->Height[0]}}</td>--}}
-                    {{--<td>{{$vs->Pain[0]}}</td>--}}
-                    {{--<td>{{$vs->Oxygen_Saturation[0]}}</td>--}}
-                    {{--<td>{{$vs->Comment[0]}}</td>--}}
+                    <td>
+                        {{ $vs->timestamp }}
+                    </td>
+                    <td>
+                        @if(count($vs->BP_Systolic)>0)
+                            {{ $vs->BP_Systolic[0] }}
+                        @endif
+                    </td>
+                    <td>
+                        @if(count($vs->BP_Diastolic)>0)
+                            {{$vs->BP_Diastolic[0]}}
+                        @endif
+                    </td>
+                    <td>
+                        @if(count($vs->Heart_Rate)>0)
+                            {{$vs->Heart_Rate[0]}}
+                        @endif
+                    </td>
+                    <td>
+                        @if(count($vs->Respiratory_Rate)>0)
+                            {{$vs->Respiratory_Rate[0]}}
+                        @endif
+                    </td>
+                    <td>
+                        @if(count($vs->Temperature)>0)
+                            {{$vs->Temperature[0]}}
+                        @endif
+                    </td>
+                    <td>
+                        @if(count($vs->Weight)>0)
+                            {{$vs->Weight[0]}}
+                        @endif
+                    </td>
+                    <td>
+                        @if(count($vs->Height)>0)
+                            {{$vs->Height[0]}}
+                        @endif
+                    </td>
+                    <td>
+                        @if(count($vs->Pain)>0)
+                            {{$vs->Pain[0]}}
+                        @endif
+                    </td>
+                    <td>
+                        @if(count($vs->Oxygen_Saturation)>0)
+                            {{$vs->Oxygen_Saturation[0]}}
+                        @endif
+                    </td>
+                    <td>
+                        @if(count($vs->Comment)>0)
+                            {{$vs->Comment[0]}}
+                        @endif
+                    </td>
                 </tr>
 
             @endforeach
