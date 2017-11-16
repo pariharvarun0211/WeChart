@@ -30,9 +30,9 @@
                                         <tr>
                                             <td>
                                                 @if($disposition_value[0] == 'Admitted')
-                                                    <input type="radio" class="form-check-input inline" checked="checked" name="Admitted" value="Admitted" id="disposition_admitted" >&nbsp;Admitted
+                                                    <input type="radio" class="form-check-input inline" checked="checked" name="disposition" value="Admitted" id="disposition_admitted" >&nbsp;Admitted
                                                 @else
-                                                    <input type="radio" class="form-check-input inline" name="Admitted" value="Admitted" id="disposition_admitted" >&nbsp;Admitted
+                                                    <input type="radio" class="form-check-input inline" name="disposition" value="Admitted" id="disposition_admitted" >&nbsp;Admitted
                                                 @endif
                                             </td>
                                         </tr>

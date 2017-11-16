@@ -25,16 +25,21 @@
     <div class="row" >
         <div class="panel-heading">
                 <div class="row">
-                    <div class="col-md-2">
-                        {{--<img src="logos\WeChart.png" >--}}
+                    <div class="col-md-3">
+                        <label style="float: left">Submitted to-</label>
+                            @foreach ($instructor_Details as $key=>$instructor_Detail)
+                                @if(count($instructor_Detail)>0)
+                                    <p>{{ $instructor_Detail[0]->firstname}} {{ $instructor_Detail[0]->lastname}}</p>
+                                @endif
+                            @endforeach
                     </div>
-                    <div class="col-md-8">
+                    <div class="col-md-6">
                         <h3 id="patient_active_record" align="center" style="margin-top: 0;"><b>Patient Active Record</b></h3>
                     </div>
-                    <div class="col-md-2">
-                        <label>Submitted by- {{ Auth::user()->firstname }} {{ Auth::user()->lastname}}</label>
+                    <div class="col-md-3">
+                        <label style="float: right">Submitted by- {{ Auth::user()->firstname }} {{ Auth::user()->lastname}}</label>
                          <br>
-                        <label>Submitted on- {{$patient->submitted_date}} </label>
+                        <label style="float: right">Submitted on- {{$patient->submitted_date}} </label>
                     </div>
                 </div>
         </div>
@@ -214,7 +219,11 @@
                     @foreach ($family_members_details as $family_member_details)
                         <tr>
                             <td><p><?php echo ($family_member_details->relation); ?></p></td>
-                            <td><p><?php echo ($family_member_details->status[0]); ?></p></td>
+                            <td>
+                                @if(count($family_member_details->status)>0)
+                                    <p><?php echo ($family_member_details->status[0]); ?></p>
+                                @endif
+                            </td>
                             <td colspan="10">
                                 @foreach ($family_member_details->diagnosis as $family_member_diagnosis)
                                     <table>
@@ -410,16 +419,16 @@
             @foreach ($vital_sign_details as $vs)
                 <tr>
                     <td>{{ $vs->timestamp }}</td>
-                    <td>{{ $vs->BP_Systolic[0] }}</td>
-                    <td>{{$vs->BP_Diastolic[0]}}</td>
-                    <td>{{$vs->Heart_Rate[0]}}</td>
-                    <td>{{$vs->Respiratory_Rate[0]}}</td>
-                    <td>{{$vs->Temperature[0]}}</td>
-                    <td>{{$vs->Weight[0]}}</td>
-                    <td>{{$vs->Height[0]}}</td>
-                    <td>{{$vs->Pain[0]}}</td>
-                    <td>{{$vs->Oxygen_Saturation[0]}}</td>
-                    <td>{{$vs->Comment[0]}}</td>
+                    {{--<td>{{ $vs->BP_Systolic[0] }}</td>--}}
+                    {{--<td>{{$vs->BP_Diastolic[0]}}</td>--}}
+                    {{--<td>{{$vs->Heart_Rate[0]}}</td>--}}
+                    {{--<td>{{$vs->Respiratory_Rate[0]}}</td>--}}
+                    {{--<td>{{$vs->Temperature[0]}}</td>--}}
+                    {{--<td>{{$vs->Weight[0]}}</td>--}}
+                    {{--<td>{{$vs->Height[0]}}</td>--}}
+                    {{--<td>{{$vs->Pain[0]}}</td>--}}
+                    {{--<td>{{$vs->Oxygen_Saturation[0]}}</td>--}}
+                    {{--<td>{{$vs->Comment[0]}}</td>--}}
                 </tr>
 
             @endforeach
