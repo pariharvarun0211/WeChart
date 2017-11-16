@@ -26,41 +26,55 @@
         <div class="panel-heading">
                 <div class="row">
                     <div class="col-md-3">
-                        <label style="float: left">Submitted to-</label>
-                        <br>
-                            @foreach ($instructor_Details as $key=>$instructor_Detail)
-                                @if(count($instructor_Detail)>0)
-                                    <p>{{ $instructor_Detail[0]->firstname}} {{ $instructor_Detail[0]->lastname}}</p>
-                                @endif
-                            @endforeach
+                        {{--<label style="float: left">Submitted to-</label>--}}
+                            {{--@foreach ($instructor_Details as $key=>$instructor_Detail)--}}
+                                {{--@if(count($instructor_Detail)>0)--}}
+                                    {{--<br>--}}
+                                    {{--<label>{{ $instructor_Detail[0]->firstname}} {{ $instructor_Detail[0]->lastname}}</label>--}}
+                                {{--@endif--}}
+                            {{--@endforeach--}}
                     </div>
                     <div class="col-md-6">
                         <h3 id="patient_active_record" align="center" style="margin-top: 0;"><b>Patient Active Record</b></h3>
                     </div>
                     <div class="col-md-3">
-                        <label style="float: right">Submitted by- {{ Auth::user()->firstname }} {{ Auth::user()->lastname}}</label>
-                         <br>
-                        <label style="float: right">Submitted on- {{$patient->submitted_date}} </label>
+
                     </div>
                 </div>
         </div>
         <div class="panel-body" style="margin-bottom: 0;padding-bottom: 0;background-color: #FFFAF0;margin-top: 0;padding-top: 0">
 
             <table class="table" style=" margin-top: 0;padding-top: 0;margin-bottom: 0;padding-bottom: 0">
+                <tr style="padding-top: 0;padding-bottom: 0%; border-style: hidden">
+                    <td style="padding-top: 0;padding-bottom: 0%">
+                        <label style="float: left">Submitted to-</label>
+                        @foreach ($instructor_Details as $key=>$instructor_Detail)
+                            @if(count($instructor_Detail)>0)
+                                <label>{{ $instructor_Detail[0]->firstname}} {{ $instructor_Detail[0]->lastname}}</label>
+                            @endif
+                        @endforeach
+                    </td>
+                    <td style="padding-top: 0;padding-bottom: 0%">
+                        <label style="float: right">Submitted by- {{ Auth::user()->firstname }} {{ Auth::user()->lastname}}</label>
+                    </td>
+                    <td style="padding-top: 0;padding-bottom: 0%">
+                        <label style="float: right">Submitted on- {{$patient->submitted_date}} </label>
+                    </td>
+                </tr>
                 <!--This is the first row in the vital signs panel -->
                 <tr style="padding-top: 0;padding-bottom: 0%; border-style: hidden">
                     <td style="padding-top: 0;padding-bottom: 0%">
-                        <p id="name_label" style="align-self: center"><strong>Name:</strong>
+                        <p id="name_label" style="align-self: center"><strong>Patient Name:</strong>
                             {{$vital_signs_header->name}}
                         </p>
                     </td>
                     <td style="padding-top: 0;padding-bottom: 0%">
-                        <p id="age_label"><strong>Age: </strong>
+                        <p id="age_label"><strong>Patient Age: </strong>
                             {{$vital_signs_header->age}}
                         </p>
                     </td>
                     <td style="padding-top: 0;padding-bottom: 0%">
-                        <p id="sex_label"><strong>Sex: </strong>
+                        <p id="sex_label"><strong>Patient Sex: </strong>
                             {{$vital_signs_header->gender}}
                         </p>
                     </td>
