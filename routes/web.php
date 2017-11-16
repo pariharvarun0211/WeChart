@@ -76,6 +76,7 @@ Route::get('/Medical_History/{id}/#personal_history')->name('Personal History (P
 Route::get('/Medical_History/{id}/#family_history')->name('Family History (FMHx)2');
 Route::get('/Medical_History/{id}/#social_history')->name('Social History (SHx)2');
 Route::get('/Medical_History/{id}/#surgical_history')->name('Surgical History2');
+
 Route::post('social_history}', 'DocumentationController@post_social_history')->name('social_history');
 Route::post('family_history}', 'DocumentationController@post_family_history')->name('family_history');
 Route::get('/family_history', 'DocumentationController@post_new_family_member')->name('post_new_family_member');
@@ -100,6 +101,11 @@ Route::get('/Review_of_System (ROS)/{id}/#integumentary')->name('Integumentary9'
 Route::get('/Review_of_System (ROS)/{id}/#neurological')->name('Neurological9');
 Route::get('/Review_of_System (ROS)/{id}/#psychological')->name('Psychological9');
 
+Route::post('ros_constitutional', 'DocumentationController@post_ros_constitutional')->name('ros_constitutional');
+Route::post('ros_hent', 'DocumentationController@post_ros_hent')->name('ros_hent');
+Route::post('ros_eyes', 'DocumentationController@post_ros_eyes')->name('ros_eyes');
+Route::post('ros_respiratory', 'DocumentationController@post_ros_respiratory')->name('ros_respiratory');
+Route::post('ros_cardiovascular', 'DocumentationController@post_ros_cardiovascular')->name('ros_cardiovascular');
 
 Route::get('/Physical_Exam/{id}', 'NavigationController@get_physical_exams')->name('Physical Exam');
 Route::get('/Physical_Exam/{id}/#constitutional')->name('Constitutional19');

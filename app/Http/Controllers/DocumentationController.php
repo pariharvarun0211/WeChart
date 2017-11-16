@@ -869,7 +869,7 @@ class DocumentationController extends Controller
                 }
 
                 //Now redirecting to orders page
-                return redirect()->route('Physical Exam',[$request['patient_id']]);
+                return redirect()->route('Psychological19',[$request['patient_id']]);
 
             } catch (\Exception $e) {
                 return view('errors/503');
@@ -930,7 +930,7 @@ class DocumentationController extends Controller
                 }
 
                 //Now redirecting to page
-                return redirect()->route('Physical Exam',[$request['patient_id']]);
+                return redirect()->route('Neurological19',[$request['patient_id']]);
 
             } catch (\Exception $e) {
                 return view('errors/503');
@@ -991,7 +991,7 @@ class DocumentationController extends Controller
                 }
 
                 //Now redirecting to page
-                return redirect()->route('Physical Exam',[$request['patient_id']]);
+                return redirect()->route('Integumentary19',[$request['patient_id']]);
 
             } catch (\Exception $e) {
                 return view('errors/503');
@@ -1052,7 +1052,7 @@ class DocumentationController extends Controller
                 }
 
                 //Now redirecting to page
-                return redirect()->route('Physical Exam',[$request['patient_id']]);
+                return redirect()->route('Musculoskeletal19',[$request['patient_id']]);
 
             } catch (\Exception $e) {
                 return view('errors/503');
@@ -1113,7 +1113,7 @@ class DocumentationController extends Controller
                 }
 
                 //Now redirecting to page
-                return redirect()->route('Physical Exam',[$request['patient_id']]);
+                return redirect()->route('Cardiovascular19',[$request['patient_id']]);
 
             } catch (\Exception $e) {
                 return view('errors/503');
@@ -1174,7 +1174,7 @@ class DocumentationController extends Controller
                 }
 
                 //Now redirecting to page
-                return redirect()->route('Physical Exam',[$request['patient_id']]);
+                return redirect()->route('Respiratory19',[$request['patient_id']]);
 
             } catch (\Exception $e) {
                 return view('errors/503');
@@ -1235,7 +1235,7 @@ class DocumentationController extends Controller
                 }
 
                 //Now redirecting to page
-                return redirect()->route('Physical Exam',[$request['patient_id']]);
+                return redirect()->route('Eyes19',[$request['patient_id']]);
 
             } catch (\Exception $e) {
                 return view('errors/503');
@@ -1296,7 +1296,7 @@ class DocumentationController extends Controller
                 }
 
                 //Now redirecting to page
-                return redirect()->route('Physical Exam',[$request['patient_id']]);
+                return redirect()->route('HENT19',[$request['patient_id']]);
 
             } catch (\Exception $e) {
                 return view('errors/503');
@@ -1357,7 +1357,7 @@ class DocumentationController extends Controller
                 }
 
                 //Now redirecting to page
-                return redirect()->route('Physical Exam',[$request['patient_id']]);
+                return redirect()->route('Constitutional19',[$request['patient_id']]);
 
             } catch (\Exception $e) {
                 return view('errors/503');
@@ -1368,6 +1368,309 @@ class DocumentationController extends Controller
             return view('auth/not_authorized');
         }
 
+    }
+
+    //All ROS post methods
+    public function post_ros_constitutional(Request $request)
+    {
+        $role='';
+        if(Auth::check()) {
+            $role = Auth::user()->role;
+        }
+
+        if($role == 'Student') {
+            try {
+                //First deleting all saved symptoms
+                active_record::where('patient_id', $request['patient_id'])
+                    ->where('navigation_id','10')->where('doc_control_id','25')->delete();
+
+                $ros_constitutional_symptoms = $request['$ros_constitutional_symptoms'];
+
+                //Now saving
+                foreach ((array)$ros_constitutional_symptoms as $key=>$ros_constitutional_symptom) {
+                    $active_record = new active_record();
+                    $active_record['patient_id'] = $request['patient_id'];
+                    $active_record['navigation_id'] = '10';
+                    $active_record['doc_control_id'] = '25';
+                    $active_record['value'] = $ros_constitutional_symptom;
+                    $active_record['created_by'] = $request['user_id'];
+                    $active_record['updated_by'] = $request['user_id'];
+                    $active_record->save();
+                }
+                //Saving comment
+                $comment_ros_constitutional_record = active_record::where('patient_id', $request['patient_id'])
+                    ->where('navigation_id','10')
+                    ->where('doc_control_id','26')->get();
+
+                if(!count($comment_ros_constitutional_record)>0)
+                {
+                    $active_record = new active_record();
+                    $active_record['patient_id'] = $request['patient_id'];
+                    $active_record['navigation_id'] = '10';
+                    $active_record['doc_control_id'] = '26';
+                    $active_record['value'] = $request['ros_constitutional_comment'];
+                    $active_record['created_by'] = $request['user_id'];
+                    $active_record['updated_by'] = $request['user_id'];
+                    $active_record->save();
+                }
+                else {
+                    $active_record = active_record::where('active_record_id', $comment_ros_constitutional_record[0]->active_record_id)->first();
+                    $active_record['value'] = $request['ros_constitutional_comment'];
+                    $active_record->save();
+                }
+
+                //Now redirecting to orders page
+                return redirect()->route('Constitutional9',[$request['patient_id']]);
+
+            } catch (\Exception $e) {
+                return view('errors/503');
+            }
+        }
+        else
+        {
+            return view('auth/not_authorized');
+        }
+
+    }
+    public function post_ros_hent(Request $request)
+    {
+        $role='';
+        if(Auth::check()) {
+            $role = Auth::user()->role;
+        }
+
+        if($role == 'Student') {
+            try {
+                //First deleting all saved symptoms
+                active_record::where('patient_id', $request['patient_id'])
+                    ->where('navigation_id','11')->where('doc_control_id','27')->delete();
+
+                $ros_hent_symptoms = $request['$ros_hent_symptoms'];
+
+                //Now saving
+                foreach ((array)$ros_hent_symptoms as $key=>$ros_hent_symptom) {
+                    $active_record = new active_record();
+                    $active_record['patient_id'] = $request['patient_id'];
+                    $active_record['navigation_id'] = '11';
+                    $active_record['doc_control_id'] = '27';
+                    $active_record['value'] = $ros_hent_symptom;
+                    $active_record['created_by'] = $request['user_id'];
+                    $active_record['updated_by'] = $request['user_id'];
+                    $active_record->save();
+                }
+                //Saving comment
+                $comment_ros_hent_record = active_record::where('patient_id', $request['patient_id'])
+                    ->where('navigation_id','11')
+                    ->where('doc_control_id','28')->get();
+
+                if(!count($comment_ros_hent_record)>0)
+                {
+                    $active_record = new active_record();
+                    $active_record['patient_id'] = $request['patient_id'];
+                    $active_record['navigation_id'] = '11';
+                    $active_record['doc_control_id'] = '28';
+                    $active_record['value'] = $request['ros_hent_comment'];
+                    $active_record['created_by'] = $request['user_id'];
+                    $active_record['updated_by'] = $request['user_id'];
+                    $active_record->save();
+                }
+                else {
+                    $active_record = active_record::where('active_record_id', $comment_ros_hent_record[0]->active_record_id)->first();
+                    $active_record['value'] = $request['ros_hent_comment'];
+                    $active_record->save();
+                }
+
+                //Now redirecting to orders page
+                return redirect()->route('HENT9',[$request['patient_id']]);
+
+            } catch (\Exception $e) {
+                return view('errors/503');
+            }
+        }
+        else
+        {
+            return view('auth/not_authorized');
+        }
+    }
+    public function post_ros_eyes(Request $request)
+    {
+        $role='';
+        if(Auth::check()) {
+            $role = Auth::user()->role;
+        }
+
+        if($role == 'Student') {
+            try {
+                //First deleting all saved symptoms
+                active_record::where('patient_id', $request['patient_id'])
+                    ->where('navigation_id','12')->where('doc_control_id','29')->delete();
+
+                $ros_eyes_symptoms = $request['$ros_eyes_symptoms'];
+
+                //Now saving
+                foreach ((array)$ros_eyes_symptoms as $key=>$ros_eyes_symptom) {
+                    $active_record = new active_record();
+                    $active_record['patient_id'] = $request['patient_id'];
+                    $active_record['navigation_id'] = '12';
+                    $active_record['doc_control_id'] = '29';
+                    $active_record['value'] = $ros_eyes_symptom;
+                    $active_record['created_by'] = $request['user_id'];
+                    $active_record['updated_by'] = $request['user_id'];
+                    $active_record->save();
+                }
+                //Saving comment
+                $comment_ros_eyes_record = active_record::where('patient_id', $request['patient_id'])
+                    ->where('navigation_id','12')
+                    ->where('doc_control_id','30')->get();
+
+                if(!count($comment_ros_eyes_record)>0)
+                {
+                    $active_record = new active_record();
+                    $active_record['patient_id'] = $request['patient_id'];
+                    $active_record['navigation_id'] = '12';
+                    $active_record['doc_control_id'] = '30';
+                    $active_record['value'] = $request['ros_eyes_comment'];
+                    $active_record['created_by'] = $request['user_id'];
+                    $active_record['updated_by'] = $request['user_id'];
+                    $active_record->save();
+                }
+                else {
+                    $active_record = active_record::where('active_record_id', $comment_ros_eyes_record[0]->active_record_id)->first();
+                    $active_record['value'] = $request['ros_eyes_comment'];
+                    $active_record->save();
+                }
+
+                //Now redirecting to orders page
+                return redirect()->route('Review of System',[$request['patient_id']]);
+
+            } catch (\Exception $e) {
+                return view('errors/503');
+            }
+        }
+        else
+        {
+            return view('auth/not_authorized');
+        }
+    }
+    public function post_ros_respiratory(Request $request)
+    {
+        $role='';
+        if(Auth::check()) {
+            $role = Auth::user()->role;
+        }
+
+        if($role == 'Student') {
+            try {
+                //First deleting all saved symptoms
+                active_record::where('patient_id', $request['patient_id'])
+                    ->where('navigation_id','13')->where('doc_control_id','31')->delete();
+
+                $ros_respiratory_symptoms = $request['$ros_respiratory_symptoms'];
+
+                //Now saving
+                foreach ((array)$ros_respiratory_symptoms as $key=>$ros_respiratory_symptom) {
+                    $active_record = new active_record();
+                    $active_record['patient_id'] = $request['patient_id'];
+                    $active_record['navigation_id'] = '13';
+                    $active_record['doc_control_id'] = '31';
+                    $active_record['value'] = $ros_respiratory_symptom;
+                    $active_record['created_by'] = $request['user_id'];
+                    $active_record['updated_by'] = $request['user_id'];
+                    $active_record->save();
+                }
+                //Saving comment
+                $comment_ros_respiratory_record = active_record::where('patient_id', $request['patient_id'])
+                    ->where('navigation_id','13')
+                    ->where('doc_control_id','32')->get();
+
+                if(!count($comment_ros_respiratory_record)>0)
+                {
+                    $active_record = new active_record();
+                    $active_record['patient_id'] = $request['patient_id'];
+                    $active_record['navigation_id'] = '13';
+                    $active_record['doc_control_id'] = '32';
+                    $active_record['value'] = $request['ros_respiratory_comment'];
+                    $active_record['created_by'] = $request['user_id'];
+                    $active_record['updated_by'] = $request['user_id'];
+                    $active_record->save();
+                }
+                else {
+                    $active_record = active_record::where('active_record_id', $comment_ros_respiratory_record[0]->active_record_id)->first();
+                    $active_record['value'] = $request['ros_respiratory_comment'];
+                    $active_record->save();
+                }
+
+                //Now redirecting to orders page
+                return redirect()->route('Review of System',[$request['patient_id']]);
+
+            } catch (\Exception $e) {
+                return view('errors/503');
+            }
+        }
+        else
+        {
+            return view('auth/not_authorized');
+        }
+    }
+    public function post_ros_cardiovascular(Request $request)
+    {
+        $role='';
+        if(Auth::check()) {
+            $role = Auth::user()->role;
+        }
+
+        if($role == 'Student') {
+            try {
+                //First deleting all saved symptoms
+                active_record::where('patient_id', $request['patient_id'])
+                    ->where('navigation_id','14')->where('doc_control_id','33')->delete();
+
+                $ros_cardiovascular_symptoms = $request['$ros_cardiovascular_symptoms'];
+
+                //Now saving
+                foreach ((array)$ros_cardiovascular_symptoms as $key=>$ros_cardiovascular_symptom) {
+                    $active_record = new active_record();
+                    $active_record['patient_id'] = $request['patient_id'];
+                    $active_record['navigation_id'] = '14';
+                    $active_record['doc_control_id'] = '33';
+                    $active_record['value'] = $ros_cardiovascular_symptom;
+                    $active_record['created_by'] = $request['user_id'];
+                    $active_record['updated_by'] = $request['user_id'];
+                    $active_record->save();
+                }
+                //Saving comment
+                $comment_ros_cardiovascular_record = active_record::where('patient_id', $request['patient_id'])
+                    ->where('navigation_id','14')
+                    ->where('doc_control_id','34')->get();
+
+                if(!count($comment_ros_cardiovascular_record)>0)
+                {
+                    $active_record = new active_record();
+                    $active_record['patient_id'] = $request['patient_id'];
+                    $active_record['navigation_id'] = '14';
+                    $active_record['doc_control_id'] = '34';
+                    $active_record['value'] = $request['ros_cardiovascular_comment'];
+                    $active_record['created_by'] = $request['user_id'];
+                    $active_record['updated_by'] = $request['user_id'];
+                    $active_record->save();
+                }
+                else {
+                    $active_record = active_record::where('active_record_id', $comment_ros_cardiovascular_record[0]->active_record_id)->first();
+                    $active_record['value'] = $request['ros_cardiovascular_comment'];
+                    $active_record->save();
+                }
+
+                //Now redirecting to orders page
+                return redirect()->route('Review of System',[$request['patient_id']]);
+
+            } catch (\Exception $e) {
+                return view('errors/503');
+            }
+        }
+        else
+        {
+            return view('auth/not_authorized');
+        }
     }
 
     public function post_assignInstructor(Request $request)

@@ -19,7 +19,7 @@
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-md-12 ">
-                                    <table>
+                                    <table class="table table-striped table-bordered table-hover">
                                         <tbody>
                                         @foreach ($constitutional_symptoms as $constitutional_symptom)
                                             <tr>
@@ -96,7 +96,7 @@
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-md-12 ">
-                                    <table>
+                                    <table class="table table-striped table-bordered table-hover">
                                         <tbody>
                                         @foreach ($HENT_symptoms as $HENT_symptom)
                                             <tr>
@@ -173,7 +173,7 @@
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-md-12 ">
-                                    <table>
+                                    <table class="table table-striped table-bordered table-hover">
                                         <tbody>
                                         @foreach ($eyes_symptoms as $eyes_symptom)
                                             <tr>
@@ -250,7 +250,7 @@
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-md-12 ">
-                                    <table>
+                                    <table class="table table-striped table-bordered table-hover">
                                         <tbody>
                                         @foreach ($respiratory_symptoms as $respiratory_symptom)
                                             <tr>
@@ -327,7 +327,7 @@
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-md-12 ">
-                                    <table>
+                                    <table class="table table-striped table-bordered table-hover">
                                         <tbody>
                                         @foreach ($cardiovascular_symptoms as $cardiovascular_symptom)
                                             <tr>
@@ -404,7 +404,7 @@
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-md-12 ">
-                                    <table>
+                                    <table class="table table-striped table-bordered table-hover">
                                         <tbody>
                                         @foreach ($musculoskeletal_symptoms as $musculoskeletal_symptom)
                                             <tr>
@@ -481,7 +481,7 @@
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-md-12 ">
-                                    <table>
+                                    <table class="table table-striped table-bordered table-hover">
                                         <tbody>
                                         @foreach ($integumentary_symptoms as $integumentary_symptom)
                                             <tr>
@@ -558,7 +558,7 @@
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-md-12 ">
-                                    <table>
+                                    <table class="table table-striped table-bordered table-hover">
                                         <tbody>
                                         @foreach ($neurological_symptoms as $neurological_symptom)
                                             <tr>
@@ -635,7 +635,7 @@
                             <div class="container-fluid">
                                 <div class="row">
                                     <div class="col-md-12 ">
-                                    <table>
+                                        <table class="table table-striped table-bordered table-hover">
                                         <tbody>
                                         @foreach ($psychological_symptoms as $psychological_symptom)
                                             <tr>
