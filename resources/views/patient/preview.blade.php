@@ -26,7 +26,7 @@
         <div class="panel-heading">
                 <div class="row">
                     <div class="col-md-2">
-                        <img src="logos\WeChart.png" >
+                        {{--<img src="logos\WeChart.png" >--}}
                     </div>
                     <div class="col-md-8">
                         <h3 id="patient_active_record" align="center" style="margin-top: 0;"><b>Patient Active Record</b></h3>
