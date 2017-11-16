@@ -412,9 +412,342 @@
         </div>
         <hr style="border:solid">
     @endif
+       @if(in_array("15", $navIds))
+        {{--ros_hent--}}
+        <div class="container-fluid" id="musculoskeletal">
+            <div class="panel panel-default">
+                <div class="panel-heading" style="background-color: lightblue;padding-bottom: 0">
+                    <h4 style="margin-top: 0">ROS- Musculoskeletal</h4>
+                </div>
+                <div class="panel-body">
+                    <br>
+                    <form class="form-horizontal" method="POST" action="{{ route('ros_musculoskeletal') }}" id="ros_musculoskeletal_form">
+                        {{ csrf_field() }}
+                        <input id="module_id" name="module_id" type="hidden" value="{{ $patient->module_id }}">
+                        <input id="patient_id" name="patient_id" type="hidden" value="{{ $patient->patient_id }}">
+                        <input type=hidden id="user_id" name="user_id" value="{{ Auth::user()->id }}">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-12 ">
+                                     <table class="table table-striped table-bordered table-hover">
+                                        <tbody>
+                                        @foreach ($ros_musculoskeletal_symptoms as $ros_musculoskeletal_symptom)
+                                            <tr>
+                                                <td>
+                                                    @if($ros_musculoskeletal_symptom->is_saved)
+                                                        <input
+                                                                type="checkbox"
+                                                                name="$ros_musculoskeletal_symptoms[]"
+                                                                value="{{$ros_musculoskeletal_symptom->value}}"
+                                                                id="{{$ros_musculoskeletal_symptom->value}}" checked>
+                                                    @else
+                                                        <input
+                                                                type="checkbox"
+                                                                name="$ros_musculoskeletal_symptoms[]"
+                                                                value="{{$ros_musculoskeletal_symptom->value}}"
+                                                                id="{{$ros_musculoskeletal_symptom->value}}">
+
+                                                    @endif
+                                                    {{$ros_musculoskeletal_symptom->value}}
+                                                    <br>
+                                                    <br>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <!-- Comment box -->
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label for="Comment"> Comments:</label>
+                                    <br>
+                                    @if(!count($ros_musculoskeletal_comment)>0)
+                                        <textarea rows="4" id="ros_musculoskeletal_comment" name="ros_musculoskeletal_comment" style="width: 575px">
+                                            </textarea>
+                                    @else
+                                        <textarea rows="4" id="ros_musculoskeletal_comment" name="ros_musculoskeletal_comment" style="width: 575px">
+                                            {{$ros_musculoskeletal_comment[0]}}</textarea>
+                                    @endif
+                                </div>
+                            </div>
+                            <br>
+                            {{--Buttons--}}
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <button type="reset" id="btn_clear_ros_musculoskeletal_comment" class="btn btn-success" style="float: left">
+                                        Reset
+                                    </button>
+                                </div>
+                                <div class="col-md-6" >
+                                    <button type="submit" id="btn_save_ros_musculoskeletal" class="btn btn-primary" style="float: right">
+                                        Save ROS Musculoskeletal
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+        <hr style="border:solid">
+    @endif
+
+    @if(in_array("16", $navIds))
+        {{--ros_hent--}}
+        <div class="container-fluid" id="integumentary">
+            <div class="panel panel-default">
+                <div class="panel-heading" style="background-color: lightblue;padding-bottom: 0">
+                    <h4 style="margin-top: 0">ROS- Integumentary</h4>
+                </div>
+                <div class="panel-body">
+                    <br>
+                    <form class="form-horizontal" method="POST" action="{{ route('ros_integumentary') }}" id="ros_integumentary_form">
+                        {{ csrf_field() }}
+                        <input id="module_id" name="module_id" type="hidden" value="{{ $patient->module_id }}">
+                        <input id="patient_id" name="patient_id" type="hidden" value="{{ $patient->patient_id }}">
+                        <input type=hidden id="user_id" name="user_id" value="{{ Auth::user()->id }}">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-12 ">
+                                   <table class="table table-striped table-bordered table-hover">
+                                        <tbody>
+                                        @foreach ($ros_integumentary_symptoms as $ros_integumentary_symptom)
+                                            <tr>
+                                                <td>
+                                                    @if($ros_integumentary_symptom->is_saved)
+                                                        <input
+                                                                type="checkbox"
+                                                                name="$ros_integumentary_symptoms[]"
+                                                                value="{{$ros_integumentary_symptom->value}}"
+                                                                id="{{$ros_integumentary_symptom->value}}" checked>
+                                                    @else
+                                                        <input
+                                                                type="checkbox"
+                                                                name="$ros_integumentary_symptoms[]"
+                                                                value="{{$ros_integumentary_symptom->value}}"
+                                                                id="{{$ros_integumentary_symptom->value}}">
+
+                                                    @endif
+                                                    {{$ros_integumentary_symptom->value}}
+                                                    <br>
+                                                    <br>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <!-- Comment box -->
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label for="Comment"> Comments:</label>
+                                    <br>
+                                    @if(!count($ros_integumentary_comment)>0)
+                                        <textarea rows="4" id="ros_integumentary_comment" name="ros_integumentary_comment" style="width: 575px">
+                                            </textarea>
+                                    @else
+                                        <textarea rows="4" id="ros_integumentary_comment" name="ros_integumentary_comment" style="width: 575px">
+                                            {{$ros_integumentary_comment[0]}}</textarea>
+                                    @endif
+                                </div>
+                            </div>
+                            <br>
+                            {{--Buttons--}}
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <button type="reset" id="btn_clear_ros_integumentary_comment" class="btn btn-success" style="float: left">
+                                        Reset
+                                    </button>
+                                </div>
+                                <div class="col-md-6" >
+                                    <button type="submit" id="btn_save_ros_integumentary" class="btn btn-primary" style="float: right">
+                                        Save ROS Integumentary
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+        <hr style="border:solid">
+    @endif
+
+    @if(in_array("17", $navIds))
+        {{--ros_hent--}}
+        <div class="container-fluid" id="neurological">
+            <div class="panel panel-default">
+                <div class="panel-heading" style="background-color: lightblue;padding-bottom: 0">
+                    <h4 style="margin-top: 0">ROS- Neurological</h4>
+                </div>
+                <div class="panel-body">
+                    <br>
+                    <form class="form-horizontal" method="POST" action="{{ route('ros_neurological') }}" id="ros_neurological_form">
+                        {{ csrf_field() }}
+                        <input id="module_id" name="module_id" type="hidden" value="{{ $patient->module_id }}">
+                        <input id="patient_id" name="patient_id" type="hidden" value="{{ $patient->patient_id }}">
+                        <input type=hidden id="user_id" name="user_id" value="{{ Auth::user()->id }}">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-12 ">
+                                    <table class="table table-striped table-bordered table-hover">
+                                        <tbody>
+                                        @foreach ($ros_neurological_symptoms as $ros_neurological_symptom)
+                                            <tr>
+                                                <td>
+                                                    @if($ros_neurological_symptom->is_saved)
+                                                        <input
+                                                                type="checkbox"
+                                                                name="$ros_neurological_symptoms[]"
+                                                                value="{{$ros_neurological_symptom->value}}"
+                                                                id="{{$ros_neurological_symptom->value}}" checked>
+                                                    @else
+                                                        <input
+                                                                type="checkbox"
+                                                                name="$ros_neurological_symptoms[]"
+                                                                value="{{$ros_neurological_symptom->value}}"
+                                                                id="{{$ros_neurological_symptom->value}}">
+
+                                                    @endif
+                                                    {{$ros_neurological_symptom->value}}
+                                                    <br>
+                                                    <br>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <!-- Comment box -->
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label for="Comment"> Comments:</label>
+                                    <br>
+                                    @if(!count($ros_neurological_comment)>0)
+                                        <textarea rows="4" id="ros_neurological_comment" name="ros_neurological_comment" style="width: 575px">
+                                            </textarea>
+                                    @else
+                                        <textarea rows="4" id="ros_neurological_comment" name="ros_neurological_comment" style="width: 575px">
+                                            {{$ros_neurological_comment[0]}}</textarea>
+                                    @endif
+                                </div>
+                            </div>
+                            <br>
+                            {{--Buttons--}}
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <button type="reset" id="btn_clear_ros_neurological_comment" class="btn btn-success" style="float: left">
+                                        Reset
+                                    </button>
+                                </div>
+                                <div class="col-md-6" >
+                                    <button type="submit" id="btn_save_ros_neurological" class="btn btn-primary" style="float: right">
+                                        Save ROS Neurological
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+        <hr style="border:solid">
+    @endif
+
+
+    @if(in_array("18", $navIds))
+        {{--ros_hent--}}
+        <div class="container-fluid" id="psychological">
+            <div class="panel panel-default">
+                <div class="panel-heading" style="background-color: lightblue;padding-bottom: 0">
+                    <h4 style="margin-top: 0">ROS- Psychological</h4>
+                </div>
+                <div class="panel-body">
+                    <br>
+                    <form class="form-horizontal" method="POST" action="{{ route('ros_psychological') }}" id="ros_psychological_form">
+                        {{ csrf_field() }}
+                        <input id="module_id" name="module_id" type="hidden" value="{{ $patient->module_id }}">
+                        <input id="patient_id" name="patient_id" type="hidden" value="{{ $patient->patient_id }}">
+                        <input type=hidden id="user_id" name="user_id" value="{{ Auth::user()->id }}">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-12 ">
+                                    <table class="table table-striped table-bordered table-hover">
+                                        <tbody>
+                                        @foreach ($ros_psychological_symptoms as $ros_psychological_symptom)
+                                            <tr>
+                                                <td>
+                                                    @if($ros_psychological_symptom->is_saved)
+                                                        <input
+                                                                type="checkbox"
+                                                                name="$ros_psychological_symptoms[]"
+                                                                value="{{$ros_psychological_symptom->value}}"
+                                                                id="{{$ros_psychological_symptom->value}}" checked>
+                                                    @else
+                                                        <input
+                                                                type="checkbox"
+                                                                name="$ros_psychological_symptoms[]"
+                                                                value="{{$ros_psychological_symptom->value}}"
+                                                                id="{{$ros_psychological_symptom->value}}">
+
+                                                    @endif
+                                                    {{$ros_psychological_symptom->value}}
+                                                    <br>
+                                                    <br>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <!-- Comment box -->
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label for="Comment"> Comments:</label>
+                                    <br>
+                                    @if(!count($ros_psychological_comment)>0)
+                                        <textarea rows="4" id="ros_psychological_comment" name="ros_psychological_comment" style="width: 575px">
+                                            </textarea>
+                                    @else
+                                        <textarea rows="4" id="ros_psychological_comment" name="ros_psychological_comment" style="width: 575px">
+                                            {{$ros_psychological_comment[0]}}</textarea>
+                                    @endif
+                                </div>
+                            </div>
+                            <br>
+                            {{--Buttons--}}
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <button type="reset" id="btn_clear_ros_psychological_comment" class="btn btn-success" style="float: left">
+                                        Reset
+                                    </button>
+                                </div>
+                                <div class="col-md-6" >
+                                    <button type="submit" id="btn_save_ros_psychological" class="btn btn-primary" style="float: right">
+                                        Save ROS Psychological
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+        <hr style="border:solid">
+    @endif
 
     <script>
         $(document).ready(function(){
+        
             var inputsChanged_ros_constitutional_form = false;
             $('#ros_constitutional_form').change(function() {
                 inputsChanged_ros_constitutional_form = true;
@@ -424,15 +757,45 @@
             $('#ros_hent_form').change(function() {
                 inputsChanged_ros_hent_form = true;
             });
+            
+            var inputsChanged_ros_eyes_form = false;
+            $('#ros_eyes_form').change(function() {
+                inputsChanged_ros_eyes_form = true;
+            });
 
-            function unloadPage(){
-                if(inputsChanged_ros_constitutional_form ){
-                    return "Do you want to leave this page?. Changes you made may not be saved.";
-                }
-            }
+            var inputsChanged_ros_respiratory_form = false;
+            $('#ros_respiratory_form').change(function() {
+                inputsChanged_ros_respiratory_form = true;
+            });
 
-            function unloadPage(){
-                if(inputsChanged_ros_hent_form ){
+            var inputsChanged_ros_cardiovascular_form = false;
+            $('#ros_cardiovascular_form').change(function() {
+                inputsChanged_ros_cardiovascular_form = true;
+            });
+            
+            var inputsChanged_ros_musculoskeletal_form = false;
+            $('#ros_musculoskeletal_form').change(function() {
+                inputsChanged_ros_musculoskeletal_form = true;
+            });
+
+            var inputsChanged_ros_integumentary_form = false;
+            $('#ros_integumentary_form').change(function() {
+                inputsChanged_ros_integumentary_form = true;
+            });
+
+            var inputsChanged_ros_neurological_form = false;
+            $('#ros_neurological_form').change(function() {
+                inputsChanged_ros_neurological_form = true;
+            });
+
+            var inputsChanged_ros_psychological_form = false;
+            $('#ros_psychological_form').change(function() {
+                inputsChanged_ros_psychological_form = true;
+            });
+           
+             function unloadPage(){
+                if(inputsChanged_ros_constitutional_form || inputsChanged_ros_hent_form || inputsChanged_ros_eyes_form || inputsChanged_ros_respiratory_form 
+				|| inputsChanged_ros_cardiovascular_form || inputsChanged_ros_musculoskeletal_form || inputsChanged_ros_integumentary_form || inputsChanged_ros_neurological_form || inputsChanged_ros_psychological_form){
                     return "Do you want to leave this page?. Changes you made may not be saved.";
                 }
             }
@@ -445,6 +808,28 @@
                 inputsChanged_ros_hent_form = false;
             });
 
+            $("#btn_save_ros_eyes").click(function(){
+                inputsChanged_ros_eyes_form = false;
+            });
+            $("#btn_save_ros_respiratory").click(function(){
+                inputsChanged_ros_respiratory_form = false;
+            });
+            $("#btn_save_ros_cardiovascular").click(function(){
+                inputsChanged_ros_cardiovascular_form = false;
+            });
+            $("#btn_save_musculoskeletal_hent").click(function(){
+                inputsChanged_ros_musculoskeletal_form = false;
+            });
+            $("#btn_save_integumentary_hent").click(function(){
+                inputsChanged_ros_integumentary_form = false;
+            });
+            $("#btn_save_neurological_hent").click(function(){
+                inputsChanged_ros_neurological_form = false;
+            });
+            $("#btn_save_psychological_hent").click(function(){
+                inputsChanged_ros_psychological_form = false;
+            });
+            
             window.onbeforeunload = unloadPage;
         });
     </script>

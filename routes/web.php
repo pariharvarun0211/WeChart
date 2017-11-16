@@ -106,6 +106,10 @@ Route::post('ros_hent', 'DocumentationController@post_ros_hent')->name('ros_hent
 Route::post('ros_eyes', 'DocumentationController@post_ros_eyes')->name('ros_eyes');
 Route::post('ros_respiratory', 'DocumentationController@post_ros_respiratory')->name('ros_respiratory');
 Route::post('ros_cardiovascular', 'DocumentationController@post_ros_cardiovascular')->name('ros_cardiovascular');
+Route::post('ros_musculoskeletal', 'DocumentationController@post_ros_musculoskeletal')->name('ros_musculoskeletal');
+Route::post('ros_integumentary', 'DocumentationController@post_ros_integumentary')->name('ros_integumentary');
+Route::post('ros_neurological', 'DocumentationController@post_ros_neurological')->name('ros_neurological');
+Route::post('ros_psychological', 'DocumentationController@post_ros_psychological')->name('ros_psychological');
 
 Route::get('/Physical_Exam/{id}', 'NavigationController@get_physical_exams')->name('Physical Exam');
 Route::get('/Physical_Exam/{id}/#constitutional')->name('Constitutional19');

@@ -186,9 +186,9 @@
     {{--Medical History--}}
     <div class="panel panel-default">
         <div class="panel-heading" style="background-color: lightblue">
-            Medical History
+           <a data-toggle="collapse" href="#medical_history">Medical History</a>
         </div>
-        <div class="panel-body">
+        <div class="panel-body" id="medical_history" class="panel-collapse collapse">
             {{--Personal History--}}
             <table class="table table-striped table-bordered table-hover">
                 <thead>
@@ -373,10 +373,12 @@
     <table class="table table-striped table-bordered table-hover">
         <thead>
         <tr class="bg-info">
-            <th colspan="2">List of Medicines</th>
+            <th colspan="2">
+                <a data-toggle="collapse" href="#medications">List of Medications</a>
+            </th>
         </tr>
         </thead>
-        <tbody>
+        <tbody  id="medications" class="panel-collapse collapse">
             @foreach ($medications as $medicine)
                 <tr>
                     <td><p>{{$medicine->value}}</p></td>
@@ -403,7 +405,7 @@
         <thead>
         <tr>
             <th style="background-color: lightblue" colspan="12">
-                Vital Signs
+               <a data-toggle="collapse" href="#vital_signs">Vital Signs</a>
             </th>
         </tr>
             <tr class="bg-info">
@@ -420,7 +422,7 @@
                 <th>Comment</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody id="vital_signs" class="panel-collapse collapse">
         {{--Checking for no records--}}
         @if(!count($vital_sign_details)> 0)
             <tr>
@@ -494,9 +496,9 @@
     {{--Orders--}}
     <div class="panel panel-default">
         <div class="panel-heading" style="background-color: lightblue">
-            <h4>Orders</h4>
+            <a data-toggle="collapse" href="#orders">Orders</a>
         </div>
-        <div class="panel-body">
+        <div class="panel-body" id="orders" class="panel-collapse collapse">
             <div class="row">
                 <div class="col-sm-6">
                     <table class="table table-striped table-bordered table-hover">
@@ -551,9 +553,9 @@
     {{--Results--}}
     <div class="panel panel-default">
         <div class="panel-heading" style="background-color: lightblue;padding-bottom: 0">
-            <h4>Results</h4>
+            <a data-toggle="collapse" href="#results">Results</a>
         </div>
-        <div class="panel-body ">
+        <div class="panel-body " id="results" class="panel-collapse collapse">
             <div class="container-fluid">
                 @if(!count($results)>0)
                     <textarea id="results" name="results" rows="6" style="width: 700px">
