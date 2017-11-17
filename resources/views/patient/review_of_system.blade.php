@@ -103,31 +103,31 @@
                                 <div class="col-md-12 ">
                                     <table class="table table-striped table-bordered table-hover">
                                         <table class="table table-striped table-bordered table-hover">
-                                        @foreach ($ros_hent_symptoms as $ros_hent_symptom)
-                                            <tr>
-                                                <td>
-                                                    @if($ros_hent_symptom->is_saved)
-                                                        <input
-                                                                type="checkbox"
-                                                                name="$ros_hent_symptoms[]"
-                                                                value="{{$ros_hent_symptom->value}}"
-                                                                id="{{$ros_hent_symptom->value}}" checked>
-                                                    @else
-                                                        <input
-                                                                type="checkbox"
-                                                                name="$ros_hent_symptoms[]"
-                                                                value="{{$ros_hent_symptom->value}}"
-                                                                id="{{$ros_hent_symptom->value}}">
+                                            @foreach ($ros_hent_symptoms as $ros_hent_symptom)
+                                                <tr>
+                                                    <td>
+                                                        @if($ros_hent_symptom->is_saved)
+                                                            <input
+                                                                    type="checkbox"
+                                                                    name="$ros_hent_symptoms[]"
+                                                                    value="{{$ros_hent_symptom->value}}"
+                                                                    id="{{$ros_hent_symptom->value}}" checked>
+                                                        @else
+                                                            <input
+                                                                    type="checkbox"
+                                                                    name="$ros_hent_symptoms[]"
+                                                                    value="{{$ros_hent_symptom->value}}"
+                                                                    id="{{$ros_hent_symptom->value}}">
 
-                                                    @endif
-                                                    {{$ros_hent_symptom->value}}
-                                                    <br>
-                                                    <br>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                        </tbody>
-                                    </table>
+                                                        @endif
+                                                        {{$ros_hent_symptom->value}}
+                                                        <br>
+                                                        <br>
+                                                    </td>
+                                                </tr>
+                                                @endforeach
+                                                </tbody>
+                                        </table>
                                 </div>
                             </div>
                             <!-- Comment box -->
@@ -412,7 +412,7 @@
         </div>
         <hr style="border:solid">
     @endif
-       @if(in_array("15", $navIds))
+    @if(in_array("15", $navIds))
         {{--ros_hent--}}
         <div class="container-fluid" id="musculoskeletal">
             <div class="panel panel-default">
@@ -494,7 +494,6 @@
         </div>
         <hr style="border:solid">
     @endif
-
     @if(in_array("16", $navIds))
         {{--ros_hent--}}
         <div class="container-fluid" id="integumentary">
@@ -577,7 +576,6 @@
         </div>
         <hr style="border:solid">
     @endif
-
     @if(in_array("17", $navIds))
         {{--ros_hent--}}
         <div class="container-fluid" id="neurological">
@@ -660,8 +658,6 @@
         </div>
         <hr style="border:solid">
     @endif
-
-
     @if(in_array("18", $navIds))
         {{--ros_hent--}}
         <div class="container-fluid" id="psychological">
@@ -744,7 +740,6 @@
         </div>
         <hr style="border:solid">
     @endif
-
     <script>
         $(document).ready(function(){
         
@@ -817,16 +812,16 @@
             $("#btn_save_ros_cardiovascular").click(function(){
                 inputsChanged_ros_cardiovascular_form = false;
             });
-            $("#btn_save_musculoskeletal_hent").click(function(){
+            $("#btn_save_ros_musculoskeletal").click(function(){
                 inputsChanged_ros_musculoskeletal_form = false;
             });
-            $("#btn_save_integumentary_hent").click(function(){
+            $("#btn_save_ros_integumentary").click(function(){
                 inputsChanged_ros_integumentary_form = false;
             });
-            $("#btn_save_neurological_hent").click(function(){
+            $("#btn_save_ros_neurological").click(function(){
                 inputsChanged_ros_neurological_form = false;
             });
-            $("#btn_save_psychological_hent").click(function(){
+            $("#btn_save_ros_psychological").click(function(){
                 inputsChanged_ros_psychological_form = false;
             });
             

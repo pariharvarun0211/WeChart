@@ -190,7 +190,6 @@
 
         $('#btn_clear_orders_comment').click( function()
         {
-            alert('h');
             $('#orders_comment').val('');
         } );
     });

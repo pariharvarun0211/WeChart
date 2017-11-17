@@ -1112,7 +1112,7 @@ class NavigationController extends Controller
             }
             array_push($ros_cardiovascular_symptoms, $ros_cardiovascular_symptom);
         }
-        return $ros_cardiovascular_all_symptoms;
+        return $ros_cardiovascular_symptoms;
 }
 
     public function get_ROS_musculoskeletal_symptoms($id)
