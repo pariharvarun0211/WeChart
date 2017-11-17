@@ -189,12 +189,11 @@
                </td>
                @foreach ($navs as $nav)
                    <td align="middle">
-                       {{--{{ Form::checkbox('navs[]', $nav->navigation_id) }}--}}
-                       <input type="checkbox" id={{$nav->navigation_id}} name="navs[]" value={{$nav->navigation_id}}>
-                       
                         {{-- To ensure Disposition is always checked --}}
                        @if($nav->navigation_id == 32)
                             <input type="checkbox" id=32 name="navs[]" value=32 checked onclick="return false">
+                       @else
+                            <input type="checkbox" id={{$nav->navigation_id}} name="navs[]" value={{$nav->navigation_id}}>
                        @endif
                    </td>
                @endforeach
