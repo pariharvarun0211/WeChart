@@ -59,17 +59,17 @@ class ResetPasswordController extends Controller
                   
             if($randomQuestionNumber == '1')
             {
-                $security_answer = $request->security_answer1;
+                $security_answer = strtolower($request->security_answer1);
                 $security_answer_fetched = $user->security_answer1;           
             }
             if($randomQuestionNumber == '2')
             {
-                $security_answer = $request->security_answer2;
+                $security_answer = strtolower($request->security_answer2);
                 $security_answer_fetched = $user->security_answer2;
             }
             if($randomQuestionNumber == '3')
             {
-                $security_answer = $request->security_answer3;
+                $security_answer = strtolower($request->security_answer3);
                 $security_answer_fetched = $user->security_answer3;
             }
 
