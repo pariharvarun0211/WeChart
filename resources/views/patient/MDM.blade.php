@@ -21,12 +21,9 @@
                                     <div class="col-md-12">
                                         <h4>MDM/Plan:</h4>
                                         @if(!count($MDM)>0)
-                                            <textarea id="MDM" name="MDM" rows="6" cols="50" style="width: 700px">
-                                        </textarea>
+                                            <textarea id="MDM" name="MDM" rows="6" cols="50" style="width: 700px"></textarea>
                                         @else
-                                            <textarea id="MDM" name="MDM" rows="6" style="width: 700px;text-align: left">
-                                            {{$MDM[0]->value}}
-                                        </textarea>
+                                            <textarea id="MDM" name="MDM" rows="6" style="width: 700px;text-align: left">{{$MDM[0]->value}}</textarea>
                                         @endif
                                     </div>
                                 </div>

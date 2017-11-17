@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class DatabaseSeeder extends Seeder
+class DatabaseSeeder_Partial extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,8 +12,8 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
-			med_lookup_valueTableSeeder::class,
-			diagnosis_lookup_valueTableSeeder::class,
+			med_lookup_valueTableSeeder_partial::class,
+			diagnosis_lookup_valueTableSeeder_partial::class,
 			imaging_orders_lookup_valueTableSeeder::class,
 			lab_orders_lookup_valueTableSeeder::class
 		]);

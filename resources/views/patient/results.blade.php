@@ -55,11 +55,9 @@
                             <div class="col-md-12">
                                 <h4>Results:</h4>
                                 @if(!count($results)>0)
-                                    <textarea id="results" name="results" rows="6" style="width: 700px">
-                                    </textarea>
+                                    <textarea id="results" name="results" rows="6" style="width: 700px"></textarea>
                                 @else
-                                    <textarea id="results" name="results" rows="6" style="width: 700px">
-                                    {{$results[0]->value}}</textarea>
+                                    <textarea id="results" name="results" rows="6" style="width: 700px">{{$results[0]->value}}</textarea>
                                 @endif
                             </div>
                         </div>

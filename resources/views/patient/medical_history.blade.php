@@ -58,11 +58,9 @@
                                     </div>
                                     <div class="col-md-10">
                                         @if(!count($personal_history_comment)>0)
-                                            <textarea rows="4" id="personal_history_comment" name="personal_history_comment" style="width: 575px">
-                                                 </textarea>
+                                            <textarea rows="4" id="personal_history_comment" name="personal_history_comment" style="width: 575px"></textarea>
                                         @else
-                                            <textarea rows="4" id="personal_history_comment" name="personal_history_comment" style="width: 575px">
-                                            {{$personal_history_comment[0]->value}}</textarea>
+                                            <textarea rows="4" id="personal_history_comment" name="personal_history_comment" style="width: 575px">{{$personal_history_comment[0]->value}}</textarea>
                                         @endif
                                     </div>
                                 </div>
@@ -189,11 +187,9 @@
                         </div>
                         <div class="col-md-10">
                             @if(!count($comment_family_history) > 0)
-                            <textarea rows="4" id="family_history_comment" name="family_history_comment" style="width: 600px" >
-                            </textarea>
+                            <textarea rows="4" id="family_history_comment" name="family_history_comment" style="width: 600px" ></textarea>
                             @else
-                                <textarea rows="4" id="family_history_comment" name="family_history_comment" style="width: 600px" >
-                                {{$comment_family_history[0]}}</textarea>
+                                <textarea rows="4" id="family_history_comment" name="family_history_comment" style="width: 600px" >{{$comment_family_history[0]}}</textarea>
                             @endif
                         </div>
                     </div>
@@ -268,11 +264,9 @@
                                 </div>
                                 <div class="col-md-10">
                                     @if(!count($surgical_history_comment)>0)
-                                        <textarea rows="4" id="surgical_history_comment" name="surgical_history_comment" style="width: 575px">
-                                                 </textarea>
+                                        <textarea rows="4" id="surgical_history_comment" name="surgical_history_comment" style="width: 575px"></textarea>
                                     @else
-                                        <textarea rows="4" id="surgical_history_comment" name="surgical_history_comment" style="width: 575px">
-                                            {{$surgical_history_comment[0]->value}}</textarea>
+                                        <textarea rows="4" id="surgical_history_comment" name="surgical_history_comment" style="width: 575px">{{$surgical_history_comment[0]->value}}</textarea>
                                     @endif
                                 </div>
                             </div>
@@ -385,7 +379,7 @@
                             <label id="social_history_comment_label">Comments: </label>
                         </div>
                         <div class="col-md-3">
-                            <textarea rows="4" style="width: 525px" id="social_history_comment" name="social_history_comment" > {{$social_history_comment}}</textarea>
+                            <textarea rows="4" style="width: 525px" id="social_history_comment" name="social_history_comment" >{{$social_history_comment}}</textarea>
                         </div>
                     </div>
                     <br>

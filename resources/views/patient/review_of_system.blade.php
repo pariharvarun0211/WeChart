@@ -54,11 +54,9 @@
                                     <label for="Comment"> Comments:</label>
                                     <br>
                                     @if(!count($ros_constitutional_comment)>0)
-                                        <textarea rows="4" id="ros_constitutional_comment" name="ros_constitutional_comment" style="width: 575px">
-                                            </textarea>
+                                        <textarea rows="4" id="ros_constitutional_comment" name="ros_constitutional_comment" style="width: 575px"></textarea>
                                     @else
-                                        <textarea rows="4" id="ros_constitutional_comment" name="ros_constitutional_comment" style="width: 575px">
-                                            {{$ros_constitutional_comment[0]}}</textarea>
+                                        <textarea rows="4" id="ros_constitutional_comment" name="ros_constitutional_comment" style="width: 575px">{{$ros_constitutional_comment[0]}}</textarea>
                                     @endif
                                 </div>
                             </div>
@@ -67,7 +65,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <button type="reset" id="btn_clear_ros_constitutional_comment" class="btn btn-success" style="float: left">
-                                        Reset Comment
+                                        Reset
                                     </button>
                                 </div>
                                 <div class="col-md-6" >
@@ -136,11 +134,9 @@
                                     <label for="Comment"> Comments:</label>
                                     <br>
                                     @if(!count($ros_hent_comment)>0)
-                                        <textarea rows="4" id="ros_hent_comment" name="ros_hent_comment" style="width: 575px">
-                                            </textarea>
+                                        <textarea rows="4" id="ros_hent_comment" name="ros_hent_comment" style="width: 575px"></textarea>
                                     @else
-                                        <textarea rows="4" id="ros_hent_comment" name="ros_hent_comment" style="width: 575px">
-                                            {{$ros_hent_comment[0]}}</textarea>
+                                        <textarea rows="4" id="ros_hent_comment" name="ros_hent_comment" style="width: 575px">{{$ros_hent_comment[0]}}</textarea>
                                     @endif
                                 </div>
                             </div>
@@ -149,7 +145,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <button type="reset" id="btn_clear_ros_hent_comment" class="btn btn-success" style="float: left">
-                                        Reset Comment
+                                        Reset
                                     </button>
                                 </div>
                                 <div class="col-md-6" >
@@ -218,11 +214,9 @@
                                     <label for="Comment"> Comments:</label>
                                     <br>
                                     @if(!count($ros_eyes_comment)>0)
-                                        <textarea rows="4" id="ros_eyes_comment" name="ros_eyes_comment" style="width: 575px">
-                                            </textarea>
+                                        <textarea rows="4" id="ros_eyes_comment" name="ros_eyes_comment" style="width: 575px"></textarea>
                                     @else
-                                        <textarea rows="4" id="ros_eyes_comment" name="ros_eyes_comment" style="width: 575px">
-                                            {{$ros_eyes_comment[0]}}</textarea>
+                                        <textarea rows="4" id="ros_eyes_comment" name="ros_eyes_comment" style="width: 575px">{{$ros_eyes_comment[0]}}</textarea>
                                     @endif
                                 </div>
                             </div>
@@ -300,11 +294,9 @@
                                     <label for="Comment"> Comments:</label>
                                     <br>
                                     @if(!count($ros_respiratory_comment)>0)
-                                        <textarea rows="4" id="ros_respiratory_comment" name="ros_respiratory_comment" style="width: 575px">
-                                            </textarea>
+                                        <textarea rows="4" id="ros_respiratory_comment" name="ros_respiratory_comment" style="width: 575px"></textarea>
                                     @else
-                                        <textarea rows="4" id="ros_respiratory_comment" name="ros_respiratory_comment" style="width: 575px">
-                                            {{$ros_respiratory_comment[0]}}</textarea>
+                                        <textarea rows="4" id="ros_respiratory_comment" name="ros_respiratory_comment" style="width: 575px">{{$ros_respiratory_comment[0]}}</textarea>
                                     @endif
                                 </div>
                             </div>
@@ -382,11 +374,9 @@
                                     <label for="Comment"> Comments:</label>
                                     <br>
                                     @if(!count($ros_cardiovascular_comment)>0)
-                                        <textarea rows="4" id="ros_cardiovascular_comment" name="ros_cardiovascular_comment" style="width: 575px">
-                                            </textarea>
+                                        <textarea rows="4" id="ros_cardiovascular_comment" name="ros_cardiovascular_comment" style="width: 575px"></textarea>
                                     @else
-                                        <textarea rows="4" id="ros_cardiovascular_comment" name="ros_cardiovascular_comment" style="width: 575px">
-                                            {{$ros_cardiovascular_comment[0]}}</textarea>
+                                        <textarea rows="4" id="ros_cardiovascular_comment" name="ros_cardiovascular_comment" style="width: 575px">{{$ros_cardiovascular_comment[0]}}</textarea>
                                     @endif
                                 </div>
                             </div>
@@ -464,11 +454,9 @@
                                     <label for="Comment"> Comments:</label>
                                     <br>
                                     @if(!count($ros_musculoskeletal_comment)>0)
-                                        <textarea rows="4" id="ros_musculoskeletal_comment" name="ros_musculoskeletal_comment" style="width: 575px">
-                                            </textarea>
+                                        <textarea rows="4" id="ros_musculoskeletal_comment" name="ros_musculoskeletal_comment" style="width: 575px"></textarea>
                                     @else
-                                        <textarea rows="4" id="ros_musculoskeletal_comment" name="ros_musculoskeletal_comment" style="width: 575px">
-                                            {{$ros_musculoskeletal_comment[0]}}</textarea>
+                                        <textarea rows="4" id="ros_musculoskeletal_comment" name="ros_musculoskeletal_comment" style="width: 575px">{{$ros_musculoskeletal_comment[0]}}</textarea>
                                     @endif
                                 </div>
                             </div>
@@ -546,11 +534,9 @@
                                     <label for="Comment"> Comments:</label>
                                     <br>
                                     @if(!count($ros_integumentary_comment)>0)
-                                        <textarea rows="4" id="ros_integumentary_comment" name="ros_integumentary_comment" style="width: 575px">
-                                            </textarea>
+                                        <textarea rows="4" id="ros_integumentary_comment" name="ros_integumentary_comment" style="width: 575px"></textarea>
                                     @else
-                                        <textarea rows="4" id="ros_integumentary_comment" name="ros_integumentary_comment" style="width: 575px">
-                                            {{$ros_integumentary_comment[0]}}</textarea>
+                                        <textarea rows="4" id="ros_integumentary_comment" name="ros_integumentary_comment" style="width: 575px">{{$ros_integumentary_comment[0]}}</textarea>
                                     @endif
                                 </div>
                             </div>
@@ -628,11 +614,9 @@
                                     <label for="Comment"> Comments:</label>
                                     <br>
                                     @if(!count($ros_neurological_comment)>0)
-                                        <textarea rows="4" id="ros_neurological_comment" name="ros_neurological_comment" style="width: 575px">
-                                            </textarea>
+                                        <textarea rows="4" id="ros_neurological_comment" name="ros_neurological_comment" style="width: 575px"></textarea>
                                     @else
-                                        <textarea rows="4" id="ros_neurological_comment" name="ros_neurological_comment" style="width: 575px">
-                                            {{$ros_neurological_comment[0]}}</textarea>
+                                        <textarea rows="4" id="ros_neurological_comment" name="ros_neurological_comment" style="width: 575px">{{$ros_neurological_comment[0]}}</textarea>
                                     @endif
                                 </div>
                             </div>
@@ -710,11 +694,9 @@
                                     <label for="Comment"> Comments:</label>
                                     <br>
                                     @if(!count($ros_psychological_comment)>0)
-                                        <textarea rows="4" id="ros_psychological_comment" name="ros_psychological_comment" style="width: 575px">
-                                            </textarea>
+                                        <textarea rows="4" id="ros_psychological_comment" name="ros_psychological_comment" style="width: 575px"></textarea>
                                     @else
-                                        <textarea rows="4" id="ros_psychological_comment" name="ros_psychological_comment" style="width: 575px">
-                                            {{$ros_psychological_comment[0]}}</textarea>
+                                        <textarea rows="4" id="ros_psychological_comment" name="ros_psychological_comment" style="width: 575px">{{$ros_psychological_comment[0]}}</textarea>
                                     @endif
                                 </div>
                             </div>

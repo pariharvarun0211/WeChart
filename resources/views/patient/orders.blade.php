@@ -99,11 +99,9 @@
                     </div>
                     <div class="col-md-10">
                         @if(!count($comment_order)>0)
-                            <textarea rows="4" id="orders_comment" name="orders_comment" style="width: 600px" >
-                            </textarea>
+                            <textarea rows="4" id="orders_comment" name="orders_comment" style="width: 600px" ></textarea>
                         @else
-                            <textarea rows="4" id="orders_comment" name="orders_comment" style="width: 600px">
-                        {{$comment_order[0]->value}}</textarea>
+                            <textarea rows="4" id="orders_comment" name="orders_comment" style="width: 600px">{{$comment_order[0]->value}}</textarea>
                         @endif
                     </div>
                 </div>

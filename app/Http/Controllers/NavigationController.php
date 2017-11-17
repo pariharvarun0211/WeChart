@@ -327,7 +327,10 @@ class NavigationController extends Controller
                 array_push($navs, $nav);
             }
             $timestamps = active_record::where('patient_id', $id)
-                ->where('navigation_id', '8')->distinct()->pluck('created_at');
+                ->where('navigation_id', '8')->distinct()
+                ->orderBy('created_at','desc')
+                ->pluck('created_at');
+
             $vital_sign_details = Array();
             foreach($timestamps as $ts)
             {

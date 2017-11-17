@@ -159,12 +159,9 @@
         </div>
         <div class="panel-body" id="HPI" class="panel-collapse collapse">
             @if(!count($HPI)>0)
-                <textarea id="HPI" name="HPI" rows="6" cols="50" >
-                </textarea>
+                <textarea id="HPI" name="HPI" rows="6" cols="50" ></textarea>
             @else
-                <textarea id="HPI" name="HPI" rows="6" >
-                                            {{$HPI[0]->value}}
-                </textarea>
+                <textarea id="HPI" name="HPI" rows="6" >{{$HPI[0]->value}}</textarea>
             @endif
         </div>
     </div>
@@ -193,11 +190,9 @@
                     </td>
                     <td>
                     @if(!count($personal_history_comment)>0)
-                        <textarea rows="4" id="personal_history_comment" name="personal_history_comment" style="width: 575px">
-                                             </textarea>
+                        <textarea rows="4" id="personal_history_comment" name="personal_history_comment" style="width: 575px"></textarea>
                     @else
-                        <textarea rows="4" id="personal_history_comment" name="personal_history_comment" style="width: 575px">
-                                        {{$personal_history_comment[0]->value}}</textarea>
+                        <textarea rows="4" id="personal_history_comment" name="personal_history_comment" style="width: 575px">{{$personal_history_comment[0]->value}}</textarea>
                     @endif
                     </td>
                 </tr>
@@ -245,11 +240,9 @@
                         </td>
                         <td colspan="4">
                         @if(!count($comment_family_history) > 0)
-                            <textarea rows="4" id="family_history_comment" name="family_history_comment" style="width: 600px" >
-                            </textarea>
+                            <textarea rows="4" id="family_history_comment" name="family_history_comment" style="width: 600px" ></textarea>
                         @else
-                            <textarea rows="4" id="family_history_comment" name="family_history_comment" style="width: 600px" >
-                                {{$comment_family_history[0]}}</textarea>
+                            <textarea rows="4" id="family_history_comment" name="family_history_comment" style="width: 600px" >{{$comment_family_history[0]}}</textarea>
                         @endif
                         </td>
                     </tr>
@@ -274,11 +267,9 @@
                     </td>
                     <td>
                         @if(!count($surgical_history_comment)>0)
-                            <textarea rows="4" id="surgical_history_comment" name="surgical_history_comment" style="width: 575px">
-                                                     </textarea>
+                            <textarea rows="4" id="surgical_history_comment" name="surgical_history_comment" style="width: 575px"></textarea>
                         @else
-                            <textarea rows="4" id="surgical_history_comment" name="surgical_history_comment" style="width: 575px">
-                                                {{$surgical_history_comment[0]->value}}</textarea>
+                            <textarea rows="4" id="surgical_history_comment" name="surgical_history_comment" style="width: 575px">{{$surgical_history_comment[0]->value}}</textarea>
                         @endif
                     </td>
                 </tr>
@@ -345,9 +336,7 @@
                         <label id="social_history_comment_label">Comments: </label>
                     </td>
                     <td>
-                        <textarea rows="4" style="width: 525px" id="social_history_comment" name="social_history_comment" >
-                            {{$social_history_comment}}
-                        </textarea>
+                        <textarea rows="4" style="width: 525px" id="social_history_comment" name="social_history_comment" >{{$social_history_comment}}</textarea>
                     </td>
                 </tr>
                 </tbody>
@@ -375,11 +364,9 @@
                 </td>
                 <td>
                 @if(!count($medication_comment)>0)
-                    <textarea rows="4" id="medication_comment" name="medication_comment" style="width: 590px">
-                                     </textarea>
+                    <textarea rows="4" id="medication_comment" name="medication_comment" style="width: 590px"></textarea>
                 @else
-                    <textarea rows="4" id="medication_comment" name="medication_comment" style="width: 590px">
-                                {{$medication_comment[0]->value}}</textarea>
+                    <textarea rows="4" id="medication_comment" name="medication_comment" style="width: 590px">{{$medication_comment[0]->value}}</textarea>
                 @endif
                 </td>
             </tr>
@@ -524,11 +511,9 @@
                 </div>
                 <div class="col-md-11">
                     @if(!count($comment_order)>0)
-                        <textarea rows="4" id="orders_comment" name="orders_comment" style="width: 600px" >
-                        </textarea>
+                        <textarea rows="4" id="orders_comment" name="orders_comment" style="width: 600px" ></textarea>
                     @else
-                        <textarea rows="4" id="orders_comment" name="orders_comment" style="width: 600px">
-                    {{$comment_order[0]->value}}</textarea>
+                        <textarea rows="4" id="orders_comment" name="orders_comment" style="width: 600px">{{$comment_order[0]->value}}</textarea>
                     @endif
 
             </div>
@@ -543,16 +528,13 @@
         <div class="panel-body " id="results" class="panel-collapse collapse">
             <div class="container-fluid">
                 @if(!count($results)>0)
-                    <textarea id="results" name="results" rows="6" style="width: 700px">
-                    </textarea>
+                    <textarea id="results" name="results" rows="6" style="width: 700px"></textarea>
                 @else
-                    <textarea id="results" name="results" rows="6" style="width: 700px">
-                        {{$results[0]->value}}
-                    </textarea>
+                    <textarea id="results" name="results" rows="6" style="width: 700px">{{$results[0]->value}}</textarea>
                 @endif
             </div>
         </div>
     </div>
-
+</div>
 </body>
 </html>

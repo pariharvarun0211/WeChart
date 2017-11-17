@@ -90,11 +90,9 @@
                                  <label for="Comment"> Comments:</label>
                                  <br>
                                  @if(!count($disposition_comment)>0)
-                                     <textarea rows="4" id="disposition_comment" name="disposition_comment" style="width: 590px">
-                                     </textarea>
+                                     <textarea rows="4" id="disposition_comment" name="disposition_comment" style="width: 590px"></textarea>
                                  @else
-                                     <textarea rows="4" id="disposition_comment" name="disposition_comment" style="width: 590px">
-                                {{$disposition_comment[0]}}</textarea>
+                                     <textarea rows="4" id="disposition_comment" name="disposition_comment" style="width: 590px">{{$disposition_comment[0]}}</textarea>
                                  @endif
                              </div>
                         </div>
