@@ -96,7 +96,10 @@ class DocumentationController extends Controller
         if (empty($term)) {
             return \Response::json([]);
         }
-        $lookups = User::where('role', 'Instructor')->where('firstname', 'LIKE', "%$term%")->orWhere('lastname', 'LIKE', "%$term%")->get();
+        $lookups = User::where('role', 'Instructor')->where(function ($q) use ($term)
+        {
+        $q->where('firstname', 'LIKE', "%$term%")->orWhere('lastname', 'LIKE', "%$term%");
+        })->get();
         $formatted_lookups = [];
         foreach ($lookups as $lookup) {
             $formatted_lookups[] = ['id' => $lookup->firstname. ' ' . $lookup->lastname, 'text' => $lookup->firstname. ' ' . $lookup->lastname ];
