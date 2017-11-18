@@ -105,11 +105,11 @@ class RegisterController extends Controller
                 'role' => $data['role'],
                 'departmentName' =>$data['departmentName'],
                 'security_question1_Id' => $data['security_question1_Id'],
-                'security_answer1' => $data['security_answer1'],
+                'security_answer1' => strtolower($data['security_answer1']),
                 'security_question2_Id' => $data['security_question2_Id'],
-                'security_answer2' => $data['security_answer2'],
+                'security_answer2' => strtolower($data['security_answer2']),
                 'security_question3_Id' => $data['security_question3_Id'],
-                'security_answer3' => $data['security_answer3'],
+                'security_answer3' => strtolower($data['security_answer3']),
             ]);
         
     }
