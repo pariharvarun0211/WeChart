@@ -61,22 +61,32 @@ class StudentController extends Controller
         }
         else
         {
-            return view('auth/not_authorized');
+            $error_message= "You are not authorized to view this page";
+            return view('errors/error',compact('error_message'));
         }
     }
 
-    public function view_patient(Request $request){
+    public function view_patient($id){
         $role='';
         if(Auth::check()) {
             $role = Auth::user()->role;
         }
-
         if($role == 'Student') {
-            return redirect()->route('Demographics',[$request['patient_id']]);
+            //Student cannot view submitted patients
+            $patient_status = patient::where('patient_id',$id)->pluck('completed_flag');
+            if($patient_status[0])
+            {
+                $error_message= "You cannot view submitted patient.";
+                return view('errors/error',compact('error_message'));
+            }
+            else {
+                return redirect()->route('Demographics', $id);
+            }
         }
         else
         {
-            return view('auth/not_authorized');
+            $error_message= "You are not authorized to view this page";
+            return view('errors/error',compact('error_message'));
         }
     }
     public function destroy(Request $request){
@@ -123,7 +133,8 @@ class StudentController extends Controller
         }
         else
         {
-            return view('auth/not_authorized');
+            $error_message= "You are not authorized to view this page";
+            return view('errors/error',compact('error_message'));
         }
     }
     public function post_add_patient(Request $request)
@@ -137,9 +148,8 @@ class StudentController extends Controller
 
                //Validating input data
                 $this->validate($request, [
+                    'gender' => 'required',
                     'age' => 'required|numeric',
-//                    'height' => 'required|numeric',
-//                    'weight' => 'required|numeric',
                     'room_number' => 'required',
                     'visit_date' => 'required|date|date_format:Y-m-d|before:today',
                 ]);
@@ -159,8 +169,6 @@ class StudentController extends Controller
                 $patient['archived'] = false;
                 $patient['completed_flag'] = false;
                 $patient['module_id'] = $request['module_id'];
-//                $patient['height'] = $request['height'] ." ". $request['height_unit'];
-//                $patient['weight'] = $request['weight'] ." ". $request['weight_unit'];
                 $patient['room_number'] = $request['room_number'];
                 $patient['created_by'] = $request['user_id'];
                 $patient['updated_by'] = $request['user_id'];
@@ -183,7 +191,8 @@ class StudentController extends Controller
         }
         else
         {
-            return view('auth/not_authorized');
+            $error_message= "You are not authorized to view this page";
+            return view('errors/error',compact('error_message'));
         }
 
     }

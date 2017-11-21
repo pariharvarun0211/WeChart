@@ -5,9 +5,21 @@
     <div class="container-fluid">
         <div class="panel panel-default">
             <div class="panel-heading" style="background-color: lightblue;padding-bottom: 0">
-                <h4 style="margin-top: 0">Disposition</h4>
+                <h4 style="margin-top: 0">Disposition<span style="color: red;font-size: large">*</span>
+
+                </h4>
             </div>
             <div class="panel-body">
+                @if (count($errors) > 0)
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
                 <form class="form-horizontal" method="POST" action="{{ route('post_disposition') }}" id="disposition_form">
                     {{ csrf_field() }}
                      <input id="module_id" name="module_id" type="hidden" value="{{ $patient->module_id }}">
@@ -16,7 +28,8 @@
 
                      <div class="container-fluid">
                          <div class="row">
-                            <table class="table table-striped table-bordered table-hover">
+                             <div class="col-md-12">
+                                <table class="table table-striped table-bordered table-hover">
                                     <tbody>
                                         <tr>
                                             <td>
@@ -83,6 +96,7 @@
                                         </tr>
                                     </tbody>
                                 </table>
+                             </div>
                          </div>
                          <!-- Comment box -->
                          <div class="row">
@@ -90,9 +104,9 @@
                                  <label for="Comment"> Comments:</label>
                                  <br>
                                  @if(!count($disposition_comment)>0)
-                                     <textarea rows="4" id="disposition_comment" name="disposition_comment" style="width: 590px"></textarea>
+                                     <textarea rows="4" id="disposition_comment" name="disposition_comment" style="width: 100%;display: block"></textarea>
                                  @else
-                                     <textarea rows="4" id="disposition_comment" name="disposition_comment" style="width: 590px">{{$disposition_comment[0]}}</textarea>
+                                     <textarea rows="4" id="disposition_comment" name="disposition_comment" style="width: 100%;display: block">{{$disposition_comment[0]}}</textarea>
                                  @endif
                              </div>
                         </div>
@@ -101,7 +115,7 @@
                          <div class="row">
                              <div class="col-md-6">
                                  <button type="reset" id="btn_clear_disposition_comment" class="btn btn-success" style="float: left">
-                                     Clear Comment
+                                     Reset Disposition
                                  </button>
                              </div>
                              <div class="col-sm-6">

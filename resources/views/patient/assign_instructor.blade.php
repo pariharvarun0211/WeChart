@@ -17,7 +17,7 @@
                     <input id="patient_id" name="patient_id" type="hidden" value="{{ $patient->patient_id }}">
                     <input type=hidden id="user_id" name="user_id" value="{{ Auth::user()->id }}">
                     <div class="row">
-                        <div class="col-md-4 ">
+                        <div class="col-md-3">
                             <label for="SelectInstructor" id="select_instructor"> Select Instructor/s:</label>
                         </div>
                         <div class="col-md-6">
@@ -29,13 +29,8 @@
                     <br>
                     <!-- Buttons -->
                     <div class="row">
-                        {{--<div class="col-md-4 col-md-offset-2">--}}
-                        {{--<button type="reset" id="btn_clear_medication_comment" class="btn btn-success" style="float: left">--}}
-                        {{--Clear Comment--}}
-                        {{--</button>--}}
-                        {{--</div>--}}
-                        <div class="col-md-10 col-md-offset-2">
-                            <button type="submit" id="btn_send_to_instructor" class="btn btn-primary" style="float: right">
+                        <div class="col-md-6 col-md-offset-3">
+                            <button type="submit" id="btn_send_to_instructor" class="btn btn-primary" style="float: left">
                                 Send to Instructor
                             </button>
                         </div>
@@ -65,7 +60,7 @@
                         results: data
                     };
                 },
-                cache: true
+                cache: false
             }
         });
         $(document).ready(function(){
@@ -81,17 +76,6 @@
             $("#btn_send_to_instructor").click(function(){
                 inputsChanged = false;
             });
-//            $('#search_instructors').change(function(){
-//                $("#btn_send_to_instructor").attr("disabled",false);
-//            }
-//            {
-//                if( !$(this).val() ) {
-//                    $("#btn_send_to_instructor").attr("disabled",true);
-//                }
-//                else {
-//                    $("#btn_send_to_instructor").attr("disabled",false);
-//                }
-//            });
             window.onbeforeunload = unloadPage;
         });
     </script>

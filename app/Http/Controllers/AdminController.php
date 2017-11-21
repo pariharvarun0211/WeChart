@@ -9,6 +9,7 @@ use App\navigation;
 use App\module;
 use App\module_navigation;
 use Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
@@ -81,7 +82,9 @@ class AdminController extends Controller
             }
         catch (\Exception $e)
         {
-            //Checking if its UNIQUE constraint violation
+            //Checking if its UNIQUE constraint violation. This is one of the worst code I have ever written
+            // in my life
+
             if(in_array('23505',$e->errorInfo)) {
                 $Error = 'Email Present';
                 return view('admin/addStudentEmails',compact('Error','counter'));
@@ -135,7 +138,9 @@ class AdminController extends Controller
             }
         catch (\Exception $e)
         {
-            //Checking if its UNIQUE constraint violation
+            //Checking if its UNIQUE constraint violation. This is one of the worst code I have ever written
+            // in my life
+
             if(in_array('23505',$e->errorInfo)) {
                 $Error = 'Email Present';
                 return view('admin/addInstructorEmails',compact('Error','counter'));
@@ -159,31 +164,52 @@ class AdminController extends Controller
         $Error = '';
         return view('admin/addInstructorEmails',compact('Error','counter'));
     }
-    public function getManageEmails()
+    public function get_remove_emails()
         {
-        //Fetching all students and instructors emails for admin
-         $studentEmails = EmailidRole::where('role','Student')->get();
+          $studentEmails = EmailidRole::where('role','Student')->pluck('email');
+          $studentEmails = str_replace(['['], '', $studentEmails);
+          $studentEmails = str_replace(['"'], '', $studentEmails);
+          $studentEmails = str_replace(['"'], '', $studentEmails);
+          $studentEmails = str_replace([']'], '', $studentEmails);
+          $studentEmails = explode(",", $studentEmails);
 
-        // $studentEmails = explode(",", $studentEmails);
+          $registered_student_emails = User::where('archived',0)->where('role','Student')->pluck('email');
+          $registered_student_emails = str_replace(['['], '', $registered_student_emails);
+          $registered_student_emails = str_replace(['"'], '', $registered_student_emails);
+          $registered_student_emails = str_replace(['"'], '', $registered_student_emails);
+          $registered_student_emails = str_replace([']'], '', $registered_student_emails);
+          $registered_student_emails = explode(",", $registered_student_emails);
 
-//         $studentEmails = str_replace(['['], '', $studentEmails);
-//         $studentEmails = str_replace(['"'], '', $studentEmails);
-//         $studentEmails = str_replace(['"'], '', $studentEmails);
-//         $studentEmails = str_replace([']'], '', $studentEmails);
+          $studentEmails = array_diff($studentEmails,$registered_student_emails);
+          $studentDetails = array();
+          foreach($studentEmails as $studentEmail)
+          {
+              $studentDetail = EmailidRole::where('email',$studentEmail)->get();
+              array_push($studentDetails,$studentDetail);
+          }
 
-           $registered_student_emails = User::where('archived',FALSE)->pluck('email');
+          $instructorEmails = EmailidRole::where('role','Instructor')->pluck('email');
+          $instructorEmails = str_replace(['['], '', $instructorEmails);
+          $instructorEmails = str_replace(['"'], '', $instructorEmails);
+          $instructorEmails = str_replace(['"'], '', $instructorEmails);
+          $instructorEmails = str_replace([']'], '', $instructorEmails);
+          $instructorEmails = explode(",", $instructorEmails);
 
-//         $registered_student_emails = str_replace(['['], '', $registered_student_emails);
-//         $registered_student_emails = str_replace(['"'], '', $registered_student_emails);
-//         $registered_student_emails = str_replace(['"'], '', $registered_student_emails);
-//         $registered_student_emails = str_replace([']'], '', $registered_student_emails);
+          $registered_instructor_emails = User::where('archived',0)->where('role','Instructor')->pluck('email');
+          $registered_instructor_emails = str_replace(['['], '', $registered_instructor_emails);
+          $registered_instructor_emails = str_replace(['"'], '', $registered_instructor_emails);
+          $registered_instructor_emails = str_replace(['"'], '', $registered_instructor_emails);
+          $registered_instructor_emails = str_replace([']'], '', $registered_instructor_emails);
+          $registered_instructor_emails = explode(",", $registered_instructor_emails);
 
-       //  $registered_student_emails = explode(",", $registered_student_emails);
-         //array_pop($registered_student_emails);
-
-         $instructorEmails = EmailidRole::where('role','Instructor')->get();
-         //$studentEmails=array_diff($studentEmails,$registered_student_emails);
-         return view('admin/manageEmails', compact('studentEmails','instructorEmails'));
+          $instructorEmails = array_diff($instructorEmails,$registered_instructor_emails);
+          $instructorDetails = array();
+          foreach($instructorEmails as $instructorEmail)
+          {
+              $instructorDetail = EmailidRole::where('email',$instructorEmail)->get();
+              array_push($instructorDetails,$instructorDetail);
+          }
+          return view('admin/remove_emails', compact('studentDetails','instructorDetails'));
         }
     public function getConfigureModules()
     {
@@ -262,7 +288,7 @@ class AdminController extends Controller
     {
         $email = EmailidRole::find($id);
         $email->delete();
-        return redirect('/ManageEmails')->with('success','Email has been  deleted');
+        return redirect('/remove_emails')->with('success','Email has been  deleted');
     }
     public function archive_user($id)
     {

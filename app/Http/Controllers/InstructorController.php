@@ -25,8 +25,6 @@ class InstructorController extends Controller
             $reviewed_patients = users_patient::where('user_id', Auth::user()->id)
                 ->where('patient_record_status_id', 3)
                 ->get();
-            Log::info($for_review_patients);
-            Log::info($reviewed_patients);
             if(!empty($for_review_patients)) {
                 foreach ($for_review_patients as $for_review_patient) {
                     if ($for_review_patient->patient->module) {
@@ -37,7 +35,6 @@ class InstructorController extends Controller
                 }
             }
             else {
-                Log::info($for_review_patients);
                 $for_review_message = 'There are no patients for review.';
             }
             if(!empty($reviewed_patients)) {
@@ -58,13 +55,8 @@ class InstructorController extends Controller
         }
         else
         {
-            return view('auth/not_authorized');
+            $error_message= "You are not authorized to view this page";
+            return view('auth/not_authorized',compact($error_message));
         }
     }
-//    {
-//        // $students = DB::table('users')->where('role','Student')->get();
-//         //$instructors = DB::table('users')->where('role','Instructor')->get();
-//        return view('instructor/instructorHome');
-//         //return view('Admin/home', compact('students','instructors'));
-//    }
 }

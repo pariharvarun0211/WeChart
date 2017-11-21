@@ -40,7 +40,7 @@ Route::get('AddMoreInstructorEmails', 'AdminController@addInstructorEmails');
 Route::get('RemoveInstructorEmails', 'AdminController@removeInstructorEmails');
 
 //Admin can manage emails
-Route::get('/ManageEmails', 'AdminController@getManageEmails');
+Route::get('/RemoveEmails', 'AdminController@get_remove_emails');
 
 //Admin can delete a email from remove email page.
 Route::any('deleteuser/{id}', 'AdminController@delete_email')->name('deleteuser');

@@ -11,13 +11,13 @@
                     </div>
 
                     <div class="panel-body col-md-offset">
-                        <div class="col-md-30" style="float: right">
+                        <div style="float: left">
                             <button type="submit" id="btn_add_vital_signs" class="btn btn-primary">
                                 Add Vital Signs
                             </button>
                         </div>
                         <br><br>
-                        <div class="row" style="overflow-x: auto;width: 775px" class="col-md-12">
+                        <div class="row" style="overflow-x: auto;width: 100%; display: block">
                             <table class="table table-striped table-bordered table-hover" style="margin-top:10px; margin-left:15px;" id="vital_signs_table">
                                 <thead>
                                 <tr style="background: lightblue">
@@ -109,7 +109,7 @@
                         </div>
                         <br><br>
 
-                        <div class="row" style="overflow-x: auto;width: 775px" class="col-md-12" id="table_child_vital_signs">
+                        <div class="row" style="overflow-x: auto;width: 100%;display: block" id="table_child_vital_signs">
                             <form class="form-horizontal" method="POST" action="{{ url('post_vital_signs') }}" id="vitals_form">
                                 {{ csrf_field() }}
                                 <input id="patient_id" name="patient_id" type="hidden" value="{{ $patient->patient_id }}">

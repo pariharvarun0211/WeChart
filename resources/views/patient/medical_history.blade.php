@@ -53,26 +53,30 @@
                             <br>
                             <!-- Comment box -->
                             <div class="row">
-                                    <div class="col-md-2">
+                                    <div class="col-md-12">
                                         <label for="Comment"> Comments:</label>
-                                    </div>
-                                    <div class="col-md-10">
+                                        <br>
                                         @if(!count($personal_history_comment)>0)
-                                            <textarea rows="4" id="personal_history_comment" name="personal_history_comment" style="width: 575px"></textarea>
+                                            <textarea rows="4" id="personal_history_comment" name="personal_history_comment" style="width: 100%;display: block"></textarea>
                                         @else
-                                            <textarea rows="4" id="personal_history_comment" name="personal_history_comment" style="width: 575px">{{$personal_history_comment[0]->value}}</textarea>
+                                            <textarea rows="4" id="personal_history_comment" name="personal_history_comment" style="width: 100%;display: block">{{$personal_history_comment[0]->value}}</textarea>
                                         @endif
                                     </div>
                                 </div>
                             <br>
                             {{--Buttons--}}
                             <div class="row">
-                        <div class="col-md-12" >
-                            <button type="submit" id="btn_save_personal_history" class="btn btn-primary" style="float: right">
-                                Save Personal History
-                            </button>
-                        </div>
-                    </div>
+                                <div class="col-md-6">
+                                    <button type="reset" id="btn_reset_personal_history" class="btn btn-success" style="float: left">
+                                        Reset Personal History
+                                    </button>
+                                  </div>
+                                <div class="col-md-6">
+                                    <button type="submit" id="btn_save_personal_history" class="btn btn-primary" style="float: right">
+                                        Save Personal History
+                                    </button>
+                                </div>
+                            </div>
                             </div>
                         </form>
                     </div>
@@ -95,7 +99,7 @@
                     <input id="module_id" name="module_id" type="hidden" value="{{ $patient->module_id }}">
                     <input id="patient_id" name="patient_id" type="hidden" value="{{ $patient->patient_id }}">
                     <input type=hidden id="user_id" name="user_id" value="{{ Auth::user()->id }}">
-                <div class="container-fluid">
+                    <div class="container-fluid">
                     <div class="row">
                         <table class="table table-striped table-bordered table-hover">
                             <thead>
@@ -182,23 +186,29 @@
                     <br>
                     <!-- Comment box -->
                     <div class="row">
-                        <div class="col-md-2">
+                        <div class="col-md-12">
                             <label for="Comment"> Comments:</label>
-                        </div>
-                        <div class="col-md-10">
+                            <br>
                             @if(!count($comment_family_history) > 0)
-                            <textarea rows="4" id="family_history_comment" name="family_history_comment" style="width: 600px" ></textarea>
+                            <textarea rows="4" id="family_history_comment" name="family_history_comment" style="width: 100%;display: block" ></textarea>
                             @else
-                                <textarea rows="4" id="family_history_comment" name="family_history_comment" style="width: 600px" >{{$comment_family_history[0]}}</textarea>
+                                <textarea rows="4" id="family_history_comment" name="family_history_comment" style="width: 100%;display: block" >{{$comment_family_history[0]}}</textarea>
                             @endif
                         </div>
                     </div>
                     <br>
                     {{--Save button--}}
                     <div class="row">
-                        <button type="submit" id="btn_save_family_history" class="btn btn-primary"  style="float: right">
-                            Save Comment
-                        </button>
+                        <div class="col-md-6">
+                            <button type="reset" id="btn_reset_family_history" class="btn btn-success" style="float: left">
+                                Reset Comment
+                            </button>
+                        </div>
+                        <div class="col-md-6">
+                            <button type="submit" id="btn_save_family_history" class="btn btn-primary"  style="float: right">
+                                Save Comment
+                            </button>
+                        </div>
                     </div>
                 </div>
                 </form>
@@ -259,21 +269,25 @@
                             <br>
                             <!-- Comment box -->
                             <div class="row">
-                                <div class="col-md-2">
+                                <div class="col-md-12">
                                     <label for="Comment"> Comments:</label>
-                                </div>
-                                <div class="col-md-10">
+                                    <br>
                                     @if(!count($surgical_history_comment)>0)
-                                        <textarea rows="4" id="surgical_history_comment" name="surgical_history_comment" style="width: 575px"></textarea>
+                                        <textarea rows="4" id="surgical_history_comment" name="surgical_history_comment" style="width: 100%;display: block"></textarea>
                                     @else
-                                        <textarea rows="4" id="surgical_history_comment" name="surgical_history_comment" style="width: 575px">{{$surgical_history_comment[0]->value}}</textarea>
+                                        <textarea rows="4" id="surgical_history_comment" name="surgical_history_comment" style="width: 100%;display: block">{{$surgical_history_comment[0]->value}}</textarea>
                                     @endif
                                 </div>
                             </div>
                             <br>
                             {{--Buttons--}}
                             <div class="row">
-                                <div class="col-md-12" >
+                                <div class="col-md-6">
+                                    <button type="reset" id="btn_clear_surgical_history" class="btn btn-success" style="float: left">
+                                        Reset Surgical History
+                                    </button>
+                                </div>
+                                <div class="col-md-6" >
                                     <button type="submit" id="btn_save_surgical_history" class="btn btn-primary" style="float: right">
                                         Save Surgical History
                                     </button>
@@ -311,10 +325,10 @@
                     <br>
                     {{--Smoke Tobaco--}}
                     <div class="row">
-                        <div class="col-md-3 ">
+                        <div class="col-md-4">
                             <label id="smoke_tobacco">Smoke Tobacco?: </label>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-6">
                             @if($social_history_smoke_tobacco == "YES")
                                 <input type="radio" class="form-check-input inline" name="smoke_tobacco" value="YES" id="smoke_tobacco_yes" checked >&nbsp;YES                        &nbsp;&nbsp;&nbsp;&nbsp;
                                 <input type="radio" class="form-check-input inline" name="smoke_tobacco" value="NO" id="smoke_tobacco_no">&nbsp;NO
@@ -327,10 +341,10 @@
                     <br>
                     {{--Non Smoke Tobaco--}}
                     <div class="row">
-                        <div class="col-md-3 ">
+                        <div class="col-md-4">
                             <label id="non_smoke_tobacco">Non-Smoke Tobacco?: </label>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-6">
                             @if($social_history_non_smoke_tobacco == "YES")
                                 <input type="radio" class="form-check-input inline" name="non_smoke_tobacco" value="YES" id="non_smoke_tobacco_yes" checked >&nbsp;YES                        &nbsp;&nbsp;&nbsp;&nbsp;
                                 <input type="radio" class="form-check-input inline" name="non_smoke_tobacco" value="NO" id="non_smoke_tobacco_no">&nbsp;NO
@@ -343,10 +357,10 @@
                     <br>
                     {{--Alcohol--}}
                     <div class="row">
-                        <div class="col-md-3 ">
+                        <div class="col-md-4">
                             <label id="alcohol">Drink Alcohol?: </label>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-6">
                             @if($social_history_alcohol == "YES")
                                 <input type="radio" class="form-check-input inline" name="alcohol" checked value="YES" id="alcohol_yes" >&nbsp;YES                        &nbsp;&nbsp;&nbsp;&nbsp;
                                 <input type="radio" class="form-check-input inline" name="alcohol" value="NO" id="alcohol_no">&nbsp;NO
@@ -359,10 +373,10 @@
                     <br>
                     {{--Sexual Avtivity--}}
                     <div class="row">
-                        <div class="col-md-3 ">
+                        <div class="col-md-4">
                             <label id="sexual_activity">Sexual Activity?: </label>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             @if($social_history_sexual_activity == "YES")
                                 <input type="radio" class="form-check-input inline" name="sexual_activity" checked value="YES" id="sexual_activity_active" >&nbsp;Active                        &nbsp;&nbsp;&nbsp;&nbsp;
                                 <input type="radio" class="form-check-input inline" name="sexual_activity" value="NO" id="sexual_activity_not_active">&nbsp;Not Active
@@ -375,26 +389,24 @@
                     <br>
                     {{--Comment--}}
                     <div class="row">
-                        <div class="col-md-3 ">
+                        <div class="col-md-12">
                             <label id="social_history_comment_label">Comments: </label>
-                        </div>
-                        <div class="col-md-3">
-                            <textarea rows="4" style="width: 525px" id="social_history_comment" name="social_history_comment" >{{$social_history_comment}}</textarea>
+                            <br>
+                            <textarea rows="4" style="width: 100%;display: block" id="social_history_comment" name="social_history_comment" >{{$social_history_comment}}</textarea>
                         </div>
                     </div>
                     <br>
                     {{--Buttons--}}
                     <div class="row">
-                        <div class="col-md-12">
-                            {{--@if($is_new_entry_social_history  == "no")--}}
-                                {{--<button type="submit" id="btn_update_social_history" class="btn btn-primary" style="float: right">--}}
-                                    {{--Update Social History--}}
-                                {{--</button>--}}
-                            {{--@else--}}
-                                <button type="submit" id="btn_save_social_history" class="btn btn-primary" style="float: right">
-                                    Save Social History
-                                </button>
-                            {{--@endif--}}
+                        <div class="col-md-6">
+                            <button type="reset" id="btn_reset_social_history" class="btn btn-success" style="float: left">
+                                Reset Social History
+                            </button>
+                        </div>
+                        <div class="col-md-6">
+                            <button type="submit" id="btn_save_social_history" class="btn btn-primary" style="float: right">
+                            Save Social History
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -424,7 +436,7 @@
                          results: data
                      };
                  },
-                 cache: true
+                 cache: false
              }
          });
          
@@ -444,7 +456,7 @@
                          results: data
                      };
                  },
-                 cache: true
+                 cache: false
              }
          });
 
@@ -464,7 +476,7 @@
                          results: data
                      };
                  },
-                 cache: true
+                 cache: false
              }
          });
 
@@ -532,10 +544,6 @@
              $("#btn_save_family_history").click(function(){
                  inputsChanged_family_history_form = false;
              });
-//             $("#btn_update_social_history").click(function(){
-//                 inputsChanged_social_history_form = false;
-//             });
-
              window.onbeforeunload = unloadPage;
          });
      </script>

@@ -23,9 +23,9 @@
                                 <div class="col-md-12">
                                     <h4>History of Present Illness:</h4>
                                     @if(!count($HPI)>0)
-                                        <textarea id="HPI" name="HPI" rows="6" cols="50" style="width: 700px"></textarea>
+                                        <textarea id="HPI" name="HPI" rows="6" style="width: 100%;display: block"></textarea>
                                     @else
-                                        <textarea id="HPI" name="HPI" rows="6" style="width: 700px;text-align: left">{{$HPI[0]->value}}</textarea>
+                                        <textarea id="HPI" name="HPI" rows="6" style="width: 100%;display: block">{{$HPI[0]->value}}</textarea>
                                     @endif
                                 </div>
                             </div>

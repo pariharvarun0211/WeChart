@@ -44,7 +44,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td><p>Sex* :</p></td>
+                        <td><p>Sex<span style="color: red;font-size: large">*</span> :</p></td>
                         <td>
                             @if($patient->gender == "Male")
                                   <input name="gender" type="radio" value="Male" checked>&nbsp;Male
@@ -56,45 +56,13 @@
                         </td>
                     </tr>
                     <tr>
-                        <td><p>Room Number* :</p></td>
+                        <td><p>Room Number<span style="color: red;font-size: large">*</span> :</p></td>
                         <td><input type="text" name="room_number" value="{{$patient->room_number}}" required></td>
                     </tr>
                     <tr>
-                        <td><p>Age* :</p></td>
+                        <td><p>Age<span style="color: red;font-size: large">*</span> :</p></td>
                         <td><input type="text" name="age" value="{{$patient->age}}" required></td>
                     </tr>
-                    {{--<tr>--}}
-                        {{--<td><p>Height* :</p></td>--}}
-                        {{--<td>--}}
-                            {{--<input type="text" name="height" value="{{$height}}" required>--}}
-                            {{--<br>--}}
-                            {{--<select name="height_unit" value="{{ old('height_unit') }}">--}}
-                                {{--@if($height_unit == "cms")--}}
-                                    {{--<option value="cms" selected="selected">cms</option>--}}
-                                    {{--<option value="inches">inches</option>--}}
-                                {{--@else--}}
-                                    {{--<option value="cms" >cms</option>--}}
-                                    {{--<option value="inches" selected="selected">inches</option>--}}
-                                {{--@endif--}}
-                            {{--</select>--}}
-                        {{--</td>--}}
-                    {{--</tr>--}}
-                    {{--<tr>--}}
-                        {{--<td><p>Weight* :</p></td>--}}
-                        {{--<td>--}}
-                            {{--<input type="text" name="weight" value="{{$weight}}" required>--}}
-                            {{--<br>--}}
-                            {{--<select name="weight_unit" value="{{ old('weight_unit') }}">--}}
-                                {{--@if($weight_unit == "kgs")--}}
-                                    {{--<option value="kgs" selected="selected">kgs</option>--}}
-                                    {{--<option value="lbs">lbs</option>--}}
-                                {{--@else--}}
-                                    {{--<option value="kgs">kgs</option>--}}
-                                    {{--<option value="lbs" selected="selected">lbs</option>--}}
-                                {{--@endif--}}
-                            {{--</select>--}}
-                        {{--</td>--}}
-                    {{--</tr>--}}
                 </table>
                     <div class="col-md-offset-4" style="float: right">
                       <button type="submit" id="btn_save_demographics" class="btn btn-primary">

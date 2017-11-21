@@ -38,7 +38,7 @@
                                     </tbody>
                                 </table>
                         </div>
-                         <hr style="width: ">
+                       <hr>
                          <!-- Search For Medications -->
                          <div class="row">
                             <div class="col-md-2 ">
@@ -52,24 +52,22 @@
                          <br>
                          <!-- Comment box -->
                          <div class="row">
-                             <div class="col-md-2">
+                             <div class="col-md-12">
                                  <label for="Comment"> Comments:</label>
-                             </div>
-                             <div class="col-md-10">
                                  @if(!count($medication_comment)>0)
-                                     <textarea rows="4" id="medication_comment" name="medication_comment" style="width: 590px"></textarea>
+                                     <textarea rows="4" id="medication_comment" name="medication_comment" style="width: 100%;display: block"></textarea>
                                  @else
-                                     <textarea rows="4" id="medication_comment" name="medication_comment" style="width: 590px">{{$medication_comment[0]->value}}</textarea>
+                                     <textarea rows="4" id="medication_comment" name="medication_comment" style="width: 100%;display: block">{{$medication_comment[0]->value}}</textarea>
                                  @endif
                              </div>
                         </div>
                          <br>
                          <!-- Buttons -->
                          <div class="row">
-                             <div class="col-md-4 col-md-offset-2">
-                                 {{--<button type="reset" id="btn_clear_medication_comment" class="btn btn-success" style="float: left">--}}
-                                     {{--Clear Comment--}}
-                                 {{--</button>--}}
+                             <div class="col-md-6">
+                                 <button type="reset" id="btn_clear_medication_comment" class="btn btn-success" style="float: left">
+                                     Reset Medications
+                                 </button>
                              </div>
                              <div class="col-sm-6">
                                  <button type="submit" id="btn_save_medication" class="btn btn-primary" style="float: right">
@@ -106,7 +104,7 @@
                         results: data
                     };
                 },
-                cache: true
+                cache: false
             }
         });
         $(document).ready(function(){
