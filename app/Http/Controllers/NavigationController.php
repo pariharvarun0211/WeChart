@@ -1930,7 +1930,8 @@ class NavigationController extends Controller
         }
         else
         {
-            return view('auth/not_authorized');
+            $error_message= "You are not authorized to view this page.";
+            return view('errors/error',compact('error_message'));
         }
     }
     public function get_preview($id){
@@ -2100,7 +2101,8 @@ class NavigationController extends Controller
         }
         else
         {
-            return view('auth/not_authorized');
+            $error_message= "You are not authorized to view this page.";
+            return view('errors/error',compact('error_message'));
         }
     }
 }
