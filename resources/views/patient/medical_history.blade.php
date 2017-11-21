@@ -68,12 +68,12 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <button type="reset" id="btn_reset_personal_history" class="btn btn-success" style="float: left">
-                                        Reset Personal History
+                                        <i class="fa fa-refresh" aria-hidden="true"></i> Reset Personal History
                                     </button>
                                   </div>
                                 <div class="col-md-6">
                                     <button type="submit" id="btn_save_personal_history" class="btn btn-primary" style="float: right">
-                                        Save Personal History
+                                        <i class="fa fa-floppy-o" aria-hidden="true"></i> Save Personal History
                                     </button>
                                 </div>
                             </div>
@@ -172,10 +172,10 @@
                         <div class="row">
                             <div class="col-sm-12">
                             <button type="submit" id="btn_save_new_family_member" class="btn btn-primary" >
-                                Save
+                                <i class="fa fa-floppy-o" aria-hidden="true"></i> Save
                             </button> &nbsp;&nbsp;&nbsp;
                             <button type="reset" id="btn_cancel_new_family_member" class="btn btn-success" >
-                                Cancel
+                                <i class="fa fa-ban" aria-hidden="true"></i> Cancel
                             </button>
                             </div>
                         </div>
@@ -201,12 +201,12 @@
                     <div class="row">
                         <div class="col-md-6">
                             <button type="reset" id="btn_reset_family_history" class="btn btn-success" style="float: left">
-                                Reset Comment
+                                <i class="fa fa-refresh" aria-hidden="true"></i> Reset Comment
                             </button>
                         </div>
                         <div class="col-md-6">
                             <button type="submit" id="btn_save_family_history" class="btn btn-primary"  style="float: right">
-                                Save Comment
+                                <i class="fa fa-floppy-o" aria-hidden="true"></i> Save Comment
                             </button>
                         </div>
                     </div>
@@ -284,12 +284,12 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <button type="reset" id="btn_clear_surgical_history" class="btn btn-success" style="float: left">
-                                        Reset Surgical History
+                                        <i class="fa fa-refresh" aria-hidden="true"></i> Reset Surgical History
                                     </button>
                                 </div>
                                 <div class="col-md-6" >
                                     <button type="submit" id="btn_save_surgical_history" class="btn btn-primary" style="float: right">
-                                        Save Surgical History
+                                        <i class="fa fa-floppy-o" aria-hidden="true"></i> Save Surgical History
                                     </button>
                                 </div>
                             </div>
@@ -400,12 +400,12 @@
                     <div class="row">
                         <div class="col-md-6">
                             <button type="reset" id="btn_reset_social_history" class="btn btn-success" style="float: left">
-                                Reset Social History
+                                <i class="fa fa-refresh" aria-hidden="true"></i> Reset Social History
                             </button>
                         </div>
                         <div class="col-md-6">
                             <button type="submit" id="btn_save_social_history" class="btn btn-primary" style="float: right">
-                            Save Social History
+                                <i class="fa fa-floppy-o" aria-hidden="true"></i> Save Social History
                             </button>
                         </div>
                     </div>

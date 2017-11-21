@@ -66,12 +66,12 @@
                          <div class="row">
                              <div class="col-md-6">
                                  <button type="reset" id="btn_clear_medication_comment" class="btn btn-success" style="float: left">
-                                     Reset Medications
+                                     <i class="fa fa-refresh" aria-hidden="true"></i> Reset Medications
                                  </button>
                              </div>
                              <div class="col-sm-6">
                                  <button type="submit" id="btn_save_medication" class="btn btn-primary" style="float: right">
-                                     Save Medications
+                                     <i class="fa fa-floppy-o" aria-hidden="true"></i> Save Medications
                                  </button>
                              </div>
                          </div>

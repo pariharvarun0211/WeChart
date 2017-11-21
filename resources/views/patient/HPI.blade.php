@@ -33,7 +33,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <button type="reset" id="btn_clear_HPI_comment" class="btn btn-success" style="float: left">
-                                    Reset Comment
+                                        <i class="fa fa-refresh" aria-hidden="true"></i> Reset HPI
                                     </button>
                                 </div>
                                 <div class="col-md-6">

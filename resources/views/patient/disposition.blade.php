@@ -115,12 +115,12 @@
                          <div class="row">
                              <div class="col-md-6">
                                  <button type="reset" id="btn_clear_disposition_comment" class="btn btn-success" style="float: left">
-                                     Reset Disposition
+                                     <i class="fa fa-refresh" aria-hidden="true"></i> Reset Disposition
                                  </button>
                              </div>
                              <div class="col-sm-6">
                                  <button type="submit" id="btn_save_disposition" class="btn btn-primary" style="float: right">
-                                     Save Disposition
+                                     <i class="fa fa-floppy-o" aria-hidden="true"></i> Save Disposition
                                  </button>
                              </div>
                          </div>

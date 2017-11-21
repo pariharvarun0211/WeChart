@@ -65,12 +65,12 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <button type="reset" id="btn_clear_ros_constitutional_comment" class="btn btn-success" style="float: left">
-                                        Reset Constitutional
+                                        <i class="fa fa-refresh" aria-hidden="true"></i> Reset Constitutional
                                     </button>
                                 </div>
                                 <div class="col-md-6" >
                                     <button type="submit" id="btn_save_ros_constitutional" class="btn btn-primary" style="float: right">
-                                        Save Constitutional
+                                        <i class="fa fa-floppy-o" aria-hidden="true"></i> Save Constitutional
                                     </button>
                                 </div>
                             </div>
@@ -145,12 +145,12 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <button type="reset" id="btn_clear_ros_hent_comment" class="btn btn-success" style="float: left">
-                                        Reset HENT
+                                        <i class="fa fa-refresh" aria-hidden="true"></i> Reset HENT
                                     </button>
                                 </div>
                                 <div class="col-md-6" >
                                     <button type="submit" id="btn_save_ros_hent" class="btn btn-primary" style="float: right">
-                                        Save HENT
+                                        <i class="fa fa-floppy-o" aria-hidden="true"></i> Save HENT
                                     </button>
                                 </div>
                             </div>
@@ -225,12 +225,12 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <button type="reset" id="btn_clear_ros_eyes_comment" class="btn btn-success" style="float: left">
-                                        Reset Eyes
+                                        <i class="fa fa-refresh" aria-hidden="true"></i> Reset Eyes
                                     </button>
                                 </div>
                                 <div class="col-md-6" >
                                     <button type="submit" id="btn_save_ros_eyes" class="btn btn-primary" style="float: right">
-                                        Save Eyes
+                                        <i class="fa fa-floppy-o" aria-hidden="true"></i> Save Eyes
                                     </button>
                                 </div>
                             </div>
@@ -305,12 +305,12 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <button type="reset" id="btn_clear_ros_respiratory_comment" class="btn btn-success" style="float: left">
-                                        Reset Respiratory
+                                        <i class="fa fa-refresh" aria-hidden="true"></i> Reset Respiratory
                                     </button>
                                 </div>
                                 <div class="col-md-6" >
                                     <button type="submit" id="btn_save_ros_respiratory" class="btn btn-primary" style="float: right">
-                                        Save Respiratory
+                                        <i class="fa fa-floppy-o" aria-hidden="true"></i> Save Respiratory
                                     </button>
                                 </div>
                             </div>
@@ -385,12 +385,12 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <button type="reset" id="btn_clear_ros_cardiovascular_comment" class="btn btn-success" style="float: left">
-                                        Reset Cardiovascular
+                                        <i class="fa fa-refresh" aria-hidden="true"></i> Reset Cardiovascular
                                     </button>
                                 </div>
                                 <div class="col-md-6" >
                                     <button type="submit" id="btn_save_ros_cardiovascular" class="btn btn-primary" style="float: right">
-                                        Save Cardiovascular
+                                        <i class="fa fa-floppy-o" aria-hidden="true"></i> Save Cardiovascular
                                     </button>
                                 </div>
                             </div>
@@ -465,12 +465,12 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <button type="reset" id="btn_clear_ros_musculoskeletal_comment" class="btn btn-success" style="float: left">
-                                        Reset Musculoskeletal
+                                        <i class="fa fa-refresh" aria-hidden="true"></i> Reset Musculoskeletal
                                     </button>
                                 </div>
                                 <div class="col-md-6" >
                                     <button type="submit" id="btn_save_ros_musculoskeletal" class="btn btn-primary" style="float: right">
-                                        Save Musculoskeletal
+                                        <i class="fa fa-floppy-o" aria-hidden="true"></i> Save Musculoskeletal
                                     </button>
                                 </div>
                             </div>
@@ -545,12 +545,12 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <button type="reset" id="btn_clear_ros_integumentary_comment" class="btn btn-success" style="float: left">
-                                        Reset Integumentary
+                                        <i class="fa fa-refresh" aria-hidden="true"></i> Reset Integumentary
                                     </button>
                                 </div>
                                 <div class="col-md-6" >
                                     <button type="submit" id="btn_save_ros_integumentary" class="btn btn-primary" style="float: right">
-                                        Save Integumentary
+                                        <i class="fa fa-floppy-o" aria-hidden="true"></i> Save Integumentary
                                     </button>
                                 </div>
                             </div>
@@ -625,12 +625,12 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <button type="reset" id="btn_clear_ros_neurological_comment" class="btn btn-success" style="float: left">
-                                        Reset Neurological
+                                        <i class="fa fa-refresh" aria-hidden="true"></i> Reset Neurological
                                     </button>
                                 </div>
                                 <div class="col-md-6" >
                                     <button type="submit" id="btn_save_ros_neurological" class="btn btn-primary" style="float: right">
-                                        Save Neurological
+                                        <i class="fa fa-floppy-o" aria-hidden="true"></i> Save Neurological
                                     </button>
                                 </div>
                             </div>
@@ -705,12 +705,12 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <button type="reset" id="btn_clear_ros_psychological" class="btn btn-success" style="float: left">
-                                        Reset Psychological
+                                        <i class="fa fa-refresh" aria-hidden="true"></i> Reset Psychological
                                     </button>
                                 </div>
                                 <div class="col-md-6" >
                                     <button type="submit" id="btn_save_ros_psychological" class="btn btn-primary" style="float: right">
-                                        Save Psychological
+                                        <i class="fa fa-floppy-o" aria-hidden="true"></i> Save Psychological
                                     </button>
                                 </div>
                             </div>

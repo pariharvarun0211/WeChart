@@ -13,7 +13,7 @@
                     <div class="panel-body col-md-offset">
                         <div style="float: left">
                             <button type="submit" id="btn_add_vital_signs" class="btn btn-primary">
-                                Add Vital Signs
+                                <i class="fa fa-plus-circle" aria-hidden="true"></i> Add Vital Signs
                             </button>
                         </div>
                         <br><br>
@@ -184,13 +184,13 @@
                                             <input type="text" name="Comments" id="Comments" style="width: 100px;">
                                         </td>
                                         <td>
-                                            <button name="submitbutton" id="btn_save_vitals" class="btn btn-success btn-submit btn-sm">Add</button>
+                                            <button name="submitbutton" id="btn_save_vitals" class="btn btn-success btn-submit btn-sm"> <i class="fa fa-plus-circle" aria-hidden="true"></i> Add</button>
                                         </td>
                                     </tr>
 
                                 </table>
                                 <a href="#" title="" class="btn btn-primary" id="cancel_add_vital_signs" style="float: left; margin-left:15px;">
-                                    Cancel</a>
+                                    <i class="fa fa-ban" aria-hidden="true"></i> Cancel</a>
                                 <br>
                             </form>
                         </div>
