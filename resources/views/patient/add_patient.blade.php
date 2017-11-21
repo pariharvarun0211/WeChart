@@ -35,10 +35,10 @@
                             <form class="form-horizontal" method="POST" action="{{ url('add_patient') }}">
                                 {{ csrf_field() }}
                                         <div class="form-group{{ $errors->has('gender') ? ' has-error' : '' }}">
-                                            <label for="gender" class="col-md-4 control-label">Sex*</label>
+                                            <label for="gender" class="col-md-4 control-label">Sex<span style="color: red;font-size: large">*</span></label>
 
                                             <div class="col-md-6">
-                                                <input type="radio" class="form-check-input inline" name="gender" value="Male" id="genderMale" checked="checked">&nbsp;Male
+                                                <input type="radio" class="form-check-input inline" name="gender" value="Male" id="genderMale" >&nbsp;Male
                                                 &nbsp;&nbsp;&nbsp;&nbsp;
                                                 <input type="radio" class="form-check-input inline" name="gender" value="Female" id="genderFemale">&nbsp;Female
                                                 @if ($errors->has('gender'))
@@ -50,7 +50,7 @@
                                         </div>
 
                                         <div class="form-group{{ $errors->has('module_id') ? ' has-error' : '' }}">
-                                            <label for="module_id" class="col-md-4 control-label">Module*</label>
+                                            <label for="module_id" class="col-md-4 control-label">Module<span style="color: red;font-size: large">*</span></label>
 
                                             <div class="col-md-6">
                                                 <select class="form-control" name="module_id" value="{{ old('module_id') }}">
@@ -70,7 +70,7 @@
                                         </div>
 
                                         <div class="form-group{{ $errors->has('room_number') ? ' has-error' : '' }}">
-                                            <label for="room_number" class="col-md-4 control-label">Room Number*</label>
+                                            <label for="room_number" class="col-md-4 control-label">Room Number<span style="color: red;font-size: large">*</span></label>
                                             <div class="col-md-6">
                                                 <input id="room_number" type="text" class="form-control" name="room_number" value="{{ old('room_number') }}" required>
                                                 @if ($errors->has('room_number'))
@@ -82,7 +82,7 @@
                                         </div>
 
                                         <div class="form-group{{ $errors->has('age') ? ' has-error' : '' }}">
-                                            <label for="age" class="col-md-4 control-label">Age*</label>
+                                            <label for="age" class="col-md-4 control-label">Age<span style="color: red;font-size: large">*</span></label>
                                             <div class="col-md-6">
                                                 <input id="age" type="text" class="form-control" name="age" value="{{ old('age') }}" required>
                                                 @if ($errors->has('age'))
@@ -93,7 +93,7 @@
                                             </div>
                                         </div>
                                 <div class="form-group{{ $errors->has('visit_date') ? ' has-error' : '' }}">
-                                            <label for="height" class="col-md-4 control-label">Visit Date*</label>
+                                            <label for="height" class="col-md-4 control-label">Visit Date<span style="color: red;font-size: large">*</span></label>
 
                                             <div class="col-md-6">
                                                 <input id="visit_date" type="text" class="form-control" name="visit_date" value="{{ old('visit_date') }}"  required>

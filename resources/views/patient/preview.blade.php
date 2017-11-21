@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">  
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -24,24 +24,24 @@
     <!--This is a container for vital signs header -->
     <div class="row" >
         <div class="panel-heading">
-                <div class="row">
-                    <div class="col-md-3">
-                        <label style="float: left">Submitted to-</label>
-                            @foreach ($instructor_Details as $key=>$instructor_Detail)
-                                @if(count($instructor_Detail)>0)
-                                    <label>{{ $instructor_Detail[0]->firstname}} {{ $instructor_Detail[0]->lastname}}</label>
-                                    <br>
-                                @endif
-                            @endforeach
-                    </div>
-                    <div class="col-md-6">
-                        <h3 id="patient_active_record" align="center" style="margin-top: 0;"><b>Patient Active Record</b></h3>
-                    </div>
-                    <div class="col-md-3">
-                        <label style="float: right">Submitted by- {{ Auth::user()->firstname }} {{ Auth::user()->lastname}}</label>
-                        <label style="float: right">Submitted on- {{$patient->submitted_date}} </label>
-                    </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <label style="float: left">Submitted to-</label>
+                    @foreach ($instructor_Details as $key=>$instructor_Detail)
+                        @if(count($instructor_Detail)>0)
+                            <label>{{ $instructor_Detail[0]->firstname}} {{ $instructor_Detail[0]->lastname}}</label>
+                            <br>
+                        @endif
+                    @endforeach
                 </div>
+                <div class="col-md-6">
+                    <h3 id="patient_active_record" align="center" style="margin-top: 0;"><b>Patient Active Record</b></h3>
+                </div>
+                <div class="col-md-3">
+                    <label style="float: right">Submitted by- {{ Auth::user()->firstname }} {{ Auth::user()->lastname}}</label>
+                    <label style="float: right">Submitted on- {{$patient->submitted_date}} </label>
+                </div>
+            </div>
         </div>
         <div class="panel-body" style="margin-bottom: 0;padding-bottom: 0;background-color: #FFFAF0;margin-top: 0;padding-top: 0">
 
@@ -155,7 +155,7 @@
     {{--HPI--}}
     <div class="panel panel-default">
         <div class="panel-heading" style="background-color: lightblue">
-           <a data-toggle="collapse" href="#HPI">HPI</a>
+            <a data-toggle="collapse" href="#HPI">HPI</a>
         </div>
         <div class="panel-body" id="HPI" class="panel-collapse collapse">
             @if(!count($HPI)>0)
@@ -168,7 +168,7 @@
     {{--Medical History--}}
     <div class="panel panel-default">
         <div class="panel-heading" style="background-color: lightblue">
-           <a data-toggle="collapse" href="#medical_history">Medical History</a>
+            <a data-toggle="collapse" href="#medical_history">Medical History</a>
         </div>
         <div class="panel-body" id="medical_history" class="panel-collapse collapse">
             {{--Personal History--}}
@@ -179,21 +179,21 @@
                 </tr>
                 </thead>
                 <tbody>
-                    @foreach ($diagnosis_list_personal_history as $diagnosis)
-                        <tr>
-                            <td colspan="2"><p><?php echo ($diagnosis->value); ?></p></td>
-                        </tr>
-                    @endforeach
+                @foreach ($diagnosis_list_personal_history as $diagnosis)
+                    <tr>
+                        <td colspan="2"><p><?php echo ($diagnosis->value); ?></p></td>
+                    </tr>
+                @endforeach
                 <tr>
                     <td>
                         Comments:
                     </td>
                     <td>
-                    @if(!count($personal_history_comment)>0)
-                        <textarea rows="4" id="personal_history_comment" name="personal_history_comment" style="width: 575px"></textarea>
-                    @else
-                        <textarea rows="4" id="personal_history_comment" name="personal_history_comment" style="width: 575px">{{$personal_history_comment[0]->value}}</textarea>
-                    @endif
+                        @if(!count($personal_history_comment)>0)
+                            <textarea rows="4" id="personal_history_comment" name="personal_history_comment" style="width: 575px"></textarea>
+                        @else
+                            <textarea rows="4" id="personal_history_comment" name="personal_history_comment" style="width: 575px">{{$personal_history_comment[0]->value}}</textarea>
+                        @endif
                     </td>
                 </tr>
                 </tbody>
@@ -204,48 +204,48 @@
                 <tr class="bg-info">
                     <th colspan="6">Family History</th>
                 </tr>
-                    <tr>
-                        <th>Relation</th>
-                        <th>Alive?</th>
-                        <th>List of Diagnosis</th>
-                    </tr>
+                <tr>
+                    <th>Relation</th>
+                    <th>Alive?</th>
+                    <th>List of Diagnosis</th>
+                </tr>
                 </thead>
                 <tbody>
-                    @foreach ($family_members_details as $family_member_details)
-                        <tr>
-                            <td><p><?php echo ($family_member_details->relation); ?></p></td>
-                            <td>
-                                @if(count($family_member_details->status)>0)
-                                    <p><?php echo ($family_member_details->status[0]); ?></p>
-                                @endif
-                            </td>
-                            <td colspan="10">
-                                @foreach ($family_member_details->diagnosis as $family_member_diagnosis)
-                                    <table>
-                                        <tbody>
-                                        <tr>
-                                            <td>
-                                                <p><?php echo ($family_member_diagnosis); ?></p>
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                @endforeach
-                            </td>
-                        </tr>
-                    @endforeach
+                @foreach ($family_members_details as $family_member_details)
                     <tr>
+                        <td><p><?php echo ($family_member_details->relation); ?></p></td>
                         <td>
-                            Comments:
+                            @if(count($family_member_details->status)>0)
+                                <p><?php echo ($family_member_details->status[0]); ?></p>
+                            @endif
                         </td>
-                        <td colspan="4">
+                        <td colspan="10">
+                            @foreach ($family_member_details->diagnosis as $family_member_diagnosis)
+                                <table>
+                                    <tbody>
+                                    <tr>
+                                        <td>
+                                            <p><?php echo ($family_member_diagnosis); ?></p>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            @endforeach
+                        </td>
+                    </tr>
+                @endforeach
+                <tr>
+                    <td>
+                        Comments:
+                    </td>
+                    <td colspan="4">
                         @if(!count($comment_family_history) > 0)
                             <textarea rows="4" id="family_history_comment" name="family_history_comment" style="width: 600px" ></textarea>
                         @else
                             <textarea rows="4" id="family_history_comment" name="family_history_comment" style="width: 600px" >{{$comment_family_history[0]}}</textarea>
                         @endif
-                        </td>
-                    </tr>
+                    </td>
+                </tr>
                 </tbody>
             </table>
             {{--Surgical History --}}
@@ -253,14 +253,14 @@
                 <thead>
                 <tr class="bg-info">
                     <th colspan="2">Surgical History- List of Diagnosis</th>
-                  </tr>
+                </tr>
                 </thead>
                 <tbody>
-                    @foreach ($diagnosis_list_surgical_history as $diagnosis)
-                        <tr>
-                            <td colspan="2"><p><?php echo ($diagnosis->value); ?></p></td>
-                        </tr>
-                    @endforeach
+                @foreach ($diagnosis_list_surgical_history as $diagnosis)
+                    <tr>
+                        <td colspan="2"><p><?php echo ($diagnosis->value); ?></p></td>
+                    </tr>
+                @endforeach
                 <tr>
                     <td>
                         Comments:
@@ -290,7 +290,7 @@
                     <td>
                         @if($social_history_smoke_tobacco == "YES")
                             <label id="smoke_tobacco">Yes </label>
-                         @else
+                        @else
                             <label id="smoke_tobacco">No </label>
                         @endif
                     </td>
@@ -353,23 +353,23 @@
         </tr>
         </thead>
         <tbody  id="medications" class="panel-collapse collapse">
-            @foreach ($medications as $medicine)
-                <tr>
-                    <td><p>{{$medicine->value}}</p></td>
-                </tr>
-            @endforeach
+        @foreach ($medications as $medicine)
             <tr>
-                <td>
-                    Comments:
-                </td>
-                <td>
+                <td><p>{{$medicine->value}}</p></td>
+            </tr>
+        @endforeach
+        <tr>
+            <td>
+                Comments:
+            </td>
+            <td>
                 @if(!count($medication_comment)>0)
                     <textarea rows="4" id="medication_comment" name="medication_comment" style="width: 590px"></textarea>
                 @else
                     <textarea rows="4" id="medication_comment" name="medication_comment" style="width: 590px">{{$medication_comment[0]->value}}</textarea>
                 @endif
-                </td>
-            </tr>
+            </td>
+        </tr>
         </tbody>
     </table>
     {{--Vital signs--}}
@@ -377,22 +377,22 @@
         <thead>
         <tr>
             <th style="background-color: lightblue" colspan="12">
-               <a data-toggle="collapse" href="#vital_signs">Vital Signs</a>
+                <a data-toggle="collapse" href="#vital_signs">Vital Signs</a>
             </th>
         </tr>
-            <tr class="bg-info">
-                <th>Timestamp</th>
-                <th>BP Systolic</th>
-                <th>BP Diastolic</th>
-                <th>Heart Rate</th>
-                <th>Respiratory Rate</th>
-                <th>Temperature</th>
-                <th>Weight</th>
-                <th>Height</th>
-                <th>Pain</th>
-                <th>Oxygen Saturation</th>
-                <th>Comment</th>
-            </tr>
+        <tr class="bg-info">
+            <th>Timestamp</th>
+            <th>BP Systolic</th>
+            <th>BP Diastolic</th>
+            <th>Heart Rate</th>
+            <th>Respiratory Rate</th>
+            <th>Temperature</th>
+            <th>Weight</th>
+            <th>Height</th>
+            <th>Pain</th>
+            <th>Oxygen Saturation</th>
+            <th>Comment</th>
+        </tr>
         </thead>
         <tbody id="vital_signs" class="panel-collapse collapse">
         {{--Checking for no records--}}
@@ -507,7 +507,7 @@
             </div>
             <div class="row">
                 <div class="col-md-1">
-                        Comments:
+                    Comments:
                 </div>
                 <div class="col-md-11">
                     @if(!count($comment_order)>0)
@@ -516,10 +516,10 @@
                         <textarea rows="4" id="orders_comment" name="orders_comment" style="width: 600px">{{$comment_order[0]->value}}</textarea>
                     @endif
 
+                </div>
             </div>
         </div>
     </div>
-</div>
     {{--Results--}}
     <div class="panel panel-default">
         <div class="panel-heading" style="background-color: lightblue;padding-bottom: 0">
@@ -536,5 +536,9 @@
         </div>
     </div>
 </div>
+<?php
+set_time_limit(0);
+?>
+
 </body>
 </html>

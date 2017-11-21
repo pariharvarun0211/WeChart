@@ -54,9 +54,9 @@
                                     <label for="Comment"> Comments:</label>
                                     <br>
                                     @if(!count($ros_constitutional_comment)>0)
-                                        <textarea rows="4" id="ros_constitutional_comment" name="ros_constitutional_comment" style="width: 575px"></textarea>
+                                        <textarea rows="4" id="ros_constitutional_comment" name="ros_constitutional_comment" style="width: 100%;display: block"></textarea>
                                     @else
-                                        <textarea rows="4" id="ros_constitutional_comment" name="ros_constitutional_comment" style="width: 575px">{{$ros_constitutional_comment[0]}}</textarea>
+                                        <textarea rows="4" id="ros_constitutional_comment" name="ros_constitutional_comment" style="width: 100%;display: block">{{$ros_constitutional_comment[0]}}</textarea>
                                     @endif
                                 </div>
                             </div>
@@ -65,12 +65,12 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <button type="reset" id="btn_clear_ros_constitutional_comment" class="btn btn-success" style="float: left">
-                                        Reset
+                                        Reset Constitutional
                                     </button>
                                 </div>
                                 <div class="col-md-6" >
                                     <button type="submit" id="btn_save_ros_constitutional" class="btn btn-primary" style="float: right">
-                                        Save ROS Constitutional
+                                        Save Constitutional
                                     </button>
                                 </div>
                             </div>
@@ -99,8 +99,8 @@
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-md-12 ">
-                                    <table class="table table-striped table-bordered table-hover">
                                         <table class="table table-striped table-bordered table-hover">
+                                            <tbody>
                                             @foreach ($ros_hent_symptoms as $ros_hent_symptom)
                                                 <tr>
                                                     <td>
@@ -134,9 +134,9 @@
                                     <label for="Comment"> Comments:</label>
                                     <br>
                                     @if(!count($ros_hent_comment)>0)
-                                        <textarea rows="4" id="ros_hent_comment" name="ros_hent_comment" style="width: 575px"></textarea>
+                                        <textarea rows="4" id="ros_hent_comment" name="ros_hent_comment" style="width: 100%;display: block"></textarea>
                                     @else
-                                        <textarea rows="4" id="ros_hent_comment" name="ros_hent_comment" style="width: 575px">{{$ros_hent_comment[0]}}</textarea>
+                                        <textarea rows="4" id="ros_hent_comment" name="ros_hent_comment" style="width: 100%;display: block">{{$ros_hent_comment[0]}}</textarea>
                                     @endif
                                 </div>
                             </div>
@@ -145,12 +145,12 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <button type="reset" id="btn_clear_ros_hent_comment" class="btn btn-success" style="float: left">
-                                        Reset
+                                        Reset HENT
                                     </button>
                                 </div>
                                 <div class="col-md-6" >
                                     <button type="submit" id="btn_save_ros_hent" class="btn btn-primary" style="float: right">
-                                        Save ROS HENT
+                                        Save HENT
                                     </button>
                                 </div>
                             </div>
@@ -163,7 +163,7 @@
         <hr style="border:solid">
     @endif
     @if(in_array("12", $navIds))
-        {{--ros_hent--}}
+        {{--ros_eyes--}}
         <div class="container-fluid" id="eyes">
             <div class="panel panel-default">
                 <div class="panel-heading" style="background-color: lightblue;padding-bottom: 0">
@@ -214,9 +214,9 @@
                                     <label for="Comment"> Comments:</label>
                                     <br>
                                     @if(!count($ros_eyes_comment)>0)
-                                        <textarea rows="4" id="ros_eyes_comment" name="ros_eyes_comment" style="width: 575px"></textarea>
+                                        <textarea rows="4" id="ros_eyes_comment" name="ros_eyes_comment" style="width: 100%;display: block"></textarea>
                                     @else
-                                        <textarea rows="4" id="ros_eyes_comment" name="ros_eyes_comment" style="width: 575px">{{$ros_eyes_comment[0]}}</textarea>
+                                        <textarea rows="4" id="ros_eyes_comment" name="ros_eyes_comment" style="width: 100%;display: block">{{$ros_eyes_comment[0]}}</textarea>
                                     @endif
                                 </div>
                             </div>
@@ -225,12 +225,12 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <button type="reset" id="btn_clear_ros_eyes_comment" class="btn btn-success" style="float: left">
-                                        Reset
+                                        Reset Eyes
                                     </button>
                                 </div>
                                 <div class="col-md-6" >
                                     <button type="submit" id="btn_save_ros_eyes" class="btn btn-primary" style="float: right">
-                                        Save ROS Eyes
+                                        Save Eyes
                                     </button>
                                 </div>
                             </div>
@@ -243,7 +243,7 @@
         <hr style="border:solid">
     @endif
     @if(in_array("13", $navIds))
-        {{--ros_hent--}}
+        {{--ros_respiratory--}}
         <div class="container-fluid" id="respiratory">
             <div class="panel panel-default">
                 <div class="panel-heading" style="background-color: lightblue;padding-bottom: 0">
@@ -294,9 +294,9 @@
                                     <label for="Comment"> Comments:</label>
                                     <br>
                                     @if(!count($ros_respiratory_comment)>0)
-                                        <textarea rows="4" id="ros_respiratory_comment" name="ros_respiratory_comment" style="width: 575px"></textarea>
+                                        <textarea rows="4" id="ros_respiratory_comment" name="ros_respiratory_comment" style="width: 100%;display: block"></textarea>
                                     @else
-                                        <textarea rows="4" id="ros_respiratory_comment" name="ros_respiratory_comment" style="width: 575px">{{$ros_respiratory_comment[0]}}</textarea>
+                                        <textarea rows="4" id="ros_respiratory_comment" name="ros_respiratory_comment" style="width: 100%;display: block">{{$ros_respiratory_comment[0]}}</textarea>
                                     @endif
                                 </div>
                             </div>
@@ -305,12 +305,12 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <button type="reset" id="btn_clear_ros_respiratory_comment" class="btn btn-success" style="float: left">
-                                        Reset
+                                        Reset Respiratory
                                     </button>
                                 </div>
                                 <div class="col-md-6" >
                                     <button type="submit" id="btn_save_ros_respiratory" class="btn btn-primary" style="float: right">
-                                        Save ROS Respiratory
+                                        Save Respiratory
                                     </button>
                                 </div>
                             </div>
@@ -374,9 +374,9 @@
                                     <label for="Comment"> Comments:</label>
                                     <br>
                                     @if(!count($ros_cardiovascular_comment)>0)
-                                        <textarea rows="4" id="ros_cardiovascular_comment" name="ros_cardiovascular_comment" style="width: 575px"></textarea>
+                                        <textarea rows="4" id="ros_cardiovascular_comment" name="ros_cardiovascular_comment" style="width: 100%;display: block"></textarea>
                                     @else
-                                        <textarea rows="4" id="ros_cardiovascular_comment" name="ros_cardiovascular_comment" style="width: 575px">{{$ros_cardiovascular_comment[0]}}</textarea>
+                                        <textarea rows="4" id="ros_cardiovascular_comment" name="ros_cardiovascular_comment" style="width: 100%;display: block">{{$ros_cardiovascular_comment[0]}}</textarea>
                                     @endif
                                 </div>
                             </div>
@@ -385,12 +385,12 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <button type="reset" id="btn_clear_ros_cardiovascular_comment" class="btn btn-success" style="float: left">
-                                        Reset
+                                        Reset Cardiovascular
                                     </button>
                                 </div>
                                 <div class="col-md-6" >
                                     <button type="submit" id="btn_save_ros_cardiovascular" class="btn btn-primary" style="float: right">
-                                        Save ROS Cardiovascular
+                                        Save Cardiovascular
                                     </button>
                                 </div>
                             </div>
@@ -403,7 +403,7 @@
         <hr style="border:solid">
     @endif
     @if(in_array("15", $navIds))
-        {{--ros_hent--}}
+        {{--ros_musculosketal--}}
         <div class="container-fluid" id="musculoskeletal">
             <div class="panel panel-default">
                 <div class="panel-heading" style="background-color: lightblue;padding-bottom: 0">
@@ -454,9 +454,9 @@
                                     <label for="Comment"> Comments:</label>
                                     <br>
                                     @if(!count($ros_musculoskeletal_comment)>0)
-                                        <textarea rows="4" id="ros_musculoskeletal_comment" name="ros_musculoskeletal_comment" style="width: 575px"></textarea>
+                                        <textarea rows="4" id="ros_musculoskeletal_comment" name="ros_musculoskeletal_comment" style="width: 100%;display: block"></textarea>
                                     @else
-                                        <textarea rows="4" id="ros_musculoskeletal_comment" name="ros_musculoskeletal_comment" style="width: 575px">{{$ros_musculoskeletal_comment[0]}}</textarea>
+                                        <textarea rows="4" id="ros_musculoskeletal_comment" name="ros_musculoskeletal_comment" style="width: 100%;display: block">{{$ros_musculoskeletal_comment[0]}}</textarea>
                                     @endif
                                 </div>
                             </div>
@@ -465,12 +465,12 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <button type="reset" id="btn_clear_ros_musculoskeletal_comment" class="btn btn-success" style="float: left">
-                                        Reset
+                                        Reset Musculoskeletal
                                     </button>
                                 </div>
                                 <div class="col-md-6" >
                                     <button type="submit" id="btn_save_ros_musculoskeletal" class="btn btn-primary" style="float: right">
-                                        Save ROS Musculoskeletal
+                                        Save Musculoskeletal
                                     </button>
                                 </div>
                             </div>
@@ -483,7 +483,7 @@
         <hr style="border:solid">
     @endif
     @if(in_array("16", $navIds))
-        {{--ros_hent--}}
+        {{--ros_integumentary--}}
         <div class="container-fluid" id="integumentary">
             <div class="panel panel-default">
                 <div class="panel-heading" style="background-color: lightblue;padding-bottom: 0">
@@ -534,9 +534,9 @@
                                     <label for="Comment"> Comments:</label>
                                     <br>
                                     @if(!count($ros_integumentary_comment)>0)
-                                        <textarea rows="4" id="ros_integumentary_comment" name="ros_integumentary_comment" style="width: 575px"></textarea>
+                                        <textarea rows="4" id="ros_integumentary_comment" name="ros_integumentary_comment" style="width: 100%;display: block"></textarea>
                                     @else
-                                        <textarea rows="4" id="ros_integumentary_comment" name="ros_integumentary_comment" style="width: 575px">{{$ros_integumentary_comment[0]}}</textarea>
+                                        <textarea rows="4" id="ros_integumentary_comment" name="ros_integumentary_comment" style="width: 100%;display: block">{{$ros_integumentary_comment[0]}}</textarea>
                                     @endif
                                 </div>
                             </div>
@@ -545,12 +545,12 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <button type="reset" id="btn_clear_ros_integumentary_comment" class="btn btn-success" style="float: left">
-                                        Reset
+                                        Reset Integumentary
                                     </button>
                                 </div>
                                 <div class="col-md-6" >
                                     <button type="submit" id="btn_save_ros_integumentary" class="btn btn-primary" style="float: right">
-                                        Save ROS Integumentary
+                                        Save Integumentary
                                     </button>
                                 </div>
                             </div>
@@ -563,7 +563,7 @@
         <hr style="border:solid">
     @endif
     @if(in_array("17", $navIds))
-        {{--ros_hent--}}
+        {{--ros_neurological--}}
         <div class="container-fluid" id="neurological">
             <div class="panel panel-default">
                 <div class="panel-heading" style="background-color: lightblue;padding-bottom: 0">
@@ -614,9 +614,9 @@
                                     <label for="Comment"> Comments:</label>
                                     <br>
                                     @if(!count($ros_neurological_comment)>0)
-                                        <textarea rows="4" id="ros_neurological_comment" name="ros_neurological_comment" style="width: 575px"></textarea>
+                                        <textarea rows="4" id="ros_neurological_comment" name="ros_neurological_comment" style="width: 100%;display: block"></textarea>
                                     @else
-                                        <textarea rows="4" id="ros_neurological_comment" name="ros_neurological_comment" style="width: 575px">{{$ros_neurological_comment[0]}}</textarea>
+                                        <textarea rows="4" id="ros_neurological_comment" name="ros_neurological_comment" style="width: 100%;display: block">{{$ros_neurological_comment[0]}}</textarea>
                                     @endif
                                 </div>
                             </div>
@@ -625,12 +625,12 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <button type="reset" id="btn_clear_ros_neurological_comment" class="btn btn-success" style="float: left">
-                                        Reset
+                                        Reset Neurological
                                     </button>
                                 </div>
                                 <div class="col-md-6" >
                                     <button type="submit" id="btn_save_ros_neurological" class="btn btn-primary" style="float: right">
-                                        Save ROS Neurological
+                                        Save Neurological
                                     </button>
                                 </div>
                             </div>
@@ -643,7 +643,7 @@
         <hr style="border:solid">
     @endif
     @if(in_array("18", $navIds))
-        {{--ros_hent--}}
+        {{--ros_psychological--}}
         <div class="container-fluid" id="psychological">
             <div class="panel panel-default">
                 <div class="panel-heading" style="background-color: lightblue;padding-bottom: 0">
@@ -694,9 +694,9 @@
                                     <label for="Comment"> Comments:</label>
                                     <br>
                                     @if(!count($ros_psychological_comment)>0)
-                                        <textarea rows="4" id="ros_psychological_comment" name="ros_psychological_comment" style="width: 575px"></textarea>
+                                        <textarea rows="4" id="ros_psychological_comment" name="ros_psychological_comment" style="width: 100%;display: block"></textarea>
                                     @else
-                                        <textarea rows="4" id="ros_psychological_comment" name="ros_psychological_comment" style="width: 575px">{{$ros_psychological_comment[0]}}</textarea>
+                                        <textarea rows="4" id="ros_psychological_comment" name="ros_psychological_comment" style="width: 100%;display: block">{{$ros_psychological_comment[0]}}</textarea>
                                     @endif
                                 </div>
                             </div>
@@ -704,13 +704,13 @@
                             {{--Buttons--}}
                             <div class="row">
                                 <div class="col-md-6">
-                                    <button type="reset" id="btn_clear_ros_psychological_comment" class="btn btn-success" style="float: left">
-                                        Reset
+                                    <button type="reset" id="btn_clear_ros_psychological" class="btn btn-success" style="float: left">
+                                        Reset Psychological
                                     </button>
                                 </div>
                                 <div class="col-md-6" >
                                     <button type="submit" id="btn_save_ros_psychological" class="btn btn-primary" style="float: right">
-                                        Save ROS Psychological
+                                        Save Psychological
                                     </button>
                                 </div>
                             </div>

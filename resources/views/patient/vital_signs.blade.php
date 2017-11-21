@@ -11,13 +11,13 @@
                     </div>
 
                     <div class="panel-body col-md-offset">
-                        <div class="col-md-30" style="float: right">
+                        <div style="float: left">
                             <button type="submit" id="btn_add_vital_signs" class="btn btn-primary">
                                 Add Vital Signs
                             </button>
                         </div>
                         <br><br>
-                        <div class="row" style="overflow-x: auto;width: 775px" class="col-md-12">
+                        <div class="row" style="overflow-x: auto;width: 100%; display: block">
                             <table class="table table-striped table-bordered table-hover" style="margin-top:10px; margin-left:15px;" id="vital_signs_table">
                                 <thead>
                                 <tr style="background: lightblue">
@@ -101,6 +101,13 @@
                                                     {{$vs->Comment[0]}}
                                                 @endif
                                             </td>
+                                             <td>
+                                                 {{ Form::open(array('method' => 'post', 'route' => array('delete_vital_signs', $vs->timestamp))) }}
+                                                 <input id="patient_id" name="patient_id" type="hidden" value="{{ $patient->patient_id }}">
+                                                 <input type=hidden id="user_id" name="user_id" value="{{ Auth::user()->id }}">
+                                                 <button name="delbutton" class="btn btn-danger btn-delete btn-sm" id="delete_vital_signs">Delete</button>
+                                                 {{ Form::close() }}                                               
+                                             </td>
                                         </tr>
                                     @endforeach
                                 @endif
@@ -109,7 +116,7 @@
                         </div>
                         <br><br>
 
-                        <div class="row" style="overflow-x: auto;width: 775px" class="col-md-12" id="table_child_vital_signs">
+                        <div class="row" style="overflow-x: auto;width: 100%;display: block" id="table_child_vital_signs">
                             <form class="form-horizontal" method="POST" action="{{ url('post_vital_signs') }}" id="vitals_form">
                                 {{ csrf_field() }}
                                 <input id="patient_id" name="patient_id" type="hidden" value="{{ $patient->patient_id }}">

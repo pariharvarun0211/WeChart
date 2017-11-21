@@ -69,10 +69,10 @@
                     <!-- Search For labs -->
                     <div class="col-sm-6">
                         <div class="row">
-                            <div class="col-md-2">
+                            <div class="col-md-3">
                                 <label for="orders_labs"> Labs:</label>
                             </div>
-                            <div class="col-md-10 ">
+                            <div class="col-md-9">
                                 <select id="search_labs_orders" class="js-example-basic-multiple js-states form-control" name="search_labs_orders[]" multiple></select>
                             </div>
                         </div>
@@ -80,10 +80,10 @@
                     <!-- Search For Imaging -->
                     <div class="col-sm-6">
                         <div class="row">
-                            <div class="col-md-2">
+                            <div class="col-md-3">
                                 <label for="orders_imaging"> Imaging:</label>
                             </div>
-                            <div class="col-md-10">
+                            <div class="col-md-9">
                                 <select id="search_labs_imaging" class="js-example-basic-multiple js-states form-control" name="search_labs_imaging[]" multiple></select>
                             </div>
                         </div>
@@ -91,17 +91,15 @@
                 </div>
                 <br>
                 <br>
-                <br>
                 <!-- Comment box -->
                 <div class="row">
-                    <div class="col-md-2">
+                    <div class="col-md-12">
                         <label for="Comment"> Comments:</label>
-                    </div>
-                    <div class="col-md-10">
+                        <br>
                         @if(!count($comment_order)>0)
-                            <textarea rows="4" id="orders_comment" name="orders_comment" style="width: 600px" ></textarea>
+                            <textarea rows="4" id="orders_comment" name="orders_comment" style="width: 100%;display: block" ></textarea>
                         @else
-                            <textarea rows="4" id="orders_comment" name="orders_comment" style="width: 600px">{{$comment_order[0]->value}}</textarea>
+                            <textarea rows="4" id="orders_comment" name="orders_comment" style="width: 100%;display: block">{{$comment_order[0]->value}}</textarea>
                         @endif
                     </div>
                 </div>
@@ -144,7 +142,7 @@
                     results: data
                 };
             },
-            cache: true
+            cache: false
         }
     });
 
@@ -164,7 +162,7 @@
                     results: data
                 };
             },
-            cache: true
+            cache: false
         }
     });
 

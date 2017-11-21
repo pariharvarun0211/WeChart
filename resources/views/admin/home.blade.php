@@ -14,7 +14,7 @@
 
     <div class="row">
             <div class="col-md-2 col-md-offset-1">   
-                <a href="{{url('/ManageEmails')}}" class="btn btn-success"> 
+                <a href="{{url('/RemoveEmails')}}" class="btn btn-success">
                 <i class="fa fa-envelope-o" aria-hidden="true"></i> Remove Emails</a>
             </div>
             <div class="col-md-8">

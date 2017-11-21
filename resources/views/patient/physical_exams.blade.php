@@ -54,16 +54,21 @@
                                     <label for="Comment"> Comments:</label>
                                     <br>
                                     @if(!count($constitutional_comment)>0)
-                                        <textarea rows="4" id="constitutional_comment" name="constitutional_comment" style="width: 575px"></textarea>
+                                        <textarea rows="4" id="constitutional_comment" name="constitutional_comment" style="width: 100%;display: block"></textarea>
                                     @else
-                                        <textarea rows="4" id="constitutional_comment" name="constitutional_comment" style="width: 575px">{{$constitutional_comment[0]}}</textarea>
+                                        <textarea rows="4" id="constitutional_comment" name="constitutional_comment" style="width: 100%;display: block">{{$constitutional_comment[0]}}</textarea>
                                     @endif
                                 </div>
                             </div>
                             <br>
                             {{--Buttons--}}
                             <div class="row">
-                                <div class="col-md-12" >
+                                <div class="col-md-6">
+                                    <button type="reset" id="btn_clear_constitutional" class="btn btn-success" style="float: left">
+                                        Reset Constitutional
+                                    </button>
+                                </div>
+                                <div class="col-md-6" >
                                     <button type="submit" id="btn_save_constitutional" class="btn btn-primary" style="float: right">
                                         Save Constitutional
                                     </button>
@@ -129,16 +134,21 @@
                                     <label for="Comment"> Comments:</label>
                                     <br>
                                     @if(!count($HENT_comment)>0)
-                                        <textarea rows="4" id="HENT_comment" name="HENT_comment" style="width: 575px"></textarea>
+                                        <textarea rows="4" id="HENT_comment" name="HENT_comment" style="width: 100%;display: block"></textarea>
                                     @else
-                                        <textarea rows="4" id="HENT_comment" name="HENT_comment" style="width: 575px">{{$HENT_comment[0]}}</textarea>
+                                        <textarea rows="4" id="HENT_comment" name="HENT_comment" style="width: 100%;display: block">{{$HENT_comment[0]}}</textarea>
                                     @endif
                                 </div>
                             </div>
                             <br>
                             {{--Buttons--}}
                             <div class="row">
-                                <div class="col-md-12" >
+                                <div class="col-md-6">
+                                    <button type="reset" id="btn_clear_HENT" class="btn btn-success" style="float: left">
+                                        Reset HENT
+                                    </button>
+                                </div>
+                                <div class="col-md-6" >
                                     <button type="submit" id="btn_save_HENT" class="btn btn-primary" style="float: right">
                                         Save HENT
                                     </button>
@@ -204,16 +214,21 @@
                                     <label for="Comment"> Comments:</label>
                                     <br>
                                     @if(!count($eyes_comment)>0)
-                                        <textarea rows="4" id="eyes_comment" name="eyes_comment" style="width: 575px"></textarea>
+                                        <textarea rows="4" id="eyes_comment" name="eyes_comment" style="width: 100%;display: block"></textarea>
                                     @else
-                                        <textarea rows="4" id="eyes_comment" name="eyes_comment" style="width: 575px">{{$eyes_comment[0]}}</textarea>
+                                        <textarea rows="4" id="eyes_comment" name="eyes_comment" style="width: 100%;display: block">{{$eyes_comment[0]}}</textarea>
                                     @endif
                                 </div>
                             </div>
                             <br>
                             {{--Buttons--}}
                             <div class="row">
-                                <div class="col-md-12" >
+                                <div class="col-md-6">
+                                    <button type="reset" id="btn_clear_eyes" class="btn btn-success" style="float: left">
+                                        Reset Eyes
+                                    </button>
+                                </div>
+                                <div class="col-md-6" >
                                     <button type="submit" id="btn_save_eyes" class="btn btn-primary" style="float: right">
                                         Save Eyes
                                     </button>
@@ -279,16 +294,21 @@
                                     <label for="Comment"> Comments:</label>
                                     <br>
                                     @if(!count($respiratory_comment)>0)
-                                        <textarea rows="4" id="respiratory_comment" name="respiratory_comment" style="width: 575px"></textarea>
+                                        <textarea rows="4" id="respiratory_comment" name="respiratory_comment" style="width: 100%;display: block"></textarea>
                                     @else
-                                        <textarea rows="4" id="respiratory_comment" name="respiratory_comment" style="width: 575px">{{$respiratory_comment[0]}}</textarea>
+                                        <textarea rows="4" id="respiratory_comment" name="respiratory_comment" style="width: 100%;display: block">{{$respiratory_comment[0]}}</textarea>
                                     @endif
                                 </div>
                             </div>
                             <br>
                             {{--Buttons--}}
                             <div class="row">
-                                <div class="col-md-12" >
+                                <div class="col-md-6">
+                                    <button type="reset" id="btn_clear_respiratory" class="btn btn-success" style="float: left">
+                                        Reset Respiratory
+                                    </button>
+                                </div>
+                                <div class="col-md-6" >
                                     <button type="submit" id="btn_save_respiratory" class="btn btn-primary" style="float: right">
                                         Save Respiratory
                                     </button>
@@ -354,16 +374,21 @@
                                     <label for="Comment"> Comments:</label>
                                     <br>
                                     @if(!count($cardiovascular_comment)>0)
-                                        <textarea rows="4" id="cardiovascular_comment" name="cardiovascular_comment" style="width: 575px"></textarea>
+                                        <textarea rows="4" id="cardiovascular_comment" name="cardiovascular_comment" style="width: 100%;display: block"></textarea>
                                     @else
-                                        <textarea rows="4" id="cardiovascular_comment" name="cardiovascular_comment" style="width: 575px">{{$cardiovascular_comment[0]}}</textarea>
+                                        <textarea rows="4" id="cardiovascular_comment" name="cardiovascular_comment" style="width: 100%;display: block">{{$cardiovascular_comment[0]}}</textarea>
                                     @endif
                                 </div>
                             </div>
                             <br>
                             {{--Buttons--}}
                             <div class="row">
-                                <div class="col-md-12" >
+                                <div class="col-md-6">
+                                    <button type="reset" id="btn_clear_cardiovascular" class="btn btn-success" style="float: left">
+                                        Reset Cardiovascular
+                                    </button>
+                                </div>
+                                <div class="col-md-6" >
                                     <button type="submit" id="btn_save_cardiovascular" class="btn btn-primary" style="float: right">
                                         Save Cardiovascular
                                     </button>
@@ -429,16 +454,21 @@
                                     <label for="Comment"> Comments:</label>
                                     <br>
                                     @if(!count($musculoskeletal_comment)>0)
-                                        <textarea rows="4" id="musculoskeletal_comment" name="musculoskeletal_comment" style="width: 575px"></textarea>
+                                        <textarea rows="4" id="musculoskeletal_comment" name="musculoskeletal_comment" style="width: 100%;display: block"></textarea>
                                     @else
-                                        <textarea rows="4" id="musculoskeletal_comment" name="musculoskeletal_comment" style="width: 575px">{{$psychological_comment[0]}}</textarea>
+                                        <textarea rows="4" id="musculoskeletal_comment" name="musculoskeletal_comment" style="width: 100%;display: block">{{$musculoskeletal_comment[0]}}</textarea>
                                     @endif
                                 </div>
                             </div>
                             <br>
                             {{--Buttons--}}
                             <div class="row">
-                                <div class="col-md-12" >
+                                <div class="col-md-6">
+                                    <button type="reset" id="btn_clear_musculoskeletal" class="btn btn-success" style="float: left">
+                                        Reset Musculoskeletal
+                                    </button>
+                                </div>
+                                <div class="col-md-6" >
                                     <button type="submit" id="btn_save_musculoskeletal" class="btn btn-primary" style="float: right">
                                         Save Musculoskeletal
                                     </button>
@@ -504,16 +534,21 @@
                                     <label for="Comment"> Comments:</label>
                                     <br>
                                     @if(!count($integumentary_comment)>0)
-                                        <textarea rows="4" id="integumentary_comment" name="integumentary_comment" style="width: 575px"></textarea>
+                                        <textarea rows="4" id="integumentary_comment" name="integumentary_comment" style="width: 100%;display: block"></textarea>
                                     @else
-                                        <textarea rows="4" id="integumentary_comment" name="integumentary_comment" style="width: 575px">{{$integumentary_comment[0]}}</textarea>
+                                        <textarea rows="4" id="integumentary_comment" name="integumentary_comment" style="width: 100%;display: block">{{$integumentary_comment[0]}}</textarea>
                                     @endif
                                 </div>
                             </div>
                             <br>
                             {{--Buttons--}}
                             <div class="row">
-                                <div class="col-md-12" >
+                                <div class="col-md-6">
+                                    <button type="reset" id="btn_clear_integumentary" class="btn btn-success" style="float: left">
+                                        Reset Integumentary
+                                    </button>
+                                </div>
+                                <div class="col-md-6" >
                                     <button type="submit" id="btn_save_integumentary" class="btn btn-primary" style="float: right">
                                         Save Integumentary
                                     </button>
@@ -579,16 +614,21 @@
                                     <label for="Comment"> Comments:</label>
                                     <br>
                                     @if(!count($neurological_comment)>0)
-                                        <textarea rows="4" id="neurological_comment" name="neurological_comment" style="width: 575px"></textarea>
+                                        <textarea rows="4" id="neurological_comment" name="neurological_comment" style="width: 100%;display: block"></textarea>
                                     @else
-                                        <textarea rows="4" id="neurological_comment" name="neurological_comment" style="width: 575px">{{$neurological_comment[0]}}</textarea>
+                                        <textarea rows="4" id="neurological_comment" name="neurological_comment" style="width: 100%;display: block">{{$neurological_comment[0]}}</textarea>
                                     @endif
                                 </div>
                             </div>
                             <br>
                             {{--Buttons--}}
                             <div class="row">
-                                <div class="col-md-12" >
+                                <div class="col-md-6">
+                                    <button type="reset" id="btn_clear_neurological" class="btn btn-success" style="float: left">
+                                        Reset Neurological
+                                    </button>
+                                </div>
+                                <div class="col-md-6" >
                                     <button type="submit" id="btn_save_neurological" class="btn btn-primary" style="float: right">
                                         Save Neurological
                                     </button>
@@ -654,16 +694,21 @@
                                         <label for="Comment"> Comments:</label>
                                         <br>
                                         @if(!count($psychological_comment)>0)
-                                            <textarea rows="4" id="psychological_comment" name="psychological_comment" style="width: 575px"></textarea>
+                                            <textarea rows="4" id="psychological_comment" name="psychological_comment" style="width: 100%;display: block"></textarea>
                                         @else
-                                            <textarea rows="4" id="psychological_comment" name="psychological_comment" style="width: 575px">{{$psychological_comment[0]}}</textarea>
+                                            <textarea rows="4" id="psychological_comment" name="psychological_comment" style="width: 100%;display: block">{{$psychological_comment[0]}}</textarea>
                                         @endif
                                     </div>
                                 </div>
                                 <br>
                                 {{--Buttons--}}
                                 <div class="row">
-                                    <div class="col-md-12" >
+                                    <div class="col-md-6">
+                                        <button type="reset" id="btn_clear_psychological" class="btn btn-success" style="float: left">
+                                            Reset Psychological
+                                        </button>
+                                    </div>
+                                    <div class="col-md-6" >
                                         <button type="submit" id="btn_save_psychological" class="btn btn-primary" style="float: right">
                                             Save Psychological
                                         </button>

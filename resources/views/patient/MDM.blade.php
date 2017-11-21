@@ -21,9 +21,9 @@
                                     <div class="col-md-12">
                                         <h4>MDM/Plan:</h4>
                                         @if(!count($MDM)>0)
-                                            <textarea id="MDM" name="MDM" rows="6" cols="50" style="width: 700px"></textarea>
+                                            <textarea id="MDM" name="MDM" rows="6" style="width: 100%;display: block"></textarea>
                                         @else
-                                            <textarea id="MDM" name="MDM" rows="6" style="width: 700px;text-align: left">{{$MDM[0]->value}}</textarea>
+                                            <textarea id="MDM" name="MDM" rows="6" style="width: 100%;display: block">{{$MDM[0]->value}}</textarea>
                                         @endif
                                     </div>
                                 </div>
@@ -31,12 +31,12 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <button type="reset" id="btn_clear_MDM_comment" class="btn btn-success" style="float: left">
-                                            Reset Comment
+                                            Reset
                                         </button>
                                     </div>
                                     <div class="col-md-6">
                                         <button id="save_button" type="save" class="btn btn-primary" style="float: right">
-                                            <i class="fa fa-floppy-o" aria-hidden="true"></i> &nbsp;Save MDM/Plan
+                                            <i class="fa fa-floppy-o" aria-hidden="true"></i> &nbsp;Save
                                         </button>
                                     </div>
                                 </div>

@@ -40,40 +40,36 @@
                                         <table class="table table-striped table-bordered table-hover">
                                             <thead>
                                                 <tr class="bg-info">
-                                                    <th>Patient Name</th>
+                                                    <th colspan="2">Patient Name</th>
                                                     <th>Age</th>
                                                     <th>Sex</th>
-                                                    {{--<th>Height</th>--}}
-                                                    {{--<th>Weight</th>--}}
                                                     <th>Visit Date</th>
-                                                    <th colspan="2"></th>
+                                                    <th></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                        @foreach($saved_patients as $patient)
-                                            <!-- To check the patient records with "Saved" status -->
-                                                @if($patient->module)
-                                                   @if($patient->status === 1 && $patient->module->module_name === $module)
-                                                           <tr>
-                                                                <td>
-                                                                    <a href="{{ route( 'patient.view', ['patient_id' => $patient->patient_id ] ) }}" id="patientName">
-                                                                         <?php echo $patient->first_name.' '.$patient->last_name; ?>
-                                                                     </a>
-                                                                </td>
-                                                                <td><p id="patientAge">{{$patient->age}}</p></td>
-                                                                <td><p id="patientSex">{{$patient->gender}}</p></td>
-                                                                {{--<td><p id="patientHeight">{{$patient->height}}</p></td>--}}
-                                                                {{--<td><p id="patientWeight">{{$patient->weight}}</p></td>--}}
-                                                                <td><p id="visitDate">{{$patient->visit_date}}</p></td>
-                                                                <td style="text-align: left">
-                                                                    <a href="{{ route( 'patient.view', ['patient_id' => $patient->patient_id ] ) }}" class="btn btn-primary" id="edit">View & Edit</a>
-                                                                    <a class="btn btn-danger" id="delete"> Delete</a>
-                                                                </td>
-                                                            </tr>
+                                                @foreach($saved_patients as $patient)
+                                                <!-- To check the patient records with "Saved" status -->
+                                                    @if($patient->module)
+                                                       @if($patient->status === 1 && $patient->module->module_name === $module)
+                                                               <tr>
+                                                                    <td colspan="2">
+                                                                        <a href="{{ route( 'patient.view', ['patient_id' => $patient->patient_id ] ) }}" id="patientName">
+                                                                             <?php echo $patient->first_name.' '.$patient->last_name; ?>
+                                                                         </a>
+                                                                    </td>
+                                                                    <td><p id="patientAge">{{$patient->age}}</p></td>
+                                                                    <td><p id="patientSex">{{$patient->gender}}</p></td>
+                                                                    <td><p id="visitDate">{{$patient->visit_date}}</p></td>
+                                                                    <td>
+                                                                        <a href="{{ route( 'patient.view', ['patient_id' => $patient->patient_id ] ) }}" class="btn btn-primary" id="edit">View & Edit</a>
+                                                                        <a class="btn btn-danger" id="delete" > Delete</a>
+                                                                    </td>
+                                                                </tr>
+                                                        @endif
                                                     @endif
-                                                @endif
-                                            @endforeach
-                                                </tbody>
+                                                @endforeach
+                                            </tbody>
                                             </table>
                                     @endif
                                     </div>

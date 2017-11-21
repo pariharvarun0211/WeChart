@@ -53,8 +53,8 @@
                 @yield('documentation_panel')
             </div>
 
-            {{--Pink Panel--}}
-            <div class="col-md-3" style="float: right;background-color: lightpink;" id="pink_panel">
+            {{--Guidance Panel--}}
+            <div class="col-md-3" style="float: right;background-color: lightpink;" id="guidance_panel">
                 Guidance Panel
             </div>
 
