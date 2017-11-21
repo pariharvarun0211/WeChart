@@ -101,6 +101,13 @@
                                                     {{$vs->Comment[0]}}
                                                 @endif
                                             </td>
+                                             <td>
+                                                 {{ Form::open(array('method' => 'post', 'route' => array('delete_vital_signs', $vs->timestamp))) }}
+                                                 <input id="patient_id" name="patient_id" type="hidden" value="{{ $patient->patient_id }}">
+                                                 <input type=hidden id="user_id" name="user_id" value="{{ Auth::user()->id }}">
+                                                 <button name="delbutton" class="btn btn-danger btn-delete btn-sm" id="delete_vital_signs">Delete</button>
+                                                 {{ Form::close() }}                                               
+                                             </td>
                                         </tr>
                                     @endforeach
                                 @endif
