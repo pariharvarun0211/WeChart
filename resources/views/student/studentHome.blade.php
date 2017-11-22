@@ -65,7 +65,7 @@
                                                                         <a href="{{ route( 'patient.view', ['patient_id' => $patient->patient_id ] ) }}" class="btn btn-primary" id="edit">
                                                                             <i class="fa fa-pencil-square-o" aria-hidden="true"></i> View & Edit
                                                                         </a>
-                                                                        <a class="btn btn-danger" id="delete" >
+                                                                        <a href="{{ route( 'patient.destroy', ['patient_id' => $patient->patient_id]) }}" class="btn btn-danger confirmation" id="delete" >
                                                                             <i class="fa fa-trash-o" aria-hidden="true"></i> Delete
                                                                         </a>
                                                                     </td>
@@ -134,7 +134,7 @@
                                                                         <a href="{{ route( 'pdf_generate', ['patient_id' => $patient->patient_id ] ) }}" class="btn btn-success" id="generate_report">
                                                                             <i class="fa fa-file-pdf-o" aria-hidden="true"></i> Generate PDF
                                                                         </a>
-                                                                        <a class="btn btn-danger" id="delete">
+                                                                        <a href="{{ route( 'patient.destroy', ['patient_id' => $patient->patient_id]) }}" class="btn btn-danger confirmation" id="delete">
                                                                             <i class="fa fa-trash-o" aria-hidden="true"></i> Delete
                                                                         </a>
                                                                     </td>
@@ -160,4 +160,9 @@
     </div>
 
     </div>
+    <script type="text/javascript">
+    $('.confirmation').on('click', function () {
+        return confirm('Are you sure you want to delete this patient? This action is irreversible.');
+    });
+</script>
    @endsection
