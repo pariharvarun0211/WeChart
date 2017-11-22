@@ -40,9 +40,11 @@
 
                     <li class="list-group-item">
                         @if(!((count($disposition)> 0) && $status_id === 1))
-                            <a class="btn btn-default" id="submit-button" style="margin:auto; text-align:center; display:block; width:100%;" title = "Disposition should be saved inorder to submit a patient." disabled>Submit</a>
+                            <a class="btn btn-default" id="submit-button" style="margin:auto; text-align:center; display:block; width:100%;" title = "Disposition should be saved inorder to submit a patient." disabled>
+                                <i class="fa fa-floppy-o" aria-hidden="true"></i> Submit</a>
                         @else
-                            <a href="{{ URL::route('AssignInstructor', $patient->patient_id) }}" class="btn btn-primary" id="submit-button" style="margin:auto; text-align:center; display:block; width:100%;" title = "You need to assign instructor for final submission of patient.">Submit</a>
+                            <a href="{{ URL::route('AssignInstructor', $patient->patient_id) }}" class="btn btn-primary" id="submit-button" style="margin:auto; text-align:center; display:block; width:100%;" title = "You need to assign instructor for final submission of patient.">
+                                <i class="fa fa-floppy-o" aria-hidden="true"></i> Submit</a>
                         @endif
                     </li>
                 </ul>

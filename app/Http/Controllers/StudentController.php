@@ -28,9 +28,11 @@ class StudentController extends Controller
             $submitted_message = '';
             $saved_patients = patient::where('created_by', Auth::user()->id)
                 ->where('completed_flag',false)
+                ->where('archived',false)
                 ->get();
             $submitted_patients = patient::where('created_by', Auth::user()->id)
                 ->where('completed_flag',true)
+                ->where('archived',false)
                 ->get();
             if(!empty($saved_patients)) {
                 foreach ($saved_patients as $patient) {

@@ -62,8 +62,12 @@
                                                                     <td><p id="patientSex">{{$patient->gender}}</p></td>
                                                                     <td><p id="visitDate">{{$patient->visit_date}}</p></td>
                                                                     <td>
-                                                                        <a href="{{ route( 'patient.view', ['patient_id' => $patient->patient_id ] ) }}" class="btn btn-primary" id="edit">View & Edit</a>
-                                                                        <a class="btn btn-danger" id="delete" > Delete</a>
+                                                                        <a href="{{ route( 'patient.view', ['patient_id' => $patient->patient_id ] ) }}" class="btn btn-primary" id="edit">
+                                                                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i> View & Edit
+                                                                        </a>
+                                                                        <a class="btn btn-danger" id="delete" >
+                                                                            <i class="fa fa-trash-o" aria-hidden="true"></i> Delete
+                                                                        </a>
                                                                     </td>
                                                                 </tr>
                                                         @endif
@@ -124,9 +128,15 @@
                                                                     <td><p id="patient_submitted_date">{{$patient->submitted_date}}</p></td>
                                                                     <td><p id="visitDate">{{$patient->visit_date}}</p></td>
                                                                     <td style="text-align: left">
-                                                                        <a href="{{ route( 'patient_preview', ['patient_id' => $patient->patient_id ] ) }}" class="btn btn-primary" id="preview"> Preview </a>
-                                                                        <a href="{{ route( 'pdf_generate', ['patient_id' => $patient->patient_id ] ) }}" class="btn btn-success" id="generate_report"> Generate PDF</a>
-                                                                        <a class="btn btn-danger" id="delete"> Delete</a>
+                                                                        <a href="{{ route( 'patient_preview', ['patient_id' => $patient->patient_id ] ) }}" class="btn btn-primary" id="preview">
+                                                                            <i class="fa fa-file-text" aria-hidden="true"></i> Preview
+                                                                        </a>
+                                                                        <a href="{{ route( 'pdf_generate', ['patient_id' => $patient->patient_id ] ) }}" class="btn btn-success" id="generate_report">
+                                                                            <i class="fa fa-file-pdf-o" aria-hidden="true"></i> Generate PDF
+                                                                        </a>
+                                                                        <a class="btn btn-danger" id="delete">
+                                                                            <i class="fa fa-trash-o" aria-hidden="true"></i> Delete
+                                                                        </a>
                                                                     </td>
                                                                 </tr>
                                                             @endif

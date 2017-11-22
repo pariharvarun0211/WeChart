@@ -119,7 +119,7 @@
                                  </button>
                              </div>
                              <div class="col-sm-6">
-                                 <button type="submit" id="btn_save_disposition" class="btn btn-primary" style="float: right">
+                                 <button type="submit" id="btn_save_disposition" class="btn btn-primary" disabled="true" style="float: right">
                                      <i class="fa fa-floppy-o" aria-hidden="true"></i> Save Disposition
                                  </button>
                              </div>
@@ -156,6 +156,11 @@
         {
             $('#disposition_comment').val('');
         } );
+        $('.form-check-input').click( function()
+        {
+            $('#btn_save_disposition').prop('disabled', false);
+        } );
+
     </script>
 
 @endsection
