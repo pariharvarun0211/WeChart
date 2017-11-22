@@ -11,6 +11,15 @@
                 <h4 style="margin-top: 0">Assign Instructors</h4>
             </div>
             <div class="panel-body">
+              @if (count($errors) > 0)
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <form class="form-horizontal" method="POST" action="{{ url('InstructorAssigned') }}" id="assignInstructors_form">
                     {{ csrf_field() }}
                     <input id="module_id" name="module_id" type="hidden" value="{{ $patient->module_id }}">
