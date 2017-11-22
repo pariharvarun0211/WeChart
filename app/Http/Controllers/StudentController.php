@@ -91,33 +91,62 @@ class StudentController extends Controller
             return view('errors/error',compact('error_message'));
         }
     }
-    public function destroy(Request $request){
-        $role='';
-        if(Auth::check()) {
-            $role = Auth::user()->role;
-        }
+   public function destroy($id){
 
-        if($role == 'Student') {
+    $role='';
+    if(Auth::check()) {
+        $role = Auth::user()->role;
+    }
+
+    if($role == 'Student') {
+        $modules = array();
+
+
+        patient::where('patient_id', $id)
+            ->update(['archived' => 1]);
+
+        if ($role == 'Student') {
             $modules = array();
-            $patient = patient::where('patient_id', $request['patient_id'])->update([
-                'archived' => true
-            ]);
-            $patients = patient::where('created_by', Auth::user()->id)->get();
-            foreach ($patients as $patient) {
-                if ($patient->module) {
-                    array_push($modules, $patient->module->module_name);
-                } else {
-                    $message = 'There is no patient record associated with this student.';
+            $saved_message = '';
+            $submitted_message = '';
+            $saved_patients = patient::where('created_by', Auth::user()->id)
+                ->where('completed_flag', false)
+                ->where('archived', false)
+                ->get();
+            $submitted_patients = patient::where('created_by', Auth::user()->id)
+                ->where('completed_flag', true)
+                ->where('archived', false)
+                ->get();
+            if (!empty($saved_patients)) {
+                foreach ($saved_patients as $patient) {
+                    if ($patient->module) {
+                        array_push($modules, $patient->module->module_name);
+                    } else {
+                        $saved_message = 'There are no saved patients associated with this student.';
+                    }
                 }
+            } else {
+                $saved_message = 'There are no saved patients associated with this student.';
+            }
+            if (!empty($submitted_patients)) {
+                foreach ($submitted_patients as $patient) {
+                    if ($patient->module) {
+                        array_push($modules, $patient->module->module_name);
+                    } else {
+                        $submitted_message = 'There are no submitted patients associated with this student.';
+                    }
+                }
+            } else {
+                $submitted_message = 'There are no submitted patients associated with this student.';
             }
             $modules = array_unique($modules);
-            return view('student/studentHome', compact('patients', 'modules', 'message'));
-        }
-        else
-        {
-            return view('auth/login');
+            return view('student/studentHome', compact('saved_patients', 'modules', 'saved_message', 'submitted_patients', 'submitted_message'));
+        } else {
+            $error_message = "You are not authorized to view this page";
+            return view('errors/error', compact('error_message'));
         }
     }
+}
     public function get_add_patient()
     {
         $role='';
