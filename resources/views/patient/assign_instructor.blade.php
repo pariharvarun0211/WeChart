@@ -40,7 +40,7 @@
                     <div class="row">
                         <div class="col-md-6 col-md-offset-3">
                             <button type="submit" id="btn_send_to_instructor" class="btn btn-primary" style="float: left">
-                                Send to Instructor
+                                <i class="fa fa-paper-plane" aria-hidden="true"></i> Send to Instructor
                             </button>
                         </div>
                     </div>
