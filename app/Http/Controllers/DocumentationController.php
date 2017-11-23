@@ -1929,7 +1929,7 @@ else {
                 
                   //Validating input data
                 $this->validate($request, [                    
-                    'search_instructors[]' => 'required',
+                    'search_instructors' => 'required',
                ],$messages);
                 
                 $student_id = Auth::user()->id;

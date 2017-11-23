@@ -28,8 +28,8 @@
                         <h4 style="margin-top: 0">Saved Patients</h4>
                     </div>
                     <div class="panel-body" style="margin-bottom: 0;padding-bottom: 0">
-                        @if($modules)
-                            @foreach($modules as $module)
+                        @if(count($saved_patients_modules)>0)
+                            @foreach($saved_patients_modules as $module)
                                 <div class="panel panel-default">
                                     <div class="panel-heading" style="background-color: grey; padding-bottom: 0">
                                         <h4 id="savedModuleName" style="margin-top: 0">{{$module}}</h4>
@@ -98,8 +98,8 @@
                     </div>
                     <div class="panel-body">
                         <div class="panel-body" style="margin-bottom: 0;padding-bottom: 0">
-                            @if($modules)
-                                @foreach($modules as $module)
+                            @if(count($submitted_patients_modules)>0)
+                                @foreach($submitted_patients_modules as $module)
                                     <div class="panel panel-default">
                                         <div class="panel-heading" style="background-color: grey; padding-bottom: 0">
                                             <h4 id="savedModuleName" style="margin-top: 0">{{$module}}</h4>

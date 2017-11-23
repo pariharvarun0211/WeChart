@@ -330,11 +330,14 @@
                         </div>
                         <div class="col-md-6">
                             @if($social_history_smoke_tobacco == "YES")
-                                <input type="radio" class="form-check-input inline" name="smoke_tobacco" value="YES" id="smoke_tobacco_yes" checked >&nbsp;YES                        &nbsp;&nbsp;&nbsp;&nbsp;
-                                <input type="radio" class="form-check-input inline" name="smoke_tobacco" value="NO" id="smoke_tobacco_no">&nbsp;NO
-                            @else
-                                <input type="radio" class="form-check-input inline" name="smoke_tobacco" value="YES" id="smoke_tobacco_yes" >&nbsp;YES                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="radio" class="form-check-input inline" name="smoke_tobacco" value="YES" id="smoke_tobacco_yes" checked > YES
+                                <input type="radio" class="form-check-input inline" name="smoke_tobacco" value="NO" id="smoke_tobacco_no"> NO
+                            @elseif($social_history_smoke_tobacco == "NO")
+                                <input type="radio" class="form-check-input inline" name="smoke_tobacco" value="YES" id="smoke_tobacco_yes" > YES
                                 <input type="radio" class="form-check-input inline" name="smoke_tobacco" value="NO" id="smoke_tobacco_no" checked> NO
+                            @else
+                                <input type="radio" class="form-check-input inline" name="smoke_tobacco" value="YES" id="smoke_tobacco_yes" > YES
+                                <input type="radio" class="form-check-input inline" name="smoke_tobacco" value="NO" id="smoke_tobacco_no" > NO
                             @endif
                         </div>
                     </div>
@@ -346,11 +349,14 @@
                         </div>
                         <div class="col-md-6">
                             @if($social_history_non_smoke_tobacco == "YES")
-                                <input type="radio" class="form-check-input inline" name="non_smoke_tobacco" value="YES" id="non_smoke_tobacco_yes" checked >&nbsp;YES                        &nbsp;&nbsp;&nbsp;&nbsp;
-                                <input type="radio" class="form-check-input inline" name="non_smoke_tobacco" value="NO" id="non_smoke_tobacco_no">&nbsp;NO
-                            @else
-                                <input type="radio" class="form-check-input inline" name="non_smoke_tobacco" value="YES" id="non_smoke_tobacco_yes" >&nbsp;YES                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="radio" class="form-check-input inline" name="non_smoke_tobacco" value="YES" id="non_smoke_tobacco_yes" checked > YES
+                                <input type="radio" class="form-check-input inline" name="non_smoke_tobacco" value="NO" id="non_smoke_tobacco_no"> NO
+                            @elseif ($social_history_non_smoke_tobacco == "NO")
+                                <input type="radio" class="form-check-input inline" name="non_smoke_tobacco" value="YES" id="non_smoke_tobacco_yes" > YES
                                 <input type="radio" class="form-check-input inline" name="non_smoke_tobacco" value="NO" id="non_smoke_tobacco_no" checked> NO
+                            @else
+                                <input type="radio" class="form-check-input inline" name="non_smoke_tobacco" value="YES" id="non_smoke_tobacco_yes" > YES
+                                <input type="radio" class="form-check-input inline" name="non_smoke_tobacco" value="NO" id="non_smoke_tobacco_no"> NO
                             @endif
                         </div>
                     </div>
@@ -362,11 +368,14 @@
                         </div>
                         <div class="col-md-6">
                             @if($social_history_alcohol == "YES")
-                                <input type="radio" class="form-check-input inline" name="alcohol" checked value="YES" id="alcohol_yes" >&nbsp;YES                        &nbsp;&nbsp;&nbsp;&nbsp;
-                                <input type="radio" class="form-check-input inline" name="alcohol" value="NO" id="alcohol_no">&nbsp;NO
+                                <input type="radio" class="form-check-input inline" name="alcohol" checked value="YES" id="alcohol_yes" > YES
+                                <input type="radio" class="form-check-input inline" name="alcohol" value="NO" id="alcohol_no"> NO
+                            @elseif($social_history_alcohol == "NO")
+                                <input type="radio" class="form-check-input inline" name="alcohol" value="YES" id="alcohol_yes" > YES
+                                <input type="radio" class="form-check-input inline" name="alcohol" checked value="NO" id="alcohol_no"> NO
                             @else
-                                <input type="radio" class="form-check-input inline" name="alcohol" value="YES" id="alcohol_yes" >&nbsp;YES                        &nbsp;&nbsp;&nbsp;&nbsp;
-                                <input type="radio" class="form-check-input inline" name="alcohol" checked value="NO" id="alcohol_no">&nbsp;NO
+                                <input type="radio" class="form-check-input inline" name="alcohol" value="YES" id="alcohol_yes" > YES
+                                <input type="radio" class="form-check-input inline" name="alcohol" value="NO" id="alcohol_no"> NO
                             @endif
                         </div>
                     </div>
@@ -378,11 +387,14 @@
                         </div>
                         <div class="col-md-6">
                             @if($social_history_sexual_activity == "YES")
-                                <input type="radio" class="form-check-input inline" name="sexual_activity" checked value="YES" id="sexual_activity_active" >&nbsp;Active                        &nbsp;&nbsp;&nbsp;&nbsp;
-                                <input type="radio" class="form-check-input inline" name="sexual_activity" value="NO" id="sexual_activity_not_active">&nbsp;Not Active
+                                <input type="radio" class="form-check-input inline" name="sexual_activity" checked value="YES" id="sexual_activity_active" >Active
+                                <input type="radio" class="form-check-input inline" name="sexual_activity" value="NO" id="sexual_activity_not_active">Not Active
+                            @elseif($social_history_sexual_activity == "NO")
+                                <input type="radio" class="form-check-input inline" name="sexual_activity" value="YES" id="sexual_activity_active" >Active
+                                <input type="radio" class="form-check-input inline" name="sexual_activity" checked value="NO" id="sexual_activity_not_active">Not Active
                             @else
-                                <input type="radio" class="form-check-input inline" name="sexual_activity" value="YES" id="sexual_activity_active" >&nbsp;Active                        &nbsp;&nbsp;&nbsp;&nbsp;
-                                <input type="radio" class="form-check-input inline" name="sexual_activity" checked value="NO" id="sexual_activity_not_active">&nbsp;Not Active
+                                <input type="radio" class="form-check-input inline" name="sexual_activity" value="YES" id="sexual_activity_active" >Active
+                                <input type="radio" class="form-check-input inline" name="sexual_activity" value="NO" id="sexual_activity_not_active">Not Active
                             @endif
                         </div>
                     </div>

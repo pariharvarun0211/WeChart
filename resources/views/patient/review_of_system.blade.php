@@ -720,7 +720,6 @@
 
             </div>
         </div>
-        <hr style="border:solid">
     @endif
     <script>
         $(document).ready(function(){
