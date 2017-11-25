@@ -62,15 +62,4 @@
 
         </div>
     </div>
-
-    <script>
-//        $(".list-group-item").on("click", function() {
-//            $('ul li').css('background-color','none');
-//            $(this).css("background-color", "blue");
-//        })
-//    $('ul.list-group li.list-group-item a').click(function() {
-//        $('ul.list-group li.list-group-item').css('background','none');
-//        $(this).parent().css('background','red');
-//    });
-    </script>
 @endsection

@@ -1,5 +1,3 @@
-{{--@extends('layouts.app')--}}
-{{--@extends('patient.vital_signs_header')--}}
 @extends('patient.active_record')
 
 @section('documentation_panel')
