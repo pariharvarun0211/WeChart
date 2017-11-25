@@ -149,13 +149,16 @@
                 inputsChanged = false;
             });
 
+            $('#btn_clear_disposition_comment').click( function()
+            {
+                $('#disposition_comment').val('');
+                $('#btn_save_disposition').prop('disabled', true);
+                $('.form-check-input').prop('checked',false);
+                inputsChanged = false;
+            } );
             window.onbeforeunload = unloadPage;
         });
 
-        $('#btn_clear_disposition_comment').click( function()
-        {
-            $('#disposition_comment').val('');
-        } );
         $('.form-check-input').click( function()
         {
             $('#btn_save_disposition').prop('disabled', false);

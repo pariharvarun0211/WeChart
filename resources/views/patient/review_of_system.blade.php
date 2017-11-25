@@ -64,7 +64,7 @@
                             {{--Buttons--}}
                             <div class="row">
                                 <div class="col-md-6">
-                                    <button type="reset" id="btn_clear_ros_constitutional_comment" class="btn btn-success" style="float: left">
+                                    <button type="reset" id="btn_clear_ros_constitutional" class="btn btn-success" style="float: left">
                                         <i class="fa fa-refresh" aria-hidden="true"></i> Reset Constitutional
                                     </button>
                                 </div>
@@ -144,7 +144,7 @@
                             {{--Buttons--}}
                             <div class="row">
                                 <div class="col-md-6">
-                                    <button type="reset" id="btn_clear_ros_hent_comment" class="btn btn-success" style="float: left">
+                                    <button type="reset" id="btn_clear_ros_hent" class="btn btn-success" style="float: left">
                                         <i class="fa fa-refresh" aria-hidden="true"></i> Reset HENT
                                     </button>
                                 </div>
@@ -224,7 +224,7 @@
                             {{--Buttons--}}
                             <div class="row">
                                 <div class="col-md-6">
-                                    <button type="reset" id="btn_clear_ros_eyes_comment" class="btn btn-success" style="float: left">
+                                    <button type="reset" id="btn_clear_ros_eyes" class="btn btn-success" style="float: left">
                                         <i class="fa fa-refresh" aria-hidden="true"></i> Reset Eyes
                                     </button>
                                 </div>
@@ -304,7 +304,7 @@
                             {{--Buttons--}}
                             <div class="row">
                                 <div class="col-md-6">
-                                    <button type="reset" id="btn_clear_ros_respiratory_comment" class="btn btn-success" style="float: left">
+                                    <button type="reset" id="btn_clear_ros_respiratory" class="btn btn-success" style="float: left">
                                         <i class="fa fa-refresh" aria-hidden="true"></i> Reset Respiratory
                                     </button>
                                 </div>
@@ -384,7 +384,7 @@
                             {{--Buttons--}}
                             <div class="row">
                                 <div class="col-md-6">
-                                    <button type="reset" id="btn_clear_ros_cardiovascular_comment" class="btn btn-success" style="float: left">
+                                    <button type="reset" id="btn_clear_ros_cardiovascular" class="btn btn-success" style="float: left">
                                         <i class="fa fa-refresh" aria-hidden="true"></i> Reset Cardiovascular
                                     </button>
                                 </div>
@@ -464,7 +464,7 @@
                             {{--Buttons--}}
                             <div class="row">
                                 <div class="col-md-6">
-                                    <button type="reset" id="btn_clear_ros_musculoskeletal_comment" class="btn btn-success" style="float: left">
+                                    <button type="reset" id="btn_clear_ros_musculoskeletal" class="btn btn-success" style="float: left">
                                         <i class="fa fa-refresh" aria-hidden="true"></i> Reset Musculoskeletal
                                     </button>
                                 </div>
@@ -544,7 +544,7 @@
                             {{--Buttons--}}
                             <div class="row">
                                 <div class="col-md-6">
-                                    <button type="reset" id="btn_clear_ros_integumentary_comment" class="btn btn-success" style="float: left">
+                                    <button type="reset" id="btn_clear_ros_integumentary" class="btn btn-success" style="float: left">
                                         <i class="fa fa-refresh" aria-hidden="true"></i> Reset Integumentary
                                     </button>
                                 </div>
@@ -624,7 +624,7 @@
                             {{--Buttons--}}
                             <div class="row">
                                 <div class="col-md-6">
-                                    <button type="reset" id="btn_clear_ros_neurological_comment" class="btn btn-success" style="float: left">
+                                    <button type="reset" id="btn_clear_ros_neurological" class="btn btn-success" style="float: left">
                                         <i class="fa fa-refresh" aria-hidden="true"></i> Reset Neurological
                                     </button>
                                 </div>
@@ -723,8 +723,9 @@
     @endif
     <script>
         $(document).ready(function(){
-        
+
             var inputsChanged_ros_constitutional_form = false;
+
             $('#ros_constitutional_form').change(function() {
                 inputsChanged_ros_constitutional_form = true;
             });
@@ -779,11 +780,9 @@
             $("#btn_save_ros_constitutional").click(function(){
                 inputsChanged_ros_constitutional_form = false;
             });
-
             $("#btn_save_ros_hent").click(function(){
                 inputsChanged_ros_hent_form = false;
             });
-
             $("#btn_save_ros_eyes").click(function(){
                 inputsChanged_ros_eyes_form = false;
             });
@@ -803,6 +802,35 @@
                 inputsChanged_ros_neurological_form = false;
             });
             $("#btn_save_ros_psychological").click(function(){
+                inputsChanged_ros_psychological_form = false;
+            });
+
+            // Reset buttons
+            $("#btn_clear_ros_constitutional").click(function(){
+                inputsChanged_ros_constitutional_form = false;
+            });
+            $("#btn_clear_ros_hent").click(function(){
+                inputsChanged_ros_hent_form = false;
+            });
+            $("#btn_clear_ros_eyes").click(function(){
+                inputsChanged_ros_eyes_form = false;
+            });
+            $("#btn_clear_ros_respiratory").click(function(){
+                inputsChanged_ros_respiratory_form = false;
+            });
+            $("#btn_clear_ros_cardiovascular").click(function(){
+                inputsChanged_ros_cardiovascular_form = false;
+            });
+            $("#btn_clear_ros_musculoskeletal").click(function(){
+                inputsChanged_ros_musculoskeletal_form = false;
+            });
+            $("#btn_clear_ros_integumentary").click(function(){
+                inputsChanged_ros_integumentary_form = false;
+            });
+            $("#btn_clear_ros_neurological").click(function(){
+                inputsChanged_ros_neurological_form = false;
+            });
+            $("#btn_clear_ros_psychological").click(function(){
                 inputsChanged_ros_psychological_form = false;
             });
             

@@ -71,6 +71,7 @@
             $('#btn_clear_HPI_comment').click( function()
             {
                 $('#HPI').val('');
+                inputsChanged = false;
             } );
         });
     </script>

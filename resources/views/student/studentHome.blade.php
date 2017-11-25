@@ -17,9 +17,7 @@
                     Add new Patient</a>
             </div>
         </div>
-
         <br>
-
         <!-- Saved -->
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
@@ -86,9 +84,7 @@
                 </div>
             </div>
         </div>
-
         <br>
-
         <!-- Submitted -->
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
@@ -159,10 +155,9 @@
         </div>
     </div>
 
-    </div>
     <script type="text/javascript">
-    $('.confirmation').on('click', function () {
-        return confirm('Are you sure you want to delete this patient? This action is irreversible.');
-    });
-</script>
+        $('.confirmation').on('click', function () {
+            return confirm('Are you sure you want to delete this patient? This action is irreversible.');
+        });
+    </script>
    @endsection

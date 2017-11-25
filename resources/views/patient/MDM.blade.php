@@ -65,6 +65,7 @@
             $('#btn_clear_MDM_comment').click( function()
             {
                 $('#MDM').val('');
+                inputsChanged = false;
             } );
         });
     </script>

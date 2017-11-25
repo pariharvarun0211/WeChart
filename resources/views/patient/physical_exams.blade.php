@@ -794,6 +794,36 @@
              $("#btn_save_psychological").click(function(){
                  inputsChanged_Psychological_form = false;
              });
+
+             // Reset buttons
+             $("#btn_clear_constitutional").click(function(){
+                 inputsChanged_Constitutional_form = false;
+             });
+             $("#btn_clear_HENT").click(function(){
+                 inputsChanged_HENT_form = false;
+             });
+             $("#btn_clear_eyes").click(function(){
+                 inputsChanged_Eyes_form = false;
+             });
+             $("#btn_clear_respiratory").click(function(){
+                 inputsChanged_Respiratory_form = false;
+             });
+             $("#btn_clear_cardiovascular").click(function(){
+                 inputsChanged_Cardiovascular_form = false;
+             });
+             $("#btn_clear_musculoskeletal").click(function(){
+                 inputsChanged_Musculoskeletal_form = false;
+             });
+             $("#btn_clear_integumentary").click(function(){
+                 inputsChanged_Integumentary_form = false;
+             });
+             $("#btn_clear_neurological").click(function(){
+                 inputsChanged_Neurological_form = false;
+             });
+             $("#btn_clear_psychological").click(function(){
+                 inputsChanged_Psychological_form = false;
+             });
+
              window.onbeforeunload = unloadPage;
          });
      </script>

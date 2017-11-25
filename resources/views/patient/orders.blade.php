@@ -187,6 +187,9 @@
         $('#btn_clear_orders_comment').click( function()
         {
             $('#orders_comment').val('');
+            $('#search_labs_imaging').empty().trigger('change');
+            $('#search_labs_orders').empty().trigger('change');
+            inputsChanged = false;
         } );
     });
 </script>

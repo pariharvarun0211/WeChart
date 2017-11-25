@@ -103,6 +103,7 @@
             $('#btn_clear_results_comment').click( function()
             {
                 $('#results').val('');
+                inputsChanged = false;
             } );
         });
     </script>

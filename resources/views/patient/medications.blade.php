@@ -65,7 +65,7 @@
                          <!-- Buttons -->
                          <div class="row">
                              <div class="col-md-6">
-                                 <button type="reset" id="btn_clear_medication_comment" class="btn btn-success" style="float: left">
+                                 <button type="reset" id="btn_clear_medication" class="btn btn-success" style="float: left">
                                      <i class="fa fa-refresh" aria-hidden="true"></i> Reset Medications
                                  </button>
                              </div>
@@ -123,13 +123,15 @@
                 inputsChanged = false;
             });
 
+            $('#btn_clear_medication').click( function()
+            {
+                $('#medication_comment').val('');
+                $('#search_medications').empty().trigger('change');
+                inputsChanged = false;
+            } );
+
             window.onbeforeunload = unloadPage;
         });
-
-        $('#btn_clear_medication_comment').click( function()
-        {
-            $('#medication_comment').val('');
-        } );
 
     </script>
 
