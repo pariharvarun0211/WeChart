@@ -72,15 +72,19 @@ class NavigationController extends Controller
         }
         if($role == 'Student') {
 
-            //Student cannot view submitted patients
-            $patient_status = patient::where('patient_id', $id)->pluck('completed_flag');
-            if ($patient_status[0]) {
+            //Student cannot view deleted patients
+            $patient = patient::where('patient_id', $id)->first();
+            if($patient->archived)
+            {
+                $error_message = "You cannot view deleted patient.";
+                return view('errors/error', compact('error_message'));
+            }
+            //Student cannot edit submitted patients
+            elseif ($patient->completed_flag) {
                 $error_message = "You cannot edit submitted patient. ";
                 return view('errors/error', compact('error_message'));
             }
             else {
-                $patient = patient::where('patient_id', $id)->first();
-
                 //Fetching all navs associated with this patient's module
                 $navIds = module_navigation::where('module_id', $patient->module_id)->orderBy('navigation_id')->pluck('navigation_id');
 
@@ -126,9 +130,15 @@ class NavigationController extends Controller
         }
         if($role == 'Student') {
 
-            //Student cannot view submitted patients
-            $patient_status = patient::where('patient_id', $id)->pluck('completed_flag');
-            if ($patient_status[0]) {
+            //Student cannot view deleted patients
+            $patient = patient::where('patient_id', $id)->first();
+            if($patient->archived)
+            {
+                $error_message = "You cannot view deleted patient.";
+                return view('errors/error', compact('error_message'));
+            }
+            //Student cannot edit submitted patients
+            elseif ($patient->completed_flag) {
                 $error_message = "You cannot edit submitted patient. ";
                 return view('errors/error', compact('error_message'));
             }
@@ -138,36 +148,35 @@ class NavigationController extends Controller
                         ->where('navigation_id','1')
                         ->where('doc_control_id','1')->get();
 
-            $patient = patient::where('patient_id', $id)->first();
-            //Fetching all navs associated with this patient's module
-            $navIds = module_navigation::where('module_id', $patient->module_id)->orderBy('navigation_id')->pluck('navigation_id');
+                    //Fetching all navs associated with this patient's module
+                    $navIds = module_navigation::where('module_id', $patient->module_id)->orderBy('navigation_id')->pluck('navigation_id');
 
-            $navs = array();
+                    $navs = array();
 
-            //Now get nav names
-            foreach ($navIds as $key=>$nav_id) {
-                $nav = navigation::where('navigation_id', $nav_id)->get();
-                array_push($navs, $nav);
-            }
-
-            //Extracting vital signs for header
-            $vital_signs_header = $this->get_vital_signs_header($id);
-
-            //Extracting disposition to enable or disable the submit button
-            $disposition = active_record::where('patient_id', $id)
-                ->where('navigation_id', '32')->get();
-            $user_id = Auth::user()->id;
-            $status = users_patient::where('patient_id',$id)->where('user_id',$user_id)->first();
-                    if(count($status) > 0) {
-                        $status_id = $status->patient_record_status_id;
-                        return view('patient/HPI', compact ('status_id','HPI','patient','navs','vital_signs_header','disposition'));
+                    //Now get nav names
+                    foreach ($navIds as $key=>$nav_id) {
+                        $nav = navigation::where('navigation_id', $nav_id)->get();
+                        array_push($navs, $nav);
                     }
-                    else
-                    {
-                        $error_message= "Student can only view their created patients. You are not authorized to view this page.";
-                        return view('errors/error',compact('error_message'));
-                    }
-                }
+
+                    //Extracting vital signs for header
+                    $vital_signs_header = $this->get_vital_signs_header($id);
+
+                    //Extracting disposition to enable or disable the submit button
+                    $disposition = active_record::where('patient_id', $id)
+                        ->where('navigation_id', '32')->get();
+                    $user_id = Auth::user()->id;
+                    $status = users_patient::where('patient_id',$id)->where('user_id',$user_id)->first();
+                            if(count($status) > 0) {
+                                $status_id = $status->patient_record_status_id;
+                                return view('patient/HPI', compact ('status_id','HPI','patient','navs','vital_signs_header','disposition'));
+                            }
+                            else
+                            {
+                                $error_message= "Student can only view their created patients. You are not authorized to view this page.";
+                                return view('errors/error',compact('error_message'));
+                            }
+                        }
         }
         else
         {
@@ -183,28 +192,32 @@ class NavigationController extends Controller
         }
         if($role == 'Student') {
 
-            //Student cannot view submitted patients
-            $patient_status = patient::where('patient_id', $id)->pluck('completed_flag');
-            if ($patient_status[0]) {
+            //Student cannot view deleted patients
+            $patient = patient::where('patient_id', $id)->first();
+            if($patient->archived)
+            {
+                $error_message = "You cannot view deleted patient.";
+                return view('errors/error', compact('error_message'));
+            }
+            //Student cannot edit submitted patients
+            elseif ($patient->completed_flag) {
                 $error_message = "You cannot edit submitted patient. ";
                 return view('errors/error', compact('error_message'));
             }
             else {
-                //Getting Personal History values
+
+            //Getting Personal History values
             $diagnosis_list_personal_history = active_record::where('patient_id', $id)
                 ->where('navigation_id','3')
                 ->where('doc_control_id','3')->get();
-
             $personal_history_comment = active_record::where('patient_id', $id)
                 ->where('navigation_id','3')
                 ->where('doc_control_id','4')->get();
-
 
             //Getting Family History values
             $comment_family_history = active_record::where('patient_id', $id)
                 ->where('navigation_id','4')
                 ->where('doc_control_id','8')->pluck('value');
-
 
             $members_family_history = active_record::where('patient_id', $id)
                 ->where('navigation_id','4')
@@ -290,7 +303,6 @@ class NavigationController extends Controller
                 }
 
             }
-            $patient = patient::where('patient_id', $id)->first();
             //Fetching all navs associated with this patient's module
             $navIds = module_navigation::where('module_id', $patient->module_id)->orderBy('navigation_id')->pluck('navigation_id');
             $navs = array();
@@ -320,7 +332,7 @@ class NavigationController extends Controller
             $status = users_patient::where('patient_id',$id)->where('user_id',$user_id)->first();
                 if(count($status) > 0) {
                     $status_id = $status->patient_record_status_id;
-            return view('patient/medical_history', compact ('status_id','navIds','disposition','vital_signs_header','patient','diagnosis_list_surgical_history','surgical_history_comment','diagnosis_list_personal_history','personal_history_comment','family_members_details','comment_family_history','is_new_entry_social_history','diagnosis_list_personal_history','navs','social_history_smoke_tobacco','social_history_non_smoke_tobacco','social_history_alcohol','social_history_sexual_activity','social_history_comment','social_history_smoke_tobacco_id','social_history_non_smoke_tobacco_id','social_history_alcohol_id','social_history_sexual_activity_id','social_history_comment_id'));
+                    return view('patient/medical_history', compact ('status_id','navIds','disposition','vital_signs_header','patient','diagnosis_list_surgical_history','surgical_history_comment','diagnosis_list_personal_history','personal_history_comment','family_members_details','comment_family_history','is_new_entry_social_history','diagnosis_list_personal_history','navs','social_history_smoke_tobacco','social_history_non_smoke_tobacco','social_history_alcohol','social_history_sexual_activity','social_history_comment','social_history_smoke_tobacco_id','social_history_non_smoke_tobacco_id','social_history_alcohol_id','social_history_sexual_activity_id','social_history_comment_id'));
                 }
                 else
                 {
@@ -343,9 +355,15 @@ class NavigationController extends Controller
         }
         if($role == 'Student') {
 
-            //Student cannot view submitted patients
-            $patient_status = patient::where('patient_id', $id)->pluck('completed_flag');
-            if ($patient_status[0]) {
+            //Student cannot view deleted patients
+            $patient = patient::where('patient_id', $id)->first();
+            if($patient->archived)
+            {
+                $error_message = "You cannot view deleted patient.";
+                return view('errors/error', compact('error_message'));
+            }
+            //Student cannot edit submitted patients
+            elseif ($patient->completed_flag) {
                 $error_message = "You cannot edit submitted patient. ";
                 return view('errors/error', compact('error_message'));
             }
@@ -358,8 +376,6 @@ class NavigationController extends Controller
                 ->where('navigation_id','7')
                 ->where('doc_control_id','17')->get();
 
-
-            $patient = patient::where('patient_id', $id)->first();
             //Fetching all navs associated with this patient's module
             $navIds = module_navigation::where('module_id', $patient->module_id)->orderBy('navigation_id')->pluck('navigation_id');
 
@@ -402,15 +418,19 @@ class NavigationController extends Controller
             $role = Auth::user()->role;
         }
         if($role == 'Student') {
-
-            //Student cannot view submitted patients
-            $patient_status = patient::where('patient_id', $id)->pluck('completed_flag');
-            if ($patient_status[0]) {
+            //Student cannot view deleted patients
+            $patient = patient::where('patient_id', $id)->first();
+            if($patient->archived)
+            {
+                $error_message = "You cannot view deleted patient.";
+                return view('errors/error', compact('error_message'));
+            }
+            //Student cannot edit submitted patients
+            elseif ($patient->completed_flag) {
                 $error_message = "You cannot edit submitted patient. ";
                 return view('errors/error', compact('error_message'));
             }
             else {
-            $patient = patient::where('patient_id', $id)->first();
             $navIds = module_navigation::where('module_id', $patient->module_id)->orderBy('navigation_id')->pluck('navigation_id');
             $navs = array();
             foreach ($navIds as $nav_id) {
@@ -504,10 +524,15 @@ class NavigationController extends Controller
             $role = Auth::user()->role;
         }
         if($role == 'Student') {
-
-            //Student cannot view submitted patients
-            $patient_status = patient::where('patient_id', $id)->pluck('completed_flag');
-            if ($patient_status[0]) {
+            //Student cannot view deleted patients
+            $patient = patient::where('patient_id', $id)->first();
+            if($patient->archived)
+            {
+                $error_message = "You cannot view deleted patient.";
+                return view('errors/error', compact('error_message'));
+            }
+            //Student cannot edit submitted patients
+            elseif ($patient->completed_flag) {
                 $error_message = "You cannot edit submitted patient. ";
                 return view('errors/error', compact('error_message'));
             }
@@ -549,7 +574,6 @@ class NavigationController extends Controller
             $constitutional_comment = active_record::where('patient_id', $id)
                 ->where('navigation_id','20')->where('doc_control_id','44')->pluck('value');
 
-            $patient = patient::where('patient_id', $id)->first();
             //Fetching all navs associated with this patient's module
             $navIds = module_navigation::where('module_id', $patient->module_id)->orderBy('navigation_id')->pluck('navigation_id');
 
@@ -968,14 +992,21 @@ class NavigationController extends Controller
             $role = Auth::user()->role;
         }
         if($role == 'Student') {
-
-            //Student cannot view submitted patients
-            $patient_status = patient::where('patient_id', $id)->pluck('completed_flag');
-            if ($patient_status[0]) {
+            //Student cannot view deleted patients
+            $patient = patient::where('patient_id', $id)->first();
+            if($patient->archived)
+            {
+                $error_message = "You cannot view deleted patient.";
+                return view('errors/error', compact('error_message'));
+            }
+            //Student cannot edit submitted patients
+            elseif ($patient->completed_flag) {
                 $error_message = "You cannot edit submitted patient. ";
                 return view('errors/error', compact('error_message'));
             }
-            else {    //Now getting actual selected values
+            else {
+
+                //Now getting actual selected values
             $ros_constitutional_symptoms= $this->get_ROS_costitutional_symptoms($id);
             $ros_constitutional_comment = active_record::where('patient_id', $id)
                 ->where('navigation_id','10')->where('doc_control_id','26')->pluck('value');
@@ -1012,7 +1043,6 @@ class NavigationController extends Controller
            $ros_psychological_comment = active_record::where('patient_id', $id)
                ->where('navigation_id','18')->where('doc_control_id','42')->pluck('value');
 
-            $patient = patient::where('patient_id', $id)->first();
             //Fetching all navs associated with this patient's module
             $navIds = module_navigation::where('module_id', $patient->module_id)->orderBy('navigation_id')->pluck('navigation_id');
 
@@ -1422,10 +1452,15 @@ class NavigationController extends Controller
             $role = Auth::user()->role;
         }
         if($role == 'Student') {
-
-            //Student cannot view submitted patients
-            $patient_status = patient::where('patient_id', $id)->pluck('completed_flag');
-            if ($patient_status[0]) {
+            //Student cannot view deleted patients
+            $patient = patient::where('patient_id', $id)->first();
+            if($patient->archived)
+            {
+                $error_message = "You cannot view deleted patient.";
+                return view('errors/error', compact('error_message'));
+            }
+            //Student cannot edit submitted patients
+            elseif ($patient->completed_flag) {
                 $error_message = "You cannot edit submitted patient. ";
                 return view('errors/error', compact('error_message'));
             }
@@ -1440,7 +1475,6 @@ class NavigationController extends Controller
                 ->where('navigation_id','29')
                 ->where('doc_control_id','71')->get();
 
-            $patient = patient::where('patient_id', $id)->first();
             //Fetching all navs associated with this patient's module
             $navIds = module_navigation::where('module_id', $patient->module_id)->orderBy('navigation_id')->pluck('navigation_id');
 
@@ -1482,10 +1516,15 @@ class NavigationController extends Controller
             $role = Auth::user()->role;
         }
         if($role == 'Student') {
-
-            //Student cannot view submitted patients
-            $patient_status = patient::where('patient_id', $id)->pluck('completed_flag');
-            if ($patient_status[0]) {
+            //Student cannot view deleted patients
+            $patient = patient::where('patient_id', $id)->first();
+            if($patient->archived)
+            {
+                $error_message = "You cannot view deleted patient.";
+                return view('errors/error', compact('error_message'));
+            }
+            //Student cannot edit submitted patients
+            elseif ($patient->completed_flag) {
                 $error_message = "You cannot edit submitted patient. ";
                 return view('errors/error', compact('error_message'));
             }
@@ -1500,7 +1539,6 @@ class NavigationController extends Controller
                 ->where('navigation_id','30')
                 ->where('doc_control_id','67')->get();
 
-            $patient = patient::where('patient_id', $id)->first();
             //Fetching all navs associated with this patient's module
             $navIds = module_navigation::where('module_id', $patient->module_id)->orderBy('navigation_id')->pluck('navigation_id');
 
@@ -1542,10 +1580,15 @@ class NavigationController extends Controller
             $role = Auth::user()->role;
         }
         if($role == 'Student') {
-
-            //Student cannot view submitted patients
-            $patient_status = patient::where('patient_id', $id)->pluck('completed_flag');
-            if ($patient_status[0]) {
+            //Student cannot view deleted patients
+            $patient = patient::where('patient_id', $id)->first();
+            if($patient->archived)
+            {
+                $error_message = "You cannot view deleted patient.";
+                return view('errors/error', compact('error_message'));
+            }
+            //Student cannot edit submitted patients
+            elseif ($patient->completed_flag) {
                 $error_message = "You cannot edit submitted patient. ";
                 return view('errors/error', compact('error_message'));
             }
@@ -1554,7 +1597,6 @@ class NavigationController extends Controller
                 ->where('navigation_id','31')
                 ->where('doc_control_id','61')->get();
 
-            $patient = patient::where('patient_id', $id)->first();
             //Fetching all navs associated with this patient's module
             $navIds = module_navigation::where('module_id', $patient->module_id)->orderBy('navigation_id')->pluck('navigation_id');
 
@@ -1597,9 +1639,15 @@ class NavigationController extends Controller
         }
         if($role == 'Student') {
 
-            //Student cannot view submitted patients
-            $patient_status = patient::where('patient_id', $id)->pluck('completed_flag');
-            if ($patient_status[0]) {
+            //Student cannot view deleted patients
+            $patient = patient::where('patient_id', $id)->first();
+            if($patient->archived)
+            {
+                $error_message = "You cannot view deleted patient.";
+                return view('errors/error', compact('error_message'));
+            }
+            //Student cannot edit submitted patients
+            elseif ($patient->completed_flag) {
                 $error_message = "You cannot edit submitted patient. ";
                 return view('errors/error', compact('error_message'));
             }
@@ -1620,7 +1668,6 @@ class NavigationController extends Controller
             {
                 $disposition_comment[0] = '';
             }
-            $patient = patient::where('patient_id', $id)->first();
             //Fetching all navs associated with this patient's module
             $navIds = module_navigation::where('module_id', $patient->module_id)->orderBy('navigation_id')->pluck('navigation_id');
 
@@ -1762,285 +1809,303 @@ class NavigationController extends Controller
     }
     public function generate_pdf($id)
     {
+        $role='';
         if(Auth::check()) {
-            $HPI = active_record::where('patient_id', $id)
-                ->where('navigation_id', '1')
-                ->where('doc_control_id', '1')->get();
+            $role = Auth::user()->role;
+        }
 
-            //Getting Personal History values
-            $diagnosis_list_personal_history = active_record::where('patient_id', $id)
-                ->where('navigation_id', '3')
-                ->where('doc_control_id', '3')->get();
-
-            $personal_history_comment = active_record::where('patient_id', $id)
-                ->where('navigation_id', '3')
-                ->where('doc_control_id', '4')->get();
-
-            //Getting Family History values
-            $comment_family_history = active_record::where('patient_id', $id)
-                ->where('navigation_id', '4')
-                ->where('doc_control_id', '8')->pluck('value');
-
-            $members_family_history = active_record::where('patient_id', $id)
-                ->where('navigation_id', '4')
-                ->where('doc_control_id', '5')->get();
-
-            $family_members_details = Array();
-
-            foreach ($members_family_history as $member) {
-                $member_status = active_record::where('patient_id', $id)
-                    ->where('navigation_id', '4')
-                    ->where('doc_control_id', '7')
-                    ->where('doc_control_group', $member->active_record_id)->pluck('value');
-
-                $member_diagnosis = active_record::where('patient_id', $id)
-                    ->where('navigation_id', '4')
-                    ->where('doc_control_id', '6')
-                    ->where('doc_control_group', $member->active_record_id)->pluck('value');
-
-                $family_member_details = new family_member();
-                $family_member_details->relation = $member->value;
-                $family_member_details->status = $member_status;
-                $family_member_details->diagnosis = $member_diagnosis;
-
-                array_push($family_members_details, $family_member_details);
+        if($role == 'Student') {
+            //Student cannot preview deleted patients
+            $patient = patient::where('patient_id', $id)->first();
+            if($patient->archived)
+            {
+                $error_message = "You cannot generate pdf of deleted patient.";
+                return view('errors/error', compact('error_message'));
             }
+            //Student cannot preview saved patients
+            elseif (!$patient->completed_flag) {
+                $error_message = "This patient is in saved state. You can generate pdf of only submitted patient.";
+                return view('errors/error', compact('error_message'));
+            }
+            else {
+                $HPI = active_record::where('patient_id', $id)
+                    ->where('navigation_id', '1')
+                    ->where('doc_control_id', '1')->get();
 
-            //Getting Surgical History values
-            $diagnosis_list_surgical_history = active_record::where('patient_id', $id)
-                ->where('navigation_id', '5')
-                ->where('doc_control_id', '9')->get();
+                //Getting Personal History values
+                $diagnosis_list_personal_history = active_record::where('patient_id', $id)
+                    ->where('navigation_id', '3')
+                    ->where('doc_control_id', '3')->get();
 
-            $surgical_history_comment = active_record::where('patient_id', $id)
-                ->where('navigation_id', '5')
-                ->where('doc_control_id', '10')->get();
+                $personal_history_comment = active_record::where('patient_id', $id)
+                    ->where('navigation_id', '3')
+                    ->where('doc_control_id', '4')->get();
 
-            //Getting Social History values
-            $social_history_smoke_tobacco = "";
-            $social_history_non_smoke_tobacco = "";
-            $social_history_alcohol = "";
-            $social_history_sexual_activity = "";
-            $social_history_comment = "";
+                //Getting Family History values
+                $comment_family_history = active_record::where('patient_id', $id)
+                    ->where('navigation_id', '4')
+                    ->where('doc_control_id', '8')->pluck('value');
 
-            $social_history_values = active_record::where('patient_id', $id)->where('navigation_id', '6')->get();
-            foreach ($social_history_values as $social_history) {
-                Switch ($social_history->doc_control_id) {
-                    case "11":
-                        $social_history_smoke_tobacco = $social_history->value;
-                        break;
+                $members_family_history = active_record::where('patient_id', $id)
+                    ->where('navigation_id', '4')
+                    ->where('doc_control_id', '5')->get();
 
-                    case "12":
-                        $social_history_non_smoke_tobacco = $social_history->value;
-                        break;
+                $family_members_details = Array();
 
-                    case "13":
-                        $social_history_alcohol = $social_history->value;
-                        break;
+                foreach ($members_family_history as $member) {
+                    $member_status = active_record::where('patient_id', $id)
+                        ->where('navigation_id', '4')
+                        ->where('doc_control_id', '7')
+                        ->where('doc_control_group', $member->active_record_id)->pluck('value');
 
-                    case "14":
-                        $social_history_sexual_activity = $social_history->value;
-                        break;
+                    $member_diagnosis = active_record::where('patient_id', $id)
+                        ->where('navigation_id', '4')
+                        ->where('doc_control_id', '6')
+                        ->where('doc_control_group', $member->active_record_id)->pluck('value');
 
-                    case "15":
-                        $social_history_comment = $social_history->value;
-                        break;
+                    $family_member_details = new family_member();
+                    $family_member_details->relation = $member->value;
+                    $family_member_details->status = $member_status;
+                    $family_member_details->diagnosis = $member_diagnosis;
+
+                    array_push($family_members_details, $family_member_details);
                 }
 
-            }
+                //Getting Surgical History values
+                $diagnosis_list_surgical_history = active_record::where('patient_id', $id)
+                    ->where('navigation_id', '5')
+                    ->where('doc_control_id', '9')->get();
 
-            //Getting medications
-            $medications = active_record::where('patient_id', $id)
-                ->where('navigation_id', '7')
-                ->where('doc_control_id', '16')->get();
+                $surgical_history_comment = active_record::where('patient_id', $id)
+                    ->where('navigation_id', '5')
+                    ->where('doc_control_id', '10')->get();
 
-            $medication_comment = active_record::where('patient_id', $id)
-                ->where('navigation_id', '7')
-                ->where('doc_control_id', '17')->get();
+                //Getting Social History values
+                $social_history_smoke_tobacco = "";
+                $social_history_non_smoke_tobacco = "";
+                $social_history_alcohol = "";
+                $social_history_sexual_activity = "";
+                $social_history_comment = "";
 
-            //Getting vital signs
-            $timestamps = active_record::where('patient_id', $id)
-                ->where('navigation_id', '8')->distinct()->pluck('created_at');
-            $vital_sign_details = Array();
-            foreach ($timestamps as $ts) {
-                $vital_sign_detail = new vital_signs();
-                $vital_sign_detail->timestamp = $ts;
-                $vital_sign_detail->BP_Diastolic = active_record::where('patient_id', $id)
-                    ->where('navigation_id', '8')
-                    ->where('doc_control_id', '19')
-                    ->where('created_at', $ts)->pluck('value');
-                $vital_sign_detail->BP_Systolic = active_record::where('patient_id', $id)
-                    ->where('navigation_id', '8')
-                    ->where('doc_control_id', '18')
-                    ->where('created_at', $ts)->pluck('value');
-                $vital_sign_detail->Heart_Rate =
-                    active_record::where('patient_id', $id)
+                $social_history_values = active_record::where('patient_id', $id)->where('navigation_id', '6')->get();
+                foreach ($social_history_values as $social_history) {
+                    Switch ($social_history->doc_control_id) {
+                        case "11":
+                            $social_history_smoke_tobacco = $social_history->value;
+                            break;
+
+                        case "12":
+                            $social_history_non_smoke_tobacco = $social_history->value;
+                            break;
+
+                        case "13":
+                            $social_history_alcohol = $social_history->value;
+                            break;
+
+                        case "14":
+                            $social_history_sexual_activity = $social_history->value;
+                            break;
+
+                        case "15":
+                            $social_history_comment = $social_history->value;
+                            break;
+                    }
+
+                }
+
+                //Getting medications
+                $medications = active_record::where('patient_id', $id)
+                    ->where('navigation_id', '7')
+                    ->where('doc_control_id', '16')->get();
+
+                $medication_comment = active_record::where('patient_id', $id)
+                    ->where('navigation_id', '7')
+                    ->where('doc_control_id', '17')->get();
+
+                //Getting vital signs
+                $timestamps = active_record::where('patient_id', $id)
+                    ->where('navigation_id', '8')->distinct()->pluck('created_at');
+                $vital_sign_details = Array();
+                foreach ($timestamps as $ts) {
+                    $vital_sign_detail = new vital_signs();
+                    $vital_sign_detail->timestamp = $ts;
+                    $vital_sign_detail->BP_Diastolic = active_record::where('patient_id', $id)
                         ->where('navigation_id', '8')
-                        ->where('doc_control_id', '20')
+                        ->where('doc_control_id', '19')
                         ->where('created_at', $ts)->pluck('value');
-                $vital_sign_detail->Respiratory_Rate = active_record::where('patient_id', $id)
-                    ->where('navigation_id', '8')
-                    ->where('doc_control_id', '21')
-                    ->where('created_at', $ts)->pluck('value');
-                $vital_sign_detail->Temperature = active_record::where('patient_id', $id)
-                    ->where('navigation_id', '8')
-                    ->where('doc_control_id', '22')
-                    ->where('created_at', $ts)->pluck('value');
-                $vital_sign_detail->Weight = active_record::where('patient_id', $id)
-                    ->where('navigation_id', '8')
-                    ->where('doc_control_id', '72')
-                    ->where('created_at', $ts)->pluck('value');
-                $vital_sign_detail->Height = active_record::where('patient_id', $id)
-                    ->where('navigation_id', '8')
-                    ->where('doc_control_id', '73')
-                    ->where('created_at', $ts)->pluck('value');
-                $vital_sign_detail->Pain = active_record::where('patient_id', $id)
-                    ->where('navigation_id', '8')
-                    ->where('doc_control_id', '23')
-                    ->where('created_at', $ts)->pluck('value');
-                $vital_sign_detail->Oxygen_Saturation = active_record::where('patient_id', $id)
-                    ->where('navigation_id', '8')
-                    ->where('doc_control_id', '65')
-                    ->where('created_at', $ts)->pluck('value');
-                $vital_sign_detail->Comment = active_record::where('patient_id', $id)
-                    ->where('navigation_id', '8')
-                    ->where('doc_control_id', '24')
-                    ->where('created_at', $ts)->pluck('value');
-                array_push($vital_sign_details, $vital_sign_detail);
-            }
-            // ROS
-            $ros_constitutional_symptoms = $this->get_ROS_costitutional_symptoms($id);
-            $ros_constitutional_comment = active_record::where('patient_id', $id)
-                ->where('navigation_id', '10')->where('doc_control_id', '26')->pluck('value');
+                    $vital_sign_detail->BP_Systolic = active_record::where('patient_id', $id)
+                        ->where('navigation_id', '8')
+                        ->where('doc_control_id', '18')
+                        ->where('created_at', $ts)->pluck('value');
+                    $vital_sign_detail->Heart_Rate =
+                        active_record::where('patient_id', $id)
+                            ->where('navigation_id', '8')
+                            ->where('doc_control_id', '20')
+                            ->where('created_at', $ts)->pluck('value');
+                    $vital_sign_detail->Respiratory_Rate = active_record::where('patient_id', $id)
+                        ->where('navigation_id', '8')
+                        ->where('doc_control_id', '21')
+                        ->where('created_at', $ts)->pluck('value');
+                    $vital_sign_detail->Temperature = active_record::where('patient_id', $id)
+                        ->where('navigation_id', '8')
+                        ->where('doc_control_id', '22')
+                        ->where('created_at', $ts)->pluck('value');
+                    $vital_sign_detail->Weight = active_record::where('patient_id', $id)
+                        ->where('navigation_id', '8')
+                        ->where('doc_control_id', '72')
+                        ->where('created_at', $ts)->pluck('value');
+                    $vital_sign_detail->Height = active_record::where('patient_id', $id)
+                        ->where('navigation_id', '8')
+                        ->where('doc_control_id', '73')
+                        ->where('created_at', $ts)->pluck('value');
+                    $vital_sign_detail->Pain = active_record::where('patient_id', $id)
+                        ->where('navigation_id', '8')
+                        ->where('doc_control_id', '23')
+                        ->where('created_at', $ts)->pluck('value');
+                    $vital_sign_detail->Oxygen_Saturation = active_record::where('patient_id', $id)
+                        ->where('navigation_id', '8')
+                        ->where('doc_control_id', '65')
+                        ->where('created_at', $ts)->pluck('value');
+                    $vital_sign_detail->Comment = active_record::where('patient_id', $id)
+                        ->where('navigation_id', '8')
+                        ->where('doc_control_id', '24')
+                        ->where('created_at', $ts)->pluck('value');
+                    array_push($vital_sign_details, $vital_sign_detail);
+                }
+                // ROS
+                $ros_constitutional_symptoms = $this->get_ROS_costitutional_symptoms($id);
+                $ros_constitutional_comment = active_record::where('patient_id', $id)
+                    ->where('navigation_id', '10')->where('doc_control_id', '26')->pluck('value');
 
-            $ros_hent_symptoms = $this->get_ROS_hent_symptoms($id);
-            $ros_hent_comment = active_record::where('patient_id', $id)
-                ->where('navigation_id', '11')->where('doc_control_id', '28')->pluck('value');
+                $ros_hent_symptoms = $this->get_ROS_hent_symptoms($id);
+                $ros_hent_comment = active_record::where('patient_id', $id)
+                    ->where('navigation_id', '11')->where('doc_control_id', '28')->pluck('value');
 
-            $ros_eyes_symptoms = $this->get_ROS_eyes_symptoms($id);
-            $ros_eyes_comment = active_record::where('patient_id', $id)
-                ->where('navigation_id', '12')->where('doc_control_id', '30')->pluck('value');
+                $ros_eyes_symptoms = $this->get_ROS_eyes_symptoms($id);
+                $ros_eyes_comment = active_record::where('patient_id', $id)
+                    ->where('navigation_id', '12')->where('doc_control_id', '30')->pluck('value');
 
-            $ros_respiratory_symptoms = $this->get_ROS_respiratory_symptoms($id);
-            $ros_respiratory_comment = active_record::where('patient_id', $id)
-                ->where('navigation_id', '13')->where('doc_control_id', '32')->pluck('value');
+                $ros_respiratory_symptoms = $this->get_ROS_respiratory_symptoms($id);
+                $ros_respiratory_comment = active_record::where('patient_id', $id)
+                    ->where('navigation_id', '13')->where('doc_control_id', '32')->pluck('value');
 
-            $ros_cardiovascular_symptoms = $this->get_ROS_cardiovascular_symptoms($id);
-            $ros_cardiovascular_comment = active_record::where('patient_id', $id)
-                ->where('navigation_id', '14')->where('doc_control_id', '34')->pluck('value');
+                $ros_cardiovascular_symptoms = $this->get_ROS_cardiovascular_symptoms($id);
+                $ros_cardiovascular_comment = active_record::where('patient_id', $id)
+                    ->where('navigation_id', '14')->where('doc_control_id', '34')->pluck('value');
 
-            $ros_musculoskeletal_symptoms = $this->get_ROS_musculoskeletal_symptoms($id);
-            $ros_musculoskeletal_comment = active_record::where('patient_id', $id)
-                ->where('navigation_id', '15')->where('doc_control_id', '36')->pluck('value');
+                $ros_musculoskeletal_symptoms = $this->get_ROS_musculoskeletal_symptoms($id);
+                $ros_musculoskeletal_comment = active_record::where('patient_id', $id)
+                    ->where('navigation_id', '15')->where('doc_control_id', '36')->pluck('value');
 
-            $ros_integumentary_symptoms = $this->get_ROS_integumentary_symptoms($id);
-            $ros_integumentary_comment = active_record::where('patient_id', $id)
-                ->where('navigation_id', '16')->where('doc_control_id', '38')->pluck('value');
+                $ros_integumentary_symptoms = $this->get_ROS_integumentary_symptoms($id);
+                $ros_integumentary_comment = active_record::where('patient_id', $id)
+                    ->where('navigation_id', '16')->where('doc_control_id', '38')->pluck('value');
 
-            $ros_neurological_symptoms = $this->get_ROS_neurological_symptoms($id);
-            $ros_neurological_comment = active_record::where('patient_id', $id)
-                ->where('navigation_id', '17')->where('doc_control_id', '40')->pluck('value');
+                $ros_neurological_symptoms = $this->get_ROS_neurological_symptoms($id);
+                $ros_neurological_comment = active_record::where('patient_id', $id)
+                    ->where('navigation_id', '17')->where('doc_control_id', '40')->pluck('value');
 
-            $ros_psychological_symptoms = $this->get_ROS_psychological_symptoms($id);
-            $ros_psychological_comment = active_record::where('patient_id', $id)
-                ->where('navigation_id', '18')->where('doc_control_id', '42')->pluck('value');
+                $ros_psychological_symptoms = $this->get_ROS_psychological_symptoms($id);
+                $ros_psychological_comment = active_record::where('patient_id', $id)
+                    ->where('navigation_id', '18')->where('doc_control_id', '42')->pluck('value');
 
-            //PE
-            $psychological_symptoms = $this->get_physical_exams_psychological_symptoms($id);
-            $psychological_comment = active_record::where('patient_id', $id)
-                ->where('navigation_id', '28')->where('doc_control_id', '60')->pluck('value');
+                //PE
+                $psychological_symptoms = $this->get_physical_exams_psychological_symptoms($id);
+                $psychological_comment = active_record::where('patient_id', $id)
+                    ->where('navigation_id', '28')->where('doc_control_id', '60')->pluck('value');
 
-            $neurological_symptoms = $this->get_physical_exams_neurological_symptoms($id);
-            $neurological_comment = active_record::where('patient_id', $id)
-                ->where('navigation_id', '27')->where('doc_control_id', '58')->pluck('value');
+                $neurological_symptoms = $this->get_physical_exams_neurological_symptoms($id);
+                $neurological_comment = active_record::where('patient_id', $id)
+                    ->where('navigation_id', '27')->where('doc_control_id', '58')->pluck('value');
 
-            $integumentary_symptoms = $this->get_physical_exams_integumentary_symptoms($id);
-            $integumentary_comment = active_record::where('patient_id', $id)
-                ->where('navigation_id', '26')->where('doc_control_id', '56')->pluck('value');
+                $integumentary_symptoms = $this->get_physical_exams_integumentary_symptoms($id);
+                $integumentary_comment = active_record::where('patient_id', $id)
+                    ->where('navigation_id', '26')->where('doc_control_id', '56')->pluck('value');
 
-            $musculoskeletal_symptoms = $this->get_physical_exams_musculoskeletal_symptoms($id);
-            $musculoskeletal_comment = active_record::where('patient_id', $id)
-                ->where('navigation_id', '25')->where('doc_control_id', '54')->pluck('value');
+                $musculoskeletal_symptoms = $this->get_physical_exams_musculoskeletal_symptoms($id);
+                $musculoskeletal_comment = active_record::where('patient_id', $id)
+                    ->where('navigation_id', '25')->where('doc_control_id', '54')->pluck('value');
 
-            $cardiovascular_symptoms = $this->get_physical_exams_cardiovascular_symptoms($id);
-            $cardiovascular_comment = active_record::where('patient_id', $id)
-                ->where('navigation_id', '24')->where('doc_control_id', '52')->pluck('value');
+                $cardiovascular_symptoms = $this->get_physical_exams_cardiovascular_symptoms($id);
+                $cardiovascular_comment = active_record::where('patient_id', $id)
+                    ->where('navigation_id', '24')->where('doc_control_id', '52')->pluck('value');
 
-            $respiratory_symptoms = $this->get_physical_exams_respiratory_symptoms($id);
-            $respiratory_comment = active_record::where('patient_id', $id)
-                ->where('navigation_id', '23')->where('doc_control_id', '50')->pluck('value');
+                $respiratory_symptoms = $this->get_physical_exams_respiratory_symptoms($id);
+                $respiratory_comment = active_record::where('patient_id', $id)
+                    ->where('navigation_id', '23')->where('doc_control_id', '50')->pluck('value');
 
-            $eyes_symptoms = $this->get_physical_exams_eyes_symptoms($id);
-            $eyes_comment = active_record::where('patient_id', $id)
-                ->where('navigation_id', '22')->where('doc_control_id', '48')->pluck('value');
+                $eyes_symptoms = $this->get_physical_exams_eyes_symptoms($id);
+                $eyes_comment = active_record::where('patient_id', $id)
+                    ->where('navigation_id', '22')->where('doc_control_id', '48')->pluck('value');
 
-            $hent_symptoms = $this->get_physical_exams_HENT_symptoms($id);
-            $hent_comment = active_record::where('patient_id', $id)
-                ->where('navigation_id', '21')->where('doc_control_id', '46')->pluck('value');
+                $hent_symptoms = $this->get_physical_exams_HENT_symptoms($id);
+                $hent_comment = active_record::where('patient_id', $id)
+                    ->where('navigation_id', '21')->where('doc_control_id', '46')->pluck('value');
 
-            $constitutional_symptoms = $this->get_physical_exams_constitutional_symptoms($id);
-            $constitutional_comment = active_record::where('patient_id', $id)
-                ->where('navigation_id', '20')->where('doc_control_id', '44')->pluck('value');
+                $constitutional_symptoms = $this->get_physical_exams_constitutional_symptoms($id);
+                $constitutional_comment = active_record::where('patient_id', $id)
+                    ->where('navigation_id', '20')->where('doc_control_id', '44')->pluck('value');
 
-            //Get orders
-            $labs = active_record::where('patient_id', $id)
-                ->where('navigation_id', '29')->where('doc_control_id', '69')->get();
+                //Get orders
+                $labs = active_record::where('patient_id', $id)
+                    ->where('navigation_id', '29')->where('doc_control_id', '69')->get();
 
-            $images = active_record::where('patient_id', $id)
-                ->where('navigation_id', '29')->where('doc_control_id', '70')->get();
+                $images = active_record::where('patient_id', $id)
+                    ->where('navigation_id', '29')->where('doc_control_id', '70')->get();
 
-            $comment_order = active_record::where('patient_id', $id)
-                ->where('navigation_id', '29')
-                ->where('doc_control_id', '71')->get();
+                $comment_order = active_record::where('patient_id', $id)
+                    ->where('navigation_id', '29')
+                    ->where('doc_control_id', '71')->get();
 
-            //Get results
-            $results = active_record::where('patient_id', $id)
-                ->where('navigation_id', '30')
-                ->where('doc_control_id', '67')->get();
+                //Get results
+                $results = active_record::where('patient_id', $id)
+                    ->where('navigation_id', '30')
+                    ->where('doc_control_id', '67')->get();
 
-            //Get MDM
-            $mdm = active_record::where('patient_id', $id)
-                ->where('navigation_id','31')
-                ->where('doc_control_id','61')->get();
+                //Get MDM
+                $mdm = active_record::where('patient_id', $id)
+                    ->where('navigation_id', '31')
+                    ->where('doc_control_id', '61')->get();
 
-            //Get Disposition
-            $disposition_value = active_record::where('patient_id', $id)
-                ->where('navigation_id','32')
-                ->where('doc_control_id','63')->pluck('value');
+                //Get Disposition
+                $disposition_value = active_record::where('patient_id', $id)
+                    ->where('navigation_id', '32')
+                    ->where('doc_control_id', '63')->pluck('value');
 
-            $disposition_comment = active_record::where('patient_id', $id)
-                ->where('navigation_id','32')
-                ->where('doc_control_id','64')->pluck('value');
+                $disposition_comment = active_record::where('patient_id', $id)
+                    ->where('navigation_id', '32')
+                    ->where('doc_control_id', '64')->pluck('value');
 
 
-            $patient = patient::where('patient_id', $id)->first();
-            //Fetching all navs associated with this patient's module
-            $navIds = module_navigation::where('module_id', $patient->module_id)->orderBy('navigation_id')->pluck('navigation_id');
+                $patient = patient::where('patient_id', $id)->first();
+                //Fetching all navs associated with this patient's module
+                $navIds = module_navigation::where('module_id', $patient->module_id)->orderBy('navigation_id')->pluck('navigation_id');
 
-            $navs = array();
+                $navs = array();
 
-            //Now get nav names
-            foreach ($navIds as $key => $nav_id) {
-                $nav = navigation::where('navigation_id', $nav_id)->get();
-                array_push($navs, $nav);
-            }
+                //Now get nav names
+                foreach ($navIds as $key => $nav_id) {
+                    $nav = navigation::where('navigation_id', $nav_id)->get();
+                    array_push($navs, $nav);
+                }
 
-            //Extracting vital signs for header
-            $vital_signs_header = $this->get_vital_signs_header($id);
+                //Extracting vital signs for header
+                $vital_signs_header = $this->get_vital_signs_header($id);
 
-            //Fetching assigned instructors
-            $instructorIds = users_patient::where('patient_id', $id)
-                ->where('patient_record_status_id', '2')->pluck('user_id');
+                //Fetching assigned instructors
+                $instructorIds = users_patient::where('patient_id', $id)
+                    ->where('patient_record_status_id', '2')->pluck('user_id');
 
-            $instructor_Details = array();
+                $instructor_Details = array();
 
-            //Now get Instructor names
-            foreach ($instructorIds as $key => $instructorId) {
-                $instructorDetail = User::where('id', $instructorId)->where('role', 'Instructor')->get();
-                array_push($instructor_Details, $instructorDetail);
-            }
+                //Now get Instructor names
+                foreach ($instructorIds as $key => $instructorId) {
+                    $instructorDetail = User::where('id', $instructorId)->where('role', 'Instructor')->get();
+                    array_push($instructor_Details, $instructorDetail);
+                }
 
-            try{
-                $pdf = PDF::loadView('patient.preview', compact('instructor_Details', 'patient', 'navs',
+                try {
+                    $pdf = PDF::loadView('patient.preview', compact('instructor_Details', 'patient', 'navs',
                         'vital_signs_header', 'HPI', 'diagnosis_list_surgical_history', 'surgical_history_comment',
                         'diagnosis_list_personal_history', 'personal_history_comment', 'family_members_details',
                         'comment_family_history', 'social_history_smoke_tobacco', 'social_history_non_smoke_tobacco',
@@ -2055,13 +2120,12 @@ class NavigationController extends Controller
                         'integumentary_comment', 'musculoskeletal_symptoms', 'musculoskeletal_comment',
                         'cardiovascular_symptoms', 'cardiovascular_comment', 'respiratory_symptoms', 'respiratory_comment',
                         'eyes_symptoms', 'eyes_comment', 'hent_symptoms', 'hent_comment', 'constitutional_symptoms',
-                        'constitutional_comment', 'comment_order', 'labs', 'images', 'results','mdm','disposition_value','disposition_comment'));
-                return $pdf->download('patient_report.pdf');
-            }
-            catch (\Exception $e)
-            {
-                $error_message= "We have encountered an error while generating the pdf file. Please try again!";
-                return view('errors/error',compact('error_message'));
+                        'constitutional_comment', 'comment_order', 'labs', 'images', 'results', 'mdm', 'disposition_value', 'disposition_comment'));
+                    return $pdf->download('patient_report.pdf');
+                } catch (\Exception $e) {
+                    $error_message = "We have encountered an error while generating the pdf file. Please try again!";
+                    return view('errors/error', compact('error_message'));
+                }
             }
         }
         else
@@ -2077,9 +2141,15 @@ class NavigationController extends Controller
             }
 
             if($role == 'Student') {
+                //Student cannot preview deleted patients
+                $patient = patient::where('patient_id', $id)->first();
+                if($patient->archived)
+                {
+                    $error_message = "You cannot preview deleted patient.";
+                    return view('errors/error', compact('error_message'));
+                }
                 //Student cannot preview saved patients
-                $patient_status = patient::where('patient_id', $id)->pluck('completed_flag');
-                if (!$patient_status[0]) {
+                elseif (!$patient->completed_flag) {
                     $error_message = "This patient is in saved state. You can preview only submitted patient.";
                     return view('errors/error', compact('error_message'));
                 } else {
