@@ -115,12 +115,12 @@
                          <div class="row">
                              <div class="col-md-6">
                                  <button type="reset" id="btn_clear_disposition_comment" class="btn btn-success" style="float: left">
-                                     Reset Disposition
+                                     <i class="fa fa-refresh" aria-hidden="true"></i> Reset Disposition
                                  </button>
                              </div>
                              <div class="col-sm-6">
-                                 <button type="submit" id="btn_save_disposition" class="btn btn-primary" style="float: right">
-                                     Save Disposition
+                                 <button type="submit" id="btn_save_disposition" class="btn btn-primary" disabled="true" style="float: right">
+                                     <i class="fa fa-floppy-o" aria-hidden="true"></i> Save Disposition
                                  </button>
                              </div>
                          </div>
@@ -149,13 +149,21 @@
                 inputsChanged = false;
             });
 
+            $('#btn_clear_disposition_comment').click( function()
+            {
+                $('#disposition_comment').val('');
+                $('#btn_save_disposition').prop('disabled', true);
+                $('.form-check-input').prop('checked',false);
+                inputsChanged = false;
+            } );
             window.onbeforeunload = unloadPage;
         });
 
-        $('#btn_clear_disposition_comment').click( function()
+        $('.form-check-input').click( function()
         {
-            $('#disposition_comment').val('');
+            $('#btn_save_disposition').prop('disabled', false);
         } );
+
     </script>
 
 @endsection

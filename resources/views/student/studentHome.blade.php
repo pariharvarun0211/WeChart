@@ -17,9 +17,7 @@
                     Add new Patient</a>
             </div>
         </div>
-
         <br>
-
         <!-- Saved -->
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
@@ -28,8 +26,8 @@
                         <h4 style="margin-top: 0">Saved Patients</h4>
                     </div>
                     <div class="panel-body" style="margin-bottom: 0;padding-bottom: 0">
-                        @if($modules)
-                            @foreach($modules as $module)
+                        @if(count($saved_patients_modules)>0)
+                            @foreach($saved_patients_modules as $module)
                                 <div class="panel panel-default">
                                     <div class="panel-heading" style="background-color: grey; padding-bottom: 0">
                                         <h4 id="savedModuleName" style="margin-top: 0">{{$module}}</h4>
@@ -62,8 +60,12 @@
                                                                     <td><p id="patientSex">{{$patient->gender}}</p></td>
                                                                     <td><p id="visitDate">{{$patient->visit_date}}</p></td>
                                                                     <td>
-                                                                        <a href="{{ route( 'patient.view', ['patient_id' => $patient->patient_id ] ) }}" class="btn btn-primary" id="edit">View & Edit</a>
-                                                                        <a class="btn btn-danger" id="delete" > Delete</a>
+                                                                        <a href="{{ route( 'patient.view', ['patient_id' => $patient->patient_id ] ) }}" class="btn btn-primary" id="edit">
+                                                                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i> View & Edit
+                                                                        </a>
+                                                                        <a href="{{ route( 'patient.destroy', ['patient_id' => $patient->patient_id]) }}" class="btn btn-danger confirmation" id="delete" >
+                                                                            <i class="fa fa-trash-o" aria-hidden="true"></i> Delete
+                                                                        </a>
                                                                     </td>
                                                                 </tr>
                                                         @endif
@@ -82,9 +84,7 @@
                 </div>
             </div>
         </div>
-
         <br>
-
         <!-- Submitted -->
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
@@ -94,8 +94,8 @@
                     </div>
                     <div class="panel-body">
                         <div class="panel-body" style="margin-bottom: 0;padding-bottom: 0">
-                            @if($modules)
-                                @foreach($modules as $module)
+                            @if(count($submitted_patients_modules)>0)
+                                @foreach($submitted_patients_modules as $module)
                                     <div class="panel panel-default">
                                         <div class="panel-heading" style="background-color: grey; padding-bottom: 0">
                                             <h4 id="savedModuleName" style="margin-top: 0">{{$module}}</h4>
@@ -124,9 +124,15 @@
                                                                     <td><p id="patient_submitted_date">{{$patient->submitted_date}}</p></td>
                                                                     <td><p id="visitDate">{{$patient->visit_date}}</p></td>
                                                                     <td style="text-align: left">
-                                                                        <a href="{{ route( 'patient_preview', ['patient_id' => $patient->patient_id ] ) }}" class="btn btn-primary" id="preview"> Preview </a>
-                                                                        <a href="{{ route( 'pdf_generate', ['patient_id' => $patient->patient_id ] ) }}" class="btn btn-success" id="generate_report"> Generate PDF</a>
-                                                                        <a class="btn btn-danger" id="delete"> Delete</a>
+                                                                        <a href="{{ route( 'patient_preview', ['patient_id' => $patient->patient_id ] ) }}" class="btn btn-primary" id="preview">
+                                                                            <i class="fa fa-file-text" aria-hidden="true"></i> Preview
+                                                                        </a>
+                                                                        <a href="{{ route( 'pdf_generate', ['patient_id' => $patient->patient_id ] ) }}" class="btn btn-success" id="generate_report">
+                                                                            <i class="fa fa-file-pdf-o" aria-hidden="true"></i> Generate PDF
+                                                                        </a>
+                                                                        <a href="{{ route( 'patient.destroy', ['patient_id' => $patient->patient_id]) }}" class="btn btn-danger confirmation" id="delete">
+                                                                            <i class="fa fa-trash-o" aria-hidden="true"></i> Delete
+                                                                        </a>
                                                                     </td>
                                                                 </tr>
                                                             @endif
@@ -149,5 +155,9 @@
         </div>
     </div>
 
-    </div>
+    <script type="text/javascript">
+        $('.confirmation').on('click', function () {
+            return confirm('Are you sure you want to delete this patient? This action is irreversible.');
+        });
+    </script>
    @endsection

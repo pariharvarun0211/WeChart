@@ -64,11 +64,18 @@
                         <td><input type="text" name="age" value="{{$patient->age}}" required></td>
                     </tr>
                 </table>
-                    <div class="col-md-offset-4" style="float: right">
-                      <button type="submit" id="btn_save_demographics" class="btn btn-primary">
-                          Update Demographics
-                      </button>
-                </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <button type="reset" id="btn_clear_demographics" class="btn btn-success" style="float: left">
+                                <i class="fa fa-refresh" aria-hidden="true"></i> Reset Demographics
+                            </button>
+                        </div>
+                        <div class="col-md-6" >
+                          <button type="submit" id="btn_save_demographics" class="btn btn-primary" style="float: right">
+                              <i class="fa fa-floppy-o" aria-hidden="true"></i> Update Demographics
+                          </button>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>

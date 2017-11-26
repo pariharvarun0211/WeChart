@@ -118,7 +118,6 @@
                         </div>
 
                     </div>
-                     <!-- After user submits request -->
         </div>
     </div>
 </div>

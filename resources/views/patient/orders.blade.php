@@ -106,14 +106,14 @@
                 <br>
                 {{--Buttons--}}
                 <div class="row">
-                    <div class="col-md-4 col-md-offset-2">
-                        {{--<button type="reset" id="btn_clear_orders_comment" class="btn btn-success" style="float: left">--}}
-                            {{--Clear Comment--}}
-                        {{--</button>--}}
+                    <div class="col-md-6 ">
+                        <button type="reset" id="btn_clear_orders_comment" class="btn btn-success" style="float: left">
+                            <i class="fa fa-refresh" aria-hidden="true"></i> Reset Orders
+                        </button>
                     </div>
                         <div class="col-md-6">
                             <button type="submit" id="btn_save_orders" class="btn btn-primary" style="float: right">
-                                Save Orders
+                                <i class="fa fa-floppy-o" aria-hidden="true"></i> Save Orders
                             </button>
                         </div>
                     </div>
@@ -187,6 +187,9 @@
         $('#btn_clear_orders_comment').click( function()
         {
             $('#orders_comment').val('');
+            $('#search_labs_imaging').empty().trigger('change');
+            $('#search_labs_orders').empty().trigger('change');
+            inputsChanged = false;
         } );
     });
 </script>

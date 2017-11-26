@@ -44,7 +44,6 @@
             </div>
         </div>
         <div class="panel-body" style="margin-bottom: 0;padding-bottom: 0;background-color: #FFFAF0;margin-top: 0;padding-top: 0">
-
             <table class="table" style=" margin-top: 0;padding-top: 0;margin-bottom: 0;padding-bottom: 0">
                 <!--This is the first row in the vital signs panel -->
                 <tr style="padding-top: 0;padding-bottom: 0%; border-style: hidden">
@@ -151,64 +150,61 @@
             </table>
         </div>
     </div>
-    <br>
     {{--HPI--}}
-    <div class="panel panel-default">
+    <div class="row">
+        <div class="panel panel-default">
         <div class="panel-heading" style="background-color: lightblue">
             <a data-toggle="collapse" href="#HPI">HPI</a>
         </div>
-        <div class="panel-body" id="HPI" class="panel-collapse collapse">
-            @if(!count($HPI)>0)
-                <textarea id="HPI" name="HPI" rows="6" cols="50" ></textarea>
-            @else
-                <textarea id="HPI" name="HPI" rows="6" >{{$HPI[0]->value}}</textarea>
+        <div class="panel-body" id="HPI" class="panel-collapse collapse in">
+            @if(count($HPI)>0)
+                <p>{{$HPI[0]->value}}</p>
             @endif
         </div>
     </div>
+    </div>
     {{--Medical History--}}
-    <div class="panel panel-default">
+    <div class="row">
+        <div class="panel panel-default">
         <div class="panel-heading" style="background-color: lightblue">
             <a data-toggle="collapse" href="#medical_history">Medical History</a>
         </div>
-        <div class="panel-body" id="medical_history" class="panel-collapse collapse">
+        <div class="panel-body" id="medical_history" class="panel-collapse collapse in">
             {{--Personal History--}}
             <table class="table table-striped table-bordered table-hover">
                 <thead>
                 <tr class="bg-info">
-                    <th colspan="2">Personal History- List of Diagnosis</th>
+                    <th colspan="2">Personal History</th>
                 </tr>
                 </thead>
                 <tbody>
-                @foreach ($diagnosis_list_personal_history as $diagnosis)
                     <tr>
-                        <td colspan="2"><p><?php echo ($diagnosis->value); ?></p></td>
+                        <td>
+                            <p><strong>List of Diagnosis: </strong>
+                                @foreach ($diagnosis_list_personal_history as $diagnosis)
+                                   <?php echo ($diagnosis->value); ?>,
+                                @endforeach
+                            </p>
+                            <p><strong>Comments:</strong>
+                                @if(count($personal_history_comment)>0)
+                                    {{$personal_history_comment[0]->value}}
+                                @endif
+                            </p>
+                        </td>
                     </tr>
-                @endforeach
-                <tr>
-                    <td>
-                        Comments:
-                    </td>
-                    <td>
-                        @if(!count($personal_history_comment)>0)
-                            <textarea rows="4" id="personal_history_comment" name="personal_history_comment" style="width: 575px"></textarea>
-                        @else
-                            <textarea rows="4" id="personal_history_comment" name="personal_history_comment" style="width: 575px">{{$personal_history_comment[0]->value}}</textarea>
-                        @endif
-                    </td>
-                </tr>
                 </tbody>
             </table>
             {{--Family History--}}
             <table class="table table-striped table-bordered table-hover">
                 <thead>
-                <tr class="bg-info">
-                    <th colspan="6">Family History</th>
-                </tr>
-                <tr>
-                    <th>Relation</th>
-                    <th>Alive?</th>
-                    <th>List of Diagnosis</th>
-                </tr>
+                    <tr class="bg-info">
+                        <th colspan="6">Family History</th>
+                    </tr>
+                    <tr>
+                        <th>Relation</th>
+                        <th>Alive?</th>
+                        <th>List of Diagnosis</th>
+                    </tr>
                 </thead>
                 <tbody>
                 @foreach ($family_members_details as $family_member_details)
@@ -235,15 +231,12 @@
                     </tr>
                 @endforeach
                 <tr>
-                    <td>
-                        Comments:
-                    </td>
-                    <td colspan="4">
-                        @if(!count($comment_family_history) > 0)
-                            <textarea rows="4" id="family_history_comment" name="family_history_comment" style="width: 600px" ></textarea>
-                        @else
-                            <textarea rows="4" id="family_history_comment" name="family_history_comment" style="width: 600px" >{{$comment_family_history[0]}}</textarea>
-                        @endif
+                    <td colspan="3">
+                        <p><strong>Comments: </strong>
+                            @if(count($comment_family_history) > 0)
+                                {{$comment_family_history[0]}}
+                            @endif
+                        </p>
                     </td>
                 </tr>
                 </tbody>
@@ -252,78 +245,61 @@
             <table class="table table-striped table-bordered table-hover">
                 <thead>
                 <tr class="bg-info">
-                    <th colspan="2">Surgical History- List of Diagnosis</th>
+                    <th colspan="2">Surgical History</th>
                 </tr>
                 </thead>
                 <tbody>
-                @foreach ($diagnosis_list_surgical_history as $diagnosis)
-                    <tr>
-                        <td colspan="2"><p><?php echo ($diagnosis->value); ?></p></td>
-                    </tr>
-                @endforeach
                 <tr>
                     <td>
-                        Comments:
-                    </td>
-                    <td>
-                        @if(!count($surgical_history_comment)>0)
-                            <textarea rows="4" id="surgical_history_comment" name="surgical_history_comment" style="width: 575px"></textarea>
-                        @else
-                            <textarea rows="4" id="surgical_history_comment" name="surgical_history_comment" style="width: 575px">{{$surgical_history_comment[0]->value}}</textarea>
-                        @endif
+                        <p><strong>List of Diagnosis: </strong>
+                            @foreach ($diagnosis_list_surgical_history as $diagnosis)
+                                <?php echo ($diagnosis->value); ?>,
+                            @endforeach
+                        </p>
+                        <p><strong>Comments:</strong>
+                            @if(count($surgical_history_comment)>0)
+                                {{$surgical_history_comment[0]->value}}
+                            @endif
+                        </p>
                     </td>
                 </tr>
-                </tbody>
+               </tbody>
             </table>
             {{--Social History--}}
             <table class="table table-striped table-bordered table-hover">
                 <thead>
                 <tr class="bg-info">
-                    <th colspan="3">Social History</th>
+                    <th colspan="8">Social History</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
-                    <td colspan="2">
-                        <label id="smoke_tobacco">Smoke Tobacco?: </label>
-                    </td>
                     <td>
+                        <label id="smoke_tobacco">Smoke Tobacco?: </label>
                         @if($social_history_smoke_tobacco == "YES")
                             <label id="smoke_tobacco">Yes </label>
                         @else
                             <label id="smoke_tobacco">No </label>
                         @endif
                     </td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <label id="non_smoke_tobacco">Non-Smoke Tobacco?: </label>
-                    </td>
                     <td>
+                        <label id="non_smoke_tobacco">Non-Smoke Tobacco?: </label>
                         @if($social_history_non_smoke_tobacco == "YES")
                             <label id="non_smoke_tobacco">Yes </label>
                         @else
                             <label id="non_smoke_tobacco">No </label>
                         @endif
                     </td>
-                </tr>
-                <tr>
-                    <td colspan="2">
+                    <td >
                         <label id="alcohol">Drink Alcohol?: </label>
-                    </td>
-                    <td>
                         @if($social_history_alcohol == "YES")
                             <label id="alcohol">Yes </label>
                         @else
                             <label id="alcohol">No </label>
                         @endif
                     </td>
-                </tr>
-                <tr>
-                    <td colspan="2">
+                    <td >
                         <label id="sexual_activity">Sexual Activity?: </label>
-                    </td>
-                    <td>
                         @if($social_history_sexual_activity == "YES")
                             <label id="sexual_activity">Yes </label>
                         @else
@@ -332,48 +308,41 @@
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="2">
-                        <label id="social_history_comment_label">Comments: </label>
-                    </td>
-                    <td>
-                        <textarea rows="4" style="width: 525px" id="social_history_comment" name="social_history_comment" >{{$social_history_comment}}</textarea>
+                    <td colspan="8">
+                        <p><strong>Comments:</strong> {{$social_history_comment}}
+                        </p>
                     </td>
                 </tr>
                 </tbody>
             </table>
         </div>
     </div>
+    </div>
     {{--Medications--}}
-    <table class="table table-striped table-bordered table-hover">
-        <thead>
-        <tr class="bg-info">
-            <th colspan="2">
-                <a data-toggle="collapse" href="#medications">List of Medications</a>
-            </th>
-        </tr>
-        </thead>
-        <tbody  id="medications" class="panel-collapse collapse">
-        @foreach ($medications as $medicine)
-            <tr>
-                <td><p>{{$medicine->value}}</p></td>
-            </tr>
-        @endforeach
-        <tr>
-            <td>
-                Comments:
-            </td>
-            <td>
-                @if(!count($medication_comment)>0)
-                    <textarea rows="4" id="medication_comment" name="medication_comment" style="width: 590px"></textarea>
-                @else
-                    <textarea rows="4" id="medication_comment" name="medication_comment" style="width: 590px">{{$medication_comment[0]->value}}</textarea>
-                @endif
-            </td>
-        </tr>
-        </tbody>
-    </table>
+    <div class="row">
+        <div class="panel panel-default">
+                <div class="panel-heading" style="background-color: lightblue">
+                        <a data-toggle="collapse" href="#medications">Medications</a>
+                </div>
+                <div class="panel-body" id="medications" class="panel-collapse collapse in">
+                     <p>
+                        <strong>List of medications: </strong>
+                        @foreach ($medications as $medicine)
+                                {{$medicine->value}},
+                        @endforeach
+                     </p>
+                    <p>
+                        <strong>Comments:</strong>
+                        @if(count($medication_comment)>0)
+                            {{$medication_comment[0]->value}}
+                        @endif
+                    </p>
+                </div>
+        </div>
+    </div>
     {{--Vital signs--}}
-    <table class="table table-striped table-bordered table-hover" id="vital_signs_table">
+    <div class="row">
+        <table class="table table-striped table-bordered table-hover" id="vital_signs_table">
         <thead>
         <tr>
             <th style="background-color: lightblue" colspan="12">
@@ -394,7 +363,7 @@
             <th>Comment</th>
         </tr>
         </thead>
-        <tbody id="vital_signs" class="panel-collapse collapse">
+        <tbody id="vital_signs" class="panel-collapse collapse in">
         {{--Checking for no records--}}
         @if(!count($vital_sign_details)> 0)
             <tr>
@@ -465,77 +434,502 @@
         @endif
         </tbody>
     </table>
-    {{--Orders--}}
-    <div class="panel panel-default">
-        <div class="panel-heading" style="background-color: lightblue">
-            <a data-toggle="collapse" href="#orders">Orders</a>
-        </div>
-        <div class="panel-body" id="orders" class="panel-collapse collapse">
-            <div class="row">
-                <div class="col-sm-6">
-                    <table class="table table-striped table-bordered table-hover">
-                        <thead>
-                        <tr class="bg-info">
-                            <th>List of labs</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach ($labs as $lab)
-                            <tr>
-                                <td><p>{{$lab->value}}</p></td>
-                            </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
+    </div>
+    {{--ROS--}}
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-heading" style="background-color: lightblue">
+                <a data-toggle="collapse" href="#ros">ROS</a>
+            </div>
+            <div class="panel-body" id="ros" class="panel-collapse collapse in">
+                {{--ros_constitutional--}}
+                <div class="panel panel-default" id="constitutional">
+                        <div class="panel-heading" style="background-color: lightblue;padding-bottom: 0">
+                            <p style="margin-top: 0">ROS- Constitutional</p>
+                        </div>
+                        <div class="panel-body" style="padding-bottom: 0">
+                                    <p>
+                                        <strong>Symptoms: </strong>
+                                        @foreach ($ros_constitutional_symptoms as $ros_constitutional_symptom)
+
+                                                @if($ros_constitutional_symptom->is_saved)
+                                                       {{$ros_constitutional_symptom->value}},
+                                                @endif
+
+                                        @endforeach
+                                    </p>
+                                    <p>
+                                        <strong> Comments:</strong>
+                                        @if(count($ros_constitutional_comment)>0)
+                                            {{$ros_constitutional_comment[0]}}
+                                        @endif
+                                    </p>
+                           </div>
                 </div>
-                <div class="col-sm-6">
-                    <table class="table table-striped table-bordered table-hover">
-                        <thead>
-                        <tr class="bg-info">
-                            <th>List of Images</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach ($images as $image)
-                            <tr>
-                                <td><p>{{$image->value}}</p></td>
-                            </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
+                {{--ros_hent--}}
+                <div class="panel panel-default" id="hent">
+                    <div class="panel-heading" style="background-color: lightblue;padding-bottom: 0">
+                        <p style="margin-top: 0">ROS- HENT</p>
+                    </div>
+                    <div class="panel-body" style="padding-bottom: 0">
+                        <p>
+                            <strong>Symptoms: </strong>
+                            @foreach ($ros_hent_symptoms as $ros_hent_symptom)
+                                @if($ros_hent_symptom->is_saved)
+                                    {{$ros_hent_symptom->value}},
+                                @endif
+                            @endforeach
+                        </p>
+                        <p>
+                            <strong> Comments:</strong>
+                            @if(count($ros_hent_comment)>0)
+                                {{$ros_hent_comment[0]}}
+                            @endif
+                        </p>
+                    </div>
+                </div>
+                {{--ros_eyes--}}
+                <div class="panel panel-default" id="eyes">
+                    <div class="panel-heading" style="background-color: lightblue;padding-bottom: 0">
+                        <p style="margin-top: 0">ROS- Eyes</p>
+                    </div>
+                    <div class="panel-body" style="padding-bottom: 0">
+                        <p>
+                            <strong>Symptoms: </strong>
+                            @foreach ($ros_eyes_symptoms as $ros_eyes_symptom)
+                                @if($ros_eyes_symptom->is_saved)
+                                    {{$ros_eyes_symptom->value}},
+                                @endif
+                            @endforeach
+                        </p>
+                        <p>
+                            <strong> Comments:</strong>
+                            @if(count($ros_eyes_comment)>0)
+                                {{$ros_eyes_comment[0]}}
+                            @endif
+                        </p>
+                    </div>
+                </div>
+                {{--ros_respiratory--}}
+                <div class="panel panel-default" id="respiratory">
+                    <div class="panel-heading" style="background-color: lightblue;padding-bottom: 0">
+                        <p style="margin-top: 0">ROS- Respiratory</p>
+                    </div>
+                    <div class="panel-body" style="padding-bottom: 0">
+                        <p>
+                            <strong>Symptoms: </strong>
+                            @foreach ($ros_respiratory_symptoms as $ros_respiratory_symptom)
+                                @if($ros_respiratory_symptom->is_saved)
+                                    {{$ros_respiratory_symptom->value}},
+                                @endif
+                            @endforeach
+                        </p>
+                        <p>
+                            <strong> Comments:</strong>
+                            @if(count($ros_respiratory_comment)>0)
+                                {{$ros_respiratory_comment[0]}}
+                            @endif
+                        </p>
+                    </div>
+                </div>
+                {{--ros_cardiovascular--}}
+                <div class="panel panel-default" id="cardiovascular">
+                    <div class="panel-heading" style="background-color: lightblue;padding-bottom: 0">
+                        <p style="margin-top: 0">ROS- Cardiovascular</p>
+                    </div>
+                    <div class="panel-body" style="padding-bottom: 0">
+                        <p>
+                            <strong>Symptoms: </strong>
+                            @foreach ($ros_cardiovascular_symptoms as $ros_cardiovascular_symptom)
+                                @if($ros_cardiovascular_symptom->is_saved)
+                                    {{$ros_cardiovascular_symptom->value}},
+                                @endif
+                            @endforeach
+                        </p>
+                        <p>
+                            <strong> Comments:</strong>
+                            @if(count($ros_cardiovascular_comment)>0)
+                                {{$ros_cardiovascular_comment[0]}}
+                            @endif
+                        </p>
+                    </div>
+                </div>
+                {{--ros_musculosketal--}}
+                <div class="panel panel-default" id="musculoskeletal">
+                    <div class="panel-heading" style="background-color: lightblue;padding-bottom: 0">
+                        <p style="margin-top: 0">ROS- Musculoskeletal </p>
+                    </div>
+                    <div class="panel-body" style="padding-bottom: 0">
+                        <p>
+                            <strong>Symptoms: </strong>
+                            @foreach ($ros_musculoskeletal_symptoms as $ros_musculoskeletal_symptom)
+                                @if($ros_musculoskeletal_symptom->is_saved)
+                                    {{$ros_musculoskeletal_symptom->value}},
+                                @endif
+                            @endforeach
+                        </p>
+                        <p>
+                            <strong> Comments:</strong>
+                            @if(count($ros_musculoskeletal_comment)>0)
+                                {{$ros_musculoskeletal_comment[0]}}
+                            @endif
+                        </p>
+                    </div>
+                </div>
+                {{--ros_integumentary--}}
+                <div class="panel panel-default" id="integumentary">
+                    <div class="panel-heading" style="background-color: lightblue;padding-bottom: 0">
+                        <p style="margin-top: 0">ROS- Integumentary</p>
+                    </div>
+                    <div class="panel-body" style="padding-bottom: 0">
+                        <p>
+                            <strong>Symptoms: </strong>
+                            @foreach ($ros_integumentary_symptoms as $ros_integumentary_symptom)
+                                @if($ros_integumentary_symptom->is_saved)
+                                    {{$ros_integumentary_symptom->value}},
+                                @endif
+                            @endforeach
+                        </p>
+                        <p>
+                            <strong> Comments:</strong>
+                            @if(count($ros_integumentary_comment)>0)
+                                {{$ros_integumentary_comment[0]}}
+                            @endif
+                        </p>
+                    </div>
+                </div>
+                {{--ros_neurological--}}
+                <div class="panel panel-default" id="eyes">
+                    <div class="panel-heading" style="background-color: lightblue;padding-bottom: 0">
+                        <p style="margin-top: 0">ROS- Neurological</p>
+                    </div>
+                    <div class="panel-body" style="padding-bottom: 0">
+                        <p>
+                            <strong>Symptoms: </strong>
+                            @foreach ($ros_neurological_symptoms as $ros_neurological_symptom)
+                                @if($ros_neurological_symptom->is_saved)
+                                    {{$ros_neurological_symptom->value}},
+                                @endif
+                            @endforeach
+                        </p>
+                        <p>
+                            <strong> Comments:</strong>
+                            @if(count($ros_neurological_comment)>0)
+                                {{$ros_neurological_comment[0]}}
+                            @endif
+                        </p>
+                    </div>
+                </div>
+                {{--ros_psychological--}}
+                <div class="panel panel-default" id="psychological">
+                    <div class="panel-heading" style="background-color: lightblue;padding-bottom: 0">
+                        <p style="margin-top: 0">ROS- Psychological</p>
+                    </div>
+                    <div class="panel-body" style="padding-bottom: 0">
+                        <p>
+                            <strong>Symptoms: </strong>
+                            @foreach ($ros_psychological_symptoms as $ros_psychological_symptom)
+                                @if($ros_psychological_symptom->is_saved)
+                                    {{$ros_psychological_symptom->value}},
+                                @endif
+                            @endforeach
+                        </p>
+                        <p>
+                            <strong> Comments:</strong>
+                            @if(count($ros_psychological_comment)>0)
+                                {{$ros_psychological_comment[0]}}
+                            @endif
+                        </p>
+                    </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-1">
-                    Comments:
-                </div>
-                <div class="col-md-11">
-                    @if(!count($comment_order)>0)
-                        <textarea rows="4" id="orders_comment" name="orders_comment" style="width: 600px" ></textarea>
-                    @else
-                        <textarea rows="4" id="orders_comment" name="orders_comment" style="width: 600px">{{$comment_order[0]->value}}</textarea>
-                    @endif
+        </div>
+    </div>
+    {{--PE--}}
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-heading" style="background-color: lightblue">
+                <a data-toggle="collapse" href="#pe">PE</a>
+            </div>
+            <div class="panel-body" id="pe" class="panel-collapse collapse in">
+                {{--PE_constitutional--}}
+                <div class="panel panel-default" id="pe_constitutional">
+                    <div class="panel-heading" style="background-color: lightblue;padding-bottom: 0">
+                        <p style="margin-top: 0">PE- Constitutional</p>
+                    </div>
+                    <div class="panel-body" style="padding-bottom: 0">
+                        <p>
+                            <strong>Symptoms: </strong>
+                            @foreach ($constitutional_symptoms as $constitutional_symptom)
 
+                                @if($constitutional_symptom->is_saved)
+                                    {{$constitutional_symptom->value}},
+                                @endif
+
+                            @endforeach
+                        </p>
+                        <p>
+                            <strong> Comments:</strong>
+                            @if(count($constitutional_comment)>0)
+                                {{$constitutional_comment[0]}}
+                            @endif
+                        </p>
+                    </div>
                 </div>
+                {{--pe_hent--}}
+                <div class="panel panel-default" id="pe_hent">
+                    <div class="panel-heading" style="background-color: lightblue;padding-bottom: 0">
+                        <p style="margin-top: 0">PE- HENT</p>
+                    </div>
+                    <div class="panel-body" style="padding-bottom: 0">
+                        <p>
+                            <strong>Symptoms: </strong>
+                            @foreach ($hent_symptoms as $hent_symptom)
+                                @if($hent_symptom->is_saved)
+                                    {{$hent_symptom->value}},
+                                @endif
+                            @endforeach
+                        </p>
+                        <p>
+                            <strong> Comments:</strong>
+                            @if(count($hent_comment)>0)
+                                {{$hent_comment[0]}}
+                            @endif
+                        </p>
+                    </div>
+                </div>
+                {{--pe_eyes--}}
+                <div class="panel panel-default" id="pe_eyes">
+                    <div class="panel-heading" style="background-color: lightblue;padding-bottom: 0">
+                        <p style="margin-top: 0">PE- Eyes</p>
+                    </div>
+                    <div class="panel-body" style="padding-bottom: 0">
+                        <p>
+                            <strong>Symptoms: </strong>
+                            @foreach ($eyes_symptoms as $eyes_symptom)
+                                @if($eyes_symptom->is_saved)
+                                    {{$eyes_symptom->value}},
+                                @endif
+                            @endforeach
+                        </p>
+                        <p>
+                            <strong> Comments:</strong>
+                            @if(count($eyes_comment)>0)
+                                {{$eyes_comment[0]}}
+                            @endif
+                        </p>
+                    </div>
+                </div>
+                {{--pe_respiratory--}}
+                <div class="panel panel-default" id="pe_respiratory">
+                    <div class="panel-heading" style="background-color: lightblue;padding-bottom: 0">
+                        <p style="margin-top: 0">PE- Respiratory</p>
+                    </div>
+                    <div class="panel-body" style="padding-bottom: 0">
+                        <p>
+                            <strong>Symptoms: </strong>
+                            @foreach ($respiratory_symptoms as $respiratory_symptom)
+                                @if($respiratory_symptom->is_saved)
+                                    {{$respiratory_symptom->value}},
+                                @endif
+                            @endforeach
+                        </p>
+                        <p>
+                            <strong> Comments:</strong>
+                            @if(count($respiratory_comment)>0)
+                                {{$respiratory_comment[0]}}
+                            @endif
+                        </p>
+                    </div>
+                </div>
+                {{--cardiovascular--}}
+                <div class="panel panel-default" id="pe_cardiovascular">
+                    <div class="panel-heading" style="background-color: lightblue;padding-bottom: 0">
+                        <p style="margin-top: 0">PE- Cardiovascular</p>
+                    </div>
+                    <div class="panel-body" style="padding-bottom: 0">
+                        <p>
+                            <strong>Symptoms: </strong>
+                            @foreach ($cardiovascular_symptoms as $cardiovascular_symptom)
+                                @if($cardiovascular_symptom->is_saved)
+                                    {{$cardiovascular_symptom->value}},
+                                @endif
+                            @endforeach
+                        </p>
+                        <p>
+                            <strong> Comments:</strong>
+                            @if(count($cardiovascular_comment)>0)
+                                {{$cardiovascular_comment[0]}}
+                            @endif
+                        </p>
+                    </div>
+                </div>
+                {{--musculosketal--}}
+                <div class="panel panel-default" id="pe_musculoskeletal">
+                    <div class="panel-heading" style="background-color: lightblue;padding-bottom: 0">
+                        <p style="margin-top: 0">PE- Musculoskeletal </p>
+                    </div>
+                    <div class="panel-body" style="padding-bottom: 0">
+                        <p>
+                            <strong>Symptoms: </strong>
+                            @foreach ($musculoskeletal_symptoms as $musculoskeletal_symptom)
+                                @if($musculoskeletal_symptom->is_saved)
+                                    {{$musculoskeletal_symptom->value}},
+                                @endif
+                            @endforeach
+                        </p>
+                        <p>
+                            <strong> Comments:</strong>
+                            @if(count($musculoskeletal_comment)>0)
+                                {{$musculoskeletal_comment[0]}}
+                            @endif
+                        </p>
+                    </div>
+                </div>
+                {{--integumentary--}}
+                <div class="panel panel-default" id="pe_integumentary">
+                    <div class="panel-heading" style="background-color: lightblue;padding-bottom: 0">
+                        <p style="margin-top: 0">PE- Integumentary</p>
+                    </div>
+                    <div class="panel-body" style="padding-bottom: 0">
+                        <p>
+                            <strong>Symptoms: </strong>
+                            @foreach ($integumentary_symptoms as $integumentary_symptom)
+                                @if($integumentary_symptom->is_saved)
+                                    {{$integumentary_symptom->value}},
+                                @endif
+                            @endforeach
+                        </p>
+                        <p>
+                            <strong> Comments:</strong>
+                            @if(count($integumentary_comment)>0)
+                                {{$integumentary_comment[0]}}
+                            @endif
+                        </p>
+                    </div>
+                </div>
+                {{--neurological--}}
+                <div class="panel panel-default" id="pe_eyes">
+                    <div class="panel-heading" style="background-color: lightblue;padding-bottom: 0">
+                        <p style="margin-top: 0">PE- Neurological</p>
+                    </div>
+                    <div class="panel-body" style="padding-bottom: 0">
+                        <p>
+                            <strong>Symptoms: </strong>
+                            @foreach ($neurological_symptoms as $neurological_symptom)
+                                @if($neurological_symptom->is_saved)
+                                    {{$neurological_symptom->value}},
+                                @endif
+                            @endforeach
+                        </p>
+                        <p>
+                            <strong> Comments:</strong>
+                            @if(count($neurological_comment)>0)
+                                {{$neurological_comment[0]}}
+                            @endif
+                        </p>
+                    </div>
+                </div>
+                {{--psychological--}}
+                <div class="panel panel-default" id="pe_psychological">
+                    <div class="panel-heading" style="background-color: lightblue;padding-bottom: 0">
+                        <p style="margin-top: 0">PE- Psychological</p>
+                    </div>
+                    <div class="panel-body" style="padding-bottom: 0">
+                        <p>
+                            <strong>Symptoms: </strong>
+                            @foreach ($psychological_symptoms as $psychological_symptom)
+                                @if($psychological_symptom->is_saved)
+                                    {{$psychological_symptom->value}},
+                                @endif
+                            @endforeach
+                        </p>
+                        <p>
+                            <strong> Comments:</strong>
+                            @if(count($psychological_comment)>0)
+                                {{$psychological_comment[0]}}
+                            @endif
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{--Orders--}}
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-heading" style="background-color: lightblue">
+                <a data-toggle="collapse" href="#orders">Orders</a>
+            </div>
+            <div class="panel-body" id="orders" class="panel-collapse collapse in">
+                <p>
+                    <strong>List of labs: </strong>
+                    @foreach ($labs as $lab)
+                        {{$lab->value}},
+                    @endforeach
+                </p>
+                <p>
+                    <strong>List of Images: </strong>
+                    @foreach ($images as $image)
+                        {{$image->value}},
+                    @endforeach
+                </p>
+                <p><strong>Comments: </strong>
+                    @if(count($comment_order)>0)
+                        {{$comment_order[0]->value}}
+                    @endif
+                </p>
             </div>
         </div>
     </div>
     {{--Results--}}
-    <div class="panel panel-default">
-        <div class="panel-heading" style="background-color: lightblue;padding-bottom: 0">
-            <a data-toggle="collapse" href="#results">Results</a>
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-heading" style="background-color: lightblue;padding-bottom: 0">
+                <a data-toggle="collapse" href="#results">Results</a>
+            </div>
+            <div class="panel-body " id="results" class="panel-collapse collapse in">
+                    @if(count($results)>0)
+                        {{$results[0]->value}}
+                    @endif
+            </div>
         </div>
-        <div class="panel-body " id="results" class="panel-collapse collapse">
-            <div class="container-fluid">
-                @if(!count($results)>0)
-                    <textarea id="results" name="results" rows="6" style="width: 700px"></textarea>
-                @else
-                    <textarea id="results" name="results" rows="6" style="width: 700px">{{$results[0]->value}}</textarea>
+    </div>
+    {{--MDM/Plan--}}
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-heading" style="background-color: lightblue;padding-bottom: 0">
+                <a data-toggle="collapse" href="#mdm">MDM/Plan</a>
+            </div>
+            <div class="panel-body " id="mdm" class="panel-collapse collapse in">
+                @if(count($mdm)>0)
+                    {{$mdm[0]->value}}
                 @endif
             </div>
         </div>
     </div>
+    {{--Disposition--}}
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-heading" style="background-color: lightblue;padding-bottom: 0">
+                <a data-toggle="collapse" href="#disposition">Disposition</a>
+            </div>
+            <div class="panel-body " id="disposition" class="panel-collapse collapse in">
+                <p><strong>Status: </strong>
+                    @if(count($disposition_value)>0)
+                        {{$disposition_value[0]}}
+                    @endif
+                </p>
+                <p><strong>Comments: </strong>
+                    @if(count($disposition_comment)>0)
+                        {{$disposition_comment[0]}}
+                    @endif
+                </p>
+            </div>
+        </div>
+    </div>
 </div>
+
 <?php
 set_time_limit(0);
 ?>

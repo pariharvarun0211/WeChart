@@ -1925,6 +1925,13 @@ else {
             }
             if ($role == 'Student')
             {
+                 $messages = ['required' => 'Please assign atleast one instructor.'];
+                
+                  //Validating input data
+                $this->validate($request, [                    
+                    'search_instructors' => 'required',
+               ],$messages);
+                
                 $student_id = Auth::user()->id;
                 $users_patient = users_patient::where('patient_id', $request['patient_id'])->where('user_id', Auth::user()->id)->first();
                 DB::table('users_patient')->where('patient_id', $request['patient_id'])->where('user_id', Auth::user()->id)->update(['patient_record_status_id' => '2']);

@@ -65,7 +65,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <button type="reset" id="btn_clear_results_comment" class="btn btn-success" style="float: left">
-                                    Reset Comment
+                                        <i class="fa fa-refresh" aria-hidden="true"></i> Reset Results
                                     </button>
                                 </div>
                                 <div class="col-md-6">
@@ -103,6 +103,7 @@
             $('#btn_clear_results_comment').click( function()
             {
                 $('#results').val('');
+                inputsChanged = false;
             } );
         });
     </script>

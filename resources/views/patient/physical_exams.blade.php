@@ -65,12 +65,12 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <button type="reset" id="btn_clear_constitutional" class="btn btn-success" style="float: left">
-                                        Reset Constitutional
+                                        <i class="fa fa-refresh" aria-hidden="true"></i> Reset Constitutional
                                     </button>
                                 </div>
                                 <div class="col-md-6" >
                                     <button type="submit" id="btn_save_constitutional" class="btn btn-primary" style="float: right">
-                                        Save Constitutional
+                                        <i class="fa fa-floppy-o" aria-hidden="true"></i> Save Constitutional
                                     </button>
                                 </div>
                             </div>
@@ -145,12 +145,12 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <button type="reset" id="btn_clear_HENT" class="btn btn-success" style="float: left">
-                                        Reset HENT
+                                        <i class="fa fa-refresh" aria-hidden="true"></i> Reset HENT
                                     </button>
                                 </div>
                                 <div class="col-md-6" >
                                     <button type="submit" id="btn_save_HENT" class="btn btn-primary" style="float: right">
-                                        Save HENT
+                                        <i class="fa fa-floppy-o" aria-hidden="true"></i> Save HENT
                                     </button>
                                 </div>
                             </div>
@@ -225,12 +225,12 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <button type="reset" id="btn_clear_eyes" class="btn btn-success" style="float: left">
-                                        Reset Eyes
+                                        <i class="fa fa-refresh" aria-hidden="true"></i> Reset Eyes
                                     </button>
                                 </div>
                                 <div class="col-md-6" >
                                     <button type="submit" id="btn_save_eyes" class="btn btn-primary" style="float: right">
-                                        Save Eyes
+                                        <i class="fa fa-floppy-o" aria-hidden="true"></i> Save Eyes
                                     </button>
                                 </div>
                             </div>
@@ -305,12 +305,12 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <button type="reset" id="btn_clear_respiratory" class="btn btn-success" style="float: left">
-                                        Reset Respiratory
+                                        <i class="fa fa-refresh" aria-hidden="true"></i> Reset Respiratory
                                     </button>
                                 </div>
                                 <div class="col-md-6" >
                                     <button type="submit" id="btn_save_respiratory" class="btn btn-primary" style="float: right">
-                                        Save Respiratory
+                                        <i class="fa fa-floppy-o" aria-hidden="true"></i> Save Respiratory
                                     </button>
                                 </div>
                             </div>
@@ -385,12 +385,12 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <button type="reset" id="btn_clear_cardiovascular" class="btn btn-success" style="float: left">
-                                        Reset Cardiovascular
+                                        <i class="fa fa-refresh" aria-hidden="true"></i> Reset Cardiovascular
                                     </button>
                                 </div>
                                 <div class="col-md-6" >
                                     <button type="submit" id="btn_save_cardiovascular" class="btn btn-primary" style="float: right">
-                                        Save Cardiovascular
+                                        <i class="fa fa-floppy-o" aria-hidden="true"></i> Save Cardiovascular
                                     </button>
                                 </div>
                             </div>
@@ -465,12 +465,12 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <button type="reset" id="btn_clear_musculoskeletal" class="btn btn-success" style="float: left">
-                                        Reset Musculoskeletal
+                                        <i class="fa fa-refresh" aria-hidden="true"></i> Reset Musculoskeletal
                                     </button>
                                 </div>
                                 <div class="col-md-6" >
                                     <button type="submit" id="btn_save_musculoskeletal" class="btn btn-primary" style="float: right">
-                                        Save Musculoskeletal
+                                        <i class="fa fa-floppy-o" aria-hidden="true"></i> Save Musculoskeletal
                                     </button>
                                 </div>
                             </div>
@@ -545,12 +545,12 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <button type="reset" id="btn_clear_integumentary" class="btn btn-success" style="float: left">
-                                        Reset Integumentary
+                                        <i class="fa fa-refresh" aria-hidden="true"></i> Reset Integumentary
                                     </button>
                                 </div>
                                 <div class="col-md-6" >
                                     <button type="submit" id="btn_save_integumentary" class="btn btn-primary" style="float: right">
-                                        Save Integumentary
+                                        <i class="fa fa-floppy-o" aria-hidden="true"></i> Save Integumentary
                                     </button>
                                 </div>
                             </div>
@@ -625,12 +625,12 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <button type="reset" id="btn_clear_neurological" class="btn btn-success" style="float: left">
-                                        Reset Neurological
+                                        <i class="fa fa-refresh" aria-hidden="true"></i> Reset Neurological
                                     </button>
                                 </div>
                                 <div class="col-md-6" >
                                     <button type="submit" id="btn_save_neurological" class="btn btn-primary" style="float: right">
-                                        Save Neurological
+                                        <i class="fa fa-floppy-o" aria-hidden="true"></i> Save Neurological
                                     </button>
                                 </div>
                             </div>
@@ -705,12 +705,12 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <button type="reset" id="btn_clear_psychological" class="btn btn-success" style="float: left">
-                                            Reset Psychological
+                                            <i class="fa fa-refresh" aria-hidden="true"></i> Reset Psychological
                                         </button>
                                     </div>
                                     <div class="col-md-6" >
                                         <button type="submit" id="btn_save_psychological" class="btn btn-primary" style="float: right">
-                                            Save Psychological
+                                            <i class="fa fa-floppy-o" aria-hidden="true"></i> Save Psychological
                                         </button>
                                     </div>
                                 </div>
@@ -720,7 +720,6 @@
 
             </div>
         </div>
-        <hr style="border:solid">
     @endif
 
     <script>
@@ -795,6 +794,36 @@
              $("#btn_save_psychological").click(function(){
                  inputsChanged_Psychological_form = false;
              });
+
+             // Reset buttons
+             $("#btn_clear_constitutional").click(function(){
+                 inputsChanged_Constitutional_form = false;
+             });
+             $("#btn_clear_HENT").click(function(){
+                 inputsChanged_HENT_form = false;
+             });
+             $("#btn_clear_eyes").click(function(){
+                 inputsChanged_Eyes_form = false;
+             });
+             $("#btn_clear_respiratory").click(function(){
+                 inputsChanged_Respiratory_form = false;
+             });
+             $("#btn_clear_cardiovascular").click(function(){
+                 inputsChanged_Cardiovascular_form = false;
+             });
+             $("#btn_clear_musculoskeletal").click(function(){
+                 inputsChanged_Musculoskeletal_form = false;
+             });
+             $("#btn_clear_integumentary").click(function(){
+                 inputsChanged_Integumentary_form = false;
+             });
+             $("#btn_clear_neurological").click(function(){
+                 inputsChanged_Neurological_form = false;
+             });
+             $("#btn_clear_psychological").click(function(){
+                 inputsChanged_Psychological_form = false;
+             });
+
              window.onbeforeunload = unloadPage;
          });
      </script>

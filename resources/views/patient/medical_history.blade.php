@@ -68,12 +68,12 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <button type="reset" id="btn_reset_personal_history" class="btn btn-success" style="float: left">
-                                        Reset Personal History
+                                        <i class="fa fa-refresh" aria-hidden="true"></i> Reset Personal History
                                     </button>
                                   </div>
                                 <div class="col-md-6">
                                     <button type="submit" id="btn_save_personal_history" class="btn btn-primary" style="float: right">
-                                        Save Personal History
+                                        <i class="fa fa-floppy-o" aria-hidden="true"></i> Save Personal History
                                     </button>
                                 </div>
                             </div>
@@ -172,10 +172,10 @@
                         <div class="row">
                             <div class="col-sm-12">
                             <button type="submit" id="btn_save_new_family_member" class="btn btn-primary" >
-                                Save
+                                <i class="fa fa-floppy-o" aria-hidden="true"></i> Save
                             </button> &nbsp;&nbsp;&nbsp;
                             <button type="reset" id="btn_cancel_new_family_member" class="btn btn-success" >
-                                Cancel
+                                <i class="fa fa-ban" aria-hidden="true"></i> Cancel
                             </button>
                             </div>
                         </div>
@@ -186,29 +186,23 @@
                     <br>
                     <!-- Comment box -->
                     <div class="row">
-                        <div class="col-md-12">
-                            <label for="Comment"> Comments:</label>
-                            <br>
-                            @if(!count($comment_family_history) > 0)
-                            <textarea rows="4" id="family_history_comment" name="family_history_comment" style="width: 100%;display: block" ></textarea>
-                            @else
-                                <textarea rows="4" id="family_history_comment" name="family_history_comment" style="width: 100%;display: block" >{{$comment_family_history[0]}}</textarea>
-                            @endif
-                        </div>
-                    </div>
+                        <label for="Comment"> Comments:</label>
+                        <br>
+                        @if(!count($comment_family_history) > 0)
+                        <textarea rows="4" id="family_history_comment" name="family_history_comment" style="width: 100%;display: block" ></textarea>
+                        @else
+                            <textarea rows="4" id="family_history_comment" name="family_history_comment" style="width: 100%;display: block" >{{$comment_family_history[0]}}</textarea>
+                        @endif
+                     </div>
                     <br>
                     {{--Save button--}}
                     <div class="row">
-                        <div class="col-md-6">
-                            <button type="reset" id="btn_reset_family_history" class="btn btn-success" style="float: left">
-                                Reset Comment
-                            </button>
-                        </div>
-                        <div class="col-md-6">
-                            <button type="submit" id="btn_save_family_history" class="btn btn-primary"  style="float: right">
-                                Save Comment
-                            </button>
-                        </div>
+                         <button type="reset" id="btn_reset_family_history" class="btn btn-success" style="float: left">
+                            <i class="fa fa-refresh" aria-hidden="true"></i> Reset Comment
+                        </button>
+                        <button type="submit" id="btn_save_family_history" class="btn btn-primary"  style="float: right">
+                            <i class="fa fa-floppy-o" aria-hidden="true"></i> Save Comment
+                        </button>
                     </div>
                 </div>
                 </form>
@@ -283,13 +277,13 @@
                             {{--Buttons--}}
                             <div class="row">
                                 <div class="col-md-6">
-                                    <button type="reset" id="btn_clear_surgical_history" class="btn btn-success" style="float: left">
-                                        Reset Surgical History
+                                    <button type="reset" id="btn_reset_surgical_history" class="btn btn-success" style="float: left">
+                                        <i class="fa fa-refresh" aria-hidden="true"></i> Reset Surgical History
                                     </button>
                                 </div>
                                 <div class="col-md-6" >
                                     <button type="submit" id="btn_save_surgical_history" class="btn btn-primary" style="float: right">
-                                        Save Surgical History
+                                        <i class="fa fa-floppy-o" aria-hidden="true"></i> Save Surgical History
                                     </button>
                                 </div>
                             </div>
@@ -330,11 +324,14 @@
                         </div>
                         <div class="col-md-6">
                             @if($social_history_smoke_tobacco == "YES")
-                                <input type="radio" class="form-check-input inline" name="smoke_tobacco" value="YES" id="smoke_tobacco_yes" checked >&nbsp;YES                        &nbsp;&nbsp;&nbsp;&nbsp;
-                                <input type="radio" class="form-check-input inline" name="smoke_tobacco" value="NO" id="smoke_tobacco_no">&nbsp;NO
+                                <input type="radio" class="form-check-input inline" name="smoke_tobacco" value="YES" id="smoke_tobacco_yes" checked > Yes
+                                <input type="radio" class="form-check-input inline" name="smoke_tobacco" value="NO" id="smoke_tobacco_no"> No
+                            @elseif($social_history_smoke_tobacco == "NO")
+                                <input type="radio" class="form-check-input inline" name="smoke_tobacco" value="YES" id="smoke_tobacco_yes" > Yes
+                                <input type="radio" class="form-check-input inline" name="smoke_tobacco" value="NO" id="smoke_tobacco_no" checked> No
                             @else
-                                <input type="radio" class="form-check-input inline" name="smoke_tobacco" value="YES" id="smoke_tobacco_yes" >&nbsp;YES                        &nbsp;&nbsp;&nbsp;&nbsp;
-                                <input type="radio" class="form-check-input inline" name="smoke_tobacco" value="NO" id="smoke_tobacco_no" checked> NO
+                                <input type="radio" class="form-check-input inline" name="smoke_tobacco" value="YES" id="smoke_tobacco_yes" > Yes
+                                <input type="radio" class="form-check-input inline" name="smoke_tobacco" value="NO" id="smoke_tobacco_no" > No
                             @endif
                         </div>
                     </div>
@@ -346,11 +343,14 @@
                         </div>
                         <div class="col-md-6">
                             @if($social_history_non_smoke_tobacco == "YES")
-                                <input type="radio" class="form-check-input inline" name="non_smoke_tobacco" value="YES" id="non_smoke_tobacco_yes" checked >&nbsp;YES                        &nbsp;&nbsp;&nbsp;&nbsp;
-                                <input type="radio" class="form-check-input inline" name="non_smoke_tobacco" value="NO" id="non_smoke_tobacco_no">&nbsp;NO
+                                <input type="radio" class="form-check-input inline" name="non_smoke_tobacco" value="YES" id="non_smoke_tobacco_yes" checked > Yes
+                                <input type="radio" class="form-check-input inline" name="non_smoke_tobacco" value="NO" id="non_smoke_tobacco_no"> No
+                            @elseif ($social_history_non_smoke_tobacco == "NO")
+                                <input type="radio" class="form-check-input inline" name="non_smoke_tobacco" value="YES" id="non_smoke_tobacco_yes" > Yes
+                                <input type="radio" class="form-check-input inline" name="non_smoke_tobacco" value="NO" id="non_smoke_tobacco_no" checked> No
                             @else
-                                <input type="radio" class="form-check-input inline" name="non_smoke_tobacco" value="YES" id="non_smoke_tobacco_yes" >&nbsp;YES                        &nbsp;&nbsp;&nbsp;&nbsp;
-                                <input type="radio" class="form-check-input inline" name="non_smoke_tobacco" value="NO" id="non_smoke_tobacco_no" checked> NO
+                                <input type="radio" class="form-check-input inline" name="non_smoke_tobacco" value="YES" id="non_smoke_tobacco_yes" > Yes
+                                <input type="radio" class="form-check-input inline" name="non_smoke_tobacco" value="NO" id="non_smoke_tobacco_no"> No
                             @endif
                         </div>
                     </div>
@@ -362,11 +362,14 @@
                         </div>
                         <div class="col-md-6">
                             @if($social_history_alcohol == "YES")
-                                <input type="radio" class="form-check-input inline" name="alcohol" checked value="YES" id="alcohol_yes" >&nbsp;YES                        &nbsp;&nbsp;&nbsp;&nbsp;
-                                <input type="radio" class="form-check-input inline" name="alcohol" value="NO" id="alcohol_no">&nbsp;NO
+                                <input type="radio" class="form-check-input inline" name="alcohol" checked value="YES" id="alcohol_yes" > Yes
+                                <input type="radio" class="form-check-input inline" name="alcohol" value="NO" id="alcohol_no"> No
+                            @elseif($social_history_alcohol == "NO")
+                                <input type="radio" class="form-check-input inline" name="alcohol" value="YES" id="alcohol_yes" > Yes
+                                <input type="radio" class="form-check-input inline" name="alcohol" checked value="NO" id="alcohol_no"> No
                             @else
-                                <input type="radio" class="form-check-input inline" name="alcohol" value="YES" id="alcohol_yes" >&nbsp;YES                        &nbsp;&nbsp;&nbsp;&nbsp;
-                                <input type="radio" class="form-check-input inline" name="alcohol" checked value="NO" id="alcohol_no">&nbsp;NO
+                                <input type="radio" class="form-check-input inline" name="alcohol" value="YES" id="alcohol_yes" > Yes
+                                <input type="radio" class="form-check-input inline" name="alcohol" value="NO" id="alcohol_no"> No
                             @endif
                         </div>
                     </div>
@@ -378,11 +381,14 @@
                         </div>
                         <div class="col-md-6">
                             @if($social_history_sexual_activity == "YES")
-                                <input type="radio" class="form-check-input inline" name="sexual_activity" checked value="YES" id="sexual_activity_active" >&nbsp;Active                        &nbsp;&nbsp;&nbsp;&nbsp;
-                                <input type="radio" class="form-check-input inline" name="sexual_activity" value="NO" id="sexual_activity_not_active">&nbsp;Not Active
+                                <input type="radio" class="form-check-input inline" name="sexual_activity" checked value="YES" id="sexual_activity_active"> Active
+                                <input type="radio" class="form-check-input inline" name="sexual_activity" value="NO" id="sexual_activity_not_active"> Not Active
+                            @elseif($social_history_sexual_activity == "NO")
+                                <input type="radio" class="form-check-input inline" name="sexual_activity" value="YES" id="sexual_activity_active"> Active
+                                <input type="radio" class="form-check-input inline" name="sexual_activity" checked value="NO" id="sexual_activity_not_active"> Not Active
                             @else
-                                <input type="radio" class="form-check-input inline" name="sexual_activity" value="YES" id="sexual_activity_active" >&nbsp;Active                        &nbsp;&nbsp;&nbsp;&nbsp;
-                                <input type="radio" class="form-check-input inline" name="sexual_activity" checked value="NO" id="sexual_activity_not_active">&nbsp;Not Active
+                                <input type="radio" class="form-check-input inline" name="sexual_activity" value="YES" id="sexual_activity_active"> Active
+                                <input type="radio" class="form-check-input inline" name="sexual_activity" value="NO" id="sexual_activity_not_active"> Not Active
                             @endif
                         </div>
                     </div>
@@ -400,12 +406,12 @@
                     <div class="row">
                         <div class="col-md-6">
                             <button type="reset" id="btn_reset_social_history" class="btn btn-success" style="float: left">
-                                Reset Social History
+                                <i class="fa fa-refresh" aria-hidden="true"></i> Reset Social History
                             </button>
                         </div>
                         <div class="col-md-6">
                             <button type="submit" id="btn_save_social_history" class="btn btn-primary" style="float: right">
-                            Save Social History
+                                <i class="fa fa-floppy-o" aria-hidden="true"></i> Save Social History
                             </button>
                         </div>
                     </div>
@@ -544,6 +550,20 @@
              $("#btn_save_family_history").click(function(){
                  inputsChanged_family_history_form = false;
              });
+
+             $("#btn_reset_personal_history").click(function(){
+                 $('#search_diagnosis_personal_history').empty().trigger('change');
+                 inputsChanged_personal_history_form = false;
+             });
+             $("#btn_cancel_new_family_member").click(function(){
+                 $('#search_diagnosis_list_family_history').empty().trigger('change');
+                 inputsChanged_family_history_form = false;
+             });
+             $("#btn_reset_surgical_history").click(function(){
+                 $('#search_diagnosis_surgical_history').empty().trigger('change');
+                 inputsChanged_surgical_history_form = false;
+             });
+
              window.onbeforeunload = unloadPage;
          });
      </script>

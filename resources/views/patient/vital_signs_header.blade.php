@@ -105,7 +105,7 @@
                             <p id="pain_label"><strong>Pain:  </strong>
                             @foreach($vital_signs_header->pain as $key=>$pain)
                                 @if($pain != null)
-                                    {{$vital_signs_header->pain[$key]}}
+                                    {{$vital_signs_header->pain[$key]}}/10
                                     @break
                                 @endif
                             @endforeach

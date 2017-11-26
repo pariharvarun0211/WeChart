@@ -31,12 +31,12 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <button type="reset" id="btn_clear_MDM_comment" class="btn btn-success" style="float: left">
-                                            Reset
+                                            <i class="fa fa-refresh" aria-hidden="true"></i> Reset MDM
                                         </button>
                                     </div>
                                     <div class="col-md-6">
                                         <button id="save_button" type="save" class="btn btn-primary" style="float: right">
-                                            <i class="fa fa-floppy-o" aria-hidden="true"></i> &nbsp;Save
+                                            <i class="fa fa-floppy-o" aria-hidden="true"></i> &nbsp;Save MDM
                                         </button>
                                     </div>
                                 </div>
@@ -65,6 +65,7 @@
             $('#btn_clear_MDM_comment').click( function()
             {
                 $('#MDM').val('');
+                inputsChanged = false;
             } );
         });
     </script>
