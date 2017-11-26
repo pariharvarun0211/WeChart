@@ -37,9 +37,9 @@ class UsersController extends Controller
         }
         elseif (empty($request['lastname']))
         {
-            $request->session()->flash('empty_firstname', 'Last Name cannot be blank.');
+            $request->session()->flash('empty_lastname', 'Last Name cannot be blank.');
         }
-        elseif (strlen($request['contactno']) !== 10)
+        elseif (!empty($request['contactno']) and strlen($request['contactno']) !== 10)
         {
             $request->session()->flash('invalid_contact', 'Please provide a valid 10 digit Contact No.');
         }
