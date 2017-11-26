@@ -36,9 +36,9 @@ class User extends Authenticatable
     public function users_patient() {
         return $this->belongsTo('App\users_patient');
     }
-//    public function patient() {
-//        return $this->belongsToMany('App\patient');
-//    }
+    public function patient() {
+        return $this->belongsToMany('App\patient', 'created_by');
+    }
 
     protected $table = 'users';
 }
