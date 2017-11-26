@@ -98,7 +98,7 @@ class DocumentationController extends Controller
         }
         $lookups = User::where('role', 'Instructor')->where(function ($q) use ($term)
         {
-        $q->where('firstname', 'LIKE', "%$term%")->orWhere('lastname', 'LIKE', "%$term%");
+            $q->where('firstname', 'LIKE', '%'.$term.'%')->orWhere('lastname', 'LIKE', '%'.$term.'%');
         })->get();
         $formatted_lookups = [];
         foreach ($lookups as $lookup) {
@@ -1918,8 +1918,6 @@ else {
     public function post_assignInstructor(Request $request)
         {
             $role='';
-            $firstname='';
-            $lastname='';
             if(Auth::check()) {
                 $role = Auth::user()->role;
             }
@@ -1950,11 +1948,12 @@ else {
                         'patient_id' => $request['patient_id'],
                         'user_id' => $instructor_id['id'],
                         'created_by' => $student_id,
-                        'updated_by' => $student_id
+                        'updated_by' => $student_id,
+                        'updated_at' => Carbon\Carbon::now('CDT')
                     ]);
                 }
                 patient::where('patient_id', $request['patient_id'])->update(array('completed_flag' => true));
-                patient::where('patient_id', $request['patient_id'])->update(array('submitted_date' => Carbon\Carbon::now()->format('m-d-Y')));
+                patient::where('patient_id', $request['patient_id'])->update(array('submitted_date' => Carbon\Carbon::now('CDT')->format('m-d-Y')));
 
                 return redirect()->route('student.home');
             }

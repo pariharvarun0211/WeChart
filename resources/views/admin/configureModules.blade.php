@@ -25,7 +25,7 @@
         <br>
         <br>
         <div class="row" style="overflow-x: scroll;width: 1200px">
-            <table class="table-responsive table-striped" border="2">
+            <table class="table-responsive table-striped" border="2" id="main_table">
                 <thead >
                     <tr>
                         <td style="background-color:#5DADE2;">
@@ -184,7 +184,6 @@
             </tr>
             <tr>
                <td align="middle">
-                   {{--{{ Form::text('modulename', "") }}--}}
                    <input type="text" name="modulename" id="new_module_name">
                </td>
                @foreach ($navs as $nav)
@@ -198,7 +197,7 @@
                    </td>
                @endforeach
                <td>
-                   <button name="submitbutton" class="btn btn-success btn-submit">Add</button>
+                   <button name="submitbutton" class="btn btn-success btn-submit" id="add_new_module">Add</button>
                </td>
             </tr>
         </table>

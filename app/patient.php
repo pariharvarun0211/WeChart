@@ -29,6 +29,9 @@ class patient extends Authenticatable
         $status_id = users_patient::where('patient_id',$this->patient_id)->get();
         return  $status_id[0]->patient_record_status_id;
     }
+    public function user() {
+        return $this->belongsTo('App\user', 'created_by', 'id');
+    }
 
     protected $table = 'patient';
     protected $primaryKey ='patient_id';
