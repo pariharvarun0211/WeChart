@@ -8,7 +8,7 @@
         <div class="content">
             <div class="alert alert-info" align="middle">
                 <p align="middle">
-                    <strong> Admin has deleted your account. Please contact admin for the further details.
+                    <strong> Your account has been deleted. Please contact admin for more details.
                     </strong>
                 </p>
             </div>
