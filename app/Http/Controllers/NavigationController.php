@@ -167,7 +167,7 @@ class NavigationController extends Controller
                         ->where('navigation_id', '32')->get();
                     $user_id = Auth::user()->id;
                     $status = users_patient::where('patient_id',$id)->where('user_id',$user_id)->first();
-                            if(count($status) > 0) {
+                            if($status) {
                                 $status_id = $status->patient_record_status_id;
                                 return view('patient/HPI', compact ('status_id','HPI','patient','navs','vital_signs_header','disposition'));
                             }
@@ -330,7 +330,7 @@ class NavigationController extends Controller
 
             $user_id = Auth::user()->id;
             $status = users_patient::where('patient_id',$id)->where('user_id',$user_id)->first();
-                if(count($status) > 0) {
+                if($status) {
                     $status_id = $status->patient_record_status_id;
                     return view('patient/medical_history', compact ('status_id','navIds','disposition','vital_signs_header','patient','diagnosis_list_surgical_history','surgical_history_comment','diagnosis_list_personal_history','personal_history_comment','family_members_details','comment_family_history','is_new_entry_social_history','diagnosis_list_personal_history','navs','social_history_smoke_tobacco','social_history_non_smoke_tobacco','social_history_alcohol','social_history_sexual_activity','social_history_comment','social_history_smoke_tobacco_id','social_history_non_smoke_tobacco_id','social_history_alcohol_id','social_history_sexual_activity_id','social_history_comment_id'));
                 }
@@ -394,7 +394,7 @@ class NavigationController extends Controller
                 ->where('navigation_id', '32')->get();
             $user_id = Auth::user()->id;
             $status = users_patient::where('patient_id',$id)->where('user_id',$user_id)->first();
-            if(count($status) > 0) {
+             if($status) {
                 $status_id = $status->patient_record_status_id;
                 return view('patient/medications', compact ('status_id','vital_signs_header','medications','medication_comment','patient','navs','disposition'));
             }
@@ -498,7 +498,7 @@ class NavigationController extends Controller
                 ->where('navigation_id', '32')->get();
             $user_id = Auth::user()->id;
             $status = users_patient::where('patient_id',$id)->where('user_id',$user_id)->first();
-                if(count($status) > 0) {
+               if($status) {
                     $status_id = $status->patient_record_status_id;
             return view('patient/vital_signs', compact('status_id','vital_signs_header','patient','navs','vital_sign_details','disposition'));
                 }
@@ -600,15 +600,15 @@ class NavigationController extends Controller
                 ->where('navigation_id', '32')->get();
             $user_id = Auth::user()->id;
             $status = users_patient::where('patient_id',$id)->where('user_id',$user_id)->first();
-                if(count($status) > 0) {
+                if($status) {
                     $status_id = $status->patient_record_status_id;
-            return view('patient/physical_exams', compact ('status_id','navIds',
-                'vital_signs_header','patient','navs','disposition','neurological_symptoms',
-                'neurological_comment','psychological_symptoms','psychological_comment',
-                'integumentary_symptoms','integumentary_comment','musculoskeletal_symptoms',
-                'musculoskeletal_comment','cardiovascular_symptoms','cardiovascular_comment',
-                'respiratory_symptoms','respiratory_comment','eyes_symptoms','eyes_comment','HENT_symptoms',
-                'HENT_comment','constitutional_symptoms','constitutional_comment'));
+                    return view('patient/physical_exams', compact ('status_id','navIds',
+                        'vital_signs_header','patient','navs','disposition','neurological_symptoms',
+                        'neurological_comment','psychological_symptoms','psychological_comment',
+                        'integumentary_symptoms','integumentary_comment','musculoskeletal_symptoms',
+                        'musculoskeletal_comment','cardiovascular_symptoms','cardiovascular_comment',
+                        'respiratory_symptoms','respiratory_comment','eyes_symptoms','eyes_comment','HENT_symptoms',
+                        'HENT_comment','constitutional_symptoms','constitutional_comment'));
                 }
                 else
                 {
@@ -1069,14 +1069,14 @@ class NavigationController extends Controller
                 ->where('navigation_id', '32')->get();
             $user_id = Auth::user()->id;
             $status = users_patient::where('patient_id',$id)->where('user_id',$user_id)->first();
-                if(count($status) > 0) {
-                $status_id = $status->patient_record_status_id;
-                return view('patient/review_of_system', compact ('navIds','vital_signs_header','patient','navs','disposition',
-                    'ros_constitutional_symptoms','ros_constitutional_comment', 'ros_hent_symptoms','ros_hent_comment',
-                    'ros_eyes_symptoms','ros_eyes_comment', 'ros_respiratory_symptoms','ros_respiratory_comment',
-                    'ros_cardiovascular_symptoms','ros_cardiovascular_comment', 'ros_musculoskeletal_symptoms','ros_musculoskeletal_comment',
-                    'ros_integumentary_symptoms','ros_integumentary_comment', 'ros_neurological_symptoms','ros_neurological_comment',
-                    'ros_psychological_symptoms','ros_psychological_comment','status_id'));
+                 if($status) {
+                    $status_id = $status->patient_record_status_id;
+                    return view('patient/review_of_system', compact ('navIds','vital_signs_header','patient','navs','disposition',
+                        'ros_constitutional_symptoms','ros_constitutional_comment', 'ros_hent_symptoms','ros_hent_comment',
+                        'ros_eyes_symptoms','ros_eyes_comment', 'ros_respiratory_symptoms','ros_respiratory_comment',
+                        'ros_cardiovascular_symptoms','ros_cardiovascular_comment', 'ros_musculoskeletal_symptoms','ros_musculoskeletal_comment',
+                        'ros_integumentary_symptoms','ros_integumentary_comment', 'ros_neurological_symptoms','ros_neurological_comment',
+                        'ros_psychological_symptoms','ros_psychological_comment','status_id'));
                 }
                 else
                 {
@@ -1492,7 +1492,7 @@ class NavigationController extends Controller
                 ->where('navigation_id', '32')->get();
             $user_id = Auth::user()->id;
             $status = users_patient::where('patient_id',$id)->where('user_id',$user_id)->first();
-                if(count($status) > 0) {
+                if($status) {
                     $status_id = $status->patient_record_status_id;
                     return view('patient/orders', compact ('status_id','vital_signs_header','patient','navs','labs','images','comment_order','disposition'));
                 }
@@ -1556,7 +1556,7 @@ class NavigationController extends Controller
                 ->where('navigation_id', '32')->get();
             $user_id = Auth::user()->id;
             $status = users_patient::where('patient_id',$id)->where('user_id',$user_id)->first();
-            if(count($status) > 0) {
+            if($status) {
                 $status_id = $status->patient_record_status_id;
                 return view('patient/results', compact ('status_id','vital_signs_header','labs','images','results','patient','navs','disposition'));
             }
@@ -1614,7 +1614,7 @@ class NavigationController extends Controller
                 ->where('navigation_id', '32')->get();
             $user_id = Auth::user()->id;
             $status = users_patient::where('patient_id',$id)->where('user_id',$user_id)->first();
-                if(count($status) > 0) {
+                if($status) {
                     $status_id = $status->patient_record_status_id;
                     return view('patient/MDM', compact ('MDM','patient','navs','vital_signs_header','disposition', 'status_id'));
                 }
@@ -1686,7 +1686,7 @@ class NavigationController extends Controller
 
             $user_id = Auth::user()->id;
             $status = users_patient::where('patient_id',$id)->where('user_id',$user_id)->first();
-            if(count($status) > 0) {
+            if($status) {
                 $status_id = $status->patient_record_status_id;
                 return view('patient/disposition', compact ('disposition_value','disposition_comment','status_id','vital_signs_header','patient','navs','disposition'));
             }
@@ -1766,39 +1766,38 @@ class NavigationController extends Controller
             $role = Auth::user()->role;
         }
         if($role == 'Student') {
-
-            //Student cannot view submitted patients
-            $patient_status = patient::where('patient_id', $id)->pluck('completed_flag');
-            if ($patient_status[0]) {
-                $error_message = "You cannot edit submitted patient. ";
-                return view('errors/error', compact('error_message'));
-            }
-            else {
-            $patient = patient::where('patient_id', $id)->first();
-            //Fetching all navs associated with this patient's module
-            $navIds = module_navigation::where('module_id', $patient->module_id)->orderBy('navigation_id')->pluck('navigation_id');
-            $navs = array();
-            //Now get nav names
-            foreach ($navIds as $nav_id) {
-                $nav = navigation::where('navigation_id', $nav_id)->get();
-                array_push($navs, $nav);
-            }
-            //Extracting vital signs for header
-            $vital_signs_header = $this->get_vital_signs_header($id);
-            //Extracting disposition to enable or disable the submit button
-            $disposition = active_record::where('patient_id', $id)
-                ->where('navigation_id', '32')->get();
-            $user_id = Auth::user()->id;
-            $status = users_patient::where('patient_id',$id)->where('user_id',$user_id)->first();
-            if(count($status) > 0) {
-                $status_id = $status->patient_record_status_id;
-                return view('patient/assign_instructor', compact ('disposition','status_id','vital_signs_header','medications','medication_comment','patient','navs'));
-            }
-            else
-            {
-                $error_message= "Student can only view their created patients. You are not authorized to view this page.";
-                return view('errors/error',compact('error_message'));
-            }
+                //Student cannot view submitted patients
+                $patient_status = patient::where('patient_id', $id)->pluck('completed_flag');
+                if ($patient_status[0]) {
+                    $error_message = "You cannot edit submitted patient. ";
+                    return view('errors/error', compact('error_message'));
+                }
+                else {
+                $patient = patient::where('patient_id', $id)->first();
+                //Fetching all navs associated with this patient's module
+                $navIds = module_navigation::where('module_id', $patient->module_id)->orderBy('navigation_id')->pluck('navigation_id');
+                $navs = array();
+                //Now get nav names
+                foreach ($navIds as $nav_id) {
+                    $nav = navigation::where('navigation_id', $nav_id)->get();
+                    array_push($navs, $nav);
+                }
+                //Extracting vital signs for header
+                $vital_signs_header = $this->get_vital_signs_header($id);
+                //Extracting disposition to enable or disable the submit button
+                $disposition = active_record::where('patient_id', $id)
+                    ->where('navigation_id', '32')->get();
+                $user_id = Auth::user()->id;
+                $status = users_patient::where('patient_id',$id)->where('user_id',$user_id)->first();
+                if($status) {
+                    $status_id = $status->patient_record_status_id;
+                    return view('patient/assign_instructor', compact ('disposition','status_id','vital_signs_header','medications','medication_comment','patient','navs'));
+                }
+                else
+                {
+                    $error_message= "Student can only view their created patients. You are not authorized to view this page.";
+                    return view('errors/error',compact('error_message'));
+                }
             }
         }
         else
