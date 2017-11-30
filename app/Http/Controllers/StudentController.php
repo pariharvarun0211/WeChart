@@ -149,12 +149,14 @@ class StudentController extends Controller
         if($role == 'Student') {
 
                //Validating input data
+                $message = ['date_format' => 'Visit date format must be YYYY-MM-DD.'];
+
                 $this->validate($request, [
                     'gender' => 'required',
                     'age' => 'required|numeric',
                     'room_number' => 'required',
                     'visit_date' => 'required|date|date_format:Y-m-d|before:today',
-                ]);
+                ],$message);
 
                 $patient = new patient($request->all());
 

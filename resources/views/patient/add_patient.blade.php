@@ -20,17 +20,6 @@
                         <div class="panel-heading" style="backgroundd-color: lightblue">
                                 <h4>Add New Patient</h4>
                         </div>
-
-                        @if (count($errors) > 0)
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
-
                         <div class="panel-body">
                             <form class="form-horizontal" method="POST" action="{{ url('add_patient') }}">
                                 {{ csrf_field() }}

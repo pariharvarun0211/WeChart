@@ -83,8 +83,13 @@ Route::get('/family_history', 'DocumentationController@post_new_family_member')-
 Route::post('personal_history}', 'DocumentationController@post_personal_history')->name('personal_history');
 Route::post('surgical_history}', 'DocumentationController@post_surgical_history')->name('surgical_history');
 
+Route::any('personal_history_delete/{id}', 'DocumentationController@delete_personal_history')->name('delete_personal_history');
+Route::any('surgical_history_delete/{id}', 'DocumentationController@delete_surgical_history')->name('delete_surgical_history');
+
+
 Route::get('/Medications/{id}', 'NavigationController@get_medications')->name('Medications');
 Route::post('post_medications}', 'DocumentationController@post_medications')->name('post_medications');
+Route::any('medication_delete/{id}', 'DocumentationController@delete_medication')->name('delete_medication');
 
 Route::get('/Vital_Signs/{id}', 'NavigationController@get_vital_signs')->name('Vital Signs');
 Route::post('post_vital_signs', 'DocumentationController@post_vital_signs');
@@ -136,6 +141,8 @@ Route::get('/Orders/{id}', 'NavigationController@get_orders')->name('Orders');
 Route::post('post_orders}', 'DocumentationController@post_orders')->name('post_orders');
 Route::post('orders_delete/{id}', 'DocumentationController@delete_image_order')->name('delete_image_order');
 Route::any('orders_lab_delete/{id}', 'DocumentationController@delete_lab_order')->name('delete_lab_order');
+Route::any('orders_image_delete/{id}', 'DocumentationController@delete_image_order')->name('delete_image_order');
+Route::any('orders_lab_delete/{id}', 'DocumentationController@delete_lab_order')->name('delete_lab_order');
 
 Route::get('/Results/{id}', 'NavigationController@get_results')->name('Results');
 Route::post('post_results}', 'DocumentationController@post_results')->name('post_results');
@@ -150,7 +157,8 @@ Route::get('/{id}/AssignInstructor', 'NavigationController@get_assignInstructor'
 Route::post('InstructorAssigned', 'DocumentationController@post_assignInstructor')->name('InstructorAssigned');
 
 //Landing page for Instructor
-Route::get('/InstructorHome', 'InstructorController@index');
+Route::get('/InstructorHome', 'InstructorController@index')->name('instructor.home');
+Route::get('/{id}/InstructorHome', 'InstructorController@review_patient')->name('patient.reviewed');
 
 //Routes for autocomplete
 Route::get('/diagnosis/find', 'DocumentationController@find_diagnosis')->name('diagnosis_find');
@@ -158,6 +166,10 @@ Route::get('/medications/find', 'DocumentationController@find_medications')->nam
 Route::get('/orders_labs/find', 'DocumentationController@find_lab_orders')->name('orders_labs_find');
 Route::get('/orders_imaging/find', 'DocumentationController@find_imaging_orders')->name('orders_imaging_find');
 Route::get('/instructors/find', 'DocumentationController@find_instructor')->name('instructors_find');
+
+Route::get('/account_deleted', function () {
+    return view('errors/account_deleted');
+});
 
 
 

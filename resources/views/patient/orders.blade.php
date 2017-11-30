@@ -30,10 +30,10 @@
                                 <tr>
                                     <td><p>{{$lab->value}}</p></td>
                                     <td style="text-align: right">
-                                        {{ Form::open(array('method' => 'post', 'route' => array('delete_lab_order', $lab->active_record_id))) }}
-                                        <input id="patient_id" name="patient_id" type="hidden" value="{{ $patient->patient_id }}">
-                                        <button name="delbutton" class="btn btn-danger btn-delete btn-sm">Delete</button>
-                                        {{ Form::close() }}
+                                        <a href="{{ route( 'delete_lab_order', ['active_record_id' => $lab->active_record_id]) }}"
+                                           class="btn btn-danger confirmation" id="delete">
+                                            <i class="fa fa-trash-o" aria-hidden="true"></i> Delete
+                                        </a>
                                       </td>
                                 </tr>
                             @endforeach
@@ -53,10 +53,10 @@
                                 <tr>
                                     <td><p>{{$image->value}}</p></td>
                                     <td style="text-align: right">
-                                        {{ Form::open(array('method' => 'post', 'route' => array('delete_image_order', $image->active_record_id))) }}
-                                            <input id="patient_id" name="patient_id" type="hidden" value="{{ $patient->patient_id }}">
-                                            <button name="delbutton" class="btn btn-danger btn-delete btn-sm">Delete</button>
-                                        {{ Form::close() }}
+                                        <a href="{{ route( 'delete_image_order', ['active_record_id' => $image->active_record_id]) }}"
+                                           class="btn btn-danger confirmation" id="delete">
+                                            <i class="fa fa-trash-o" aria-hidden="true"></i> Delete
+                                        </a>
                                      </td>
                                 </tr>
                             @endforeach

@@ -51,7 +51,7 @@
             </div>
 
             {{--Documentation Panel--}}
-            <div class="col-md-7" style="border-right: solid;border-left:solid;padding-left: 0;margin-left: 0;padding-right: 0;margin-right: 0">
+            <div class="col-md-7" style="padding-left: 0;margin-left: 0;padding-right: 0;margin-right: 0">
                 @yield('documentation_panel')
             </div>
 

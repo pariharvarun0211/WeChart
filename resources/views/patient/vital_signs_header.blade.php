@@ -39,12 +39,9 @@
                         </td>
                         <td style="padding-top: 0;padding-bottom: 0%">
                             <p id="RR_label" style="align-self: center"><strong>Respiratory Rate (RR):</strong>
-                            @foreach($vital_signs_header->respiratory_rate as $key=>$respiratory_rate)
-                                @if($respiratory_rate != null)
-                                    {{$vital_signs_header->respiratory_rate[$key]}}
-                                    @break
+                                @if(count($vital_signs_header->respiratory_rate) > 0)
+                                    {{$vital_signs_header->respiratory_rate[0]}}
                                 @endif
-                            @endforeach
                             </p>
                         </td>
 
@@ -53,62 +50,44 @@
                     <tr style="padding-top: 0;padding-bottom: 0%; border-style: hidden">
                         <td style="padding-top: 0%;padding-bottom: 0%">
                             <p id="temperature_label"><strong>Temperature: </strong>
-                            @foreach($vital_signs_header->temperature as $key=>$temperature)
-                                @if($temperature != ' ')
-                                    {{$vital_signs_header->temperature[$key]}}
-                                    @break
+                                @if(count($vital_signs_header->temperature) > 0)
+                                    {{$vital_signs_header->temperature[0]}}
                                 @endif
-                            @endforeach
                             </p>
                         </td>
                         <td style="padding-top: 0%;padding-bottom: 0%">
                             <p id="oxygen_saturation_label"><strong>Oxygen Saturation: </strong>
-                            @foreach($vital_signs_header->oxygen_saturation as $key=>$oxygen_saturation)
-                                @if($oxygen_saturation != null)
-                                    {{$vital_signs_header->oxygen_saturation[$key]}}
-                                    @break
+                                @if(count($vital_signs_header->oxygen_saturation) > 0)
+                                    {{$vital_signs_header->oxygen_saturation[0]}}
                                 @endif
-                            @endforeach
                             </p>
                         </td>
                         <td style="padding-top: 0;padding-bottom: 0%">
                             <p id="bp_systolic_label" style="align-self: center"><strong>Blood Pressure (BP) Systolic: </strong>
-                            @foreach($vital_signs_header->BP_systolic as $key=>$BP_systolic)
-                                @if($BP_systolic != null)
-                                    {{$vital_signs_header->BP_systolic[$key]}}
-                                    @break
+                                @if(count($vital_signs_header->BP_systolic) > 0)
+                                    {{$vital_signs_header->BP_systolic[0]}}
                                 @endif
-                            @endforeach
                             </p>
                         </td>
                         <td style="padding-top: 0%;padding-bottom: 0%">
                             <p id="bp_diastolic_label"><strong>Blood Pressure (BP) Diastolic: </strong>
-                            @foreach($vital_signs_header->BP_diastolic as $key=>$BP_diastolic)
-                                @if($BP_diastolic != null)
-                                    {{$vital_signs_header->BP_diastolic[$key]}}
-                                    @break
+                                @if(count($vital_signs_header->BP_diastolic) > 0)
+                                    {{$vital_signs_header->BP_diastolic[0]}}
                                 @endif
-                            @endforeach
                             </p>
                         </td>
                         <td style="padding-top: 0%;padding-bottom: 0%">
                             <p id="hr_label"><strong>Heart Rate (HR): </strong>
-                            @foreach($vital_signs_header->heart_rate as $key=>$heart_rate)
-                                @if($heart_rate != null)
-                                    {{$vital_signs_header->heart_rate[$key]}}
-                                    @break
+                                @if(count($vital_signs_header->heart_rate) > 0)
+                                    {{$vital_signs_header->heart_rate[0]}}
                                 @endif
-                            @endforeach
                             </p>
                         </td>
                         <td style="padding-top: 0%;padding-bottom: 0%">
-                            <p id="pain_label"><strong>Pain:  </strong>
-                            @foreach($vital_signs_header->pain as $key=>$pain)
-                                @if($pain != null)
-                                    {{$vital_signs_header->pain[$key]}}/10
-                                    @break
+                            <p id="pain_label"><strong>Pain (On scale of 1-10):  </strong>
+                                @if(count($vital_signs_header->pain) > 0)
+                                    {{$vital_signs_header->pain[0]}}
                                 @endif
-                            @endforeach
                             </p>
                         </td>
                     </tr>

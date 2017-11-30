@@ -2074,25 +2074,7 @@ else {
         }
 
     //All delete methods
-    public function delete_image_order($id)
-    {
-        $image = active_record::find($id);
-        $patient_id = $image->patient_id;
-        $image->delete();
-        //Now redirecting back to the orders page
-        return redirect()->route('Orders',$patient_id);
-    }
-    public function delete_lab_order($id)
-    {
-        Log::info('Aditya1'.$id);
-        $lab = active_record::find($id);
-        Log::info('Aditya2'.$lab);
-        $patient_id = $lab->patient_id;
-        $lab->delete();
-        Log::info('Aditya3');
-        //Now redirecting back to the orders page
-        return redirect()->route('Orders',$patient_id);
-    }
+
     public function delete_vital_signs($ts, Request $request)
     {
         $role='';
@@ -2121,5 +2103,43 @@ else {
     else {
         return view('auth/not_authorized');
     }
+    }
+    public function delete_personal_history($id)
+    {
+        $record = active_record::find($id);
+        $patient_id = $record->patient_id;
+        $record->delete();
+        //Now redirecting back to the orders page
+        return redirect()->route('Personal History (PMHx)2',$patient_id);
+    }
+    public function delete_surgical_history($id)
+    {
+        $record = active_record::find($id);
+        $patient_id = $record->patient_id;
+        $record->delete();
+        //Now redirecting back to the orders page
+        return redirect()->route('Surgical History2',$patient_id);
+    }
+    public function delete_medication($id)
+    {
+        $med = active_record::find($id);
+        $patient_id = $med->patient_id;
+        $med->delete();
+        return redirect()->route('Medications',$patient_id);
+    }
+    public function delete_image_order($id)
+    {
+        $image = active_record::find($id);
+        $patient_id = $image->patient_id;
+        $image->delete();
+        //Now redirecting back to the orders page
+        return redirect()->route('Orders',$patient_id);
+    }
+    public function delete_lab_order($id)
+    {
+        $lab = active_record::find($id);
+        $patient_id = $lab->patient_id;
+        $lab->delete();
+        return redirect()->route('Orders',$patient_id);
     }
 }
