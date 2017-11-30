@@ -80,6 +80,7 @@
 
             </div>
         </div>
+       <hr>
     @endif
     @if(in_array("21", $navIds))
         {{--HENT--}}
@@ -158,7 +159,8 @@
                 </div>
 
             </div>
-        </div>       
+        </div>
+       <hr>
     @endif
     @if(in_array("22", $navIds))
         {{--Eyes--}}
@@ -238,6 +240,7 @@
 
             </div>
         </div>
+       <hr>
     @endif
     @if(in_array("23", $navIds))
         {{--Respiratory--}}
@@ -317,6 +320,7 @@
 
             </div>
         </div>
+       <hr>
     @endif
     @if(in_array("24", $navIds))
         {{--Cardiovascular--}}
@@ -396,6 +400,7 @@
 
             </div>
         </div>
+       <hr>
     @endif
     @if(in_array("25", $navIds))
         {{--Musculoskeletal--}}
@@ -475,6 +480,7 @@
 
             </div>
         </div>
+       <hr>
     @endif
     @if(in_array("26", $navIds))
         {{--Integumentary--}}
@@ -554,6 +560,7 @@
 
             </div>
         </div>
+       <hr>
     @endif
     @if(in_array("27", $navIds))
         {{--Neurological--}}
