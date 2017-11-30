@@ -150,7 +150,8 @@ Route::get('/{id}/AssignInstructor', 'NavigationController@get_assignInstructor'
 Route::post('InstructorAssigned', 'DocumentationController@post_assignInstructor')->name('InstructorAssigned');
 
 //Landing page for Instructor
-Route::get('/InstructorHome', 'InstructorController@index');
+Route::get('/InstructorHome', 'InstructorController@index')->name('instructor.home');
+Route::get('/{id}/InstructorHome', 'InstructorController@review_patient')->name('patient.reviewed');
 
 //Routes for autocomplete
 Route::get('/diagnosis/find', 'DocumentationController@find_diagnosis')->name('diagnosis_find');
