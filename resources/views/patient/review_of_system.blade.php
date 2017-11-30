@@ -80,7 +80,7 @@
 
             </div>
         </div>
-        <hr style="border:solid">
+        <hr>
     @endif
     @if(in_array("11", $navIds))
         {{--ros_hent--}}
@@ -160,7 +160,7 @@
 
             </div>
         </div>
-        <hr style="border:solid">
+        <hr>
     @endif
     @if(in_array("12", $navIds))
         {{--ros_eyes--}}
@@ -240,7 +240,7 @@
 
             </div>
         </div>
-        <hr style="border:solid">
+        <hr>
     @endif
     @if(in_array("13", $navIds))
         {{--ros_respiratory--}}
@@ -320,7 +320,7 @@
 
             </div>
         </div>
-        <hr style="border:solid">
+        <hr>
     @endif
     @if(in_array("14", $navIds))
         {{--ros_cardiovascular--}}
@@ -400,7 +400,7 @@
 
             </div>
         </div>
-        <hr style="border:solid">
+        <hr >
     @endif
     @if(in_array("15", $navIds))
         {{--ros_musculosketal--}}
@@ -480,7 +480,7 @@
 
             </div>
         </div>
-        <hr style="border:solid">
+        <hr >
     @endif
     @if(in_array("16", $navIds))
         {{--ros_integumentary--}}
@@ -560,7 +560,7 @@
 
             </div>
         </div>
-        <hr style="border:solid">
+        <hr>
     @endif
     @if(in_array("17", $navIds))
         {{--ros_neurological--}}
@@ -640,7 +640,7 @@
 
             </div>
         </div>
-        <hr style="border:solid">
+        <hr>
     @endif
     @if(in_array("18", $navIds))
         {{--ros_psychological--}}
