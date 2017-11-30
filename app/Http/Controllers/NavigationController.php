@@ -104,7 +104,7 @@ class NavigationController extends Controller
 
                 $user_id = Auth::user()->id;
                 $status = users_patient::where('patient_id', $id)->where('user_id', $user_id)->first();
-                if(count($status) > 0) {
+                if($status) {
                     $status_id = $status->patient_record_status_id;
                     return view('patient/demographics_patient', compact('patient', 'navs', 'vital_signs_header', 'disposition', 'status_id'));
 
