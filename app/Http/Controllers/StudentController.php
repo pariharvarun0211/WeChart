@@ -41,7 +41,7 @@ class StudentController extends Controller
 
             if(count($saved_patients)>0) {
                 foreach ($saved_patients as $patient) {
-                    if (count($patient->module)>0) {
+                    if ($patient->module) {
                         array_push($saved_patients_modules, $patient->module->module_name);
                     } else {
                         $saved_message = 'There are no saved patients associated with this student.';
@@ -54,7 +54,7 @@ class StudentController extends Controller
 
             if(count($submitted_patients)>0) {
                 foreach ($submitted_patients as $patient) {
-                    if (count($patient->module)>0) {
+                    if ($patient->module) {
                         array_push($submitted_patients_modules, $patient->module->module_name);
                     } else {
                         $submitted_message = 'There are no submitted patients associated with this student.';
