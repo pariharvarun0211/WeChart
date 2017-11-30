@@ -160,5 +160,9 @@ Route::get('/orders_labs/find', 'DocumentationController@find_lab_orders')->name
 Route::get('/orders_imaging/find', 'DocumentationController@find_imaging_orders')->name('orders_imaging_find');
 Route::get('/instructors/find', 'DocumentationController@find_instructor')->name('instructors_find');
 
+Route::get('/account_deleted', function () {
+    return view('errors/account_deleted');
+});
+
 
 

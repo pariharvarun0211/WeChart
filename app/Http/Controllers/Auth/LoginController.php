@@ -4,10 +4,11 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Auth;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Input;
+use App\User;
 
 class LoginController extends Controller
 {
@@ -36,16 +37,25 @@ class LoginController extends Controller
         if (Auth::check())
         {
             $email=strtolower(Auth::user()->email);
-            $role = DB::table('users')->where('email',$email)->value('role');
-            
-            if($role == 'Student')
-                return '/StudentHome';
-            if($role == 'Admin')
-                return '/home';
-            if($role == 'Instructor')
-                return '/InstructorHome';
-        }
+            $role =User::where('email',$email)->value('role');
 
+            //Archived user cannot login
+            $is_archived = User::where('email',$email)->value('archived');
+            if(!$is_archived) {
+
+                if ($role == 'Student')
+                    return '/StudentHome';
+                if ($role == 'Admin')
+                    return '/home';
+                if ($role == 'Instructor')
+                    return '/InstructorHome';
+            }
+            else
+            {
+                return '/account_deleted';
+            }
+        }
+        Session::flush();
         return '/login';
     }
 

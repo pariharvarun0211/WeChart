@@ -1814,7 +1814,7 @@ class NavigationController extends Controller
             $role = Auth::user()->role;
         }
 
-        if($role == 'Student') {
+        if($role == 'Student' || $role == 'Instructor') {
             //Student cannot preview deleted patients
             $patient = patient::where('patient_id', $id)->first();
             if($patient->archived)
@@ -2092,9 +2092,17 @@ class NavigationController extends Controller
                 //Extracting vital signs for header
                 $vital_signs_header = $this->get_vital_signs_header($id);
 
-                //Fetching assigned instructors
-                $instructorIds = users_patient::where('patient_id', $id)
-                    ->where('patient_record_status_id', '2')->pluck('user_id');
+                //Fetching assigned instructors for student
+                if($role == 'Student') {
+                    $instructorIds = users_patient::where('patient_id', $id)
+                        ->where('patient_record_status_id', '2')->pluck('user_id');
+                }
+                else{
+                    $instructorIds = users_patient::where('patient_id', $id)
+                        ->where('patient_record_status_id', '2')
+                        ->orWhere('patient_record_status_id', '3')
+                        ->pluck('user_id');
+                }
 
                 $instructor_Details = array();
 
@@ -2104,8 +2112,12 @@ class NavigationController extends Controller
                     array_push($instructor_Details, $instructorDetail);
                 }
 
+                //getting student name
+                $student_id = users_patient::where('patient_id',$id)->pluck('created_by');
+                $student_details = User::where('id', $student_id)->get();
+
                 try {
-                    $pdf = PDF::loadView('patient.preview', compact('instructor_Details', 'patient', 'navs',
+                    $pdf = PDF::loadView('patient.preview', compact('student_details','instructor_Details', 'patient', 'navs',
                         'vital_signs_header', 'HPI', 'diagnosis_list_surgical_history', 'surgical_history_comment',
                         'diagnosis_list_personal_history', 'personal_history_comment', 'family_members_details',
                         'comment_family_history', 'social_history_smoke_tobacco', 'social_history_non_smoke_tobacco',
@@ -2121,6 +2133,7 @@ class NavigationController extends Controller
                         'cardiovascular_symptoms', 'cardiovascular_comment', 'respiratory_symptoms', 'respiratory_comment',
                         'eyes_symptoms', 'eyes_comment', 'hent_symptoms', 'hent_comment', 'constitutional_symptoms',
                         'constitutional_comment', 'comment_order', 'labs', 'images', 'results', 'mdm', 'disposition_value', 'disposition_comment'));
+
                     return $pdf->download('patient_report.pdf');
                 } catch (\Exception $e) {
                     $error_message = "We have encountered an error while generating the pdf file. Please try again!";
@@ -2140,7 +2153,7 @@ class NavigationController extends Controller
                 $role = Auth::user()->role;
             }
 
-            if($role == 'Student') {
+            if($role == 'Student' || $role == 'Instructor') {
                 //Student cannot preview deleted patients
                 $patient = patient::where('patient_id', $id)->first();
                 if($patient->archived)
@@ -2417,9 +2430,17 @@ class NavigationController extends Controller
                     //Extracting vital signs for header
                     $vital_signs_header = $this->get_vital_signs_header($id);
 
-                    //Fetching assigned instructors
-                    $instructorIds = users_patient::where('patient_id', $id)
-                        ->where('patient_record_status_id', '2')->pluck('user_id');
+                    //Fetching assigned instructors for student
+                    if($role == 'Student') {
+                        $instructorIds = users_patient::where('patient_id', $id)
+                            ->where('patient_record_status_id', '2')->pluck('user_id');
+                    }
+                    else{
+                        $instructorIds = users_patient::where('patient_id', $id)
+                            ->where('patient_record_status_id', '2')
+                            ->orWhere('patient_record_status_id', '3')
+                            ->pluck('user_id');
+                    }
 
                     $instructor_Details = array();
 
@@ -2428,7 +2449,12 @@ class NavigationController extends Controller
                         $instructorDetail = User::where('id', $instructorId)->where('role', 'Instructor')->get();
                         array_push($instructor_Details, $instructorDetail);
                     }
-                    return view('patient/preview', compact('instructor_Details', 'patient', 'navs',
+
+                    //getting student name for instructor
+                    $student_id = users_patient::where('patient_id',$id)->pluck('created_by');
+                    $student_details = User::where('id', $student_id)->get();
+
+                    return view('patient/preview', compact('student_details','instructor_Details', 'patient', 'navs',
                         'vital_signs_header', 'HPI', 'diagnosis_list_surgical_history', 'surgical_history_comment',
                         'diagnosis_list_personal_history', 'personal_history_comment', 'family_members_details',
                         'comment_family_history', 'social_history_smoke_tobacco', 'social_history_non_smoke_tobacco',
