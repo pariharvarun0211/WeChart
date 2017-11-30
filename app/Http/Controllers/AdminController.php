@@ -173,14 +173,18 @@ class AdminController extends Controller
           $studentEmails = str_replace([']'], '', $studentEmails);
           $studentEmails = explode(",", $studentEmails);
 
-          $registered_student_emails = User::where('archived',0)->where('role','Student')->pluck('email');
+          $registered_student_emails = User::where('archived',false)->where('role','Student')->pluck('email');
           $registered_student_emails = str_replace(['['], '', $registered_student_emails);
           $registered_student_emails = str_replace(['"'], '', $registered_student_emails);
           $registered_student_emails = str_replace(['"'], '', $registered_student_emails);
           $registered_student_emails = str_replace([']'], '', $registered_student_emails);
           $registered_student_emails = explode(",", $registered_student_emails);
 
+          Log::info($studentEmails);
+          Log::info($registered_student_emails);
+
           $studentEmails = array_diff($studentEmails,$registered_student_emails);
+          Log::info($studentEmails);
           $studentDetails = array();
           foreach($studentEmails as $studentEmail)
           {
@@ -195,7 +199,7 @@ class AdminController extends Controller
           $instructorEmails = str_replace([']'], '', $instructorEmails);
           $instructorEmails = explode(",", $instructorEmails);
 
-          $registered_instructor_emails = User::where('archived',0)->where('role','Instructor')->pluck('email');
+          $registered_instructor_emails = User::where('archived', false)->where('role','Instructor')->pluck('email');
           $registered_instructor_emails = str_replace(['['], '', $registered_instructor_emails);
           $registered_instructor_emails = str_replace(['"'], '', $registered_instructor_emails);
           $registered_instructor_emails = str_replace(['"'], '', $registered_instructor_emails);
@@ -230,50 +234,64 @@ class AdminController extends Controller
     }
     public function submitmodule(Request $request)
     {
-        $module = new module;
-        $module->module_name = $request->input('modulename');
-        $module->archived = false;
-        $module->save();
-        $var = $module->module_id;
+        $role='';
+        if(Auth::check()) {
+            $role = Auth::user()->role;
+        }
+        if($role == 'Admin') {
+            $messages = ['required' => 'Module name is mandatory.'];
 
-        $navs = $request->input('navs');
+            //Validating input data
+            $this->validate($request, [
+                'modulename' => 'required',
+            ], $messages);
 
-        //if any child selected, parent shoul get auto selected.
+            $module = new module;
+            $module->module_name = $request->input('modulename');
+            $module->archived = false;
+            $module->save();
+            $var = $module->module_id;
 
-        for ($i = 3; $i < 7; $i++)
-        {
-            if (in_array("$i", $navs)) {
-                array_push($navs,'2');
-                break;
+            $navs = $request->input('navs');
+
+            //if any child selected, parent shoul get auto selected.
+
+            for ($i = 3; $i < 7; $i++) {
+                if (in_array("$i", $navs)) {
+                    array_push($navs, '2');
+                    break;
+                }
             }
-        }
-        for ($i = 10; $i < 19; $i++)
-        {
-            if (in_array("$i", $navs)) {
-                array_push($navs,'9');
-                break;
+            for ($i = 10; $i < 19; $i++) {
+                if (in_array("$i", $navs)) {
+                    array_push($navs, '9');
+                    break;
+                }
             }
-        }
-        for ($i = 20; $i < 29; $i++)
-        {
-            if (in_array("$i", $navs)) {
-                array_push($navs,'19');
-                break;
+            for ($i = 20; $i < 29; $i++) {
+                if (in_array("$i", $navs)) {
+                    array_push($navs, '19');
+                    break;
+                }
             }
+
+            $navs = array_unique($navs);
+
+            foreach ($navs as $navid) {
+                DB::table('modules_navigations')->insert(
+                    ['module_id' => $var, 'navigation_id' => $navid, 'visible' => true]);
+            }
+
+            $navs = navigation::all();
+            $mods = module::where('archived', false)->get();
+            $navs_mods = module_navigation::where('visible', true)->get();
+            return view('admin/configureModules', compact('navs', 'mods', 'navs_mods'));
         }
-
-        $navs = array_unique($navs);
-
-        foreach($navs as $navid)
+        else
         {
-             DB::table('modules_navigations')->insert(
-                ['module_id' => $var, 'navigation_id' => $navid, 'visible' => true]);
+            $error_message= "You are not authorized to view this page.";
+            return view('errors/error',compact('error_message'));
         }
-
-        $navs = navigation::all();
-        $mods = module::where('archived', false)->get();
-        $navs_mods = module_navigation::where('visible', true)->get();
-        return view('admin/configureModules', compact ('navs', 'mods', 'navs_mods'));
     }
 
     public function deletemodule($modid)
@@ -294,6 +312,11 @@ class AdminController extends Controller
     {
         User::where('id',$id)
             ->update(['archived'=> 1]);
+        $email = User::where('id',$id)->pluck('email');
+
+        //also delete this email from EmailIdRole
+        EmailidRole::where('email',$email)->delete();
+
         return redirect('/home')->with('success','Email has been  deleted');
 
     }

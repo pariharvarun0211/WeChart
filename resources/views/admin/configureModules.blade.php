@@ -184,7 +184,12 @@
             </tr>
             <tr>
                <td align="middle">
-                   <input type="text" name="modulename" id="new_module_name">
+                   <input type="text" name="modulename" required id="new_module_name" placeholder="Module name">
+                   @if ($errors->has('modulename'))
+                       <span class="help-block" >
+                                        <strong id="module_alert">{{ $errors->first('modulename') }}</strong>
+                       </span>
+                   @endif
                </td>
                @foreach ($navs as $nav)
                    <td align="middle">
@@ -213,11 +218,17 @@
 <br>
     <script>
         $(document).ready(function(){
+            $("#new_module_name").keyup(function() {
+                if($(this).val() != '') {
+                    $('#add_new_module').prop('disabled', false);
+                }
+            });
 
             $('#childTable').hide();
 
             $("#add-record").click(function(){
                 $('#onetimedisplay').hide();
+                $('#add_new_module').prop('disabled', true);
                 $('#childTable').show();
                 $("#add-record").hide();
             });
@@ -226,11 +237,11 @@
                 $('#childTable').hide();
                 $("#add-record").show();
 
-                for (var i = 1; i < 33; i++) {
+                for (var i = 1; i < 32; i++) {
                     $('#'+i).prop('checked', false);
                 }
                 $('#new_module_name').val('');
-
+                $('#add_new_module').prop('disabled', true);
             });
 
             // Selecting medical history selects all children

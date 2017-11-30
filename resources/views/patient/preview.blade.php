@@ -38,7 +38,9 @@
                     <h3 id="patient_active_record" align="center" style="margin-top: 0;"><b>Patient Active Record</b></h3>
                 </div>
                 <div class="col-md-3">
-                    <label style="float: right">Submitted by- {{ Auth::user()->firstname }} {{ Auth::user()->lastname}}</label>
+                    @if(count($student_details) > 0)
+                        <label style="float: right">Submitted by- {{$student_details[0]->firstname}} {{$student_details[0]->lastname}}</label>
+                    @endif
                     <label style="float: right">Submitted on- {{$patient->submitted_date}} </label>
                 </div>
             </div>
