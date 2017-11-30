@@ -29,12 +29,10 @@
                                                 <thead>
                                                 <tr class="bg-info">
                                                     <th>Patient Name</th>
-                                                    <th>Age</th>
-                                                    <th>Sex</th>
                                                     <th>Visit Date</th>
                                                     <th>Submitted By</th>
                                                     <th>Submitted On</th>
-                                                    <th colspan="2"></th>
+                                                    <th colspan="2">Action</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
@@ -45,23 +43,34 @@
                                                         @if($for_review_patient->patient_record_status_id === 2 && $for_review_patient->patient->module->module_name === $module)
                                                             <tr>
                                                                 <td>
-                                                                    <a href="" id="patientName">
+                                                                    <p id="patientName">
                                                                         <?php echo $for_review_patient->patient->first_name.' '.$for_review_patient->patient->last_name; ?>
-                                                                    </a>
+                                                                    </p>
                                                                 </td>
-                                                                <td><p id="patientAge">{{$for_review_patient->patient->age}}</p></td>
-                                                                <td><p id="patientSex">{{$for_review_patient->patient->gender}}</p></td>
+                                                                    {{--<td><p id="patientAge">{{$for_review_patient->patient->age}}</p></td>--}}
+                                                                    {{--<td><p id="patientSex">{{$for_review_patient->patient->gender}}</p></td>--}}
                                                                 <td><p id="visitDate">{{$for_review_patient->patient->visit_date}}</p></td>
                                                                 <td><p id="submittedBy">{{$for_review_patient->patient->user->firstname." ".$for_review_patient->patient->user->lastname}}</p></td>
-                                                                {{$for_review_patient->updated_at}}
+
                                                                 @if($for_review_patient->updated_at != null)
                                                                     <td><p id="submittedOn">{{($for_review_patient->updated_at)->format('Y-m-d')}}</p></td>
                                                                 @else
                                                                     <td><p id="submittedOn"></p></td>
                                                                 @endif
+                                                                {{--<td style="text-align: left">--}}
+                                                                    {{--<a href="" class="btn btn-primary" id="edit">View & Edit</a>--}}
+                                                                    {{--<a class="btn btn-danger" id="delete"> Delete</a>--}}
+                                                                {{--</td>--}}
                                                                 <td style="text-align: left">
-                                                                    <a href="" class="btn btn-primary" id="edit">View & Edit</a>
-                                                                    <a class="btn btn-danger" id="delete"> Delete</a>
+                                                                    <a href="{{ route( 'patient_preview', ['patient_id' => $for_review_patient->patient_id ] ) }}" class="btn btn-primary" id="preview">
+                                                                        <i class="fa fa-file-text" aria-hidden="true"></i> Preview
+                                                                    </a>
+                                                                    <a href="{{ route( 'pdf_generate', ['patient_id' => $for_review_patient->patient_id ] ) }}" class="btn btn-success" id="generate_report">
+                                                                        <i class="fa fa-file-pdf-o" aria-hidden="true"></i> Generate PDF
+                                                                    </a>
+                                                                    <a href="{{ route( 'patient.reviewed', ['patient_id' => $for_review_patient->patient_id]) }}" class="btn btn-primary confirmation" id="mark_reviewed">
+                                                                        <i class="fa fa-check-square-o" aria-hidden="true"></i> Mark Reviewed
+                                                                    </a>
                                                                 </td>
 
                                                             </tr>
@@ -104,11 +113,9 @@
                                                     <thead>
                                                     <tr class="bg-info">
                                                         <th>Patient Name</th>
-                                                        <th>Age</th>
-                                                        <th>Sex</th>
-                                                        <th>Height</th>
-                                                        <th>Weight</th>
                                                         <th>Visit Date</th>
+                                                        <th>Submitted By</th>
+                                                        <th>Reviewed On</th>
                                                         <th colspan="2">Action</th>
                                                     </tr>
                                                     </thead>
@@ -119,18 +126,25 @@
                                                             @if($reviewed_patient->patient_record_status_id === 3 && $reviewed_patient->patient->module->module_name === $module)
                                                                 <tr>
                                                                     <td>
-                                                                        <a href="" id="patientName">
+                                                                        <p id="patientName">
                                                                             <?php echo $reviewed_patient->patient->first_name.' '.$reviewed_patient->patient->last_name; ?>
-                                                                        </a>
+                                                                        </p>
                                                                     </td>
-                                                                    <td><p id="patientAge">{{$reviewed_patient->patient->age}}</p></td>
-                                                                    <td><p id="patientSex">{{$reviewed_patient->patient->gender}}</p></td>
-                                                                    <td><p id="patientHeight">{{$reviewed_patient->patient->height}}</p></td>
-                                                                    <td><p id="patientWeight">{{$reviewed_patient->patient->weight}}</p></td>
+
                                                                     <td><p id="visitDate">{{$reviewed_patient->patient->visit_date}}</p></td>
+                                                                    <td><p id="submittedBy">{{$reviewed_patient->patient->user->firstname." ".$reviewed_patient->patient->user->lastname}}</p></td>
+                                                                    @if($reviewed_patient->updated_at != null)
+                                                                        <td><p id="reviewedOn">{{($reviewed_patient->updated_at)->format('Y-m-d')}}</p></td>
+                                                                    @else
+                                                                        <td><p id="reviewedOn"></p></td>
+                                                                    @endif
                                                                     <td style="text-align: left">
-                                                                        <a href="" class="btn btn-primary" id="edit">View & Edit</a>
-                                                                        <a class="btn btn-danger" id="delete"> Delete</a>
+                                                                        <a href="{{ route( 'patient_preview', ['patient_id' => $reviewed_patient->patient_id ] ) }}" class="btn btn-primary" id="preview">
+                                                                            <i class="fa fa-file-text" aria-hidden="true"></i> Preview
+                                                                        </a>
+                                                                        <a href="{{ route( 'pdf_generate', ['patient_id' => $reviewed_patient->patient_id ] ) }}" class="btn btn-success" id="generate_report">
+                                                                            <i class="fa fa-file-pdf-o" aria-hidden="true"></i> Generate PDF
+                                                                        </a>
                                                                     </td>
                                                                 </tr>
                                                             @endif
@@ -151,4 +165,9 @@
                 <br>
             </div>
         </div>
+        <script type="text/javascript">
+            $('.confirmation').on('click', function () {
+                return confirm('Patient will be marked as Reviewed. Asre you Sure?');
+            });
+        </script>
 @endsection
