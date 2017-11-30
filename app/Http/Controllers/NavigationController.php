@@ -2099,8 +2099,10 @@ class NavigationController extends Controller
                 }
                 else{
                     $instructorIds = users_patient::where('patient_id', $id)
-                        ->where('patient_record_status_id', '2')
-                        ->orWhere('patient_record_status_id', '3')
+                        ->where(function ($q)
+                        {
+                            $q->where('patient_record_status_id', '2')->orWhere('patient_record_status_id', '3');
+                        })
                         ->pluck('user_id');
                 }
 
@@ -2437,9 +2439,11 @@ class NavigationController extends Controller
                     }
                     else{
                         $instructorIds = users_patient::where('patient_id', $id)
-                            ->where('patient_record_status_id', '2')
-                            ->orWhere('patient_record_status_id', '3')
-                            ->pluck('user_id');
+                        ->where(function ($q)
+                        {
+                            $q->where('patient_record_status_id', '2')->orWhere('patient_record_status_id', '3');
+                        })
+                        ->pluck('user_id');
                     }
 
                     $instructor_Details = array();
