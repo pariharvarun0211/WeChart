@@ -83,8 +83,13 @@ Route::get('/family_history', 'DocumentationController@post_new_family_member')-
 Route::post('personal_history}', 'DocumentationController@post_personal_history')->name('personal_history');
 Route::post('surgical_history}', 'DocumentationController@post_surgical_history')->name('surgical_history');
 
+Route::any('personal_history_delete/{id}', 'DocumentationController@delete_personal_history')->name('delete_personal_history');
+Route::any('surgical_history_delete/{id}', 'DocumentationController@delete_surgical_history')->name('delete_surgical_history');
+
+
 Route::get('/Medications/{id}', 'NavigationController@get_medications')->name('Medications');
 Route::post('post_medications}', 'DocumentationController@post_medications')->name('post_medications');
+Route::any('medication_delete/{id}', 'DocumentationController@delete_medication')->name('delete_medication');
 
 Route::get('/Vital_Signs/{id}', 'NavigationController@get_vital_signs')->name('Vital Signs');
 Route::post('post_vital_signs', 'DocumentationController@post_vital_signs');
@@ -135,6 +140,8 @@ Route::post('Constitutional', 'DocumentationController@post_Constitutional')->na
 Route::get('/Orders/{id}', 'NavigationController@get_orders')->name('Orders');
 Route::post('post_orders}', 'DocumentationController@post_orders')->name('post_orders');
 Route::post('orders_delete/{id}', 'DocumentationController@delete_image_order')->name('delete_image_order');
+Route::any('orders_lab_delete/{id}', 'DocumentationController@delete_lab_order')->name('delete_lab_order');
+Route::any('orders_image_delete/{id}', 'DocumentationController@delete_image_order')->name('delete_image_order');
 Route::any('orders_lab_delete/{id}', 'DocumentationController@delete_lab_order')->name('delete_lab_order');
 
 Route::get('/Results/{id}', 'NavigationController@get_results')->name('Results');

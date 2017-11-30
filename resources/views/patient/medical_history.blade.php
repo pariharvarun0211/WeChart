@@ -31,8 +31,10 @@
                                             <tr>
                                                 <td><p><?php echo ($diagnosis->value); ?></p></td>
                                                 <td style="text-align: right">
-                                                    <button id="_delete" class="btn btn-danger btn-sm">
-                                                        Delete </button>
+                                                    <a href="{{ route( 'delete_personal_history', ['active_record_id' => $diagnosis->active_record_id]) }}"
+                                                       class="btn btn-danger confirmation" id="delete">
+                                                        <i class="fa fa-trash-o" aria-hidden="true"></i> Delete
+                                                    </a>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -241,8 +243,10 @@
                                             <tr>
                                                 <td><p><?php echo ($diagnosis->value); ?></p></td>
                                                 <td style="text-align: right">
-                                                    <button id="_delete" class="btn btn-danger btn-sm">
-                                                        Delete </button>
+                                                    <a href="{{ route( 'delete_surgical_history', ['active_record_id' => $diagnosis->active_record_id]) }}"
+                                                       class="btn btn-danger confirmation" id="delete">
+                                                        <i class="fa fa-trash-o" aria-hidden="true"></i> Delete
+                                                    </a>
                                                 </td>
                                             </tr>
                                         @endforeach
