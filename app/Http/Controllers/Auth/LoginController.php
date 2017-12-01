@@ -42,7 +42,7 @@ class LoginController extends Controller
         if($user)
         {            
             //Archived user cannot login           
-            if(!$user->is_archived) 
+            if(!$user->archived) 
             {
 
                 if ($role == 'Student')
