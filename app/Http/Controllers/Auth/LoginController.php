@@ -55,7 +55,10 @@ class LoginController extends Controller
                 return '/account_deleted';
             }
         }
-         return '/login';
+         else
+            {
+                return '/login';
+            }
     }
 
     /**
