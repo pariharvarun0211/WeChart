@@ -20,7 +20,7 @@ class diagnosis_lookup_valueTableSeeder extends Seeder
 
 		
         //Load tab-delimited file
-        if (($handle = fopen ( public_path('med_dx_test.txt'), 'r' )) !== FALSE) {
+        if (($handle = fopen ( public_path('Medical_Dx.txt'), 'r' )) !== FALSE) {
             while ($data = fgetcsv ($handle, 1000, "\t"))  {
 
                 $csv_data = new Csvdata ();
