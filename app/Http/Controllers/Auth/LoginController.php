@@ -72,8 +72,7 @@ class LoginController extends Controller
         return strtolower(Input::get('email'));
     }
     protected function get_login_page()
-    {
-        Session::flush();
+    {       
         Auth::logout();
         return view('auth/login');
     }
