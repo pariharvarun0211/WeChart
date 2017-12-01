@@ -23,7 +23,6 @@ Route::get('/User/{id}/EditProfile', 'UsersController@getEditProfile')->name('Ed
 Route::post('EditProfile', 'UsersController@postEditProfile');
 
 //Admin Routes
-
 //Landing page for Admin
 Route::get('/home', 'AdminController@index')->name('home');
 
@@ -40,7 +39,7 @@ Route::get('AddMoreInstructorEmails', 'AdminController@addInstructorEmails');
 Route::get('RemoveInstructorEmails', 'AdminController@removeInstructorEmails');
 
 //Admin can manage emails
-Route::get('/RemoveEmails', 'AdminController@get_remove_emails');
+Route::get('/RemoveEmails', 'AdminController@get_remove_emails')->name('RemoveEmails');
 
 //Admin can delete a email from remove email page.
 Route::any('deleteuser/{id}', 'AdminController@delete_email')->name('deleteuser');
