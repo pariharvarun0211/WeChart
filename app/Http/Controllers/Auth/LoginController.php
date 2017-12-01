@@ -34,14 +34,15 @@ class LoginController extends Controller
     //Overwriting post login method
     protected function redirectTo()
     {
-        if (Auth::check())
-        {
-            $email=strtolower(Auth::user()->email);
-            $role =User::where('email',$email)->value('role');
-
-            //Archived user cannot login
-            $is_archived = User::where('email',$email)->value('archived');
-            if(!$is_archived) 
+//         if (Auth::check())
+//         {
+           
+        $email=strtolower(Input::get('email'));
+        $user =User::where('email',$email)->get();
+        if($user)
+        {            
+            //Archived user cannot login           
+            if(!$user->is_archived) 
             {
 
                 if ($role == 'Student')
@@ -60,6 +61,12 @@ class LoginController extends Controller
         {
             return '/login';
         }
+        
+//         }
+//         else
+//         {
+//             return '/login';
+//         }
     }
 
     /**
