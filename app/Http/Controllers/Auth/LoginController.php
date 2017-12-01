@@ -38,7 +38,7 @@ class LoginController extends Controller
 //         {
            
         $email=strtolower(Input::get('email'));
-        $user =User::where('email',$email)->get();
+        $user =User::where('email',$email)->first();
         if($user)
         {            
             //Archived user cannot login           
