@@ -81,6 +81,7 @@ Route::post('personal_history}', 'DocumentationController@post_personal_history'
 Route::post('surgical_history}', 'DocumentationController@post_surgical_history')->name('surgical_history');
 
 Route::any('personal_history_delete/{id}', 'DocumentationController@delete_personal_history')->name('delete_personal_history');
+Route::any('family_history_delete/{id}', 'DocumentationController@delete_family_history')->name('delete_family_history');
 Route::any('surgical_history_delete/{id}', 'DocumentationController@delete_surgical_history')->name('delete_surgical_history');
 
 
