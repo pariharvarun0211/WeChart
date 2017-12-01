@@ -112,33 +112,31 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach ($family_members_details as $family_member_details)
-                                <tr>
-                                    <td><p><?php echo ($family_member_details->relation); ?></p></td>
-                                    <td>
-                                        @if(count($family_member_details->status)>0)
-                                            <p><?php echo ($family_member_details->status[0]); ?></p>
-                                        @endif
-                                    </td>
-                                    <td colspan="10">
-                                        @foreach ($family_member_details->diagnosis as $family_member_diagnosis)
-                                            <table>
-                                            <tbody>
-                                                <tr>
-                                                    <td>
-                                                        <p><?php echo ($family_member_diagnosis); ?></p>
-                                                    </td>
-                                                    <td style="text-align:right">
-                                                        <a id="_delete" class="btn btn-danger btn-sm" style="float:right">
-                                                        Delete </a>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                            </table>
-                                        @endforeach
-                                    </td>
-                                </tr>
-                            @endforeach
+                                @foreach ($family_members_details as $family_member_details)
+                                    <tr>
+                                        <td><p><?php echo ($family_member_details->relation); ?></p></td>
+                                        <td>
+                                            @if(count($family_member_details->status)>0)
+                                                <p><?php echo ($family_member_details->status[0]); ?></p>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @foreach ($family_member_details->diagnosis as $family_member_diagnosis)
+
+                                                            <p><?php echo ($family_member_diagnosis); ?></p>
+
+                                            @endforeach
+                                        </td>
+                                        <td style="text-align:right">
+                                            <!-- <a id="_delete" class="btn btn-danger btn-sm" style="float:right">
+                                                Delete </a> -->
+                                            <a href="{{ route( 'delete_family_history', ['active_record_id' => $family_member_details->id]) }}"
+                                               class="btn btn-danger confirmation" id="delete">
+                                                <i class="fa fa-trash-o" aria-hidden="true"></i> Delete
+                                            </a>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
