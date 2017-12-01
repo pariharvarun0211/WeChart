@@ -173,7 +173,7 @@ class AdminController extends Controller
           $studentEmails = str_replace([']'], '', $studentEmails);
           $studentEmails = explode(",", $studentEmails);
 
-          $registered_student_emails = User::where('archived',false)->where('role','Student')->pluck('email');
+          $registered_student_emails = User::where('role','Student')->pluck('email');
           $registered_student_emails = str_replace(['['], '', $registered_student_emails);
           $registered_student_emails = str_replace(['"'], '', $registered_student_emails);
           $registered_student_emails = str_replace(['"'], '', $registered_student_emails);
@@ -315,7 +315,7 @@ class AdminController extends Controller
         $email = User::where('id',$id)->pluck('email');
 
         //also delete this email from EmailIdRole
-        EmailidRole::where('email',$email)->delete();
+        //EmailidRole::where('email',$email)->delete();
 
         return redirect('/home')->with('success','Email has been  deleted');
 
