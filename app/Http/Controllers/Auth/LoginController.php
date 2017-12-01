@@ -55,8 +55,6 @@ class LoginController extends Controller
                 return '/account_deleted';
             }
         }
-        Session::flush();
-        return '/login';
     }
 
     /**
@@ -74,6 +72,7 @@ class LoginController extends Controller
     }
     protected function get_login_page()
     {
+        Session::flush();
         Auth::logout();
         return view('auth/login');
     }
