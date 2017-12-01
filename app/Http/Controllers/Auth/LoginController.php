@@ -55,11 +55,10 @@ class LoginController extends Controller
                 return '/account_deleted';
             }
         }
-         else
-            {
-                Session::flush();
-                return '/login';
-            }
+        else
+        {
+            return '/login';
+        }
     }
 
     /**
