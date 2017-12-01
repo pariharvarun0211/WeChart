@@ -41,7 +41,8 @@ class LoginController extends Controller
 
             //Archived user cannot login
             $is_archived = User::where('email',$email)->value('archived');
-            if(!$is_archived) {
+            if(!$is_archived) 
+            {
 
                 if ($role == 'Student')
                     return '/StudentHome';
@@ -76,7 +77,6 @@ class LoginController extends Controller
     }
     protected function get_login_page()
     {  
-        Session::flush();
         Auth::logout();
         return view('auth/login');
     }
