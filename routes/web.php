@@ -10,9 +10,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('auth/login');
-});
+Route::get('/', 'Auth\LoginController@get_login_page');
 
 //Authentication routes
 Auth::routes();
