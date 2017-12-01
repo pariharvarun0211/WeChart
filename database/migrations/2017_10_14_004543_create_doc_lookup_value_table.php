@@ -179,7 +179,7 @@ class CreateDocLookupValueTable extends Migration
         DB::table('doc_lookup_value')->insert(
             array(
                 'doc_control_id' => 25,		//ROS - Constitution
-                'lookup_value_id' => 14,		//Appetite
+                'lookup_value_id' => 14,		//Activity Changes
                 'sort_order_number' => 6,
                 'created_by' => 1
             )
@@ -875,6 +875,15 @@ class CreateDocLookupValueTable extends Migration
                 'doc_control_id' => 37,			//ROS - Integumentary
                 'lookup_value_id' => 94,		//Color Changes
                 'sort_order_number' => 1,
+                'created_by' => 1
+            )
+        );
+
+        DB::table('doc_lookup_value')->insert(
+            array(
+                'doc_control_id' => 25,		//ROS - Constitution
+                'lookup_value_id' => 15,		//Appetite
+                'sort_order_number' => 6,
                 'created_by' => 1
             )
         );

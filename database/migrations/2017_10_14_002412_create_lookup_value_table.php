@@ -152,7 +152,7 @@ class CreateLookupValueTable extends Migration
         );
         DB::table('lookup_value')->insert(
             array(
-                'lookup_value' => 'Throat/Mouth Problem',
+                'lookup_value' => 'Throat | Mouth Problem',
                 'created_by' => 1
             )
         );
@@ -202,7 +202,7 @@ class CreateLookupValueTable extends Migration
         );
         DB::table('lookup_value')->insert(
             array(
-                'lookup_value' => 'Chest Pressure/Tightness',
+                'lookup_value' => 'Chest Pressure | Tightness',
                 'created_by' => 1
             )
         );

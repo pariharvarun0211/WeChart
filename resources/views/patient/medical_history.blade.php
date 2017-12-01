@@ -85,8 +85,7 @@
 
             </div>
         </div>
-        <hr style="border:solid">
-    @endif
+       @endif
 
     @if(in_array("4", $navIds))
         {{--Family History--}}
@@ -210,8 +209,7 @@
                 </form>
             </div>
         </div>
-    </div>
-        <hr style="border: solid">
+    </div>      
     @endif
 
     @if(in_array("5", $navIds))
@@ -296,8 +294,7 @@
                 </div>
 
             </div>
-        </div>
-        <hr style="border:solid">
+        </div>        
     @endif
 
     @if(in_array("6", $navIds))
