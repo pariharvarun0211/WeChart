@@ -108,7 +108,7 @@
                                 <th>Relation</th>
                                 <th>Alive?</th>
                                 <th>List of Diagnosis</th>
-                                {{--<th colspan="2"></th>--}}
+                                <th></th>
                             </tr>
                             </thead>
                             <tbody>
