@@ -37,7 +37,8 @@ class LoginController extends Controller
 //         if (Auth::check())
 //         {
            
-        $email=strtolower(Input::get('email'));
+        $email=strtolower(Input::get('email'));\
+            var_dump($email);
         $user =User::where('email',$email)->first();
         if($user)
         {            
