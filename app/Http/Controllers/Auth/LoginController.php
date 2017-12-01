@@ -45,11 +45,11 @@ class LoginController extends Controller
             if(!$user->archived) 
             {
 
-                if ($role == 'Student')
+                if ($user->role == 'Student')
                     return '/StudentHome';
-                if ($role == 'Admin')
+                if ($user->role == 'Admin')
                     return '/home';
-                if ($role == 'Instructor')
+                if ($user->role == 'Instructor')
                     return '/InstructorHome';
             }
             else
