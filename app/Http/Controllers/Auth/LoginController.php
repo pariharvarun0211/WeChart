@@ -34,11 +34,7 @@ class LoginController extends Controller
     //Overwriting post login method
     protected function redirectTo()
     {
-//         if (Auth::check())
-//         {
-           
-        $email=strtolower(Input::get('email'));\
-            var_dump($email);
+        $email=strtolower(Input::get('email'));
         $user =User::where('email',$email)->first();
         if($user)
         {            
@@ -58,16 +54,10 @@ class LoginController extends Controller
                 return '/account_deleted';
             }
         }
-        else
-        {
-            return '/login';
-        }
-        
-//         }
-//         else
-//         {
-//             return '/login';
-//         }
+//        else
+//        {
+//            return '/login';
+//        }
     }
 
     /**
