@@ -56,7 +56,7 @@
                             </p>
                         </td>
                         <td style="padding-top: 0%;padding-bottom: 0%">
-                            <p id="oxygen_saturation_label"><strong>Oxygen Saturation: </strong>
+                            <p id="oxygen_saturation_label"><strong>O<sub>2</sub> Sat: </strong>
                                 @if(count($vital_signs_header->oxygen_saturation) > 0)
                                     {{$vital_signs_header->oxygen_saturation[0]}}
                                 @endif
@@ -84,7 +84,7 @@
                             </p>
                         </td>
                         <td style="padding-top: 0%;padding-bottom: 0%">
-                            <p id="pain_label"><strong>Pain (On scale of 1-10):  </strong>
+                            <p id="pain_label"><strong>Pain (0/10):  </strong>
                                 @if(count($vital_signs_header->pain) > 0)
                                     {{$vital_signs_header->pain[0]}}
                                 @endif
