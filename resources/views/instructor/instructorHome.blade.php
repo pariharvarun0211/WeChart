@@ -57,10 +57,6 @@
                                                                 @else
                                                                     <td><p id="submittedOn"></p></td>
                                                                 @endif
-                                                                {{--<td style="text-align: left">--}}
-                                                                    {{--<a href="" class="btn btn-primary" id="edit">View & Edit</a>--}}
-                                                                    {{--<a class="btn btn-danger" id="delete"> Delete</a>--}}
-                                                                {{--</td>--}}
                                                                 <td style="text-align: left">
                                                                     <a href="{{ route( 'patient_preview', ['patient_id' => $for_review_patient->patient_id ] ) }}" class="btn btn-primary" id="preview">
                                                                         <i class="fa fa-file-text" aria-hidden="true"></i> Preview
@@ -68,7 +64,7 @@
                                                                     <a href="{{ route( 'pdf_generate', ['patient_id' => $for_review_patient->patient_id ] ) }}" class="btn btn-success" id="generate_report">
                                                                         <i class="fa fa-file-pdf-o" aria-hidden="true"></i> Generate PDF
                                                                     </a>
-                                                                    <a href="{{ route( 'patient.reviewed', ['patient_id' => $for_review_patient->patient_id]) }}" class="btn btn-primary confirmation" id="mark_reviewed">
+                                                                    <a href="{{ route( 'patient.reviewed', ['patient_id' => $for_review_patient->patient_id]) }}" class="btn btn-info confirmation" id="mark_reviewed">
                                                                         <i class="fa fa-check-square-o" aria-hidden="true"></i> Mark Reviewed
                                                                     </a>
                                                                 </td>
@@ -142,7 +138,7 @@
                                                                         <a href="{{ route( 'patient_preview', ['patient_id' => $reviewed_patient->patient_id ] ) }}" class="btn btn-primary" id="preview">
                                                                             <i class="fa fa-file-text" aria-hidden="true"></i> Preview
                                                                         </a>
-                                                                        <a href="{{ route( 'pdf_generate', ['patient_id' => $reviewed_patient->patient_id ] ) }}" class="btn btn-success" id="generate_report">
+                                                                        <a href="{{ route( 'pdf_generate', ['patient_id' => $reviewed_patient->patient_id ] ) }}" class="btn btn-info" id="generate_report">
                                                                             <i class="fa fa-file-pdf-o" aria-hidden="true"></i> Generate PDF
                                                                         </a>
                                                                     </td>
@@ -167,7 +163,7 @@
         </div>
         <script type="text/javascript">
             $('.confirmation').on('click', function () {
-                return confirm('Patient will be marked as Reviewed. Asre you Sure?');
+                return confirm('Patient will be marked as Reviewed. Are you Sure?');
             });
         </script>
 @endsection
