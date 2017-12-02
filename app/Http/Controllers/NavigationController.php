@@ -2093,19 +2093,12 @@ class NavigationController extends Controller
                 $vital_signs_header = $this->get_vital_signs_header($id);
 
                 //Fetching assigned instructors for student
-                if($role == 'Student') {
-                    $instructorIds = users_patient::where('patient_id', $id)
-                        ->where('patient_record_status_id', '2')->pluck('user_id');
-                }
-                else{
-                    $instructorIds = users_patient::where('patient_id', $id)
-                        ->where(function ($q)
-                        {
-                            $q->where('patient_record_status_id', '2')->orWhere('patient_record_status_id', '3');
-                        })
-                        ->pluck('user_id');
-                }
-
+                $instructorIds = users_patient::where('patient_id', $id)
+                    ->where(function ($q)
+                    {
+                        $q->where('patient_record_status_id', '2')->orWhere('patient_record_status_id', '3');
+                    })
+                    ->pluck('user_id');
                 $instructor_Details = array();
 
                 //Now get Instructor names
@@ -2114,8 +2107,9 @@ class NavigationController extends Controller
                     array_push($instructor_Details, $instructorDetail);
                 }
 
-                //getting student name
-                $student_id = users_patient::where('patient_id',$id)->pluck('created_by');
+                //getting student name for instructor
+                $student_id = users_patient::where('patient_id',$id)
+                    ->where('patient_record_status_id','2')->pluck('created_by');
                 $student_details = User::where('id', $student_id)->get();
 
                 try {
@@ -2433,19 +2427,12 @@ class NavigationController extends Controller
                     $vital_signs_header = $this->get_vital_signs_header($id);
 
                     //Fetching assigned instructors for student
-                    if($role == 'Student') {
                         $instructorIds = users_patient::where('patient_id', $id)
-                            ->where('patient_record_status_id', '2')->pluck('user_id');
-                    }
-                    else{
-                        $instructorIds = users_patient::where('patient_id', $id)
-                        ->where(function ($q)
-                        {
-                            $q->where('patient_record_status_id', '2')->orWhere('patient_record_status_id', '3');
-                        })
-                        ->pluck('user_id');
-                    }
-
+                            ->where(function ($q)
+                            {
+                                $q->where('patient_record_status_id', '2')->orWhere('patient_record_status_id', '3');
+                            })
+                            ->pluck('user_id');
                     $instructor_Details = array();
 
                     //Now get Instructor names
