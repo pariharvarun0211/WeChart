@@ -31,7 +31,7 @@ class InstructorController extends Controller
 
             if (!empty( $for_review_patients )) {
                 foreach ($for_review_patients as $for_review_patient) {
-                    if (count( $for_review_patient->patient->module ) > 0) {
+                    if ( $for_review_patient->patient->module ) {
                         array_push( $modules_for_review, $for_review_patient->patient->module->module_name );
                     } else {
                         $for_review_message = 'There are no patients for review.';
@@ -42,7 +42,7 @@ class InstructorController extends Controller
             }
             if (!empty( $reviewed_patients )) {
                 foreach ($reviewed_patients as $reviewed_patient) {
-                    if (count( $reviewed_patient->patient->module ) > 0) {
+                    if ( $reviewed_patient->patient->module ) {
                         array_push( $modules_reviewed, $reviewed_patient->patient->module->module_name );
                     } else {
                         $reviewed_message = 'There are no reviewed patients.';
