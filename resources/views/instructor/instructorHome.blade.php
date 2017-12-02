@@ -38,7 +38,6 @@
                                                 <tbody>
                                                 {{--{{$for_review_patients}}--}}
                                                 @foreach($for_review_patients as $for_review_patient)
-                                                    <!-- To check the patient records with "Saved" status -->
                                                     @if($for_review_patient->patient->module)
                                                         @if($for_review_patient->patient_record_status_id === 2 && $for_review_patient->patient->module->module_name === $module)
                                                             <tr>
@@ -47,8 +46,6 @@
                                                                         <?php echo $for_review_patient->patient->first_name.' '.$for_review_patient->patient->last_name; ?>
                                                                     </p>
                                                                 </td>
-                                                                    {{--<td><p id="patientAge">{{$for_review_patient->patient->age}}</p></td>--}}
-                                                                    {{--<td><p id="patientSex">{{$for_review_patient->patient->gender}}</p></td>--}}
                                                                 <td><p id="visitDate">{{$for_review_patient->patient->visit_date}}</p></td>
                                                                 <td><p id="submittedBy">{{$for_review_patient->patient->user->firstname." ".$for_review_patient->patient->user->lastname}}</p></td>
 
@@ -97,7 +94,6 @@
                     <div class="panel-body">
                         <div class="panel-body" style="margin-bottom: 0;padding-bottom: 0">
                             @if(!empty($reviewed_patients))
-                                {{--@if($modules)--}}
                                 @foreach($modules_reviewed as $module)
                                     <div class="panel panel-default">
                                         <div class="panel-heading" style="background-color: grey; padding-bottom: 0">
@@ -138,7 +134,7 @@
                                                                         <a href="{{ route( 'patient_preview', ['patient_id' => $reviewed_patient->patient_id ] ) }}" class="btn btn-primary" id="preview">
                                                                             <i class="fa fa-file-text" aria-hidden="true"></i> Preview
                                                                         </a>
-                                                                        <a href="{{ route( 'pdf_generate', ['patient_id' => $reviewed_patient->patient_id ] ) }}" class="btn btn-info" id="generate_report">
+                                                                        <a href="{{ route( 'pdf_generate', ['patient_id' => $reviewed_patient->patient_id ] ) }}" class="btn btn-success" id="generate_report">
                                                                             <i class="fa fa-file-pdf-o" aria-hidden="true"></i> Generate PDF
                                                                         </a>
                                                                     </td>
