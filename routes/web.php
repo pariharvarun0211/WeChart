@@ -10,9 +10,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('auth/login');
-});
+Route::get('/', 'Auth\LoginController@get_login_page');
 
 //Authentication routes
 Auth::routes();
@@ -23,7 +21,6 @@ Route::get('/User/{id}/EditProfile', 'UsersController@getEditProfile')->name('Ed
 Route::post('EditProfile', 'UsersController@postEditProfile');
 
 //Admin Routes
-
 //Landing page for Admin
 Route::get('/home', 'AdminController@index')->name('home');
 
@@ -40,7 +37,7 @@ Route::get('AddMoreInstructorEmails', 'AdminController@addInstructorEmails');
 Route::get('RemoveInstructorEmails', 'AdminController@removeInstructorEmails');
 
 //Admin can manage emails
-Route::get('/RemoveEmails', 'AdminController@get_remove_emails');
+Route::get('/RemoveEmails', 'AdminController@get_remove_emails')->name('RemoveEmails');
 
 //Admin can delete a email from remove email page.
 Route::any('deleteuser/{id}', 'AdminController@delete_email')->name('deleteuser');
@@ -84,6 +81,7 @@ Route::post('personal_history}', 'DocumentationController@post_personal_history'
 Route::post('surgical_history}', 'DocumentationController@post_surgical_history')->name('surgical_history');
 
 Route::any('personal_history_delete/{id}', 'DocumentationController@delete_personal_history')->name('delete_personal_history');
+Route::any('family_history_delete/{id}', 'DocumentationController@delete_family_history')->name('delete_family_history');
 Route::any('surgical_history_delete/{id}', 'DocumentationController@delete_surgical_history')->name('delete_surgical_history');
 
 

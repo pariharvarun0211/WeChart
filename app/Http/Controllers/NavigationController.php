@@ -238,6 +238,7 @@ class NavigationController extends Controller
                     ->where('doc_control_group',$member->active_record_id)->pluck('value');
 
                 $family_member_details = new family_member();
+                $family_member_details->id = $member->active_record_id;
                 $family_member_details->relation = $member->value;
                 $family_member_details->status = $member_status;
                 $family_member_details->diagnosis = $member_diagnosis;

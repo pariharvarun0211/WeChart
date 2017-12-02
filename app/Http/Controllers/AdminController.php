@@ -306,7 +306,7 @@ class AdminController extends Controller
     {
         $email = EmailidRole::find($id);
         $email->delete();
-        return redirect('/remove_emails')->with('success','Email has been  deleted');
+         return redirect('RemoveEmails')->with('success','Email has been deleted');
     }
     public function archive_user($id)
     {

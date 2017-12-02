@@ -2112,6 +2112,15 @@ else {
         //Now redirecting back to the orders page
         return redirect()->route('Personal History (PMHx)2',$patient_id);
     }
+    public function delete_family_history($id)
+    {
+        $record = active_record::find($id);
+        $patient_id = $record->patient_id;
+        $record->delete();
+        //Now redirecting back to the orders page
+        return redirect()->route('Family History (FMHx)2',$patient_id);
+    }
+
     public function delete_surgical_history($id)
     {
         $record = active_record::find($id);

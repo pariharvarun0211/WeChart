@@ -1,9 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-
+  
     <div class="container">
         <div class="content">
             <div class="alert alert-info" align="middle">
@@ -11,6 +9,16 @@
                     <strong> Your account has been deleted. Please contact admin for more details.
                     </strong>
                 </p>
+                 <a href="{{ route('logout') }}"
+                       onclick="event.preventDefault();
+                                 document.getElementById('logout-form').submit();">
+                        <i class="fa fa-sign-out" aria-hidden="true"></i>
+                        Logout
+                 </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    {{ csrf_field() }}
+                </form>
+                
             </div>
         </div>
     </div>
