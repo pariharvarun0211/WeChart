@@ -29,8 +29,8 @@
                                     <th>Temperature</th>
                                     <th>Weight</th>
                                     <th>Height</th>
-                                    <th>Pain</th>
-                                    <th>Oxygen Saturation</th>
+                                    <th>Pain (0/10)</th>
+                                    <th>O<sub>2</sub> Sat</th>
                                     <th>Comment</th>
                                     <th></th>
                                 </tr>
@@ -131,8 +131,8 @@
                                         <th>Temperature</th>
                                         <th>Weight</th>
                                         <th>Height</th>
-                                        <th>Pain</th>
-                                        <th>Oxygen Saturation</th>
+                                        <th>Pain (0/10)</th>
+                                        <th>O<sub>2</sub> Sat</th>
                                         <th>Comment</th>
                                         <th></th>
                                     </tr>

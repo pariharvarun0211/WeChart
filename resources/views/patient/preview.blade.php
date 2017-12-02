@@ -26,7 +26,7 @@
         <div class="panel-heading">
             <div class="row">
                 <div class="col-md-3">
-                    <label style="float: left">Instructor- </label>
+                    <label style="float: left">Instructor: </label>
                     @foreach ($instructor_Details as $key=>$instructor_Detail)
                         @if(count($instructor_Detail)>0)
                             <label>{{ $instructor_Detail[0]->firstname}} {{ $instructor_Detail[0]->lastname}}</label>
@@ -39,10 +39,10 @@
                 </div>
                 <div class="col-md-3">
                     @if(count($student_details) > 0)
-                        <label style="float: right">Student- {{$student_details[0]->firstname}} {{$student_details[0]->lastname}}</label>
+                        <label style="float: right">Student: {{$student_details[0]->firstname}} {{$student_details[0]->lastname}}</label>
                     @endif
                    <br>
-                        <label style="float: right">Date- {{$patient->submitted_date}} </label>
+                        <label style="float: right">Date: {{$patient->submitted_date}} </label>
                 </div>
             </div>
         </div>
@@ -159,7 +159,7 @@
         <div class="panel-heading" style="background-color: lightblue">
             <a data-toggle="collapse" href="#HPI">HPI</a>
         </div>
-        <div class="panel-body" id="HPI" class="panel-collapse collapse in">
+        <div class="panel-body" id="HPI" class="panel-collapse collapse in ">
             @if(count($HPI)>0)
                 <p>{{$HPI[0]->value}}</p>
             @endif
@@ -172,7 +172,7 @@
         <div class="panel-heading" style="background-color: lightblue">
             <a data-toggle="collapse" href="#medical_history">Medical History</a>
         </div>
-        <div class="panel-body" id="medical_history" class="panel-collapse collapse in">
+        <div class="panel-body" id="medical_history" class="panel-collapse collapse in ">
             {{--Personal History--}}
             <table class="table table-striped table-bordered table-hover">
                 <thead>
