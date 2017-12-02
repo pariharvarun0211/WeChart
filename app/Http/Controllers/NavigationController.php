@@ -2455,7 +2455,9 @@ class NavigationController extends Controller
                     }
 
                     //getting student name for instructor
-                    $student_id = users_patient::where('patient_id',$id)->pluck('created_by');
+                    $student_id = users_patient::where('patient_id',$id)
+                        ->where('patient_record_status_id','2')->pluck('created_by');
+
                     $student_details = User::where('id', $student_id)->get();
 
                     return view('patient/preview', compact('student_details','instructor_Details', 'patient', 'navs',
