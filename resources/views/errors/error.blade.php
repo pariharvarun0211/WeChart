@@ -8,8 +8,11 @@
             <div class="col-md-12">
                 <div class="alert alert-info" align="middle">
                     <p align="middle">
-                        <strong> {{$error_message}}
-                        </strong>
+                        @if(!$error_message)
+                            <strong> {{$error_message}} </strong>
+                        @else
+                            <strong>Something went wrong!</strong>
+                        @endif
                     </p>
                 </div>
             </div>
