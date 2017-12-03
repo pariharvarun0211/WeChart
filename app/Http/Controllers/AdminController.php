@@ -180,11 +180,7 @@ class AdminController extends Controller
           $registered_student_emails = str_replace([']'], '', $registered_student_emails);
           $registered_student_emails = explode(",", $registered_student_emails);
 
-          Log::info($studentEmails);
-          Log::info($registered_student_emails);
-
           $studentEmails = array_diff($studentEmails,$registered_student_emails);
-          Log::info($studentEmails);
           $studentDetails = array();
           foreach($studentEmails as $studentEmail)
           {
@@ -199,7 +195,7 @@ class AdminController extends Controller
           $instructorEmails = str_replace([']'], '', $instructorEmails);
           $instructorEmails = explode(",", $instructorEmails);
 
-          $registered_instructor_emails = User::where('archived', false)->where('role','Instructor')->pluck('email');
+          $registered_instructor_emails = User::where('role','Instructor')->pluck('email');
           $registered_instructor_emails = str_replace(['['], '', $registered_instructor_emails);
           $registered_instructor_emails = str_replace(['"'], '', $registered_instructor_emails);
           $registered_instructor_emails = str_replace(['"'], '', $registered_instructor_emails);
@@ -217,17 +213,7 @@ class AdminController extends Controller
         }
     public function getConfigureModules()
     {
-        // $navs = navigation::where('parent_id', NULL)->get();
         $navs = navigation::all();
-        $nav_array = array();
-
-        foreach($navs as $key=>$nav)
-        {
-            if($nav->parent_id != NULL)
-            {
-                //$nav_array[$key] =
-            }
-        }
         $mods = module::where('archived', false)->get();
         $navs_mods = module_navigation::where('visible', true)->get();
         return view('admin/configureModules', compact ('navs', 'mods', 'navs_mods'));
@@ -297,7 +283,7 @@ class AdminController extends Controller
     public function deletemodule($modid)
     {
         module::where('module_id',$modid)->update(['archived' => true]);
-        $navs = navigation::where('parent_id', NULL)->get();
+        $navs = navigation::all();
         $mods = module::where('archived', false)->get();
         $navs_mods = module_navigation::where('visible', true)->get();
         return view('admin/configureModules', compact ('navs', 'mods', 'navs_mods'));
@@ -313,9 +299,6 @@ class AdminController extends Controller
         User::where('id',$id)
             ->update(['archived'=> 1]);
         $email = User::where('id',$id)->pluck('email');
-
-        //also delete this email from EmailIdRole
-        //EmailidRole::where('email',$email)->delete();
 
         return redirect('/home')->with('success','Email has been  deleted');
 

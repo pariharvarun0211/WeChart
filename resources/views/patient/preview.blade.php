@@ -26,7 +26,7 @@
         <div class="panel-heading">
             <div class="row">
                 <div class="col-md-3">
-                    <label style="float: left">Submitted to-</label>
+                    <label style="float: left">Instructor: </label>
                     @foreach ($instructor_Details as $key=>$instructor_Detail)
                         @if(count($instructor_Detail)>0)
                             <label>{{ $instructor_Detail[0]->firstname}} {{ $instructor_Detail[0]->lastname}}</label>
@@ -39,9 +39,10 @@
                 </div>
                 <div class="col-md-3">
                     @if(count($student_details) > 0)
-                        <label style="float: right">Submitted by- {{$student_details[0]->firstname}} {{$student_details[0]->lastname}}</label>
+                        <label style="float: right">Student: {{$student_details[0]->firstname}} {{$student_details[0]->lastname}}</label>
                     @endif
-                    <label style="float: right">Submitted on- {{$patient->submitted_date}} </label>
+                   <br>
+                        <label style="float: right">Date: {{$patient->submitted_date}} </label>
                 </div>
             </div>
         </div>
@@ -96,7 +97,7 @@
                         </p>
                     </td>
                     <td style="padding-top: 0%;padding-bottom: 0%">
-                        <p id="oxygen_saturation_label"><strong>Oxygen Saturation: </strong>
+                        <p id="oxygen_saturation_label"><strong>O<sub>2</sub> Sat: </strong>
                             @foreach($vital_signs_header->oxygen_saturation as $key=>$oxygen_saturation)
                                 @if($oxygen_saturation != null)
                                     {{$vital_signs_header->oxygen_saturation[$key]}}
@@ -139,7 +140,7 @@
                         </p>
                     </td>
                     <td style="padding-top: 0%;padding-bottom: 0%">
-                        <p id="pain_label"><strong>Pain:  </strong>
+                        <p id="pain_label"><strong>Pain (0/10):  </strong>
                             @foreach($vital_signs_header->pain as $key=>$pain)
                                 @if($pain != null)
                                     {{$vital_signs_header->pain[$key]}}
@@ -158,7 +159,7 @@
         <div class="panel-heading" style="background-color: lightblue">
             <a data-toggle="collapse" href="#HPI">HPI</a>
         </div>
-        <div class="panel-body" id="HPI" class="panel-collapse collapse in">
+        <div class="panel-body" id="HPI" class="panel-collapse collapse in ">
             @if(count($HPI)>0)
                 <p>{{$HPI[0]->value}}</p>
             @endif
@@ -171,7 +172,7 @@
         <div class="panel-heading" style="background-color: lightblue">
             <a data-toggle="collapse" href="#medical_history">Medical History</a>
         </div>
-        <div class="panel-body" id="medical_history" class="panel-collapse collapse in">
+        <div class="panel-body" id="medical_history" class="panel-collapse collapse in ">
             {{--Personal History--}}
             <table class="table table-striped table-bordered table-hover">
                 <thead>
@@ -182,9 +183,10 @@
                 <tbody>
                     <tr>
                         <td>
-                            <p><strong>List of Diagnosis: </strong>
+                            <p><strong>List of Diagnosis: </strong><br>
                                 @foreach ($diagnosis_list_personal_history as $diagnosis)
-                                   <?php echo ($diagnosis->value); ?>,
+                                    <br>
+                                   * <?php echo ($diagnosis->value); ?>
                                 @endforeach
                             </p>
                             <p><strong>Comments:</strong>
@@ -253,9 +255,9 @@
                 <tbody>
                 <tr>
                     <td>
-                        <p><strong>List of Diagnosis: </strong>
+                        <p><strong>List of Diagnosis: </strong><br>
                             @foreach ($diagnosis_list_surgical_history as $diagnosis)
-                                <?php echo ($diagnosis->value); ?>,
+                                * <?php echo ($diagnosis->value); ?><br>
                             @endforeach
                         </p>
                         <p><strong>Comments:</strong>
@@ -328,9 +330,9 @@
                 </div>
                 <div class="panel-body" id="medications" class="panel-collapse collapse in">
                      <p>
-                        <strong>List of medications: </strong>
+                        <strong>List of medications: </strong><br>
                         @foreach ($medications as $medicine)
-                                {{$medicine->value}},
+                                * {{$medicine->value}}<br>
                         @endforeach
                      </p>
                     <p>
@@ -360,8 +362,8 @@
             <th>Temperature</th>
             <th>Weight</th>
             <th>Height</th>
-            <th>Pain</th>
-            <th>Oxygen Saturation</th>
+            <th>Pain (0/10)</th>
+            <th>O<sub>2</sub> Sat</th>
             <th>Comment</th>
         </tr>
         </thead>
@@ -451,11 +453,11 @@
                         </div>
                         <div class="panel-body" style="padding-bottom: 0">
                                     <p>
-                                        <strong>Symptoms: </strong>
+                                        <strong>Symptoms: </strong><br>
                                         @foreach ($ros_constitutional_symptoms as $ros_constitutional_symptom)
 
                                                 @if($ros_constitutional_symptom->is_saved)
-                                                       {{$ros_constitutional_symptom->value}},
+                                                      * {{$ros_constitutional_symptom->value}}<br>
                                                 @endif
 
                                         @endforeach
@@ -475,10 +477,10 @@
                     </div>
                     <div class="panel-body" style="padding-bottom: 0">
                         <p>
-                            <strong>Symptoms: </strong>
+                            <strong>Symptoms: </strong><br>
                             @foreach ($ros_hent_symptoms as $ros_hent_symptom)
                                 @if($ros_hent_symptom->is_saved)
-                                    {{$ros_hent_symptom->value}},
+                                   * {{$ros_hent_symptom->value}}<br>
                                 @endif
                             @endforeach
                         </p>
@@ -497,10 +499,10 @@
                     </div>
                     <div class="panel-body" style="padding-bottom: 0">
                         <p>
-                            <strong>Symptoms: </strong>
+                            <strong>Symptoms: </strong><br>
                             @foreach ($ros_eyes_symptoms as $ros_eyes_symptom)
                                 @if($ros_eyes_symptom->is_saved)
-                                    {{$ros_eyes_symptom->value}},
+                                    * {{$ros_eyes_symptom->value}}<br>
                                 @endif
                             @endforeach
                         </p>
@@ -519,10 +521,10 @@
                     </div>
                     <div class="panel-body" style="padding-bottom: 0">
                         <p>
-                            <strong>Symptoms: </strong>
+                            <strong>Symptoms: </strong><br>
                             @foreach ($ros_respiratory_symptoms as $ros_respiratory_symptom)
                                 @if($ros_respiratory_symptom->is_saved)
-                                    {{$ros_respiratory_symptom->value}},
+                                    * {{$ros_respiratory_symptom->value}}<br>
                                 @endif
                             @endforeach
                         </p>
@@ -541,10 +543,10 @@
                     </div>
                     <div class="panel-body" style="padding-bottom: 0">
                         <p>
-                            <strong>Symptoms: </strong>
+                            <strong>Symptoms: </strong><br>
                             @foreach ($ros_cardiovascular_symptoms as $ros_cardiovascular_symptom)
                                 @if($ros_cardiovascular_symptom->is_saved)
-                                    {{$ros_cardiovascular_symptom->value}},
+                                  * {{$ros_cardiovascular_symptom->value}}<br>
                                 @endif
                             @endforeach
                         </p>
@@ -563,10 +565,10 @@
                     </div>
                     <div class="panel-body" style="padding-bottom: 0">
                         <p>
-                            <strong>Symptoms: </strong>
+                            <strong>Symptoms: </strong><br>
                             @foreach ($ros_musculoskeletal_symptoms as $ros_musculoskeletal_symptom)
                                 @if($ros_musculoskeletal_symptom->is_saved)
-                                    {{$ros_musculoskeletal_symptom->value}},
+                                  * {{$ros_musculoskeletal_symptom->value}}<br>
                                 @endif
                             @endforeach
                         </p>
@@ -585,10 +587,10 @@
                     </div>
                     <div class="panel-body" style="padding-bottom: 0">
                         <p>
-                            <strong>Symptoms: </strong>
+                            <strong>Symptoms: </strong><br>
                             @foreach ($ros_integumentary_symptoms as $ros_integumentary_symptom)
                                 @if($ros_integumentary_symptom->is_saved)
-                                    {{$ros_integumentary_symptom->value}},
+                                    * {{$ros_integumentary_symptom->value}}<br>
                                 @endif
                             @endforeach
                         </p>
@@ -607,10 +609,10 @@
                     </div>
                     <div class="panel-body" style="padding-bottom: 0">
                         <p>
-                            <strong>Symptoms: </strong>
+                            <strong>Symptoms: </strong><br>
                             @foreach ($ros_neurological_symptoms as $ros_neurological_symptom)
                                 @if($ros_neurological_symptom->is_saved)
-                                    {{$ros_neurological_symptom->value}},
+                                    * {{$ros_neurological_symptom->value}}<br>
                                 @endif
                             @endforeach
                         </p>
@@ -629,10 +631,10 @@
                     </div>
                     <div class="panel-body" style="padding-bottom: 0">
                         <p>
-                            <strong>Symptoms: </strong>
+                            <strong>Symptoms: </strong><br>
                             @foreach ($ros_psychological_symptoms as $ros_psychological_symptom)
                                 @if($ros_psychological_symptom->is_saved)
-                                    {{$ros_psychological_symptom->value}},
+                                    * {{$ros_psychological_symptom->value}}<br>
                                 @endif
                             @endforeach
                         </p>
@@ -661,11 +663,11 @@
                     </div>
                     <div class="panel-body" style="padding-bottom: 0">
                         <p>
-                            <strong>Symptoms: </strong>
+                            <strong>Symptoms: </strong><br>
                             @foreach ($constitutional_symptoms as $constitutional_symptom)
 
                                 @if($constitutional_symptom->is_saved)
-                                    {{$constitutional_symptom->value}},
+                                   * {{$constitutional_symptom->value}}<br>
                                 @endif
 
                             @endforeach
@@ -685,10 +687,10 @@
                     </div>
                     <div class="panel-body" style="padding-bottom: 0">
                         <p>
-                            <strong>Symptoms: </strong>
+                            <strong>Symptoms: </strong><br>
                             @foreach ($hent_symptoms as $hent_symptom)
                                 @if($hent_symptom->is_saved)
-                                    {{$hent_symptom->value}},
+                                   * {{$hent_symptom->value}}<br>
                                 @endif
                             @endforeach
                         </p>
@@ -707,10 +709,10 @@
                     </div>
                     <div class="panel-body" style="padding-bottom: 0">
                         <p>
-                            <strong>Symptoms: </strong>
+                            <strong>Symptoms: </strong><br>
                             @foreach ($eyes_symptoms as $eyes_symptom)
                                 @if($eyes_symptom->is_saved)
-                                    {{$eyes_symptom->value}},
+                                    * {{$eyes_symptom->value}}<br>
                                 @endif
                             @endforeach
                         </p>
@@ -729,10 +731,10 @@
                     </div>
                     <div class="panel-body" style="padding-bottom: 0">
                         <p>
-                            <strong>Symptoms: </strong>
+                            <strong>Symptoms: </strong><br>
                             @foreach ($respiratory_symptoms as $respiratory_symptom)
                                 @if($respiratory_symptom->is_saved)
-                                    {{$respiratory_symptom->value}},
+                                    * {{$respiratory_symptom->value}}<br>
                                 @endif
                             @endforeach
                         </p>
@@ -751,10 +753,10 @@
                     </div>
                     <div class="panel-body" style="padding-bottom: 0">
                         <p>
-                            <strong>Symptoms: </strong>
+                            <strong>Symptoms: </strong><br>
                             @foreach ($cardiovascular_symptoms as $cardiovascular_symptom)
                                 @if($cardiovascular_symptom->is_saved)
-                                    {{$cardiovascular_symptom->value}},
+                                    * {{$cardiovascular_symptom->value}}<br>
                                 @endif
                             @endforeach
                         </p>
@@ -773,10 +775,10 @@
                     </div>
                     <div class="panel-body" style="padding-bottom: 0">
                         <p>
-                            <strong>Symptoms: </strong>
+                            <strong>Symptoms: </strong><br>
                             @foreach ($musculoskeletal_symptoms as $musculoskeletal_symptom)
                                 @if($musculoskeletal_symptom->is_saved)
-                                    {{$musculoskeletal_symptom->value}},
+                                    * {{$musculoskeletal_symptom->value}}<br>
                                 @endif
                             @endforeach
                         </p>
@@ -795,10 +797,10 @@
                     </div>
                     <div class="panel-body" style="padding-bottom: 0">
                         <p>
-                            <strong>Symptoms: </strong>
+                            <strong>Symptoms: </strong><br>
                             @foreach ($integumentary_symptoms as $integumentary_symptom)
                                 @if($integumentary_symptom->is_saved)
-                                    {{$integumentary_symptom->value}},
+                                   * {{$integumentary_symptom->value}}<br>
                                 @endif
                             @endforeach
                         </p>
@@ -817,10 +819,10 @@
                     </div>
                     <div class="panel-body" style="padding-bottom: 0">
                         <p>
-                            <strong>Symptoms: </strong>
+                            <strong>Symptoms: </strong><br>
                             @foreach ($neurological_symptoms as $neurological_symptom)
                                 @if($neurological_symptom->is_saved)
-                                    {{$neurological_symptom->value}},
+                                   * {{$neurological_symptom->value}}<br>
                                 @endif
                             @endforeach
                         </p>
@@ -839,10 +841,10 @@
                     </div>
                     <div class="panel-body" style="padding-bottom: 0">
                         <p>
-                            <strong>Symptoms: </strong>
+                            <strong>Symptoms: </strong><br>
                             @foreach ($psychological_symptoms as $psychological_symptom)
                                 @if($psychological_symptom->is_saved)
-                                    {{$psychological_symptom->value}},
+                                    * {{$psychological_symptom->value}}<br>
                                 @endif
                             @endforeach
                         </p>
@@ -865,15 +867,15 @@
             </div>
             <div class="panel-body" id="orders" class="panel-collapse collapse in">
                 <p>
-                    <strong>List of labs: </strong>
+                    <strong>List of labs: </strong><br>
                     @foreach ($labs as $lab)
-                        {{$lab->value}},
+                        * {{$lab->value}}<br>
                     @endforeach
                 </p>
                 <p>
-                    <strong>List of Images: </strong>
+                    <strong>List of Images: </strong><br>
                     @foreach ($images as $image)
-                        {{$image->value}},
+                       * {{$image->value}}<br>
                     @endforeach
                 </p>
                 <p><strong>Comments: </strong>
