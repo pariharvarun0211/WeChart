@@ -8,7 +8,6 @@
         <div class="row">
             <h3 style="text-align: center"><img src="logos\LogoInstructor.png" width="4%"> Instructor Dashboard <img src="logos\LogoInstructor.png" width="4%"></h3>
         </div>
-        <!-- Students -->
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-default" style="margin-bottom: 0;padding-bottom: 0">
@@ -32,7 +31,7 @@
                                                     <th>Visit Date</th>
                                                     <th>Submitted By</th>
                                                     <th>Submitted On</th>
-                                                    <th colspan="2">Action</th>
+                                                    <th></th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
@@ -54,7 +53,7 @@
                                                                 @else
                                                                     <td><p id="submittedOn"></p></td>
                                                                 @endif
-                                                                <td style="text-align: left">
+                                                                <td style="text-align: right">
                                                                     <a href="{{ route( 'patient_preview', ['patient_id' => $for_review_patient->patient_id ] ) }}" class="btn btn-primary" id="preview">
                                                                         <i class="fa fa-file-text" aria-hidden="true"></i> Preview
                                                                     </a>
@@ -84,15 +83,13 @@
             </div>
         </div>
         <br>
-        <!-- Instructors -->
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
-                <div class="panel panel-default">
+                <div class="panel panel-default" style="margin-bottom: 0;padding-bottom: 0">
                     <div class="panel-heading" style="background-color: #5DADE2; padding-bottom: 0">
                         <h4 style="margin-top: 0">Reviewed Patients</h4>
                     </div>
-                    <div class="panel-body">
-                        <div class="panel-body" style="margin-bottom: 0;padding-bottom: 0">
+                    <div class="panel-body" style="margin-bottom: 0;padding-bottom: 0">
                             @if(!empty($reviewed_patients))
                                 @foreach($modules_reviewed as $module)
                                     <div class="panel panel-default">
@@ -108,7 +105,7 @@
                                                         <th>Visit Date</th>
                                                         <th>Submitted By</th>
                                                         <th>Reviewed On</th>
-                                                        <th colspan="2">Action</th>
+                                                        <th></th>
                                                     </tr>
                                                     </thead>
                                                     <tbody>
@@ -130,7 +127,7 @@
                                                                     @else
                                                                         <td><p id="reviewedOn"></p></td>
                                                                     @endif
-                                                                    <td style="text-align: left">
+                                                                    <td style="text-align: right">
                                                                         <a href="{{ route( 'patient_preview', ['patient_id' => $reviewed_patient->patient_id ] ) }}" class="btn btn-primary" id="preview">
                                                                             <i class="fa fa-file-text" aria-hidden="true"></i> Preview
                                                                         </a>
@@ -148,18 +145,18 @@
                                         </div>
                                     </div>
                                 @endforeach
+
                             @else
                                 <p>{{$reviewed_message}}</p>
                             @endif
-                        </div>
                     </div>
                 </div>
-                <br>
             </div>
         </div>
-        <script type="text/javascript">
-            $('.confirmation').on('click', function () {
-                return confirm('Patient will be marked as Reviewed. Are you Sure?');
-            });
-        </script>
+    </div>
+    <script type="text/javascript">
+        $('.confirmation').on('click', function () {
+            return confirm('Patient will be marked as reviewed. Are you sure?');
+        });
+    </script>
 @endsection

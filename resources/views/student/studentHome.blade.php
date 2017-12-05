@@ -38,9 +38,9 @@
                                         <table class="table table-striped table-bordered table-hover">
                                             <thead>
                                                 <tr class="bg-info">
-                                                    <th colspan="2">Patient Name</th>
+                                                    <th>Patient Name</th>
                                                     <th>Age</th>
-                                                    <th>Sex</th>
+                                                    {{--<th>Sex</th>--}}
                                                     <th>Visit Date</th>
                                                     <th></th>
                                                 </tr>
@@ -51,15 +51,15 @@
                                                     @if($patient->module)
                                                        @if($patient->status === 1 && $patient->module->module_name === $module)
                                                                <tr>
-                                                                    <td colspan="2">
+                                                                    <td>
                                                                         <a href="{{ route( 'patient.view', ['patient_id' => $patient->patient_id ] ) }}" id="patientName">
                                                                              <?php echo $patient->first_name.' '.$patient->last_name; ?>
                                                                          </a>
                                                                     </td>
                                                                     <td><p id="patientAge">{{$patient->age}}</p></td>
-                                                                    <td><p id="patientSex">{{$patient->gender}}</p></td>
+                                                                    {{--<td><p id="patientSex">{{$patient->gender}}</p></td>--}}
                                                                     <td><p id="visitDate">{{$patient->visit_date}}</p></td>
-                                                                    <td>
+                                                                    <td style="text-align: right">
                                                                         <a href="{{ route( 'patient.view', ['patient_id' => $patient->patient_id ] ) }}" class="btn btn-primary" id="edit">
                                                                             <i class="fa fa-pencil-square-o" aria-hidden="true"></i> View & Edit
                                                                         </a>
@@ -77,6 +77,7 @@
                                     </div>
                                 </div>
                             @endforeach
+
                         @else
                             <p>{{$saved_message}}</p>
                         @endif
@@ -88,12 +89,11 @@
         <!-- Submitted -->
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
-                <div class="panel panel-default">
+                <div class="panel panel-default" style="margin-bottom: 0;padding-bottom: 0">
                     <div class="panel-heading" style="background-color: #5DADE2; padding-bottom: 0">
                         <h4 style="margin-top: 0">Submitted Patients</h4>
                     </div>
-                    <div class="panel-body">
-                        <div class="panel-body" style="margin-bottom: 0;padding-bottom: 0">
+                    <div class="panel-body" style="margin-bottom: 0;padding-bottom: 0">
                             @if(count($submitted_patients_modules)>0)
                                 @foreach($submitted_patients_modules as $module)
                                     <div class="panel panel-default">
@@ -109,7 +109,7 @@
                                                         <th>Patient Name</th>
                                                         <th>Submitted Date</th>
                                                         <th>Visit Date</th>
-                                                        <th colspan="3"></th>
+                                                        <th></th>
                                                     </tr>
                                                     </thead>
                                                     <tbody>
@@ -123,7 +123,7 @@
                                                                     </td>
                                                                     <td><p id="patient_submitted_date">{{$patient->submitted_date}}</p></td>
                                                                     <td><p id="visitDate">{{$patient->visit_date}}</p></td>
-                                                                    <td style="text-align: left">
+                                                                    <td style="text-align: right">
                                                                         <a href="{{ route( 'patient_preview', ['patient_id' => $patient->patient_id ] ) }}" class="btn btn-primary" id="preview">
                                                                             <i class="fa fa-file-text" aria-hidden="true"></i> Preview
                                                                         </a>
@@ -144,13 +144,13 @@
                                         </div>
                                     </div>
                                 @endforeach
+
+
                             @else
                                 <p>{{$submitted_message}}</p>
                             @endif
-                        </div>
                     </div>
                 </div>
-                <br>
             </div>
         </div>
     </div>
