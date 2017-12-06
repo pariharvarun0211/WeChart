@@ -81,17 +81,16 @@
                                                 @endif
                                             </div>
                                         </div>
-                                <div class="form-group{{ $errors->has('visit_date') ? ' has-error' : '' }}">
+                                        <div class="form-group{{ $errors->has('visit_date') ? ' has-error' : '' }}">
                                             <label for="height" class="col-md-4 control-label">Visit Date<span style="color: red;font-size: large">*</span></label>
 
                                             <div class="col-md-6">
-                                                <input id="visit_date" type="text" class="form-control" name="visit_date" value="{{ old('visit_date') }}"  required>
+                                                <input id="visit_date" type="date" class="form-control" name="visit_date" value="{{ old('visit_date') }}"  required>
                                                 @if ($errors->has('visit_date'))
                                                     <span class="help-block">
                                                                     <strong>{{ $errors->first('visit_date') }}</strong>
                                                     </span>
                                                 @endif
-                                                <p class="form-control-label">Note: Date must be in 'YYYY-MM-DD' format</p>
                                             </div>
 
                                         </div>

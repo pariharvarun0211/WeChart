@@ -2101,7 +2101,7 @@ class NavigationController extends Controller
                     ->pluck('user_id');
                 $instructor_Details = array();
 
-                //Now get Instructor names
+                 //Now get Instructor names
                 foreach ($instructorIds as $key => $instructorId) {
                     $instructorDetail = User::where('id', $instructorId)->where('role', 'Instructor')->get();
                     array_push($instructor_Details, $instructorDetail);
@@ -2427,12 +2427,15 @@ class NavigationController extends Controller
                     $vital_signs_header = $this->get_vital_signs_header($id);
 
                     //Fetching assigned instructors for student
-                        $instructorIds = users_patient::where('patient_id', $id)
-                            ->where(function ($q)
-                            {
-                                $q->where('patient_record_status_id', '2')->orWhere('patient_record_status_id', '3');
-                            })
-                            ->pluck('user_id');
+                    $instructorIds = users_patient::where('patient_id', $id)
+                        ->where(function ($q)
+                        {
+                            $q->where('patient_record_status_id', '2')->orWhere('patient_record_status_id', '3');
+                        })
+                        ->pluck('user_id');
+
+                    Log::info($instructorIds);
+
                     $instructor_Details = array();
 
                     //Now get Instructor names
