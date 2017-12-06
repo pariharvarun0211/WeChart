@@ -2108,9 +2108,10 @@ class NavigationController extends Controller
                 }
 
                 //getting student name for instructor
-                $student_id = users_patient::where('patient_id',$id)
-                    ->where('patient_record_status_id','2')->pluck('created_by');
-                $student_details = User::where('id', $student_id)->get();
+                $student_record = users_patient::where('patient_id',$id)
+                    ->where('patient_record_status_id','2')->first();
+                $student_id = $student_record->created_by;
+                $student_details = User::where('id', $student_id)->where('role', 'Student')->get();
 
                 try {
                     $pdf = PDF::loadView('patient.preview', compact('student_details','instructor_Details', 'patient', 'navs',
@@ -2434,8 +2435,6 @@ class NavigationController extends Controller
                         })
                         ->pluck('user_id');
 
-                    Log::info($instructorIds);
-
                     $instructor_Details = array();
 
                     //Now get Instructor names
@@ -2445,10 +2444,10 @@ class NavigationController extends Controller
                     }
 
                     //getting student name for instructor
-                    $student_id = users_patient::where('patient_id',$id)
-                        ->where('patient_record_status_id','2')->pluck('created_by');
-
-                    $student_details = User::where('id', $student_id)->get();
+                    $student_record = users_patient::where('patient_id',$id)
+                        ->where('patient_record_status_id','2')->first();
+                    $student_id = $student_record->created_by;
+                    $student_details = User::where('id', $student_id)->where('role', 'Student')->get();
 
                     return view('patient/preview', compact('student_details','instructor_Details', 'patient', 'navs',
                         'vital_signs_header', 'HPI', 'diagnosis_list_surgical_history', 'surgical_history_comment',
