@@ -2101,16 +2101,17 @@ class NavigationController extends Controller
                     ->pluck('user_id');
                 $instructor_Details = array();
 
-                //Now get Instructor names
+                 //Now get Instructor names
                 foreach ($instructorIds as $key => $instructorId) {
                     $instructorDetail = User::where('id', $instructorId)->where('role', 'Instructor')->get();
                     array_push($instructor_Details, $instructorDetail);
                 }
 
                 //getting student name for instructor
-                $student_id = users_patient::where('patient_id',$id)
-                    ->where('patient_record_status_id','2')->pluck('created_by');
-                $student_details = User::where('id', $student_id)->get();
+                $student_record = users_patient::where('patient_id',$id)
+                    ->where('patient_record_status_id','2')->first();
+                $student_id = $student_record->created_by;
+                $student_details = User::where('id', $student_id)->where('role', 'Student')->get();
 
                 try {
                     $pdf = PDF::loadView('patient.preview', compact('student_details','instructor_Details', 'patient', 'navs',
@@ -2427,12 +2428,13 @@ class NavigationController extends Controller
                     $vital_signs_header = $this->get_vital_signs_header($id);
 
                     //Fetching assigned instructors for student
-                        $instructorIds = users_patient::where('patient_id', $id)
-                            ->where(function ($q)
-                            {
-                                $q->where('patient_record_status_id', '2')->orWhere('patient_record_status_id', '3');
-                            })
-                            ->pluck('user_id');
+                    $instructorIds = users_patient::where('patient_id', $id)
+                        ->where(function ($q)
+                        {
+                            $q->where('patient_record_status_id', '2')->orWhere('patient_record_status_id', '3');
+                        })
+                        ->pluck('user_id');
+
                     $instructor_Details = array();
 
                     //Now get Instructor names
@@ -2442,10 +2444,10 @@ class NavigationController extends Controller
                     }
 
                     //getting student name for instructor
-                    $student_id = users_patient::where('patient_id',$id)
-                        ->where('patient_record_status_id','2')->pluck('created_by');
-
-                    $student_details = User::where('id', $student_id)->get();
+                    $student_record = users_patient::where('patient_id',$id)
+                        ->where('patient_record_status_id','2')->first();
+                    $student_id = $student_record->created_by;
+                    $student_details = User::where('id', $student_id)->where('role', 'Student')->get();
 
                     return view('patient/preview', compact('student_details','instructor_Details', 'patient', 'navs',
                         'vital_signs_header', 'HPI', 'diagnosis_list_surgical_history', 'surgical_history_comment',
